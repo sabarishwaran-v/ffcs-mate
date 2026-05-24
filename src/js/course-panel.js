@@ -131,6 +131,15 @@ $(() => {
 
     $('#slot-buttons').on('click', 'button', function () {
         var $btn = $(this);
+
+        // Mobile UX Fix: If the button is already selected, a second tap adds the course
+        // This avoids the need for a rapid double-tap (which causes mobile browsers to zoom).
+        if ($btn.hasClass('selected')) {
+            $('#add-course-button').trigger('click');
+            $btn.trigger('blur');
+            return;
+        }
+
         var slotString = $btn.data('slot');
         var courseCode = $btn.data('code');
 

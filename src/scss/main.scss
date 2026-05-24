@@ -174,12 +174,43 @@ footer {
     --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-main);
     transition: background-color 0.4s ease, color 0.4s ease;
     background-image: radial-gradient(var(--border-subtle) 2px, transparent 2px);
     background-size: 30px 30px;
+}
+
+/* Force Bootstrap containers to adapt */
+.modal-title, .modal-body, .modal-header, .modal-content,
+.card, .card-header, .card-body,
+.list-group-item, .dropdown-menu, .dropdown-item,
+.table {
+    color: var(--text-main);
+}
+
+/* Form inputs & tables */
+.form-control, .form-select, .modal-content, .dropdown-menu {
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    border-color: var(--border-subtle);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
+}
+
+/* Override Bootstrap text-muted */
+.text-muted {
+    color: var(--text-muted) !important;
 }
 
 /* Glassmorphism */

@@ -200,7 +200,7 @@
         </script>
 
         <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light">
             <div class="container-xl px-3 py-1">
                 <a class="navbar-brand" href="/">FFCS MATE</a>
                 <button
@@ -352,7 +352,7 @@
                 <!-- Left Sidebar: Search & Selected Courses -->
                 <div class="col-xl-3 col-lg-4 sidebar-panel">
                     <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-header text-center fw-bold bg-white pt-3 border-0 fs-5">
+                        <div class="card-header text-center fw-bold pt-3 border-0 fs-5">
                             Search & Add Courses
                         </div>
                         <div class="card-body" style="overflow-y: auto; max-height: calc(100vh - 10rem);">
@@ -362,7 +362,7 @@
                                         <label for="course-input" class="form-label text-muted fw-bold small mb-1">COURSE</label>
                                         <input
                                             type="text"
-                                            class="form-control form-control-lg bg-light border-0"
+                                            class="form-control form-control-lg border-0"
                                             id="course-input"
                                             placeholder="e.g. CSE1001"
                                         />
@@ -403,19 +403,19 @@
                                 <div id="advanced-options" class="row my-2 gy-2" style="display: none">
                                     <div class="col-6">
                                         <label for="slot-input" class="form-label text-muted small">Slot</label>
-                                        <input id="slot-input" class="form-control form-control-sm text-uppercase bg-light border-0" type="text" autocomplete="off" placeholder="A1+TA1" />
+                                        <input id="slot-input" class="form-control form-control-sm text-uppercase border-0" type="text" autocomplete="off" placeholder="A1+TA1" />
                                     </div>
                                     <div class="col-6">
                                         <label for="faculty-input" class="form-label text-muted small">Faculty</label>
-                                        <input id="faculty-input" class="form-control form-control-sm text-uppercase bg-light border-0" type="text" autocomplete="off" placeholder="JOHN DOE" />
+                                        <input id="faculty-input" class="form-control form-control-sm text-uppercase border-0" type="text" autocomplete="off" placeholder="JOHN DOE" />
                                     </div>
                                     <div class="col-6">
                                         <label for="venue-input" class="form-label text-muted small">Venue</label>
-                                        <input id="venue-input" class="form-control form-control-sm text-uppercase bg-light border-0" type="text" autocomplete="off" placeholder="SJTG01" />
+                                        <input id="venue-input" class="form-control form-control-sm text-uppercase border-0" type="text" autocomplete="off" placeholder="SJTG01" />
                                     </div>
                                     <div class="col-6">
                                         <label for="credits-input" class="form-label text-muted small">Credits</label>
-                                        <input id="credits-input" class="form-control form-control-sm text-uppercase bg-light border-0" type="number" autocomplete="off" placeholder="4" />
+                                        <input id="credits-input" class="form-control form-control-sm text-uppercase border-0" type="number" autocomplete="off" placeholder="4" />
                                     </div>
                                     <input id="inputIsProject" type="hidden" value="false" />
                                 </div>
@@ -435,15 +435,15 @@
                 
                 <!-- Right Main Area: Timetable -->
                 <div class="col-xl-9 col-lg-8 main-panel">
-                    <div class="card h-100 bg-white border-0 shadow-sm" style="overflow-y: auto; max-height: calc(100vh - 8rem);">
-                        <div class="card-header bg-white border-0 pt-4 pb-2 px-4 sticky-top z-index-10" style="z-index: 10;">
+                    <div class="card h-100 border-0 shadow-sm" style="overflow-y: auto; max-height: calc(100vh - 8rem);">
+                        <div class="card-header border-0 pt-4 pb-2 px-4 sticky-top z-index-10" style="z-index: 10;">
                             <!-- Option buttons for the timetable -->
                             <div id="option-buttons" class="d-flex flex-wrap justify-content-between align-items-center gap-3">
                                 
                                 <!-- Left side actions -->
                                 <div class="d-flex align-items-center gap-2 flex-wrap">
                                     <div class="dropdown">
-                                        <button id="semester" class="btn btn-outline-secondary dropdown-toggle btn-sm rounded-pill px-3 fw-bold shadow-sm border-0 bg-light" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                        <button id="semester" class="btn btn-outline-secondary dropdown-toggle btn-sm rounded-pill px-3 fw-bold shadow-sm border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                         <ul id="semester-dropdown" class="dropdown-menu dropdown-menu-light shadow border-0" aria-labelledby="semester">
                                             <li><a class="dropdown-item fw-bold" href="#winter_freshers_25">Winter Semester Freshers 25-26</a></li>
                                             <li><hr class="dropdown-divider"></li>
@@ -473,7 +473,7 @@
                                 <!-- Right side actions -->
                                 <div class="d-flex align-items-center gap-3 flex-wrap">
                                     <div id="merge-labs-container">
-                                        <div class="custom-toggle-container d-inline-block bg-light px-3 py-1 rounded-pill shadow-sm">
+                                        <div class="custom-toggle-container d-inline-block px-3 py-1 rounded-pill shadow-sm">
                                             <label class="custom-toggle-label me-2 noselect small text-muted fw-bold" for="split-labs-toggle">MERGE LABS</label>
                                             <label class="custom-toggle-switch">
                                                 <input type="checkbox" id="split-labs-toggle">
@@ -523,7 +523,7 @@
                             <!-- Timetable Grid -->
                             <div class="text-center noselect mt-3" id="timetable-view-container">
                                 <div id="timetable" class="table-responsive border border-2 border-light shadow-none rounded-4">
-                                    <table class="table table-bordered mb-0 bg-white">
+                                    <table class="table table-bordered mb-0">
                                         <tr id="theory"><td class="day">THEORY <br />HOURS</td></tr>
                                         <tr id="lab"><td class="day">LAB <br />HOURS</td></tr>
                                         <tr id="mon" style="display: none"><td class="day">MON</td></tr>
@@ -552,24 +552,24 @@
                                 <p class="text-muted small mb-4">Double click a course in the list below to load it back into the course panel.</p>
 
                                 <div id="course-list" class="table-responsive border border-2 border-light shadow-sm rounded-4">
-                                    <table class="table table-hover align-middle mb-0 bg-white">
-                                        <thead class="bg-light text-muted small fw-bold">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="text-muted small fw-bold">
                                             <tr class="noselect">
-                                                <th class="border-0 bg-light rounded-top-left">Slot</th>
-                                                <th class="border-0 bg-light">Course Code</th>
-                                                <th class="border-0 bg-light">Course Title</th>
-                                                <th class="border-0 bg-light">Faculty</th>
-                                                <th class="border-0 bg-light">Venue</th>
-                                                <th class="border-0 bg-light">Credits</th>
-                                                <th class="border-0 bg-light rounded-top-right"></th>
+                                                <th class="border-0 rounded-top-left">Slot</th>
+                                                <th class="border-0">Course Code</th>
+                                                <th class="border-0">Course Title</th>
+                                                <th class="border-0">Faculty</th>
+                                                <th class="border-0">Venue</th>
+                                                <th class="border-0">Credits</th>
+                                                <th class="border-0 rounded-top-right"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <!-- Courses will be added here -->
                                         </tbody>
-                                        <tfoot class="bg-light">
+                                        <tfoot>
                                             <tr>
-                                                <td colspan="7" class="border-0 bg-light rounded-bottom">
+                                                <td colspan="7" class="border-0 rounded-bottom">
                                                     <div class="d-flex justify-content-end align-items-center py-2 pe-3">
                                                         <strong class="fs-6 me-2">Total Credits:</strong>
                                                         <span id="total-credits" class="badge bg-primary fs-6 rounded-pill px-3">0</span>

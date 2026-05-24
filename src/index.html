@@ -116,6 +116,43 @@
             .custom-toggle-switch input:checked + .custom-toggle-slider:before {
                 transform: translateX(22px);
             }
+
+            /* Compare Mode Styles */
+            .compare-course {
+                background-color: rgba(52, 152, 219, 0.8) !important;
+                border: 2px dashed #2980b9 !important;
+                color: white !important;
+                font-style: italic;
+                pointer-events: none; /* Make it unclickable */
+            }
+            .exit-compare-banner {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1050;
+                background-color: #2980b9;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 50rem;
+                box-shadow: 0 10px 25px rgba(41, 128, 185, 0.4);
+                font-weight: 600;
+                display: none;
+                align-items: center;
+                gap: 12px;
+            }
+            .exit-compare-banner button {
+                border: none;
+                background: rgba(255,255,255,0.2);
+                color: white;
+                border-radius: 50rem;
+                padding: 4px 12px;
+                font-weight: bold;
+                transition: background 0.2s;
+            }
+            .exit-compare-banner button:hover {
+                background: rgba(255,255,255,0.4);
+            }
         </style>
     </head>
 
@@ -474,6 +511,12 @@
                                             <i class="fas fa-download"></i> Download
                                         </button>
                                     </div>
+
+                                    <div id="copy-share-btn">
+                                        <button class="btn btn-info rounded-pill px-4 shadow-sm fw-bold text-white ms-2" type="button" id="generate-share-link">
+                                            <i class="fas fa-share-alt"></i> Share
+                                        </button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -487,6 +530,12 @@
                                     <h4 class="fw-bold text-secondary">No Data Available</h4>
                                     <p class="text-muted max-w-md mx-auto">This campus does not have any active semesters loaded. Please use the Add Semester button in the dropdown above to submit data.</p>
                                 </div>
+                            </div>
+
+                            <!-- Exit Compare Mode Banner -->
+                            <div id="exit-compare-banner" class="exit-compare-banner">
+                                <i class="fas fa-eye"></i> Viewing Shared Timetable 
+                                <button type="button" id="exit-compare-btn">Exit Compare Mode</button>
                             </div>
 
                             <!-- Timetable Grid -->

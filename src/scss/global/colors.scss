@@ -22,6 +22,7 @@ $colors-light: (
     theory: #ccccff,
     day-lunch: #c0c0c0,
     period: #ffffcc,
+    period-lab: #f9efa4,
     period-highlight: #ccff33,
     theory-highlight: #ccccff,
     lab-highlight: #99ccff,
@@ -32,6 +33,40 @@ $colors-light: (
 
 :root {
     @each $name, $color in $colors-light {
+        --#{$name}-color: #{$color};
+    }
+}
+
+$colors-dark: (
+    primary: #a78bfa,
+    primary-dark: #8b5cf6,
+    primary-light: #4c1d95,
+    background: #111827,
+    text: #f9fafb,
+    text-light: #9ca3af,
+    table-border: #374151,
+    input-text: #f9fafb,
+    input-border: #4b5563,
+    input-border-active: #8b5cf6,
+    input-border-shadow: rgba(139, 92, 246, 0.25),
+    slot-button-selected: #4c1d95,
+    quick-button: #374151,
+    quick-button-highlight: #059669,
+    lab: #1e3a8a,
+    theory: #312e81,
+    day-lunch: #1f2937,
+    period: #1f2937,
+    period-lab: #111827,
+    period-highlight: #374151,
+    theory-highlight: #4f46e5,
+    lab-highlight: #2563eb,
+    period-clash: #991b1b,
+    on-clash: #fecaca,
+    course-list-header-hover: #1f2937,
+);
+
+[data-theme="dark"] {
+    @each $name, $color in $colors-dark {
         --#{$name}-color: #{$color};
     }
 }

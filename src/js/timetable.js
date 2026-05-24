@@ -793,3 +793,103 @@ window.clearTimetable = () => {
         $('#timetable tr div[data-course]').remove();
     }
 };
+
+/*
+    Share Link and Compare Mode Logic
+ */
+$(() => {
+    /* Share Link Generation */
+    $('#generate-share-link').on('click', function() {
+        if (activeTable.data.length === 0) {
+            alert('Your timetable is empty! Add some courses before sharing.');
+            return;
+        }
+        
+        // Encode the active table data
+        const dataStr = JSON.stringify(activeTable.data);
+        const encodedData = btoa(encodeURIComponent(dataStr));
+        const shareUrl = window.location.origin + window.location.pathname + '?share=' + encodedData + (window.location.hash || '');
+        
+        // Copy to clipboard
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            var $btn = $(this);
+            var originalHtml = $btn.html();
+            $btn.html('<i class="fas fa-check"></i> Copied!');
+            $btn.removeClass('btn-info').addClass('btn-success');
+            
+            setTimeout(() => {
+                $btn.html(originalHtml);
+                $btn.removeClass('btn-success').addClass('btn-info');
+            }, 2000);
+        });
+    });
+
+    /* Parse Share Link on Load */
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('share')) {
+        try {
+            const encodedData = urlParams.get('share');
+            const decodedDataStr = decodeURIComponent(atob(encodedData));
+            window.sharedTimetableData = JSON.parse(decodedDataStr);
+            
+            // Show the modal
+            var shareModal = new bootstrap.Modal(document.getElementById('share-modal'));
+            shareModal.show();
+            
+            // Remove the ?share parameter from the URL to clean it up
+            const cleanUrl = window.location.origin + window.location.pathname + (window.location.hash || '');
+            window.history.replaceState({}, document.title, cleanUrl);
+        } catch (e) {
+            console.error('Failed to parse shared timetable:', e);
+            alert('This share link appears to be invalid or corrupted.');
+        }
+    }
+
+    /* Import Shared Timetable */
+    $('#import-share-btn').on('click', function() {
+        if (!window.sharedTimetableData) return;
+        
+        var newTableId = timetableStorage[timetableStorage.length - 1].id + 1;
+        var newTableName = 'Shared Table ' + newTableId;
+
+        timetableStorage.push({
+            id: newTableId,
+            name: newTableName,
+            data: window.sharedTimetableData,
+            quick: [],
+        });
+
+        addTableToPicker(newTableId, newTableName);
+        switchTable(newTableId);
+        updateLocalForage();
+        
+        alert('Timetable imported successfully as "' + newTableName + '"!');
+        window.sharedTimetableData = null;
+    });
+
+    /* Compare Mode Toggle */
+    $('#compare-share-btn').on('click', function() {
+        if (!window.sharedTimetableData) return;
+        
+        window.isCompareModeActive = true;
+        $('#exit-compare-banner').css('display', 'flex'); // Show the banner
+        
+        // Render the shared courses
+        window.sharedTimetableData.forEach(function(courseData) {
+            courseData.slots.forEach(function(slot) {
+                var $divElement = $(
+                    `<div class="compare-course">${courseData.courseCode} (Friend)</div>`
+                );
+                $(`#timetable tr .${slot}`).append($divElement);
+            });
+        });
+    });
+    
+    /* Exit Compare Mode */
+    $('#exit-compare-btn').on('click', function() {
+        window.isCompareModeActive = false;
+        $('#exit-compare-banner').hide();
+        $('#timetable .compare-course').remove();
+        window.sharedTimetableData = null;
+    });
+});

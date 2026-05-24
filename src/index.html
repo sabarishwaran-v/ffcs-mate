@@ -49,14 +49,14 @@
         <style>
             /* Custom styles for Split Labs mode */
             td.period.theory-cell-split:not(.highlight) {
-                background-color: #FFFFCC !important; /* Exact VTOP color */
+                background-color: var(--period-color) !important;
             }
             td.period.lab-cell-split:not(.highlight) {
-                background-color: #f9efa4 !important; /* Exact VTOP td color */
+                background-color: var(--period-lab-color) !important; 
             }
             td.period.theory-cell-split:not(.highlight):not([disabled]):hover,
             td.period.lab-cell-split:not(.highlight):not([disabled]):hover {
-                background-color: #ccff33 !important; /* period-highlight color */
+                background-color: var(--period-highlight-color) !important;
             }
 
             /* Make timetable slightly larger */

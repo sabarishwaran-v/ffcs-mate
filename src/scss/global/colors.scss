@@ -1,0 +1,37 @@
+/*
+ *  These are the colours used throughout the application
+ *  confined in one place so that they can be changed easily
+ */
+
+$colors-light: (
+    primary: #9c27b0,
+    primary-dark: #812092,
+    primary-light: #f8ceff,
+    background: #ffffff,
+    text: #000000,
+    text-light: #808080,
+    table-border: #000000,
+    input-text: #212529,
+    input-border: #cccccc,
+    input-border-active: #86b7fe,
+    input-border-shadow: rgb(13 110 253 / 25%),
+    slot-button-selected: #f8ceff,
+    quick-button: #ffc107,
+    quick-button-highlight: #64dd17,
+    lab: #99ccff,
+    theory: #ccccff,
+    day-lunch: #c0c0c0,
+    period: #ffffcc,
+    period-highlight: #ccff33,
+    theory-highlight: #ccccff,
+    lab-highlight: #99ccff,
+    period-clash: #ff0000,
+    on-clash: #ffffff,
+    course-list-header-hover: #e2f1eb,
+);
+
+:root {
+    @each $name, $color in $colors-light {
+        --#{$name}-color: #{$color};
+    }
+}

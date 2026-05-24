@@ -1,0 +1,35 @@
+/**
+ *  This style sheet contains the custom styling applied
+ *  to the course list table
+ */
+
+@import 'global/colors.scss';
+
+#course-list table tr {
+    border: 1px solid var(--table-border-color);
+}
+
+#course-list table tr th:not(:last-of-type) {
+    cursor: pointer;
+}
+
+#course-list table tr th.sorted,
+#course-list table tr th:hover:not(:last-of-type) {
+    background-color: var(--course-list-header-hover-color);
+}
+
+#course-list table tr th.ascending::after {
+    content: '\f062';
+    margin-left: 10px;
+    font-family: 'Font Awesome 5 Free';
+}
+
+#course-list table tr th.descending::after {
+    content: '\f063';
+    margin-left: 10px;
+    font-family: 'Font Awesome 5 Free';
+}
+
+#course-list table tbody tr {
+    cursor: pointer;
+}

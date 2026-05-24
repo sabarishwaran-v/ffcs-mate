@@ -1,0 +1,188 @@
+/**
+ *  This style sheet contains the custom styling applied
+ *  to the option buttons, quick selection buttons and
+ *  the timetable
+ */
+
+@import 'global/colors.scss';
+
+#tt-picker-button {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#tt-picker-dropdown a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+#tt-picker-dropdown a:hover {
+    color: var(--text-color);
+}
+
+.tt-picker-label {
+    padding-right: 1.2rem;
+    width: 100%;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.tt-picker-rename,
+.tt-picker-delete {
+    padding-left: 0.5rem;
+}
+
+.quick-buttons {
+    padding: 0;
+
+    > div {
+        overflow: auto;
+    }
+
+    table {
+        margin: auto;
+
+        :first-child {
+            margin-top: 0.3rem;
+        }
+
+        :last-child {
+            margin-bottom: 0.3rem;
+        }
+    }
+
+    tr {
+        display: flex;
+        margin: 0 0.3rem;
+    }
+
+    .quick-button {
+        flex-grow: 1;
+        width: fit-content;
+        margin: 0.3rem;
+        background-color: var(--quick-button-color);
+    }
+
+    .quick-button:hover {
+        background-color: var(--quick-button-highlight-color);
+    }
+
+    .quick-button.highlight {
+        background-color: var(--quick-button-highlight-color);
+    }
+}
+
+#timetable {
+    td {
+        border: 1px solid var(--table-border-color);
+    }
+
+    td div {
+        font-size: 0.9em;
+    }
+
+    td.lab-hour {
+        font-weight: bold;
+        background-color: var(--lab-color);
+        cursor: default;
+    }
+
+    td.theory-hour {
+        font-weight: bold;
+        background-color: var(--theory-color);
+        cursor: default;
+    }
+
+    td.day,
+    td.lunch {
+        font-weight: bold;
+        background-color: var(--day-lunch-color);
+        cursor: default;
+    }
+
+    td.period {
+        text-transform: uppercase;
+        color: var(--text-light-color);
+        background-color: var(--period-color);
+        cursor: pointer;
+    }
+
+    td.period:hover {
+        color: var(--text-color);
+    }
+
+    td.period:not([disabled]):hover {
+        background-color: var(--period-highlight-color);
+        cursor: pointer;
+    }
+
+    td.period[disabled] {
+        cursor: default;
+    }
+
+    td.period.highlight:hover {
+        color: var(--text-light-color);
+        background-color: var(--period-highlight-color);
+        cursor: pointer;
+    }
+
+    td.period.highlight {
+        color: var(--text-color);
+        background-color: var(--period-highlight-color);
+        cursor: pointer;
+    }
+
+    td.period.theory-cell-split.highlight:hover,
+    td.period.theory-cell-split.highlight {
+        background-color: var(--theory-highlight-color) !important;
+    }
+
+    td.period.highlight:has(div[data-is-theory="true"]):hover,
+    td.period.highlight:has(div[data-is-theory="true"]) {
+        background-color: var(--theory-highlight-color) !important;
+    }
+
+    td.period.lab-cell-split.highlight:hover,
+    td.period.lab-cell-split.highlight {
+        background-color: var(--lab-highlight-color) !important;
+    }
+
+    td.period.highlight:has(div[data-is-lab="true"]):hover,
+    td.period.highlight:has(div[data-is-lab="true"]) {
+        background-color: var(--lab-highlight-color) !important;
+    }
+
+    td.period[disabled] {
+        text-transform: capitalize;
+        color: var(--text-light-color);
+        background-color: var(--period-color);
+        cursor: default;
+    }
+
+    td.clash {
+        background-color: var(--period-clash-color) !important;
+        color: var(--on-clash-color) !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    /*
+        Making quick buttons, timetable full-width on smaller screens
+    */
+    #option-buttons {
+        justify-content: center !important;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    /*
+        Hiding the text in the option buttons if the screen
+        width is not big enough
+    */
+    #option-buttons button span {
+        display: none;
+    }
+}

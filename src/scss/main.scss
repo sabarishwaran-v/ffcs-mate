@@ -1,0 +1,261 @@
+/**
+ *  This style sheet contains the custom styling applied
+ *  to the document body that is common to all sections
+ *  or that doesn't fit into any particular section
+ */
+
+@import 'global/colors.scss';
+
+body {
+    padding-top: 5rem;
+    background-color: #f7f9fc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+}
+
+/*
+    Navigation bar
+ */
+.navbar {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.nav-btn-outline {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-width: 2px;
+}
+
+.nav-btn-outline:hover {
+    color: var(--background-color);
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.nav-btn-outline:active,
+.nav-btn-outline:focus,
+.nav-btn-outline.show {
+    color: var(--background-color);
+    border-color: var(--primary-dark-color) !important;
+    background-color: var(--primary-dark-color) !important;
+}
+
+/*
+    Custom blockquote
+ */
+blockquote > p::before {
+    content: '\f059';
+    font-family: 'Font Awesome 5 Free';
+    margin-right: 5px;
+}
+
+/*
+    Overriding bootstrap table style
+ */
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Modern Components */
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.table-responsive {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/*
+    Footer
+ */
+footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+/*
+    Disable text selection
+ */
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*
+    Custom scrollbar
+ */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: var(--primary-light-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    /*
+        Remove x-axis padding on smaller devices
+     */
+    .container-xxl {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* ========================================================
+   NEO-BRUTALISM OVERRIDES (EASY TO REVERT)
+   ======================================================== */
+
+body {
+    background-color: #f4f0ea;
+    background-image: radial-gradient(#d1d1d1 2px, transparent 2px);
+    background-size: 24px 24px;
+}
+
+.card, 
+#timetable, 
+.calendar-view-wrapper, 
+.modal-content {
+    border: 3px solid #000 !important;
+    border-radius: 12px !important;
+    box-shadow: 6px 6px 0px 0px #000 !important;
+    background-color: #ffffff !important;
+}
+
+.btn {
+    border: 2px solid #000 !important;
+    border-radius: 8px !important;
+    box-shadow: 4px 4px 0px 0px #000 !important;
+    font-weight: 800 !important;
+    transition: all 0.1s ease !important;
+    color: #000 !important;
+    opacity: 1 !important;
+}
+
+.btn-primary {
+    background-color: #a78bfa !important;
+}
+
+.btn-success {
+    background-color: #a3e635 !important;
+}
+
+.btn-danger {
+    background-color: #fb7185 !important;
+}
+
+.btn-secondary {
+    background-color: #fbbf24 !important;
+}
+
+.btn-info {
+    background-color: #38bdf8 !important;
+}
+
+.btn-outline-primary {
+    background-color: #fff !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #e9d5ff !important;
+}
+
+.btn:active, .btn.active {
+    transform: translate(4px, 4px) !important;
+    box-shadow: 0px 0px 0px 0px #000 !important;
+}
+
+.navbar {
+    border-bottom: 3px solid #000 !important;
+    box-shadow: 0 4px 0px 0px #000 !important;
+    background-color: #ffffff !important;
+}
+
+.form-select, .form-control {
+    border: 2px solid #000 !important;
+    border-radius: 8px !important;
+    box-shadow: 3px 3px 0px 0px #000 !important;
+    font-weight: 600;
+}
+
+.form-select:focus, .form-control:focus {
+    box-shadow: 3px 3px 0px 0px #000 !important;
+    outline: none !important;
+    border-color: #000 !important;
+}
+
+#timetable td {
+    border: 1px solid #000 !important;
+}
+
+.calendar-view-wrapper .position-absolute {
+    border: 2px solid #000 !important;
+    box-shadow: 4px 4px 0px 0px #000 !important;
+    border-radius: 8px !important;
+    transition: all 0.15s ease !important;
+}
+
+.calendar-view-wrapper .position-absolute:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0px 0px #000 !important;
+}
+
+.nav-tabs .nav-link {
+    border: 2px solid transparent;
+    font-weight: 700;
+    color: #555;
+}
+
+.nav-tabs .nav-link.active {
+    border: 2px solid #000 !important;
+    border-bottom: 2px solid #fff !important;
+    background-color: #fff !important;
+    color: #000 !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #000 !important;
+}

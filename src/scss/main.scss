@@ -251,6 +251,11 @@ body {
     transition: all 0.3s ease;
 }
 
+.form-control::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.8;
+}
+
 .form-select:focus, .form-control:focus {
     box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2) !important;
     border-color: var(--brand-primary) !important;

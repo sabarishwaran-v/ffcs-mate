@@ -105,13 +105,13 @@
 
     td.period {
         text-transform: uppercase;
-        color: var(--text-light-color);
+        color: var(--tt-text-light-color);
         background-color: var(--period-color);
         cursor: pointer;
     }
 
     td.period:hover {
-        color: var(--text-color);
+        color: var(--tt-text-color);
     }
 
     td.period:not([disabled]):hover {
@@ -124,13 +124,13 @@
     }
 
     td.period.highlight:hover {
-        color: var(--text-light-color);
+        color: var(--tt-text-light-color);
         background-color: var(--period-highlight-color);
         cursor: pointer;
     }
 
     td.period.highlight {
-        color: var(--text-color);
+        color: var(--tt-text-color);
         background-color: var(--period-highlight-color);
         cursor: pointer;
     }
@@ -157,7 +157,7 @@
 
     td.period[disabled] {
         text-transform: capitalize;
-        color: var(--text-light-color);
+        color: var(--tt-text-light-color);
         background-color: var(--period-color);
         cursor: default;
     }

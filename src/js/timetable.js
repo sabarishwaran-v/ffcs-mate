@@ -473,7 +473,7 @@ function checkSlotClash() {
                 const periodIndex = $td.prevAll('.period').length;
                 const headerIndex = periodIndex + 1; // +1 because index 0 is the row label
 
-                $('div', $td).each(function () {
+                $('div:not(.compare-course)', $td).each(function () {
                     const $div = $(this);
                     const isLab = $div.data('is-lab');
                     const dataCourse = $div.data('course');

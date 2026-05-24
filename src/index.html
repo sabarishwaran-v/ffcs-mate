@@ -948,5 +948,54 @@
         </script>
 
 
+        <!-- The Share Import Modal -->
+        <div
+            id="share-modal"
+            class="modal fade"
+            tabindex="-1"
+            aria-labelledby="share-modal-label"
+            aria-hidden="true"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title fw-bold" id="share-modal-label">
+                            <i class="fas fa-share-alt"></i> Shared Timetable Received
+                        </h5>
+                    </div>
+
+                    <div class="modal-body">
+                        <p class="mb-4">Someone shared a timetable with you! What would you like to do with it?</p>
+                        
+                        <div class="d-grid gap-3">
+                            <button id="import-share-btn" type="button" class="btn btn-success p-3 text-start fw-bold rounded-4 shadow-sm" data-bs-dismiss="modal">
+                                <i class="fas fa-plus-circle fa-lg me-2"></i> Import as New Table
+                                <div class="small fw-normal mt-1 opacity-75">Saves a permanent copy to your saved tables.</div>
+                            </button>
+                            
+                            <button id="compare-share-btn" type="button" class="btn btn-primary p-3 text-start fw-bold rounded-4 shadow-sm" data-bs-dismiss="modal">
+                                <i class="fas fa-columns fa-lg me-2"></i> Compare with Current Table
+                                <div class="small fw-normal mt-1 opacity-75">Temporarily overlay it to find common free time & classes.</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0">
+                        <button
+                            id="cancel-share-btn"
+                            type="button"
+                            class="btn btn-light rounded-pill px-4 fw-bold text-muted"
+                            data-bs-dismiss="modal"
+                        >
+                            No Thanks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of share import modal -->
+
     </body>
 </html>

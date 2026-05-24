@@ -436,7 +436,7 @@
                 <!-- Right Main Area: Timetable -->
                 <div class="col-xl-9 col-lg-8 main-panel">
                     <div class="card h-100 border-0 shadow-sm" style="overflow-y: auto; max-height: calc(100vh - 8rem);">
-                        <div class="card-header bg-transparent border-0 py-3 px-4 sticky-top z-index-10" style="z-index: 10;">
+                        <div class="card-header border-0 py-3 px-4 sticky-top z-index-10" style="z-index: 10;">
                             <!-- Option buttons for the timetable -->
                             <div id="option-buttons" class="d-flex flex-wrap justify-content-between align-items-center gap-3">
                                 
@@ -473,9 +473,9 @@
                                 <!-- Right side actions -->
                                 <div class="d-flex align-items-center gap-3 flex-wrap">
                                     <div id="merge-labs-container">
-                                        <div class="custom-toggle-container d-inline-block px-3 py-1 rounded-pill shadow-sm">
-                                            <label class="custom-toggle-label me-2 noselect small text-muted fw-bold" for="split-labs-toggle">MERGE LABS</label>
-                                            <label class="custom-toggle-switch">
+                                        <div class="custom-toggle-container d-flex align-items-center justify-content-center px-3 rounded-pill shadow-sm" style="height: 31px;">
+                                            <label class="custom-toggle-label me-2 noselect small text-muted fw-bold mb-0" for="split-labs-toggle">MERGE LABS</label>
+                                            <label class="custom-toggle-switch mb-0">
                                                 <input type="checkbox" id="split-labs-toggle">
                                                 <span class="custom-toggle-slider"></span>
                                             </label>
@@ -483,19 +483,19 @@
                                     </div>
 
                                     <div id="reset-table-btn">
-                                        <button class="btn btn-light rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" type="button" data-bs-toggle="modal" data-bs-target="#reset-modal" title="Reset Table">
-                                            <i class="fas fa-redo text-danger"></i>
+                                        <button class="btn btn-light rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width: 31px; height: 31px;" type="button" data-bs-toggle="modal" data-bs-target="#reset-modal" title="Reset Table">
+                                            <i class="fas fa-redo text-danger" style="font-size: 0.8rem;"></i>
                                         </button>
                                     </div>
 
                                     <div id="download-table-btn">
-                                        <button class="btn btn-success rounded-pill px-4 shadow-sm fw-bold" type="button" data-bs-toggle="modal" data-bs-target="#download-modal">
+                                        <button class="btn btn-success btn-sm rounded-pill px-4 shadow-sm fw-bold" type="button" data-bs-toggle="modal" data-bs-target="#download-modal">
                                             <i class="fas fa-download"></i> Download
                                         </button>
                                     </div>
 
                                     <div id="copy-share-btn">
-                                        <button class="btn btn-info rounded-pill px-4 shadow-sm fw-bold text-white ms-2" type="button" id="generate-share-link">
+                                        <button class="btn btn-info btn-sm rounded-pill px-4 shadow-sm fw-bold text-white ms-2" type="button" id="generate-share-link">
                                             <i class="fas fa-share-alt"></i> Share
                                         </button>
                                     </div>

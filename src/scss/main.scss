@@ -17,13 +17,7 @@ body {
 /*
     Navigation bar
  */
-.navbar {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-}
+/* Navbar styling handled in modern UI overrides */
 
 .navbar-brand {
     color: var(--primary-color) !important;
@@ -215,11 +209,18 @@ body {
     color: var(--text-muted) !important;
 }
 
-/* Glassmorphism */
-.navbar, .exit-compare-banner {
+/* Glassmorphism for banner only now */
+.exit-compare-banner {
     background: var(--bg-glass) !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-soft) !important;
+}
+
+/* Solid background for Navbar */
+.navbar {
+    background-color: var(--bg-secondary) !important;
     border-bottom: 1px solid var(--border-subtle) !important;
     box-shadow: var(--shadow-soft) !important;
 }

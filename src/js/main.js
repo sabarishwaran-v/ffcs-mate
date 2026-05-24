@@ -94,7 +94,18 @@ $(function () {
     /* Theme Management */
     const applyTheme = (theme) => {
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
         $('#theme-toggle-icon').removeClass('fa-sun fa-moon').addClass(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+        
+        if (typeof DISQUS !== 'undefined') {
+            DISQUS.reset({
+                reload: true,
+                config: function () {
+                    this.page.url = "https://ffcs-mate.vercel.app/";
+                    this.page.identifier = "ffcs_mate";
+                }
+            });
+        }
     };
 
     localforage.getItem('theme').then((savedTheme) => {

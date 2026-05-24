@@ -4,6 +4,7 @@ module.exports = {
     swDest: 'dist/sw.js',
     maximumFileSizeToCacheInBytes: 10000000,
     skipWaiting: true,
+    clientsClaim: true,
     cleanupOutdatedCaches: true,
     offlineGoogleAnalytics: true,
     sourcemap: true,

@@ -145,117 +145,146 @@ footer {
 }
 
 /* ========================================================
-   NEO-BRUTALISM OVERRIDES (EASY TO REVERT)
+   PREMIUM MODERN UI OVERRIDES (GLASSMORPHISM & DARK MODE)
    ======================================================== */
 
+:root {
+    --bg-primary: #f7f9fc;
+    --bg-secondary: #ffffff;
+    --bg-glass: rgba(255, 255, 255, 0.7);
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-subtle: rgba(0, 0, 0, 0.05);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.08);
+    
+    --brand-primary: #a78bfa;
+    --brand-success: #34d399;
+    --brand-danger: #fb7185;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-glass: rgba(31, 41, 55, 0.7);
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
 body {
-    background-color: #f4f0ea;
-    background-image: radial-gradient(#d1d1d1 2px, transparent 2px);
-    background-size: 24px 24px;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background-image: radial-gradient(var(--border-subtle) 2px, transparent 2px);
+    background-size: 30px 30px;
+}
+
+/* Glassmorphism */
+.navbar, .exit-compare-banner {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-soft) !important;
 }
 
 .card, 
-#timetable, 
-.calendar-view-wrapper, 
-.modal-content {
-    border: 3px solid #000 !important;
-    border-radius: 12px !important;
-    box-shadow: 6px 6px 0px 0px #000 !important;
-    background-color: #ffffff !important;
-}
-
-.btn {
-    border: 2px solid #000 !important;
-    border-radius: 8px !important;
-    box-shadow: 4px 4px 0px 0px #000 !important;
-    font-weight: 800 !important;
-    transition: all 0.1s ease !important;
-    color: #000 !important;
-    opacity: 1 !important;
-}
-
-.btn-primary {
-    background-color: #a78bfa !important;
-}
-
-.btn-success {
-    background-color: #a3e635 !important;
-}
-
-.btn-danger {
-    background-color: #fb7185 !important;
-}
-
-.btn-secondary {
-    background-color: #fbbf24 !important;
-}
-
-.btn-info {
-    background-color: #38bdf8 !important;
-}
-
-.btn-outline-primary {
-    background-color: #fff !important;
-}
-
-.btn-outline-primary:hover {
-    background-color: #e9d5ff !important;
-}
-
-.btn:active, .btn.active {
-    transform: translate(4px, 4px) !important;
-    box-shadow: 0px 0px 0px 0px #000 !important;
-}
-
-.navbar {
-    border-bottom: 3px solid #000 !important;
-    box-shadow: 0 4px 0px 0px #000 !important;
-    background-color: #ffffff !important;
-}
-
-.form-select, .form-control {
-    border: 2px solid #000 !important;
-    border-radius: 8px !important;
-    box-shadow: 3px 3px 0px 0px #000 !important;
-    font-weight: 600;
-}
-
-.form-select:focus, .form-control:focus {
-    box-shadow: 3px 3px 0px 0px #000 !important;
-    outline: none !important;
-    border-color: #000 !important;
+.modal-content,
+#timetable {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 16px !important;
+    box-shadow: var(--shadow-soft) !important;
 }
 
 #timetable td {
-    border: 1px solid #000 !important;
+    border: 1px solid var(--border-subtle) !important;
 }
 
+/* Typography & Colors */
+.text-muted, .form-text {
+    color: var(--text-muted) !important;
+}
+
+.form-select, .form-control {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
+}
+
+.form-select:focus, .form-control:focus {
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2) !important;
+    border-color: var(--brand-primary) !important;
+}
+
+/* Micro-Animations for Buttons */
+.btn {
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Calendar Cards Animation */
 .calendar-view-wrapper .position-absolute {
-    border: 2px solid #000 !important;
-    box-shadow: 4px 4px 0px 0px #000 !important;
-    border-radius: 8px !important;
-    transition: all 0.15s ease !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+    border: 1px solid var(--border-subtle) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .calendar-view-wrapper .position-absolute:hover {
-    transform: translate(-2px, -2px) !important;
-    box-shadow: 6px 6px 0px 0px #000 !important;
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: var(--shadow-float) !important;
+    z-index: 10;
 }
 
+/* Tabs */
 .nav-tabs .nav-link {
-    border: 2px solid transparent;
-    font-weight: 700;
-    color: #555;
+    color: var(--text-muted);
+    font-weight: 600;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--brand-primary);
+    border-color: transparent;
 }
 
 .nav-tabs .nav-link.active {
-    border: 2px solid #000 !important;
-    border-bottom: 2px solid #fff !important;
-    background-color: #fff !important;
-    color: #000 !important;
-    border-radius: 8px 8px 0 0 !important;
+    color: var(--brand-primary) !important;
+    background-color: transparent !important;
+    border-color: transparent transparent var(--brand-primary) transparent !important;
 }
 
-.nav-tabs {
-    border-bottom: 2px solid #000 !important;
+/* Visual Clash Warnings */
+@keyframes clash-shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.clash-shake {
+    animation: clash-shake 0.4s ease-in-out;
+    background-color: rgba(251, 113, 133, 0.9) !important; /* Red flash */
+    color: white !important;
+    border-color: #e11d48 !important;
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.6) !important;
+    z-index: 100;
 }

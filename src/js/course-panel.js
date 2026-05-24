@@ -196,6 +196,11 @@ $(() => {
                     if ($clashingDivs.length) {
                         var name = $clashingDivs.first().text().split('-')[0];
                         if (!clashNames.includes(name)) clashNames.push(name);
+                        
+                        // Trigger visual clash warning (shake & glow)
+                        var $cell = $clashingDivs.parent();
+                        $cell.addClass('clash-shake');
+                        setTimeout(() => $cell.removeClass('clash-shake'), 400);
                     }
                 });
 
@@ -357,6 +362,11 @@ $(() => {
                 if ($clashingDivs.length) {
                     var name = $clashingDivs.first().text().split('-')[0];
                     if (!clashNames.includes(name)) clashNames.push(name);
+                    
+                    // Trigger visual clash warning (shake & glow)
+                    var $cell = $clashingDivs.parent();
+                    $cell.addClass('clash-shake');
+                    setTimeout(() => $cell.removeClass('clash-shake'), 400);
                 }
             });
 

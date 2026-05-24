@@ -20,6 +20,11 @@ for item in datas:
 
 img.putdata(newData)
 
+# Crop image to bounding box (removes transparent padding)
+bbox = img.getbbox()
+if bbox:
+    img = img.crop(bbox)
+
 # Save main favicon
 img.thumbnail((512, 512), Image.Resampling.LANCZOS)
 img.save(favicon_path, "PNG")

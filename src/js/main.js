@@ -91,9 +91,31 @@ $(function () {
         }
     });
 
+    /* Theme Management */
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        $('#theme-toggle-icon').removeClass('fa-sun fa-moon').addClass(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+    };
+
+    localforage.getItem('theme').then((savedTheme) => {
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            // Default to system preference
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(prefersDark ? 'dark' : 'light');
+        }
+    });
+
+    $('#theme-toggle').on('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        localforage.setItem('theme', newTheme);
+    });
+
     Utils.removeTouchHoverCSSRule();
 });
-
 /*
     Function to switch campuses
  */

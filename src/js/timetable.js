@@ -340,6 +340,11 @@ function fillPage() {
         addCourseToCourseList(courseData);
         addCourseToTimetable(courseData);
     });
+
+    // Re-apply compare mode overlay if active
+    if (typeof window.renderCompareTable === 'function') {
+        window.renderCompareTable();
+    }
 }
 
 /*
@@ -731,6 +736,11 @@ window.initializeTimetable = () => {
             timetableStorage.slice(1).forEach(function (table) {
                 addTableToPicker(table.id, table.name);
             });
+
+            // Re-apply compare mode overlay if active
+            if (typeof window.renderCompareTable === 'function') {
+                window.renderCompareTable();
+            }
         })
         .catch(console.error);
 };
@@ -826,7 +836,16 @@ $(() => {
 
     /* Parse Share Link on Load */
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('share')) {
+    
+    const storedShared = sessionStorage.getItem('sharedTimetable');
+    if (storedShared) {
+        try {
+            window.sharedTimetableData = JSON.parse(storedShared);
+            window.isCompareModeActive = true;
+        } catch (e) {
+            sessionStorage.removeItem('sharedTimetable');
+        }
+    } else if (urlParams.has('share')) {
         try {
             const encodedData = urlParams.get('share');
             const decodedDataStr = decodeURIComponent(atob(encodedData));
@@ -872,24 +891,35 @@ $(() => {
         if (!window.sharedTimetableData) return;
         
         window.isCompareModeActive = true;
-        $('#exit-compare-banner').css('display', 'flex'); // Show the banner
-        
-        // Render the shared courses
-        window.sharedTimetableData.forEach(function(courseData) {
-            courseData.slots.forEach(function(slot) {
-                var $divElement = $(
-                    `<div class="compare-course">${courseData.courseCode} (Friend)</div>`
-                );
-                $(`#timetable tr .${slot}`).append($divElement);
-            });
-        });
+        sessionStorage.setItem('sharedTimetable', JSON.stringify(window.sharedTimetableData));
+        window.renderCompareTable();
     });
     
     /* Exit Compare Mode */
     $('#exit-compare-btn').on('click', function() {
         window.isCompareModeActive = false;
+        sessionStorage.removeItem('sharedTimetable');
         $('#exit-compare-banner').hide();
         $('#timetable .compare-course').remove();
         window.sharedTimetableData = null;
     });
 });
+
+window.renderCompareTable = () => {
+    if (!window.isCompareModeActive || !window.sharedTimetableData) return;
+
+    $('#exit-compare-banner').css('display', 'flex'); // Show the banner
+    
+    // Clear any existing ones first to prevent duplicates
+    $('#timetable .compare-course').remove();
+    
+    // Render the shared courses
+    window.sharedTimetableData.forEach(function(courseData) {
+        courseData.slots.forEach(function(slot) {
+            var $divElement = $(
+                `<div class="compare-course">${courseData.courseCode} (Friend)</div>`
+            );
+            $(`#timetable tr .${slot}`).append($divElement);
+        });
+    });
+};

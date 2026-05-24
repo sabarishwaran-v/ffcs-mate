@@ -14,7 +14,7 @@
         "start": "yarn convert && yarn start:noconvert",
         "start:noconvert": "parcel src/index.html",
         "build:sw": "workbox generateSW ./src/workbox-config.js",
-        "build": "yarn convert && parcel build src/index.html && yarn build:sw",
+        "build": "yarn convert && parcel build src/index.html && cp robots.txt sitemap.xml dist/ && yarn build:sw",
         "convert": "node util/convert_xlsx_to_json.js && node util/convert_json_to_data.js",
         "test": "jest tests",
         "prepare": "husky install"

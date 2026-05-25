@@ -141,38 +141,63 @@ function cleanSlotName(raw) {
 }
 
 function renderPreview(schema) {
-    let html = '<div class="table-responsive"><table class="table table-bordered table-sm text-center mb-0" style="font-size: 11px;">';
+    let html = '<div class="table-responsive"><table class="table table-bordered table-sm text-center mb-0" style="font-size: 11px; white-space: nowrap;">';
     
-    html += '<tr class="table-primary"><th class="align-middle">THEORY</th>';
+    // THEORY Start
+    html += '<tr class="table-primary" style="background-color: #e6e6fa;"><th rowspan="2" class="align-middle">THEORY</th><th>Start</th>';
     schema.theory.forEach(col => {
-        if (col.lunch) html += '<th class="align-middle px-1">LUNCH</th>';
-        else html += `<th class="px-1">${col.start}<br>-<br>${col.end}</th>`;
+        if (col.lunch) html += '<th rowspan="4" class="align-middle px-3">Lunch</th>';
+        else html += `<th class="px-2">${col.start}</th>`;
     });
     html += '</tr>';
 
-    html += '<tr class="table-info"><th class="align-middle">LAB</th>';
+    // THEORY End
+    html += '<tr class="table-primary" style="background-color: #e6e6fa;"><th>End</th>';
+    schema.theory.forEach(col => {
+        if (!col.lunch) html += `<th class="px-2">${col.end}</th>`;
+    });
+    html += '</tr>';
+
+    // LAB Start
+    html += '<tr class="table-info" style="background-color: #e0ffff;"><th rowspan="2" class="align-middle">LAB</th><th>Start</th>';
     schema.lab.forEach(col => {
-        if (col.lunch) html += '<th class="align-middle px-1">LUNCH</th>';
-        else html += `<th class="px-1">${col.start}<br>-<br>${col.end}</th>`;
+        if (!col.lunch) html += `<th class="px-2">${col.start}</th>`;
     });
     html += '</tr>';
 
+    // LAB End
+    html += '<tr class="table-info" style="background-color: #e0ffff;"><th>End</th>';
+    schema.lab.forEach(col => {
+        if (!col.lunch) html += `<th class="px-2">${col.end}</th>`;
+    });
+    html += '</tr>';
+
+    // Days
     const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
     days.forEach(day => {
         let hasSlots = schema.theory.some(c => !c.lunch && c.days[day]) || schema.lab.some(c => !c.lunch && c.days[day]);
         if (!hasSlots) return;
 
-        html += `<tr><th rowspan="2" class="align-middle text-uppercase">${day}</th><th class="table-primary">THEORY</th>`;
+        // Theory Row
+        html += `<tr><th rowspan="2" class="align-middle text-uppercase">${day.toUpperCase()}</th><th class="table-primary" style="background-color: #e6e6fa;">THEORY</th>`;
         schema.theory.forEach(col => {
-            if (col.lunch) html += '<td class="bg-light text-muted">-</td>';
-            else html += `<td>${col.days[day] || '-'}</td>`;
+            if (col.lunch) html += '<td rowspan="2" class="bg-light align-middle text-muted">Lunch</td>';
+            else {
+                let slot = col.days[day];
+                if (slot) html += `<td class="bg-warning bg-opacity-25 fw-bold">${slot}</td>`;
+                else html += `<td>-</td>`;
+            }
         });
         html += '</tr>';
 
-        html += `<tr><th class="table-info">LAB</th>`;
+        // Lab Row
+        html += `<tr><th class="table-info" style="background-color: #e0ffff;">LAB</th>`;
         schema.lab.forEach(col => {
-            if (col.lunch) html += '<td class="bg-light text-muted">-</td>';
-            else html += `<td>${col.days[day] || '--'}</td>`;
+            if (!col.lunch) {
+                let slot = col.days[day];
+                if (slot) html += `<td class="bg-warning bg-opacity-25 fw-bold">${slot}</td>`;
+                else html += `<td>--</td>`;
+            }
         });
         html += '</tr>';
     });

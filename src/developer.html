@@ -24,21 +24,30 @@
         <p class="text-muted mb-4">Paste the raw timetable grid copied directly from VTOP (including headers like 'THEORY Start', etc.) and generate the clean JSON schema.</p>
         
         <div class="row gx-4">
-            <div class="col-md-6 mb-4">
+            <div class="col-md-12 mb-4">
                 <h5 class="mb-3">1. Paste VTOP Raw Text</h5>
                 <textarea id="vtop-input" placeholder="Paste here..."></textarea>
                 <div class="d-flex justify-content-between mt-3">
                     <button class="btn btn-outline-secondary" onclick="document.getElementById('vtop-input').value = ''">Clear</button>
-                    <button class="btn btn-primary px-4" id="parse-btn"><i class="fas fa-magic me-2"></i>Generate JSON</button>
+                    <button class="btn btn-primary px-4" id="parse-btn"><i class="fas fa-magic me-2"></i>Generate Schema & Preview</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row gx-4 mt-2" id="output-section" style="display: none;">
+            <div class="col-md-12 mb-4">
+                <h5 class="mb-3"><i class="fas fa-eye me-2 text-primary"></i>2. Visual Preview <span class="fs-6 text-muted fw-normal ms-2">(Cross-check with VTOP)</span></h5>
+                <div id="preview-container" class="border rounded p-2 bg-white">
+                    <!-- Table rendered here -->
                 </div>
             </div>
             
-            <div class="col-md-6 mb-4">
+            <div class="col-md-12 mb-4">
                 <h5 class="mb-3 d-flex justify-content-between align-items-center">
-                    <span>2. Output Schema JSON</span>
+                    <span><i class="fas fa-code me-2 text-primary"></i>3. Output Schema JSON</span>
                     <button class="btn btn-sm btn-outline-primary" id="copy-btn"><i class="fas fa-copy me-1"></i>Copy JSON</button>
                 </h5>
-                <pre><code id="json-output">// JSON output will appear here...</code></pre>
+                <pre><code id="json-output"></code></pre>
             </div>
         </div>
     </div>

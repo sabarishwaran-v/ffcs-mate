@@ -11,6 +11,8 @@ $(() => {
         try {
             const schema = parseTimetable(rawText);
             $('#json-output').text(JSON.stringify(schema, null, 4));
+            renderPreview(schema);
+            $('#output-section').fadeIn();
         } catch (e) {
             alert("Error parsing timetable. Make sure you copied the entire grid including headers.\n\nError details: " + e.message);
             console.error(e);
@@ -136,4 +138,45 @@ function cleanSlotName(raw) {
     let slot = raw.split('-')[0].trim();
     if (slot === '') return null;
     return slot;
+}
+
+function renderPreview(schema) {
+    let html = '<div class="table-responsive"><table class="table table-bordered table-sm text-center mb-0" style="font-size: 11px;">';
+    
+    html += '<tr class="table-primary"><th class="align-middle">THEORY</th>';
+    schema.theory.forEach(col => {
+        if (col.lunch) html += '<th class="align-middle px-1">LUNCH</th>';
+        else html += `<th class="px-1">${col.start}<br>-<br>${col.end}</th>`;
+    });
+    html += '</tr>';
+
+    html += '<tr class="table-info"><th class="align-middle">LAB</th>';
+    schema.lab.forEach(col => {
+        if (col.lunch) html += '<th class="align-middle px-1">LUNCH</th>';
+        else html += `<th class="px-1">${col.start}<br>-<br>${col.end}</th>`;
+    });
+    html += '</tr>';
+
+    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+    days.forEach(day => {
+        let hasSlots = schema.theory.some(c => !c.lunch && c.days[day]) || schema.lab.some(c => !c.lunch && c.days[day]);
+        if (!hasSlots) return;
+
+        html += `<tr><th rowspan="2" class="align-middle text-uppercase">${day}</th><th class="table-primary">THEORY</th>`;
+        schema.theory.forEach(col => {
+            if (col.lunch) html += '<td class="bg-light text-muted">-</td>';
+            else html += `<td>${col.days[day] || '-'}</td>`;
+        });
+        html += '</tr>';
+
+        html += `<tr><th class="table-info">LAB</th>`;
+        schema.lab.forEach(col => {
+            if (col.lunch) html += '<td class="bg-light text-muted">-</td>';
+            else html += `<td>${col.days[day] || '--'}</td>`;
+        });
+        html += '</tr>';
+    });
+
+    html += '</table></div>';
+    $('#preview-container').html(html);
 }

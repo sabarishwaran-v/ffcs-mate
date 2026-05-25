@@ -64,6 +64,10 @@ $(() => {
     /*
         Event to clear panel when input is empty
      */
+    $('#course-input').on('click', function () {
+        $(this).select();
+    });
+
     $('#course-input').on('input', function () {
         if ($(this).val().trim() === '') {
             clearPanel();

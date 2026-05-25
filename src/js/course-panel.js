@@ -442,7 +442,7 @@ let currentBasketData = {};
 
 function loadBaskets() {
     try {
-        currentBasketData = require('../data/baskets_winter_freshers_25.json');
+        currentBasketData = require('../data/baskets_winter_freshers_25.js');
         
         $('#basket-selector').empty().append('<option value="">Select your department...</option>');
         
@@ -536,7 +536,7 @@ window.renderBasket = function() {
                 
                 if (courseIdToDelete !== null) {
                     // Trigger the double click logic from course-list (which deletes and populates search box)
-                    let $row = $(\`#course-list tbody tr[data-course="course\${courseIdToDelete}"]\`);
+                    let $row = $(`#course-list tbody tr[data-course="course${courseIdToDelete}"]`);
                     if ($row.length) {
                         $row.trigger('dblclick');
                     }

@@ -1015,7 +1015,7 @@ function getSlotOptions(slot) {
         options.push(`T${char}${X}`);
     }
     
-    let finalOptions = [...new Set([slot, ...options])];
+    let finalOptions = [...new Set([...options, slot])];
     return finalOptions;
 }
 

@@ -446,6 +446,21 @@
                                         <button id="add-course-button" type="button" class="btn btn-primary flex-fill rounded-pill shadow-sm fw-bold">Add Course</button>
                                     </div>
                                 </div>
+
+                                <!-- Course Baskets Section -->
+                                <div id="basket-section" class="row mt-4" style="display: none;">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <label class="form-label text-muted fw-bold small mb-0"><i class="fas fa-shopping-basket text-primary me-1"></i> COURSE BASKET</label>
+                                        </div>
+                                        <select id="basket-selector" class="form-select form-select-sm border-0 bg-light fw-bold text-secondary mb-3" style="border-radius: 8px;">
+                                            <option value="">Select your department...</option>
+                                        </select>
+                                        <div id="basket-container" class="d-flex flex-column gap-2">
+                                            <!-- Basket items will be rendered here -->
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
 
                             <!-- Selected courses moved below timetable -->

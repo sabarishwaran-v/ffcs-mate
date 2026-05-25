@@ -1041,6 +1041,10 @@ $(document).on('change', '#customCourseSlot', function() {
     $('#customCourseCredits').val(calculateCustomCredits($(this).val()));
 });
 
+$(document).on('input', '#customCourseTitle', function() {
+    $(this).val($(this).val().replace(/\b\w/g, c => c.toUpperCase()));
+});
+
 $(document).on('click', '#addCustomCourseBtn', function() {
     const slotString = $('#customCourseSlot').val().toUpperCase().trim();
     const courseCode = $('#customCourseCode').val().toUpperCase().trim();

@@ -964,7 +964,26 @@ $(document).on('dblclick', '#timetable td.period', function() {
 });
 
 function getSlotOptions(slot) {
-    if (slot.startsWith('L')) return [slot];
+    if (slot.startsWith('L')) {
+        let n = parseInt(slot.substring(1));
+        if (isNaN(n)) return [slot];
+        
+        let blockStart = Math.floor((n - 1) / 6) * 6 + 1;
+        let blockEnd = blockStart + 5;
+        
+        let options = [];
+        
+        if (n % 2 === 0) {
+            if (n - 1 >= blockStart) options.push(`L${n-1}+L${n}`);
+            if (n + 1 <= blockEnd) options.push(`L${n}+L${n+1}`);
+        } else {
+            if (n + 1 <= blockEnd) options.push(`L${n}+L${n+1}`);
+            if (n - 1 >= blockStart) options.push(`L${n-1}+L${n}`);
+        }
+        
+        options.push(slot);
+        return options;
+    }
     
     let baseMatch = slot.match(/[A-G][1-2]$/);
     if (!baseMatch) return [slot];
@@ -992,13 +1011,6 @@ function getSlotOptions(slot) {
     if (['D', 'E', 'F'].includes(char)) {
         options.push(`T${char}${X}`);
     }
-    
-    // The user clicked a specific slot, they might expect to see that slot as default?
-    // "don't change the slot keep what ever they choosing , and another thing when they double tap empty slot then first slot choosing is necessary directly show them first"
-    // If they double clicked 'B2', show B2 first? Or show highest to lowest?
-    // User: "show them option from highest to lowest"
-    // User: "when they double tap empty slot then first slot choosing is necessary directly show them first"
-    // I will place the exact slot they clicked at the very top of the list so it's the default, followed by highest to lowest.
     
     let finalOptions = [...new Set([slot, ...options])];
     return finalOptions;

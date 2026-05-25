@@ -397,7 +397,10 @@ $(() => {
         });
         $('#total-credits').text(totalCredits);
 
+        $('#total-credits').text(totalCredits);
+
         clearPanel();
+        if (typeof window.renderBasket === 'function') window.renderBasket();
     });
 });
 
@@ -430,6 +433,119 @@ window.getCourses = () => {
     courses_data.courses = require('../data/courses_winter_freshers_25.json');
 
     initializeAutocomplete();
+    
+    // Load baskets for the current semester
+    loadBaskets();
+};
+
+let currentBasketData = {};
+
+function loadBaskets() {
+    try {
+        currentBasketData = require('../data/baskets_winter_freshers_25.json');
+        
+        $('#basket-selector').empty().append('<option value="">Select your department...</option>');
+        
+        Object.keys(currentBasketData).forEach(function(deptName) {
+            $('#basket-selector').append(`<option value="${deptName}">${deptName}</option>`);
+        });
+        
+        $('#basket-section').show();
+        
+        $('#basket-selector').off('change').on('change', function() {
+            window.renderBasket();
+        });
+    } catch (error) {
+        console.warn('No basket data found for this semester.', error);
+        $('#basket-section').hide();
+    }
+}
+
+window.renderBasket = function() {
+    const selectedDept = $('#basket-selector').val();
+    const $container = $('#basket-container');
+    $container.empty();
+    
+    if (!selectedDept || !currentBasketData[selectedDept]) {
+        return;
+    }
+    
+    const coursesInBasket = currentBasketData[selectedDept];
+    
+    coursesInBasket.forEach(function(courseCode) {
+        // Find if this course is already in the timetable
+        let isAdded = false;
+        if (activeTable && activeTable.data) {
+            isAdded = activeTable.data.some(c => c.courseCode === courseCode);
+        }
+        
+        // Try to get course title
+        let courseTitle = '';
+        let courseObj = courses_data.courses.find(c => c.CODE === courseCode);
+        if (courseObj) {
+            courseTitle = courseObj.TITLE;
+        }
+        
+        let $item = $(`<div class="basket-item ${isAdded ? 'added' : ''}" data-code="${courseCode}"></div>`);
+        
+        let $leftDiv = $('<div></div>');
+        $leftDiv.append(`<span class="course-code">${courseCode}</span>`);
+        if (courseTitle) {
+            $leftDiv.append(`<span class="course-title" title="${courseTitle}">${courseTitle}</span>`);
+        }
+        
+        let $rightDiv = $('<div class="d-flex align-items-center gap-2"></div>');
+        
+        if (isAdded) {
+            $rightDiv.append('<span class="basket-item-edit btn btn-sm btn-light text-primary border shadow-sm fw-bold"><i class="fas fa-pencil-alt"></i> Edit</span>');
+            $rightDiv.append('<i class="fas fa-check-circle status-icon"></i>');
+        } else {
+            $rightDiv.append('<i class="far fa-circle status-icon"></i>');
+        }
+        
+        $item.append($leftDiv).append($rightDiv);
+        
+        // Add click events
+        if (!isAdded) {
+            $item.on('click', function() {
+                if(courseObj) {
+                    $('#course-input').val(courseCode + ' - ' + courseTitle);
+                    addSlotButtons(courseCode);
+                    
+                    // Scroll up to search box
+                    $('html, body').animate({
+                        scrollTop: $("#course-panel").offset().top - 100
+                    }, 300);
+                }
+            });
+        } else {
+            // Edit button logic
+            $item.find('.basket-item-edit').on('click', function(e) {
+                e.stopPropagation(); // Prevent parent clicks
+                
+                // Find the course in activeTable
+                let courseIdToDelete = null;
+                if (activeTable && activeTable.data) {
+                    for (var i = 0; i < activeTable.data.length; ++i) {
+                        if (activeTable.data[i].courseCode === courseCode) {
+                            courseIdToDelete = activeTable.data[i].courseId;
+                            break;
+                        }
+                    }
+                }
+                
+                if (courseIdToDelete !== null) {
+                    // Trigger the double click logic from course-list (which deletes and populates search box)
+                    let $row = $(\`#course-list tbody tr[data-course="course\${courseIdToDelete}"]\`);
+                    if ($row.length) {
+                        $row.trigger('dblclick');
+                    }
+                }
+            });
+        }
+        
+        $container.append($item);
+    });
 };
 
 /*

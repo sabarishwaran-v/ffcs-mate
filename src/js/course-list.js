@@ -66,6 +66,8 @@ $(() => {
                 break;
             }
         }
+        
+        if (typeof window.renderBasket === 'function') window.renderBasket();
     });
 
     /*

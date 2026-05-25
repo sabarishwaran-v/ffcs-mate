@@ -134,3 +134,67 @@
     background-color: #4c1d95 !important;
     color: #f9fafb !important;
 }
+
+/* =====================================================
+   Course Baskets styling
+   ===================================================== */
+.basket-item {
+    border: 1px solid var(--border-subtle, rgba(0,0,0,0.05));
+    border-radius: 8px;
+    padding: 10px 12px;
+    background-color: var(--bg-secondary, #ffffff);
+    color: var(--text-main, #212529);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket-item:hover {
+    border-color: var(--brand-primary, #a78bfa);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transform: translateY(-1px);
+}
+
+.basket-item.added {
+    background-color: rgba(52, 211, 153, 0.1);
+    border-color: var(--brand-success, #34d399);
+    cursor: default;
+}
+.basket-item.added:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.basket-item .course-code {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+}
+
+.basket-item .course-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.basket-item .status-icon {
+    font-size: 1.1rem;
+    color: var(--border-subtle);
+}
+
+.basket-item.added .status-icon {
+    color: var(--brand-success, #34d399);
+}
+
+.basket-item-edit {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}

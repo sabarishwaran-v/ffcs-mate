@@ -429,8 +429,13 @@ function showPanelError(message) {
     Function to get the courses based on the selected campus
  */
 window.getCourses = () => {
-    courses_data.all_data = require('../data/all_data_winter_freshers_25.json');
-    courses_data.courses = require('../data/courses_winter_freshers_25.json');
+    if (window.semester === 'fall_26_27') {
+        courses_data.all_data = require('../data/all_data_fall_26_27.json');
+        courses_data.courses = require('../data/courses_fall_26_27.json');
+    } else {
+        courses_data.all_data = require('../data/all_data_winter_freshers_25.json');
+        courses_data.courses = require('../data/courses_winter_freshers_25.json');
+    }
 
     initializeAutocomplete();
     
@@ -441,7 +446,11 @@ window.getCourses = () => {
 let currentBasketData = {};
 
 function loadBaskets() {
-    currentBasketData = require('../data/baskets_winter_freshers_25.js');
+    if (window.semester === 'fall_26_27') {
+        currentBasketData = require('../data/baskets_fall_26_27.js');
+    } else {
+        currentBasketData = require('../data/baskets_winter_freshers_25.js');
+    }
     
     if (!currentBasketData) {
         console.warn('No basket data found for this semester.');

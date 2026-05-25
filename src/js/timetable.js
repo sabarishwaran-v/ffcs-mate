@@ -563,7 +563,9 @@ window.initializeTimetable = () => {
         $('#lab .day').removeAttr('colspan');
     }
 
-    if (window.semester === 'winter_freshers_25') {
+    if (window.semester === 'fall_26_27') {
+        timetable = require('../schemas/fall_26_27.json');
+    } else if (window.semester === 'winter_freshers_25') {
         timetable = require('../schemas/winter_freshers_25.json');
     } else {
         timetable = require('../schemas/winter_freshers_25.json'); // fallback

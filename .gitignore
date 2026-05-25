@@ -6,3 +6,5 @@ src/data/*.json
 **/*.DS_Store
 util/output*.json
 yarn-error.log
+admin/
+util/report_*

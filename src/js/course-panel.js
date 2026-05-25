@@ -442,7 +442,7 @@ function initializeAutocomplete() {
                 enabled: true,
             },
             maxNumberOfElements: 10,
-            onSelectItemEvent: function () {
+            onChooseEvent: function () {
                 var title = $('#course-input').getSelectedItemData().TITLE;
                 var code = $('#course-input').getSelectedItemData().CODE;
 

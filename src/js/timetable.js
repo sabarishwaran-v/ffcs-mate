@@ -642,6 +642,10 @@ window.initializeTimetable = () => {
             if (window.splitLabs) {
                 const $theoryPeriod = $('<td class="period theory-cell-split"></td>');
                 const $labPeriod = $('<td class="period lab-cell-split"></td>');
+                
+                // Add tooltips to empty split periods
+                $theoryPeriod.attr('title', 'Double-click to add custom course');
+                $labPeriod.attr('title', 'Double-click to add custom course');
 
                 let showDay = false;
 
@@ -675,6 +679,7 @@ window.initializeTimetable = () => {
 
             } else {
                 const $period = $('<td class="period"></td>');
+                $period.attr('title', 'Double-click to add custom course');
                 let showDay = false;
 
                 if (theorySlots && theorySlots.days && day in theorySlots.days) {
@@ -923,3 +928,117 @@ window.renderCompareTable = () => {
         });
     });
 };
+
+/*
+    Double Click Listener for Custom Courses
+*/
+$(document).on('dblclick', '#timetable td.period', function() {
+    // Check if cell is empty
+    if ($(this).has('div').length) return;
+    
+    // Extract slot name (usually the second class, or matches A1, L63, etc.)
+    const classes = $(this).attr('class').split(' ');
+    const slot = classes.find(c => /^[A-Z0-9]+$/.test(c) && c !== 'period' && c !== 'highlight' && c !== 'theory-cell-split' && c !== 'lab-cell-split');
+    
+    if (slot) {
+        $('#customCourseSlot').val(slot);
+        $('#customCourseCode').val('');
+        $('#customCourseTitle').val('');
+        
+        var myModal = new bootstrap.Modal(document.getElementById('customCourseModal'));
+        myModal.show();
+    }
+});
+
+$(document).on('click', '#addCustomCourseBtn', function() {
+    const slot = $('#customCourseSlot').val();
+    const courseCode = $('#customCourseCode').val().toUpperCase().trim();
+    const courseTitle = $('#customCourseTitle').val().trim();
+    
+    if (!courseCode || !courseTitle) {
+        alert("Please enter a Course Code and Title.");
+        return;
+    }
+    
+    // Generate new ID
+    var courseId = 0;
+    if (activeTable.data.length != 0) {
+        var lastAddedCourse = activeTable.data[activeTable.data.length - 1];
+        courseId = lastAddedCourse.courseId + 1;
+    }
+    
+    // Duplicate Course Check (Separating Theory and Lab)
+    var isNewCourseLab = /^L\d+/.test(slot);
+    var componentType = isNewCourseLab ? "Lab" : "Theory";
+
+    var isDuplicate = activeTable.data.some(c => {
+        if (c.courseCode === courseCode) {
+            var isExistingLab = c.slots.some(s => /^L\d+/.test(s));
+            return isNewCourseLab === isExistingLab;
+        }
+        return false;
+    });
+
+    if (isDuplicate) {
+        alert(`Course ${courseCode} (${componentType}) is already in your timetable.`);
+        return;
+    }
+    
+    var courseData = {
+        courseId: courseId,
+        courseCode: courseCode,
+        courseTitle: courseTitle,
+        faculty: "Custom",
+        slots: [slot],
+        venue: "-",
+        credits: "0",
+        isProject: "No",
+    };
+    
+    // Clashing logic: Pre-validate by temporarily injecting into the DOM
+    var $divElement = $(`<div class="temp-clash-check" data-course="course${courseId}">${courseCode}</div>`);
+    if (slot[0] == 'L') $divElement.attr('data-is-lab', 'true').data('is-lab', true);
+    else $divElement.attr('data-is-theory', 'true').data('is-theory', true);
+    
+    $(`#timetable tr .${slot}`).append($divElement);
+    
+    var myCourseKey = `course${courseId}`;
+    var clashData = typeof window.checkSlotClash === 'function' ? window.checkSlotClash() : null;
+    
+    if (clashData && clashData[myCourseKey]) {
+        var clashNames = [];
+        clashData[myCourseKey].forEach(function(clashingCourseKey) {
+            var $clashingDivs = $(`#timetable div[data-course="${clashingCourseKey}"]`).not('.temp-clash-check');
+            if ($clashingDivs.length) {
+                var name = $clashingDivs.first().text().split('-')[0];
+                if (!clashNames.includes(name)) clashNames.push(name);
+                
+                var $cell = $clashingDivs.parent();
+                $cell.addClass('clash-shake');
+                setTimeout(() => $cell.removeClass('clash-shake'), 400);
+            }
+        });
+
+        alert("Cannot add course. Slot " + slot + " is clashing with " + (clashNames.join(', ') || "another overlapping course"));
+        
+        $('.temp-clash-check').remove();
+        if (typeof window.checkSlotClash === 'function') window.checkSlotClash();
+        return;
+    }
+    
+    $('.temp-clash-check').remove();
+    if (typeof window.checkSlotClash === 'function') window.checkSlotClash();
+    
+    // Success - Add course
+    activeTable.data.push(courseData);
+    addCourseToCourseList(courseData);
+    addCourseToTimetable(courseData);
+    
+    var totalCredits = 0;
+    activeTable.data.forEach(function (el) {
+        totalCredits += Number(el.credits);
+    });
+    $('#total-credits').text(totalCredits);
+    
+    bootstrap.Modal.getInstance(document.getElementById('customCourseModal')).hide();
+});

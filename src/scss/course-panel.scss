@@ -81,3 +81,56 @@
         grid-template-columns: unset;
     }
 }
+
+/* =====================================================
+   Easy-Autocomplete dropdown — theme-aware overrides
+   The plugin ships with hardcoded white bg / dark text
+   so we override with our CSS variables for both modes
+   ===================================================== */
+
+/* Light mode (default) */
+.easy-autocomplete-container ul {
+    background-color: var(--bg-secondary, #ffffff) !important;
+    border: 1px solid var(--border-subtle, #dee2e6) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden;
+}
+
+.easy-autocomplete-container ul li {
+    color: var(--text-main, #212529) !important;
+    background-color: var(--bg-secondary, #ffffff) !important;
+    border-bottom: 1px solid var(--border-subtle, #f0f0f0) !important;
+    padding: 8px 12px !important;
+    transition: background 0.15s ease;
+}
+
+.easy-autocomplete-container ul li:last-child {
+    border-bottom: none !important;
+}
+
+.easy-autocomplete-container ul li:hover,
+.easy-autocomplete-container ul li.selected {
+    background-color: var(--primary-light-color, #f8ceff) !important;
+    color: var(--text-main, #212529) !important;
+    cursor: pointer;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .easy-autocomplete-container ul {
+    background-color: #1f2937 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .easy-autocomplete-container ul li {
+    color: #f9fafb !important;
+    background-color: #1f2937 !important;
+    border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .easy-autocomplete-container ul li:hover,
+[data-theme="dark"] .easy-autocomplete-container ul li.selected {
+    background-color: #4c1d95 !important;
+    color: #f9fafb !important;
+}

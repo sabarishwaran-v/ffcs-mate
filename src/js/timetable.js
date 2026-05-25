@@ -659,6 +659,9 @@ window.initializeTimetable = () => {
             const day = days[i];
 
             if (window.splitLabs) {
+                let skipTheoryAppend = false;
+                let skipLabAppend = false;
+
                 const $theoryPeriod = $('<td class="period theory-cell-split"></td>');
                 const $labPeriod = $('<td class="period lab-cell-split"></td>');
                 
@@ -677,6 +680,11 @@ window.initializeTimetable = () => {
                     $theoryPeriod.attr('disabled', true);
                     $theoryPeriod.text('-');
                     $theoryPeriod.removeAttr('title');
+                    if (theorySlots && theorySlots.start && theorySlots.start.endsWith(':01')) {
+                        skipTheoryAppend = true;
+                        const $prev = $(`#${day} td.period:last`);
+                        $prev.attr('colspan', (parseInt($prev.attr('colspan') || 1) + 1));
+                    }
                 }
 
                 if (labSlots && labSlots.days && day in labSlots.days) {
@@ -688,6 +696,11 @@ window.initializeTimetable = () => {
                     $labPeriod.attr('disabled', true);
                     $labPeriod.text('-');
                     $labPeriod.removeAttr('title');
+                    if (labSlots && labSlots.start && labSlots.start.endsWith(':01')) {
+                        skipLabAppend = true;
+                        const $prev = $(`#${day}_lab td.period:last`);
+                        $prev.attr('colspan', (parseInt($prev.attr('colspan') || 1) + 1));
+                    }
                 }
 
                 if (showDay) {
@@ -695,13 +708,14 @@ window.initializeTimetable = () => {
                     $(`#${day}_lab`).show();
                 }
 
-                $(`#${day}`).append($theoryPeriod);
-                $(`#${day}_lab`).append($labPeriod);
+                if (!skipTheoryAppend) $(`#${day}`).append($theoryPeriod);
+                if (!skipLabAppend) $(`#${day}_lab`).append($labPeriod);
 
             } else {
                 const $period = $('<td class="period"></td>');
                 $period.attr('title', 'Double-click to add custom course');
                 let showDay = false;
+                let skipAppend = false;
 
                 if (theorySlots && theorySlots.days && day in theorySlots.days) {
                     const slot = theorySlots.days[day];
@@ -723,11 +737,20 @@ window.initializeTimetable = () => {
                     $period.attr('disabled', true);
                     $period.text('-');
                     $period.removeAttr('title');
+                    
+                    const isTheorySub = theorySlots && theorySlots.start && theorySlots.start.endsWith(':01');
+                    const isLabSub = labSlots && labSlots.start && labSlots.start.endsWith(':01');
+                    
+                    if (isTheorySub || isLabSub) {
+                        skipAppend = true;
+                        const $prev = $(`#${day} td.period:last`);
+                        $prev.attr('colspan', (parseInt($prev.attr('colspan') || 1) + 1));
+                    }
                 } else {
                     $(`#${day}`).show();
                 }
 
-                $(`#${day}`).append($period);
+                if (!skipAppend) $(`#${day}`).append($period);
             }
 
         }

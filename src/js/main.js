@@ -133,7 +133,7 @@ $(function () {
 window.switchSemester = () => {
     let hash = window.location.hash.toLowerCase();
     
-    $('#semester').text('Winter Semester Freshers 25-26');
+    $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Winter Semester Freshers 25-26');
     $('#last-update').text('Winter Semester Freshers 25-26');
     window.semester = 'winter_freshers_25';
     window.location.hash = '#winter_freshers_25';

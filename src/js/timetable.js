@@ -657,6 +657,7 @@ window.initializeTimetable = () => {
                 } else {
                     $theoryPeriod.attr('disabled', true);
                     $theoryPeriod.text('-');
+                    $theoryPeriod.removeAttr('title');
                 }
 
                 if (labSlots && labSlots.days && day in labSlots.days) {
@@ -667,6 +668,7 @@ window.initializeTimetable = () => {
                 } else {
                     $labPeriod.attr('disabled', true);
                     $labPeriod.text('-');
+                    $labPeriod.removeAttr('title');
                 }
 
                 if (showDay) {
@@ -701,6 +703,7 @@ window.initializeTimetable = () => {
                 if (!showDay) {
                     $period.attr('disabled', true);
                     $period.text('-');
+                    $period.removeAttr('title');
                 } else {
                     $(`#${day}`).show();
                 }

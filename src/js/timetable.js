@@ -595,22 +595,39 @@ window.initializeTimetable = () => {
         const $theoryHour = $('<td class="theory-hour"></td>');
         const $labHour = $('<td class="lab-hour"></td>');
 
+        let hideTheoryHeader = false;
+        let hideLabHeader = false;
+
         if (theorySlots && theorySlots.start && theorySlots.end) {
-            $theoryHour.html(
-                `${theorySlots.start}<br />to<br />${theorySlots.end}`,
-            );
-            $theoryHour.data('start', theorySlots.start);
-            $theoryHour.data('end', theorySlots.end);
+            if (theorySlots.start.endsWith(':01')) {
+                hideTheoryHeader = true;
+                const $last = $('#theory .theory-hour:last');
+                $last.attr('colspan', (parseInt($last.attr('colspan') || 1) + 1));
+            } else {
+                $theoryHour.html(`${theorySlots.start}<br />to<br />${theorySlots.end}`);
+                $theoryHour.data('start', theorySlots.start);
+                $theoryHour.data('end', theorySlots.end);
+            }
+        } else {
+            hideTheoryHeader = true;
         }
 
         if (labSlots && labSlots.start && labSlots.end) {
-            $labHour.html(`${labSlots.start}<br />to<br />${labSlots.end}`);
-            $labHour.data('start', labSlots.start);
-            $labHour.data('end', labSlots.end);
+            if (labSlots.start.endsWith(':01')) {
+                hideLabHeader = true;
+                const $last = $('#lab .lab-hour:last');
+                $last.attr('colspan', (parseInt($last.attr('colspan') || 1) + 1));
+            } else {
+                $labHour.html(`${labSlots.start}<br />to<br />${labSlots.end}`);
+                $labHour.data('start', labSlots.start);
+                $labHour.data('end', labSlots.end);
+            }
+        } else {
+            hideLabHeader = true;
         }
 
-        $('#theory').append($theoryHour);
-        $('#lab').append($labHour);
+        if (!hideTheoryHeader) $('#theory').append($theoryHour);
+        if (!hideLabHeader) $('#lab').append($labHour);
 
         const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
         

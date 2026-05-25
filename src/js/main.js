@@ -133,21 +133,30 @@ $(function () {
 window.switchSemester = () => {
     let hash = window.location.hash.toLowerCase();
     
-    $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Fall Semester 26-27');
-    $('#last-update').text('Fall Semester 26-27');
-    window.semester = 'fall_26_27';
-    window.location.hash = '#fall_26_27';
+    if (hash === '#winter_freshers_25') {
+        $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Winter Semester Freshers 25-26');
+        $('#last-update').text('Winter Semester Freshers 25-26');
+        window.semester = 'winter_freshers_25';
+    } else {
+        $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Fall Semester 26-27');
+        $('#last-update').text('Fall Semester 26-27');
+        window.semester = 'fall_26_27';
+        window.location.hash = '#fall_26_27';
+    }
 
     localforage.getItem('semester').then((semester) => {
-        localforage.setItem('semester', window.semester).catch(console.error);
-
-        if (semester && semester != window.semester) {
-            localforage
-                .removeItem('timetableStorage')
-                .then(window.location.reload());
+        if (semester && semester !== window.semester) {
+            // Wait for both storage items to clear/update before reloading
+            Promise.all([
+                localforage.setItem('semester', window.semester),
+                localforage.removeItem('timetableStorage')
+            ]).then(() => {
+                window.location.reload();
+            }).catch(console.error);
             return;
         }
 
+        localforage.setItem('semester', window.semester).catch(console.error);
         getCourses();
         initializeTimetable();
     });

@@ -32,7 +32,7 @@ $(() => {
         $(this).addClass('fw-bold active');
         
         if (selectedCampus === 'VIT-AP') {
-            $('#semester').text('Winter Semester Freshers 25-26');
+            $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Winter Semester Freshers 25-26');
             $('#semester-dropdown').html(`
                 <li><a class="dropdown-item fw-bold" href="#winter_freshers_25">Winter Semester Freshers 25-26</a></li>
                 <li><hr class="dropdown-divider"></li>

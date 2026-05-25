@@ -435,7 +435,7 @@ window.getCourses = () => {
     initializeAutocomplete();
     
     // Load baskets for the current semester
-    loadBaskets();
+    // loadBaskets(); // Temporarily disabled
 };
 
 let currentBasketData = {};

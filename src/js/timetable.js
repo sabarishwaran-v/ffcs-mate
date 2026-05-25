@@ -944,21 +944,47 @@ $(document).on('dblclick', '#timetable td.period', function() {
         $('#customCourseSlot').val(slot);
         $('#customCourseCode').val('');
         $('#customCourseTitle').val('');
+        $('#customCourseCredits').val(calculateCustomCredits(slot));
         
         var myModal = new bootstrap.Modal(document.getElementById('customCourseModal'));
         myModal.show();
     }
 });
 
+function calculateCustomCredits(slotString) {
+    if (!slotString) return 0;
+    const slots = slotString.toUpperCase().split('+').map(s => s.trim()).filter(s => s);
+    if (slots.length === 0) return 0;
+    
+    if (slots.some(s => /^L\d+/.test(s))) {
+        return Math.max(1, Math.floor(slots.length / 2));
+    }
+    
+    if (slots.length === 3) return 4;
+    if (slots.length === 2) return 3;
+    if (slots.length === 1) {
+        if (/^[TS]\w+/.test(slots[0])) return 1;
+        return 2;
+    }
+    return slots.length;
+}
+
+$(document).on('input', '#customCourseSlot', function() {
+    $('#customCourseCredits').val(calculateCustomCredits($(this).val()));
+});
+
 $(document).on('click', '#addCustomCourseBtn', function() {
-    const slot = $('#customCourseSlot').val();
+    const slotString = $('#customCourseSlot').val().toUpperCase().trim();
     const courseCode = $('#customCourseCode').val().toUpperCase().trim();
     const courseTitle = $('#customCourseTitle').val().trim();
+    const credits = $('#customCourseCredits').val() || "0";
     
-    if (!courseCode || !courseTitle) {
-        alert("Please enter a Course Code and Title.");
+    if (!courseCode || !courseTitle || !slotString) {
+        alert("Please enter a Slot, Course Code, and Title.");
         return;
     }
+    
+    const slots = slotString.split('+').map(s => s.trim()).filter(s => s);
     
     // Generate new ID
     var courseId = 0;
@@ -968,7 +994,7 @@ $(document).on('click', '#addCustomCourseBtn', function() {
     }
     
     // Duplicate Course Check (Separating Theory and Lab)
-    var isNewCourseLab = /^L\d+/.test(slot);
+    var isNewCourseLab = slots.some(s => /^L\d+/.test(s));
     var componentType = isNewCourseLab ? "Lab" : "Theory";
 
     var isDuplicate = activeTable.data.some(c => {
@@ -989,18 +1015,19 @@ $(document).on('click', '#addCustomCourseBtn', function() {
         courseCode: courseCode,
         courseTitle: courseTitle,
         faculty: "Custom",
-        slots: [slot],
+        slots: slots,
         venue: "-",
-        credits: "0",
+        credits: credits,
         isProject: "No",
     };
     
     // Clashing logic: Pre-validate by temporarily injecting into the DOM
-    var $divElement = $(`<div class="temp-clash-check" data-course="course${courseId}">${courseCode}</div>`);
-    if (slot[0] == 'L') $divElement.attr('data-is-lab', 'true').data('is-lab', true);
-    else $divElement.attr('data-is-theory', 'true').data('is-theory', true);
-    
-    $(`#timetable tr .${slot}`).append($divElement);
+    slots.forEach(function (slot) {
+        var $divElement = $(`<div class="temp-clash-check" data-course="course${courseId}">${courseCode}</div>`);
+        if (slot[0] == 'L') $divElement.attr('data-is-lab', 'true').data('is-lab', true);
+        else $divElement.attr('data-is-theory', 'true').data('is-theory', true);
+        $(`#timetable tr .${slot}`).append($divElement);
+    });
     
     var myCourseKey = `course${courseId}`;
     var clashData = typeof window.checkSlotClash === 'function' ? window.checkSlotClash() : null;
@@ -1019,7 +1046,7 @@ $(document).on('click', '#addCustomCourseBtn', function() {
             }
         });
 
-        alert("Cannot add course. Slot " + slot + " is clashing with " + (clashNames.join(', ') || "another overlapping course"));
+        alert("Cannot add course. Slot(s) " + slots.join('+') + " clashing with " + (clashNames.join(', ') || "another overlapping course"));
         
         $('.temp-clash-check').remove();
         if (typeof window.checkSlotClash === 'function') window.checkSlotClash();

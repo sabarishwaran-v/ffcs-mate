@@ -936,20 +936,73 @@ $(document).on('dblclick', '#timetable td.period', function() {
     // Check if cell is empty
     if ($(this).has('div').length) return;
     
-    // Extract slot name (usually the second class, or matches A1, L63, etc.)
+    // Extract slot name
     const classes = $(this).attr('class').split(' ');
     const slot = classes.find(c => /^[A-Z0-9]+$/.test(c) && c !== 'period' && c !== 'highlight' && c !== 'theory-cell-split' && c !== 'lab-cell-split');
     
     if (slot) {
-        $('#customCourseSlot').val(slot);
+        const $select = $('#customCourseSlot');
+        $select.empty();
+        
+        const options = getSlotOptions(slot);
+        options.forEach(opt => {
+            $select.append(`<option value="${opt}">${opt}</option>`);
+        });
+        
+        // Find if the clicked slot itself is in the options (it should be) and select it?
+        // Wait, "first slot choosing is necessary directly show them first", implies the highest credit combo should be first, which it is. 
+        // We will default select the highest credit combo (the first one).
+        $select.prop('selectedIndex', 0);
+        
         $('#customCourseCode').val('');
         $('#customCourseTitle').val('');
-        $('#customCourseCredits').val(calculateCustomCredits(slot));
+        $('#customCourseCredits').val(calculateCustomCredits($select.val()));
         
         var myModal = new bootstrap.Modal(document.getElementById('customCourseModal'));
         myModal.show();
     }
 });
+
+function getSlotOptions(slot) {
+    if (slot.startsWith('L')) return [slot];
+    
+    let baseMatch = slot.match(/[A-G][1-2]$/);
+    if (!baseMatch) return [slot];
+    
+    let X = baseMatch[0];
+    let char = X[0];
+    
+    let options = [];
+    
+    if (char !== 'G') {
+        options.push(`${X}+S${X}+T${X}`);
+        if (['D', 'E', 'F'].includes(char)) {
+            options.push(`${X}+T${X}+T${char}${X}`);
+        }
+    }
+    
+    options.push(`${X}+T${X}`);
+    if (['D', 'E', 'F'].includes(char)) {
+        options.push(`${X}+T${char}${X}`);
+    }
+    
+    options.push(`${X}`);
+    
+    options.push(`T${X}`);
+    if (['D', 'E', 'F'].includes(char)) {
+        options.push(`T${char}${X}`);
+    }
+    
+    // The user clicked a specific slot, they might expect to see that slot as default?
+    // "don't change the slot keep what ever they choosing , and another thing when they double tap empty slot then first slot choosing is necessary directly show them first"
+    // If they double clicked 'B2', show B2 first? Or show highest to lowest?
+    // User: "show them option from highest to lowest"
+    // User: "when they double tap empty slot then first slot choosing is necessary directly show them first"
+    // I will place the exact slot they clicked at the very top of the list so it's the default, followed by highest to lowest.
+    
+    let finalOptions = [...new Set([slot, ...options])];
+    return finalOptions;
+}
 
 function calculateCustomCredits(slotString) {
     if (!slotString) return 0;
@@ -969,7 +1022,7 @@ function calculateCustomCredits(slotString) {
     return slots.length;
 }
 
-$(document).on('input', '#customCourseSlot', function() {
+$(document).on('change', '#customCourseSlot', function() {
     $('#customCourseCredits').val(calculateCustomCredits($(this).val()));
 });
 

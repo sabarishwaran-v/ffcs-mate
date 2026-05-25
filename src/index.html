@@ -1015,9 +1015,15 @@
                     </div>
                     <div class="modal-body">
                         <form id="customCourseForm">
-                            <div class="mb-3">
-                                <label class="form-label text-muted small fw-bold">SLOT</label>
-                                <input type="text" class="form-control" id="customCourseSlot" readonly>
+                            <div class="row">
+                                <div class="col-8 mb-3">
+                                    <label class="form-label text-muted small fw-bold">SLOT</label>
+                                    <input type="text" class="form-control text-uppercase" id="customCourseSlot" placeholder="e.g. B2+TB2" required>
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <label class="form-label text-muted small fw-bold">CREDITS</label>
+                                    <input type="number" class="form-control" id="customCourseCredits" value="0" min="0" max="20" required>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label text-muted small fw-bold">COURSE CODE</label>

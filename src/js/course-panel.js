@@ -441,24 +441,25 @@ window.getCourses = () => {
 let currentBasketData = {};
 
 function loadBaskets() {
-    try {
-        currentBasketData = require('../data/baskets_winter_freshers_25.js');
-        
-        $('#basket-selector').empty().append('<option value="">Select your department...</option>');
-        
-        Object.keys(currentBasketData).forEach(function(deptName) {
-            $('#basket-selector').append(`<option value="${deptName}">${deptName}</option>`);
-        });
-        
-        $('#basket-section').show();
-        
-        $('#basket-selector').off('change').on('change', function() {
-            window.renderBasket();
-        });
-    } catch (error) {
-        console.warn('No basket data found for this semester.', error);
+    currentBasketData = require('../data/baskets_winter_freshers_25.js');
+    
+    if (!currentBasketData) {
+        console.warn('No basket data found for this semester.');
         $('#basket-section').hide();
+        return;
     }
+    
+    $('#basket-selector').empty().append('<option value="">Select your department...</option>');
+    
+    Object.keys(currentBasketData).forEach(function(deptName) {
+        $('#basket-selector').append(`<option value="${deptName}">${deptName}</option>`);
+    });
+    
+    $('#basket-section').show();
+    
+    $('#basket-selector').off('change').on('change', function() {
+        window.renderBasket();
+    });
 }
 
 window.renderBasket = function() {

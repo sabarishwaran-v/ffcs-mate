@@ -412,7 +412,7 @@ const courses_data = {
 /*
     Global function to show error banners across the application
  */
-function showPanelError(message) {
+window.showPanelError = function(message) {
     $('.global-error-msg').remove();
     $('body').append(`
         <div class="alert alert-danger global-error-msg shadow-lg d-flex align-items-center" role="alert" style="position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 9999; border-radius: 50rem; font-weight: 600; padding: 12px 30px; border: none;">

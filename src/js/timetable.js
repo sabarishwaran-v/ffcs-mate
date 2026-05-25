@@ -821,7 +821,8 @@ $(() => {
     /* Share Link Generation */
     $('#generate-share-link').on('click', function() {
         if (activeTable.data.length === 0) {
-            alert('Your timetable is empty! Add some courses before sharing.');
+            if (typeof window.showPanelError === 'function') window.showPanelError('Your timetable is empty! Add some courses before sharing.');
+            else alert('Your timetable is empty! Add some courses before sharing.');
             return;
         }
         
@@ -870,7 +871,8 @@ $(() => {
             window.history.replaceState({}, document.title, cleanUrl);
         } catch (e) {
             console.error('Failed to parse shared timetable:', e);
-            alert('This share link appears to be invalid or corrupted.');
+            if (typeof window.showPanelError === 'function') window.showPanelError('This share link appears to be invalid or corrupted.');
+            else alert('This share link appears to be invalid or corrupted.');
         }
     }
 
@@ -946,6 +948,44 @@ $(document).on('dblclick', '#timetable td.period', function() {
     const slot = classes.find(c => /^[A-Z0-9]+$/.test(c) && c !== 'period' && c !== 'highlight' && c !== 'theory-cell-split' && c !== 'lab-cell-split');
     
     if (slot) {
+        // Pre-validate clash for the exact slot clicked
+        var testCourseId = 99999;
+        var $divElement = $(`<div class="temp-clash-check" data-course="course${testCourseId}">TEST</div>`);
+        if (slot[0] == 'L') $divElement.attr('data-is-lab', 'true').data('is-lab', true);
+        else $divElement.attr('data-is-theory', 'true').data('is-theory', true);
+        $(`#timetable tr .${slot}`).append($divElement);
+        
+        var clashData = typeof window.checkSlotClash === 'function' ? window.checkSlotClash() : null;
+        var myCourseKey = `course${testCourseId}`;
+        
+        if (clashData && clashData[myCourseKey]) {
+            var clashNames = [];
+            clashData[myCourseKey].forEach(function(clashingCourseKey) {
+                var $clashingDivs = $(`#timetable div[data-course="${clashingCourseKey}"]`).not('.temp-clash-check');
+                if ($clashingDivs.length) {
+                    var name = $clashingDivs.first().text().split('-')[0];
+                    if (!clashNames.includes(name)) clashNames.push(name);
+                    
+                    var $cell = $clashingDivs.parent();
+                    $cell.addClass('clash-shake');
+                    setTimeout(() => $cell.removeClass('clash-shake'), 400);
+                }
+            });
+            
+            $('.temp-clash-check').remove();
+            if (typeof window.checkSlotClash === 'function') window.checkSlotClash();
+            
+            if (typeof window.showPanelError === 'function') {
+                window.showPanelError("Cannot select slot. " + slot + " is clashing with " + (clashNames.join(', ') || "another overlapping course"));
+            } else {
+                alert("Cannot select slot. " + slot + " is clashing with " + (clashNames.join(', ') || "another overlapping course"));
+            }
+            return;
+        }
+        
+        $('.temp-clash-check').remove();
+        if (typeof window.checkSlotClash === 'function') window.checkSlotClash();
+
         const $select = $('#customCourseSlot');
         $select.empty();
         
@@ -1054,7 +1094,8 @@ $(document).on('click', '#addCustomCourseBtn', function() {
     const credits = $('#customCourseCredits').val() || "0";
     
     if (!courseCode || !courseTitle || !slotString) {
-        alert("Please enter a Slot, Course Code, and Title.");
+        if (typeof window.showPanelError === 'function') window.showPanelError("Please enter a Slot, Course Code, and Title.");
+        else alert("Please enter a Slot, Course Code, and Title.");
         return;
     }
     
@@ -1080,7 +1121,8 @@ $(document).on('click', '#addCustomCourseBtn', function() {
     });
 
     if (isDuplicate) {
-        alert(`Course ${courseCode} (${componentType}) is already in your timetable.`);
+        if (typeof window.showPanelError === 'function') window.showPanelError(`Course <strong>${courseCode}</strong> (${componentType}) is already in your timetable.`);
+        else alert(`Course ${courseCode} (${componentType}) is already in your timetable.`);
         return;
     }
     
@@ -1120,7 +1162,11 @@ $(document).on('click', '#addCustomCourseBtn', function() {
             }
         });
 
-        alert("Cannot add course. Slot(s) " + slots.join('+') + " clashing with " + (clashNames.join(', ') || "another overlapping course"));
+        if (typeof window.showPanelError === 'function') {
+            window.showPanelError("Cannot add course. Slot(s) " + slots.join('+') + " clashing with " + (clashNames.join(', ') || "another overlapping course"));
+        } else {
+            alert("Cannot add course. Slot(s) " + slots.join('+') + " clashing with " + (clashNames.join(', ') || "another overlapping course"));
+        }
         
         $('.temp-clash-check').remove();
         if (typeof window.checkSlotClash === 'function') window.checkSlotClash();

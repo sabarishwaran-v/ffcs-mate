@@ -36,7 +36,7 @@ $(function () {
         $('#split-labs-toggle').prop('checked', !window.splitLabs); // checked = merge labs
 
         localforage.getItem('semester').then((semester) => {
-            window.location.hash = semester || '#fall_26_27';
+            window.location.hash = semester || '#winter_freshers_25';
             switchSemester();
 
             $(window).on('hashchange', () => {
@@ -138,10 +138,10 @@ window.switchSemester = () => {
         $('#last-update').text('Winter Semester Freshers 25-26');
         window.semester = 'winter_freshers_25';
     } else {
-        $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Fall Semester 26-27');
-        $('#last-update').text('Fall Semester 26-27');
-        window.semester = 'fall_26_27';
-        window.location.hash = '#fall_26_27';
+        window.location.hash = '#winter_freshers_25';
+        $('#semester').html('<i class="fas fa-calendar-alt text-primary"></i>&nbsp; Winter Semester Freshers 25-26');
+        $('#last-update').text('Winter Semester Freshers 25-26');
+        window.semester = 'winter_freshers_25';
     }
 
     localforage.getItem('semester').then((semester) => {

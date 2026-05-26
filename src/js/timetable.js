@@ -583,10 +583,10 @@ window.initializeTimetable = () => {
         const labSlots = lab[labIndex];
 
         if (theorySlots && labSlots && !theorySlots.days && !labSlots.days) {
-            const $theoryStart = $('<td class="theory-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
-            const $theoryEnd = $('<td class="theory-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
-            const $labStart = $('<td class="lab-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
-            const $labEnd = $('<td class="lab-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
+            const $theoryStart = $('<td class="theory-hour"></td>').text('Lunch');
+            const $theoryEnd = $('<td class="theory-hour"></td>').text('Lunch');
+            const $labStart = $('<td class="lab-hour"></td>').text('Lunch');
+            const $labEnd = $('<td class="lab-hour"></td>').text('Lunch');
 
             $('#theory-start').append($theoryStart);
             $('#theory-end').append($theoryEnd);
@@ -597,8 +597,8 @@ window.initializeTimetable = () => {
             
             for (var i = 0; i < days.length; ++i) {
                 const day = days[i];
-                const $theoryPeriod = $('<td class="period theory-cell-split" style="background-color: #e2e2e2; color: #000; font-weight: bold;"></td>').text('Lunch');
-                const $labPeriod = $('<td class="period lab-cell-split" style="background-color: #e2e2e2; color: #000; font-weight: bold;"></td>').text('Lunch');
+                const $theoryPeriod = $('<td class="period theory-cell-split" style="background-color: #e2e2e2; color: #000;"></td>').text('Lunch');
+                const $labPeriod = $('<td class="period lab-cell-split" style="background-color: #e2e2e2; color: #000;"></td>').text('Lunch');
                 
                 $theoryPeriod.attr('disabled', true);
                 $labPeriod.attr('disabled', true);

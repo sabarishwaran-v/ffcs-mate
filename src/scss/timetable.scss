@@ -99,20 +99,17 @@
     }
 
     td.lab-hour {
-        font-weight: bold;
         background-color: var(--lab-color);
         cursor: default;
     }
 
     td.theory-hour {
-        font-weight: bold;
         background-color: var(--theory-color);
         cursor: default;
     }
 
     td.day,
     td.lunch {
-        font-weight: bold;
         background-color: var(--day-lunch-color);
         cursor: default;
     }

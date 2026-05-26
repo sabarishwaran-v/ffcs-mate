@@ -473,14 +473,7 @@
 
                                 <!-- Right side actions -->
                                 <div class="d-flex align-items-center gap-3 flex-wrap">
-                                    <div id="merge-labs-container">
-                                        <div class="custom-toggle-container d-flex align-items-center justify-content-center" style="height: 31px;">
-                                            <label class="custom-toggle-label me-2 noselect small text-muted fw-bold mb-0" for="split-labs-toggle">MERGE LABS</label>
-                                            <label class="custom-toggle-switch mb-0">
-                                                <input type="checkbox" id="split-labs-toggle">
-                                                <span class="custom-toggle-slider"></span>
-                                            </label>
-                                        </div>
+                                    <div id="merge-labs-container" style="display: none;">
                                     </div>
 
                                     <div id="reset-table-btn">
@@ -525,8 +518,10 @@
                             <div class="text-center noselect mt-3" id="timetable-view-container">
                                 <div id="timetable" class="table-responsive border border-2 border-light shadow-none rounded-4">
                                     <table class="table table-bordered mb-0">
-                                        <tr id="theory"><td class="day">THEORY <br />HOURS</td></tr>
-                                        <tr id="lab"><td class="day">LAB <br />HOURS</td></tr>
+                                        <tr id="theory-start"><td rowspan="2" class="day">THEORY</td><td class="day">Start</td></tr>
+                                        <tr id="theory-end"><td class="day">End</td></tr>
+                                        <tr id="lab-start"><td rowspan="2" class="day">LAB</td><td class="day">Start</td></tr>
+                                        <tr id="lab-end"><td class="day">End</td></tr>
                                         <tr id="mon" style="display: none"><td class="day">MON</td></tr>
                                         <tr id="tue" style="display: none"><td class="day">TUE</td></tr>
                                         <tr id="wed" style="display: none"><td class="day">WED</td></tr>

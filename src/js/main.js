@@ -32,8 +32,7 @@ $(function () {
     });
 
     localforage.getItem('splitLabs').then((val) => {
-        window.splitLabs = val === null ? true : val; // Default to split labs (VTOP style)
-        $('#split-labs-toggle').prop('checked', !window.splitLabs); // checked = merge labs
+        window.splitLabs = true; // Force VTOP split labs
 
         localforage.getItem('semester').then((semester) => {
             window.location.hash = semester || '#winter_freshers_25';
@@ -46,13 +45,6 @@ $(function () {
                 switchSemester();
             });
         });
-    });
-
-    $('#split-labs-toggle').on('change', function() {
-        window.splitLabs = !$(this).is(':checked'); // If checked, splitLabs = false
-        localforage.setItem('splitLabs', window.splitLabs);
-        
-        initializeTimetable();
     });
 
     $('.tab-timetable').on('click', function(e) {

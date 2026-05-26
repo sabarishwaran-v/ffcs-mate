@@ -582,9 +582,8 @@ window.initializeTimetable = () => {
         const labSlots = lab[labIndex];
 
         if (theorySlots && labSlots && !theorySlots.days && !labSlots.days) {
-            const rspan = window.splitLabs ? 16 : 9;
             $('#timetable tr:first').append(
-                `<td class="lunch" style="width: 8px;" rowspan="${rspan}">L<br />U<br />N<br />C<br />H</td>`,
+                `<td class="lunch" style="width: 8px;" rowspan="18">Lunch</td>`,
             );
             ++theoryIndex;
             ++labIndex;
@@ -592,167 +591,95 @@ window.initializeTimetable = () => {
             continue;
         }
 
-        const $theoryHour = $('<td class="theory-hour"></td>');
-        const $labHour = $('<td class="lab-hour"></td>');
-
-        let hideTheoryHeader = false;
-        let hideLabHeader = false;
+        const $theoryStart = $('<td class="theory-hour"></td>');
+        const $theoryEnd = $('<td class="theory-hour"></td>');
+        const $labStart = $('<td class="lab-hour"></td>');
+        const $labEnd = $('<td class="lab-hour"></td>');
 
         if (theorySlots && theorySlots.start && theorySlots.end) {
-            if (theorySlots.start.endsWith(':01')) {
-                hideTheoryHeader = true;
-                const $last = $('#theory .theory-hour:last');
-                $last.attr('colspan', (parseInt($last.attr('colspan') || 1) + 1));
-            } else {
-                $theoryHour.html(`${theorySlots.start}<br />to<br />${theorySlots.end}`);
-                $theoryHour.data('start', theorySlots.start);
-                $theoryHour.data('end', theorySlots.end);
-            }
+            $theoryStart.html(theorySlots.start);
+            $theoryEnd.html(theorySlots.end);
+            $theoryStart.data('start', theorySlots.start);
+            $theoryEnd.data('end', theorySlots.end);
         } else {
-            hideTheoryHeader = true;
+            $theoryStart.html('-');
+            $theoryEnd.html('-');
         }
 
         if (labSlots && labSlots.start && labSlots.end) {
-            if (labSlots.start.endsWith(':01')) {
-                hideLabHeader = true;
-                const $last = $('#lab .lab-hour:last');
-                $last.attr('colspan', (parseInt($last.attr('colspan') || 1) + 1));
-            } else {
-                $labHour.html(`${labSlots.start}<br />to<br />${labSlots.end}`);
-                $labHour.data('start', labSlots.start);
-                $labHour.data('end', labSlots.end);
-            }
+            $labStart.html(labSlots.start);
+            $labEnd.html(labSlots.end);
+            $labStart.data('start', labSlots.start);
+            $labEnd.data('end', labSlots.end);
         } else {
-            hideLabHeader = true;
+            $labStart.html('-');
+            $labEnd.html('-');
         }
 
-        if (!hideTheoryHeader) $('#theory').append($theoryHour);
-        if (!hideLabHeader) $('#lab').append($labHour);
+        $('#theory-start').append($theoryStart);
+        $('#theory-end').append($theoryEnd);
+        $('#lab-start').append($labStart);
+        $('#lab-end').append($labEnd);
 
         const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
         
         // Recreate day rows if this is the first column loop
         if (theoryIndex === 0 && labIndex === 0) {
-            $('#timetable tr').slice(2).remove();
+            $('#timetable tr').slice(4).remove();
             days.forEach(day => {
-                if (window.splitLabs) {
-                    $('#timetable tr:last').after(`
-                        <tr id="${day}" style="display: none">
-                            <td class="day" rowspan="2">${day.toUpperCase()}</td>
-                            <td class="day" style="font-size: 0.8em; font-weight: bold; border-left: 1px solid #dee2e6;">THEORY</td>
-                        </tr>
-                        <tr id="${day}_lab" style="display: none">
-                            <td class="day" style="font-size: 0.8em; font-weight: bold; border-left: 1px solid #dee2e6;">LAB</td>
-                        </tr>
-                    `);
-                } else {
-                    $('#timetable tr:last').after(`
-                        <tr id="${day}" style="display: none">
-                            <td class="day">${day.toUpperCase()}</td>
-                        </tr>
-                    `);
-                }
+                $('#timetable tr:last').after(`
+                    <tr id="${day}" style="display: none">
+                        <td class="day" rowspan="2">${day.toUpperCase()}</td>
+                        <td class="day" style="font-weight: normal;">THEORY</td>
+                    </tr>
+                    <tr id="${day}_lab" style="display: none">
+                        <td class="day" style="font-weight: normal;">LAB</td>
+                    </tr>
+                `);
             });
         }
 
         for (var i = 0; i < days.length; ++i) {
             const day = days[i];
 
-            if (window.splitLabs) {
-                let skipTheoryAppend = false;
-                let skipLabAppend = false;
+            const $theoryPeriod = $('<td class="period theory-cell-split"></td>');
+            const $labPeriod = $('<td class="period lab-cell-split"></td>');
+            
+            // Add tooltips to empty split periods
+            $theoryPeriod.attr('title', 'Double-click to add custom course');
+            $labPeriod.attr('title', 'Double-click to add custom course');
 
-                const $theoryPeriod = $('<td class="period theory-cell-split"></td>');
-                const $labPeriod = $('<td class="period lab-cell-split"></td>');
-                
-                // Add tooltips to empty split periods
-                $theoryPeriod.attr('title', 'Double-click to add custom course');
-                $labPeriod.attr('title', 'Double-click to add custom course');
+            let showDay = false;
 
-                let showDay = false;
-
-                if (theorySlots && theorySlots.days && day in theorySlots.days) {
-                    const slot = theorySlots.days[day];
-                    $theoryPeriod.text(slot);
-                    $theoryPeriod.addClass(slot.split('/').join(' '));
-                    showDay = true;
-                } else {
-                    $theoryPeriod.attr('disabled', true);
-                    $theoryPeriod.text('-');
-                    $theoryPeriod.removeAttr('title');
-                    if (theorySlots && theorySlots.start && theorySlots.start.endsWith(':01')) {
-                        skipTheoryAppend = true;
-                        const $prev = $(`#${day} td.period:last`);
-                        $prev.attr('colspan', (parseInt($prev.attr('colspan') || 1) + 1));
-                    }
-                }
-
-                if (labSlots && labSlots.days && day in labSlots.days) {
-                    const slot = labSlots.days[day];
-                    $labPeriod.text(slot);
-                    $labPeriod.addClass(slot.split('/').join(' '));
-                    showDay = true;
-                } else {
-                    $labPeriod.attr('disabled', true);
-                    $labPeriod.text('-');
-                    $labPeriod.removeAttr('title');
-                    if (labSlots && labSlots.start && labSlots.start.endsWith(':01')) {
-                        skipLabAppend = true;
-                        const $prev = $(`#${day}_lab td.period:last`);
-                        $prev.attr('colspan', (parseInt($prev.attr('colspan') || 1) + 1));
-                    }
-                }
-
-                if (showDay) {
-                    $(`#${day}`).show();
-                    $(`#${day}_lab`).show();
-                }
-
-                if (!skipTheoryAppend) $(`#${day}`).append($theoryPeriod);
-                if (!skipLabAppend) $(`#${day}_lab`).append($labPeriod);
-
+            if (theorySlots && theorySlots.days && day in theorySlots.days) {
+                const slot = theorySlots.days[day];
+                $theoryPeriod.text(slot);
+                $theoryPeriod.addClass(slot.split('/').join(' '));
+                showDay = true;
             } else {
-                const $period = $('<td class="period"></td>');
-                $period.attr('title', 'Double-click to add custom course');
-                let showDay = false;
-                let skipAppend = false;
-
-                if (theorySlots && theorySlots.days && day in theorySlots.days) {
-                    const slot = theorySlots.days[day];
-                    $period.text(slot);
-                    $period.addClass(slot.split('/').join(' '));
-                    showDay = true;
-                }
-
-                if (labSlots && labSlots.days && day in labSlots.days) {
-                    const slot = labSlots.days[day];
-                    $period.text(
-                        ($period.text() != '' ? $period.text() + ' / ' : '') + slot,
-                    );
-                    $period.addClass(slot.split('/').join(' '));
-                    showDay = true;
-                }
-
-                if (!showDay) {
-                    $period.attr('disabled', true);
-                    $period.text('-');
-                    $period.removeAttr('title');
-                    
-                    const isTheorySub = theorySlots && theorySlots.start && theorySlots.start.endsWith(':01');
-                    const isLabSub = labSlots && labSlots.start && labSlots.start.endsWith(':01');
-                    
-                    if (isTheorySub || isLabSub) {
-                        skipAppend = true;
-                        const $prev = $(`#${day} td.period:last`);
-                        $prev.attr('colspan', (parseInt($prev.attr('colspan') || 1) + 1));
-                    }
-                } else {
-                    $(`#${day}`).show();
-                }
-
-                if (!skipAppend) $(`#${day}`).append($period);
+                $theoryPeriod.attr('disabled', true);
+                $theoryPeriod.text('-');
+                $theoryPeriod.removeAttr('title');
             }
 
+            if (labSlots && labSlots.days && day in labSlots.days) {
+                const slot = labSlots.days[day];
+                $labPeriod.text(slot);
+                $labPeriod.addClass(slot.split('/').join(' '));
+                showDay = true;
+            } else {
+                $labPeriod.attr('disabled', true);
+                $labPeriod.text('-');
+                $labPeriod.removeAttr('title');
+            }
+
+            if (showDay) {
+                $(`#${day}`).show();
+                $(`#${day}_lab`).show();
+            }
+
+            $(`#${day}`).append($theoryPeriod);
+            $(`#${day}_lab`).append($labPeriod);
         }
 
         if (theorySlots && !theorySlots.lunch) {

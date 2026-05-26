@@ -550,18 +550,10 @@ window.checkSlotClash = checkSlotClash;
  */
 window.initializeTimetable = () => {
     var timetable;
-    $('#timetable tr').slice(2).hide();
-    $('#timetable tr td:not(:first-child)').remove();
+    $('#timetable tr').slice(4).hide();
+    $('#timetable tr td:not(.day)').remove();
     $('#course-list tbody').empty();
     $('#total-credits').text(0);
-
-    if (window.splitLabs) {
-        $('#theory .day').attr('colspan', 2);
-        $('#lab .day').attr('colspan', 2);
-    } else {
-        $('#theory .day').removeAttr('colspan');
-        $('#lab .day').removeAttr('colspan');
-    }
 
     if (window.semester === 'fall_26_27') {
         timetable = require('../schemas/fall_26_27.json');
@@ -582,12 +574,32 @@ window.initializeTimetable = () => {
         const labSlots = lab[labIndex];
 
         if (theorySlots && labSlots && !theorySlots.days && !labSlots.days) {
-            $('#timetable tr:first').append(
-                `<td class="lunch" style="width: 8px;" rowspan="18">Lunch</td>`,
-            );
+            const $theoryStart = $('<td class="theory-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
+            const $theoryEnd = $('<td class="theory-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
+            const $labStart = $('<td class="lab-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
+            const $labEnd = $('<td class="lab-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
+
+            $('#theory-start').append($theoryStart);
+            $('#theory-end').append($theoryEnd);
+            $('#lab-start').append($labStart);
+            $('#lab-end').append($labEnd);
+
+            const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            
+            for (var i = 0; i < days.length; ++i) {
+                const day = days[i];
+                const $theoryPeriod = $('<td class="period theory-cell-split" style="background-color: #e2e2e2; color: #000; font-weight: bold;"></td>').text('Lunch');
+                const $labPeriod = $('<td class="period lab-cell-split" style="background-color: #e2e2e2; color: #000; font-weight: bold;"></td>').text('Lunch');
+                
+                $theoryPeriod.attr('disabled', true);
+                $labPeriod.attr('disabled', true);
+
+                $(`#${day}`).append($theoryPeriod);
+                $(`#${day}_lab`).append($labPeriod);
+            }
+
             ++theoryIndex;
             ++labIndex;
-
             continue;
         }
 
@@ -669,7 +681,7 @@ window.initializeTimetable = () => {
                 showDay = true;
             } else {
                 $labPeriod.attr('disabled', true);
-                $labPeriod.text('-');
+                $labPeriod.text('--');
                 $labPeriod.removeAttr('title');
             }
 

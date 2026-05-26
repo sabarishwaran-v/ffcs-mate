@@ -597,8 +597,8 @@ window.initializeTimetable = () => {
             
             for (var i = 0; i < days.length; ++i) {
                 const day = days[i];
-                const $theoryPeriod = $('<td class="period theory-cell-split" style="background-color: #e2e2e2; color: #000;"></td>').text('Lunch');
-                const $labPeriod = $('<td class="period lab-cell-split" style="background-color: #e2e2e2; color: #000;"></td>').text('Lunch');
+                const $theoryPeriod = $('<td class="period" style="background-color: #e2e2e2 !important; color: #000 !important;"></td>').text('Lunch');
+                const $labPeriod = $('<td class="period" style="background-color: #e2e2e2 !important; color: #000 !important;"></td>').text('Lunch');
                 
                 $theoryPeriod.attr('disabled', true);
                 $labPeriod.attr('disabled', true);

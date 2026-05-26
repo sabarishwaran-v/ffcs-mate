@@ -585,8 +585,8 @@ window.initializeTimetable = () => {
         if (theorySlots && labSlots && !theorySlots.days && !labSlots.days) {
             const $theoryStart = $('<td class="theory-hour"></td>').text('Lunch');
             const $theoryEnd = $('<td class="theory-hour"></td>').text('Lunch');
-            const $labStart = $('<td class="lab-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
-            const $labEnd = $('<td class="lab-hour" style="background-color: #e2e2e2;"></td>').text('Lunch');
+            const $labStart = $('<td class="lab-hour"></td>').text('Lunch');
+            const $labEnd = $('<td class="lab-hour"></td>').text('Lunch');
 
             $('#theory-start').append($theoryStart);
             $('#theory-end').append($theoryEnd);

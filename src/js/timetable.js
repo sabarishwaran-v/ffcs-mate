@@ -462,8 +462,10 @@ function checkSlotClash() {
     $('#timetable tr td').removeClass('clash');
     $('#course-list tr').removeClass('table-danger');
 
-    const $theoryHours = $('#theory td:not(.lunch)');
-    const $labHours = $('#lab td:not(.lunch)');
+    const $theoryStartHours = $('#theory-start td:not(.day)');
+    const $theoryEndHours = $('#theory-end td:not(.day)');
+    const $labStartHours = $('#lab-start td:not(.day)');
+    const $labEndHours = $('#lab-end td:not(.day)');
     const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
     
     let clashData = {};
@@ -475,23 +477,30 @@ function checkSlotClash() {
             $(`#${rowId} td.period`).each(function () {
                 const $td = $(this);
                 // Calculate period index to map to the correct header
-                const periodIndex = $td.prevAll('.period').length;
-                const headerIndex = periodIndex + 1; // +1 because index 0 is the row label
+                // Since we excluded .day cells in the header selectors, index 0 is the first time slot.
+                const headerIndex = $td.prevAll('.period').length;
 
                 $('div:not(.compare-course)', $td).each(function () {
                     const $div = $(this);
                     const isLab = $div.data('is-lab');
                     const dataCourse = $div.data('course');
                     
-                    let $header = isLab ? $labHours.eq(headerIndex) : $theoryHours.eq(headerIndex);
-                    if (!$header || !$header.data('start') || !$header.data('end')) return;
+                    let $headerStart = isLab ? $labStartHours.eq(headerIndex) : $theoryStartHours.eq(headerIndex);
+                    let $headerEnd = isLab ? $labEndHours.eq(headerIndex) : $theoryEndHours.eq(headerIndex);
+                    
+                    if (!$headerStart || !$headerEnd) return;
+                    
+                    let startTimeStr = $headerStart.data('start');
+                    let endTimeStr = $headerEnd.data('end');
+
+                    if (!startTimeStr || !endTimeStr) return;
 
                     let refDate = new Date(2000, 0, 1);
-                    let start = parse($header.data('start'), 'h:mm aa', refDate);
-                    if (!isValid(start)) start = parse($header.data('start'), 'HH:mm', refDate);
+                    let start = parse(startTimeStr, 'h:mm aa', refDate);
+                    if (!isValid(start)) start = parse(startTimeStr, 'HH:mm', refDate);
                     
-                    let end = parse($header.data('end'), 'h:mm aa', refDate);
-                    if (!isValid(end)) end = parse($header.data('end'), 'HH:mm', refDate);
+                    let end = parse(endTimeStr, 'h:mm aa', refDate);
+                    if (!isValid(end)) end = parse(endTimeStr, 'HH:mm', refDate);
 
                     scheduledBlocks.push({
                         start: start,

@@ -150,6 +150,11 @@
             .exit-compare-banner button:hover {
                 background: rgba(255,255,255,0.4);
             }
+            
+            /* Fix invisible hamburger menu in dark mode */
+            [data-theme="dark"] .navbar-toggler-icon {
+                filter: invert(1) brightness(200%);
+            }
         </style>
     </head>
 

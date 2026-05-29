@@ -739,8 +739,17 @@ window.initializeTimetable = () => {
             if (typeof window.renderCompareTable === 'function') {
                 window.renderCompareTable();
             }
+            
+            // Fade in the timetable to prevent flashing on load
+            setTimeout(() => {
+                $('#timetable table').css('opacity', '1');
+            }, 50);
         })
-        .catch(console.error);
+        .catch(function (error) {
+            console.error(error);
+            // Ensure timetable is visible even if there's an error
+            $('#timetable table').css('opacity', '1');
+        });
 };
 
 /*

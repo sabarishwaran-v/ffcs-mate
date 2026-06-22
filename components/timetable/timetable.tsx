@@ -393,7 +393,7 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
 
       <div 
         ref={timetableRef} 
-        className="bg-white rounded-md border border-border shadow-sm overflow-x-auto overflow-y-hidden overscroll-x-contain touch-pan-x"
+        className="bg-white rounded-md border border-border shadow-sm overflow-x-auto overflow-y-hidden"
         style={{ color: '#000', WebkitOverflowScrolling: 'touch' }} 
       >
         <div className="min-w-max w-full">

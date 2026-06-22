@@ -211,8 +211,6 @@ export default function Dashboard() {
                 >
                   <option value="" disabled>-- Select a Semester --</option>
                   <option value="winter2025">Winter Semester 2025-26</option>
-                  <option value="fall2026">Fall Semester 2026</option>
-                  <option value="spring2026">Spring Semester 2026</option>
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                   {isExtracting ? (

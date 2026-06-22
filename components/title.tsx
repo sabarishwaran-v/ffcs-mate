@@ -92,10 +92,7 @@ export function Title() {
             </DialogTitle>
             <DialogDescription className="text-base text-muted-foreground mt-2">
               Are you sure you want to leave the planner? Don't worry, your <strong className="text-foreground font-semibold">
-                {activeSemester === 'winter2025' ? 'Winter Semester 2025-26' : 
-                 activeSemester === 'fall2026' ? 'Fall Semester 2026' : 
-                 activeSemester === 'spring2026' ? 'Spring Semester 2026' : 
-                 'Semester'}
+                {activeSemester === 'winter2025' ? 'Winter Semester 2025-26' : 'Semester'}
               </strong> data is stored safely and you can continue editing at any time!
             </DialogDescription>
           </DialogHeader>

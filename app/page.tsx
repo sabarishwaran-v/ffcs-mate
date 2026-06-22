@@ -173,7 +173,7 @@ export default function Dashboard() {
 
       {/* Video Demo Dialog */}
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-        <DialogContent className="max-w-5xl bg-black border-border/50 p-0 overflow-hidden rounded-2xl w-[95vw]">
+        <DialogContent className="sm:max-w-5xl max-w-[95vw] bg-black border-border/50 p-0 overflow-hidden rounded-2xl w-[95vw]">
           <div className="relative aspect-video w-full bg-black">
             <video 
               controls 

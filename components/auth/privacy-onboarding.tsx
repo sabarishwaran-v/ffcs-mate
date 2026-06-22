@@ -25,10 +25,14 @@ export function PrivacyOnboarding() {
   useEffect(() => {
     if (!loading && user && userData && userData.onboardingComplete === false) {
       setIsOpen(true);
-    } else {
-      setIsOpen(false);
     }
   }, [user, userData, loading]);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-privacy-settings', handleOpen);
+    return () => window.removeEventListener('open-privacy-settings', handleOpen);
+  }, []);
 
   const handleSave = async () => {
     if (!user) return;

@@ -33,6 +33,7 @@ export default function Dashboard() {
   const courses = useScheduleStore(state => state.courses);
   const [selectedSemester, setSelectedSemester] = useState<string>("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   
   const [isExtracting, setIsExtracting] = useState(false);
@@ -109,7 +110,7 @@ export default function Dashboard() {
               Start Planning Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </AnimatedButton>
-            <AnimatedButton variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg rounded-xl border-border bg-card/50 backdrop-blur hover:bg-muted/50">
+            <AnimatedButton onClick={() => setIsVideoOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg rounded-xl border-border bg-card/50 backdrop-blur hover:bg-muted/50">
               <PlayCircle className="mr-2 w-5 h-5" />
               Watch Demo
             </AnimatedButton>
@@ -169,6 +170,29 @@ export default function Dashboard() {
       <div className="mt-auto">
         <Footer />
       </div>
+
+      {/* Video Demo Dialog */}
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-5xl bg-black border-border/50 p-0 overflow-hidden rounded-2xl w-[95vw]">
+          <div className="relative aspect-video w-full bg-black">
+            <video 
+              controls 
+              autoPlay 
+              playsInline
+              className="w-full h-full object-contain"
+              src="/demo-video.mov"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div className="p-4 bg-zinc-950 flex justify-between items-center border-t border-zinc-800">
+            <p className="text-zinc-400 text-sm font-medium">FFCS Mate v2.0 Demo</p>
+            <Button variant="outline" onClick={() => setIsVideoOpen(false)} className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white">
+              Close Player
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Onboarding Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={(open) => {

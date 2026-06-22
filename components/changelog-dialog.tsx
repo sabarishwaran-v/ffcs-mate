@@ -39,7 +39,7 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
       </DialogTrigger>
 
       <DialogContent 
-        className="w-[95vw] sm:max-w-[600px] h-[85vh] sm:h-auto sm:max-h-[85vh] bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl p-0 flex flex-col rounded-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+        className="w-[95vw] sm:max-w-[600px] max-h-[85dvh] bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl p-0 flex flex-col rounded-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]"
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
         <MotionDiv

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Sparkles, Users, ShieldAlert, Cloud, Rocket } from "lucide-react";
 import { AnimatedButton } from "@/components/ui/button";
 import {
@@ -22,16 +22,6 @@ interface ChangelogDialogProps {
 export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    // Show automatically if they haven't seen the 2.0.0 update
-    const seenVersion = localStorage.getItem("ffcs_mate_changelog_seen");
-    if (seenVersion !== CURRENT_VERSION) {
-      // Small delay so it pops up nicely after page load
-      const timer = setTimeout(() => setIsOpen(true), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   const handleClose = () => {
     localStorage.setItem("ffcs_mate_changelog_seen", CURRENT_VERSION);
     setIsOpen(false);
@@ -49,27 +39,27 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
       </DialogTrigger>
 
       <DialogContent 
-        className="sm:max-w-[600px] max-h-[90vh] bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl p-0 overflow-hidden flex flex-col rounded-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+        className="w-[95vw] sm:max-w-[600px] h-[85vh] sm:h-auto sm:max-h-[85vh] bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl p-0 flex flex-col rounded-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]"
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
         <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex flex-col h-full"
+          className="flex flex-col h-full overflow-hidden"
         >
           {/* Header Banner */}
-          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 text-white shrink-0">
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Rocket className="w-6 h-6 text-yellow-300" />
-              Welcome to FFCS MATE v2.0!
+          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5 sm:p-6 text-white shrink-0">
+            <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+              <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-300" />
+              What's New in v{CURRENT_VERSION} (Changelog)
             </h2>
-            <p className="text-white/90 mt-2 text-sm">
-              We have completely reimagined the platform from the ground up. Faster, more beautiful, and infinitely more powerful.
+            <p className="text-white/90 mt-1 sm:mt-2 text-xs sm:text-sm">
+              We have completely reimagined the platform from the ground up.
             </p>
           </div>
 
-          <ScrollArea className="flex-1 px-6 py-6 overflow-y-auto">
+          <ScrollArea className="flex-1 px-5 py-5 sm:px-6 sm:py-6">
             <div className="space-y-8">
               {/* Feature 1 */}
               <div className="flex gap-4">

@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { VersionAnalytics } from "@/components/analytics";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/nav-bar/theme-provider";
 import { MotionDiv } from "@/components/ui/motion";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -122,6 +123,7 @@ export default function RootLayout({
         </AuthProvider>
         {process.env.NODE_ENV === "production" && <VersionAnalytics />}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

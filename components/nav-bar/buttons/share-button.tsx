@@ -7,7 +7,7 @@ import { AnimatedButton } from "@/components/ui/button";
 
 export function ShareButton() {
   const [copied, setCopied] = useState(false);
-  const shareUrl = "https://ffcs-mate.vercel.app";
+  const shareUrl = "https://ffcsmate.vercel.app";
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareUrl);

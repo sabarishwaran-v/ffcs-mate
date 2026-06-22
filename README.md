@@ -18,7 +18,7 @@ FFCS MATE solves all of this by providing:
 ## Quickstart
 
 Want to jump right in and plan your semester?
-👉 **[Visit FFCS MATE (Live)](https://ffcs-mate.vercel.app)**
+👉 **[Visit FFCS MATE (Live)](https://ffcsmate.vercel.app)**
 
 Are you a developer looking to contribute or run this locally?
 👉 Please see our **[SETUP.md](SETUP.md)** for detailed installation instructions.

@@ -191,6 +191,7 @@ function SelectCoursesContent() {
               placeholder="Search by course code or title..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={(e) => e.target.select()}
               className="w-full pl-11 pr-4 py-4 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm transition-all"
             />
           </MotionDiv>

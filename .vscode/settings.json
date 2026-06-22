@@ -1,5 +1,8 @@
 {
-  "editor.tabSize": 2,
-  "editor.useTabStops": true,
-  "tailwindCSS.classFunctions": ["cva", "cx"]
+    "editor.tabSize": 2,
+    "editor.useTabStops": true,
+    "tailwindCSS.classFunctions": [
+        "cva",
+        "cx"
+    ],
 }

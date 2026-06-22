@@ -45,7 +45,7 @@ export function DownloadTimetableDialog({
         setName(`${defaultName}-${datePart}`);
       }
     },
-    [activeTimetable]
+    [activeTimetable],
   );
 
   const handleDownload = useCallback(() => {

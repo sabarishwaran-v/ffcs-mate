@@ -53,7 +53,7 @@ export const createImportExportSlice: StateCreator<
         courses,
         teachers,
         timetables: state.timetables.map((t) =>
-          t.id === id ? { ...t, selectedTeachers, selectedSlots } : t
+          t.id === id ? { ...t, selectedTeachers, selectedSlots } : t,
         ),
         activeTimetableId: id,
       }));
@@ -69,7 +69,7 @@ export const createImportExportSlice: StateCreator<
             teachers: data.teachers,
             timetables: data.timetables,
             activeTimetableId: data.activeTimetableId,
-          },
+          }
         };
       }
       return {

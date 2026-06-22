@@ -67,6 +67,6 @@ export const CustomSortMenu = memo(
         </AnimatePresenceWrapper>
       </div>
     );
-  }
+  },
 );
 CustomSortMenu.displayName = "CustomSortMenu";

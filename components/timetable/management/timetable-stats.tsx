@@ -25,8 +25,7 @@ export const TimetableStats = memo(function TimetableStats({
       className="mt-2 text-sm text-muted-foreground"
     >
       Total available courses: {courses.length} | Selected in this timetable:{" "}
-      {new Set(activeTimetable.selectedTeachers.map((t) => t.course)).size} |
-      Total credits:{" "}
+      {new Set(activeTimetable.selectedTeachers.map(t => t.course)).size} | Total credits:{" "}
       {activeTimetable.selectedTeachers.reduce((sum, teacher) => {
         const course = courses.find((c) => c.id === teacher.course);
         return sum + getCreditsFromSlotString(teacher.name, course);

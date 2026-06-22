@@ -38,25 +38,17 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
   };
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(open) => {
-        if (!open) handleClose();
-        else setIsOpen(true);
-      }}
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (!open) handleClose();
+      else setIsOpen(true);
+    }}>
       <DialogTrigger asChild>
-        <AnimatedButton
-          variant="outline"
-          size="sm"
-          className="rounded-full px-4 border-primary/30 text-primary hover:bg-primary/10"
-        >
-          <Sparkles className="w-4 h-4 mr-2" /> View Changelog (v
-          {CURRENT_VERSION})
+        <AnimatedButton variant="outline" size="sm" className="rounded-full px-4 border-primary/30 text-primary hover:bg-primary/10">
+          <Sparkles className="w-4 h-4 mr-2" /> View Changelog (v{CURRENT_VERSION})
         </AnimatedButton>
       </DialogTrigger>
 
-      <DialogContent
+      <DialogContent 
         className="sm:max-w-[600px] max-h-[90vh] bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl p-0 overflow-hidden flex flex-col rounded-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]"
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
@@ -73,8 +65,7 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
               Welcome to FFCS MATE v2.0!
             </h2>
             <p className="text-white/90 mt-2 text-sm">
-              We have completely reimagined the platform from the ground up.
-              Faster, more beautiful, and infinitely more powerful.
+              We have completely reimagined the platform from the ground up. Faster, more beautiful, and infinitely more powerful.
             </p>
           </div>
 
@@ -86,13 +77,9 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
                   <Users className="w-5 h-5 text-blue-500" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">
-                    Real-Time Multiplayer (Rooms)
-                  </h3>
+                  <h3 className="font-bold text-lg text-foreground">Real-Time Multiplayer (Rooms)</h3>
                   <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                    Planning with friends has never been easier. Generate a room
-                    code, share it, and watch your friends add and drop courses
-                    in real-time. View everyone's selected slots side-by-side!
+                    Planning with friends has never been easier. Generate a room code, share it, and watch your friends add and drop courses in real-time. View everyone's selected slots side-by-side!
                   </p>
                 </div>
               </div>
@@ -103,13 +90,9 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
                   <ShieldAlert className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">
-                    Intelligent Clash Detection
-                  </h3>
+                  <h3 className="font-bold text-lg text-foreground">Intelligent Clash Detection</h3>
                   <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                    Our brand new smart engine automatically blocks overlapping
-                    slots and instantly warns you if two courses have clashing
-                    mid-term or final exam schedules.
+                    Our brand new smart engine automatically blocks overlapping slots and instantly warns you if two courses have clashing mid-term or final exam schedules.
                   </p>
                 </div>
               </div>
@@ -120,13 +103,9 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
                   <Sparkles className="w-5 h-5 text-purple-500" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">
-                    Stunning Glassmorphism UI
-                  </h3>
+                  <h3 className="font-bold text-lg text-foreground">Stunning Glassmorphism UI</h3>
                   <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                    We threw out the old design. Enjoy a premium, true
-                    dark/light mode interface with beautiful translucent layers,
-                    micro-animations, and satisfying transitions.
+                    We threw out the old design. Enjoy a premium, true dark/light mode interface with beautiful translucent layers, micro-animations, and satisfying transitions.
                   </p>
                 </div>
               </div>
@@ -137,28 +116,18 @@ export function ChangelogDialog({ currentAppVersion }: ChangelogDialogProps) {
                   <Cloud className="w-5 h-5 text-green-500" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">
-                    Cloud Sync & Verification
-                  </h3>
+                  <h3 className="font-bold text-lg text-foreground">Cloud Sync & Verification</h3>
                   <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                    Your timetable safely syncs across all your devices
-                    instantly. We also implemented strict{" "}
-                    <code className="bg-secondary px-1 py-0.5 rounded text-xs text-primary">
-                      @vitapstudent.ac.in
-                    </code>{" "}
-                    Google login to keep the platform secure for verified
-                    students only.
+                    Your timetable safely syncs across all your devices instantly. We also implemented strict <code className="bg-secondary px-1 py-0.5 rounded text-xs text-primary">@vitapstudent.ac.in</code> Google login to keep the platform secure for verified students only.
                   </p>
                 </div>
               </div>
+
             </div>
           </ScrollArea>
 
           <div className="p-4 border-t border-border bg-secondary/20 flex justify-end shrink-0">
-            <AnimatedButton
-              onClick={handleClose}
-              className="px-8 font-semibold shadow-lg shadow-primary/20"
-            >
+            <AnimatedButton onClick={handleClose} className="px-8 font-semibold shadow-lg shadow-primary/20">
               Let's Go!
             </AnimatedButton>
           </div>

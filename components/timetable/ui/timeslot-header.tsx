@@ -32,7 +32,7 @@ export function TimeRangeHeader({ hour, colSpan = 1 }: TimeRangeHeaderProps) {
     <th
       className={cn(
         "p-2 text-xs font-bold text-center border w-24 max-w-24",
-        "bg-blue-ui text-blue-dim"
+        "bg-blue-ui text-blue-dim",
       )}
       colSpan={colSpan}
     >

@@ -6,12 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { MotionLi } from "@/components/ui/motion";
 import { Course, Teacher } from "@/types";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -44,31 +39,28 @@ const CourseItem = function CourseItem({
   const [showLastCourseAlert, setShowLastCourseAlert] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const activeTimetableId = useScheduleStore(
-    (state) => state.activeTimetableId
-  );
+  const activeTimetableId = useScheduleStore((state) => state.activeTimetableId);
   const timetables = useScheduleStore((state) => state.timetables);
   const setCourseSlots = useScheduleStore((state) => state.setCourseSlots);
   const removeCourse = useScheduleStore((state) => state.removeCourse);
   const roomRole = useScheduleStore((state) => state.roomRole);
 
   const activeTimetable = timetables.find((t) => t.id === activeTimetableId);
-
-  const selectedTeachersForCourse =
-    activeTimetable?.selectedTeachers.filter((teacher) =>
-      courseTeachers.some((ct) => ct.id === teacher.id)
-    ) || [];
+  
+  const selectedTeachersForCourse = activeTimetable?.selectedTeachers.filter((teacher) =>
+    courseTeachers.some((ct) => ct.id === teacher.id)
+  ) || [];
   const isAddedToTT = selectedTeachersForCourse.length > 0;
 
   const handleRemoveCourse = (e: React.MouseEvent) => {
     e.stopPropagation();
-
+    
     const currentCourses = searchParams?.get("courses")?.split(",") || [];
     if (currentCourses.length === 1) {
       setShowLastCourseAlert(true);
       return;
     }
-
+    
     executeDropCourse();
   };
 
@@ -79,8 +71,7 @@ const CourseItem = function CourseItem({
       router.replace(`?courses=${newCourses.join(",")}`);
     } else {
       removeCourse(course.id);
-      const pathname =
-        typeof window !== "undefined" ? window.location.pathname : "/planner";
+      const pathname = typeof window !== "undefined" ? window.location.pathname : "/planner";
       router.replace(pathname); // Stay on current page, just clear params
     }
   };
@@ -113,30 +104,25 @@ const CourseItem = function CourseItem({
       >
         <div className="flex-1">
           <h3 className="font-bold text-lg">{course.code}</h3>
-          <p
-            className="text-sm text-muted-foreground mt-1 line-clamp-2"
-            title={course.name}
-          >
-            {course.name}
-          </p>
+          <p className="text-sm text-muted-foreground mt-1 line-clamp-2" title={course.name}>{course.name}</p>
         </div>
 
         <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t">
           {!isAddedToTT ? (
             <>
               <DialogTrigger asChild>
-                <Button
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                <Button 
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white" 
                   size="sm"
                   disabled={roomRole === "spectator"}
                 >
                   Add to TT
                 </Button>
               </DialogTrigger>
-              <Button
-                className="flex-1 border-red-500/50 text-red-500 hover:bg-red-500/10 hover:text-red-500"
-                size="sm"
-                variant="outline"
+              <Button 
+                className="flex-1 border-red-500/50 text-red-500 hover:bg-red-500/10 hover:text-red-500" 
+                size="sm" 
+                variant="outline" 
                 onClick={handleRemoveCourse}
                 disabled={roomRole === "spectator"}
               >
@@ -146,19 +132,19 @@ const CourseItem = function CourseItem({
           ) : (
             <>
               <DialogTrigger asChild>
-                <Button
-                  className="flex-1"
-                  size="sm"
+                <Button 
+                  className="flex-1" 
+                  size="sm" 
                   variant="secondary"
                   disabled={roomRole === "spectator"}
                 >
                   Modify
                 </Button>
               </DialogTrigger>
-              <Button
-                className="flex-1 border-red-500/50 text-red-500 hover:bg-red-500/10 hover:text-red-500"
-                size="sm"
-                variant="outline"
+              <Button 
+                className="flex-1 border-red-500/50 text-red-500 hover:bg-red-500/10 hover:text-red-500" 
+                size="sm" 
+                variant="outline" 
                 onClick={handleRemoveFromTT}
                 disabled={roomRole === "spectator"}
               >
@@ -172,9 +158,9 @@ const CourseItem = function CourseItem({
           <VisuallyHidden>
             <DialogTitle>Select Slots for {course.code}</DialogTitle>
           </VisuallyHidden>
-
+          
           <CourseDialogContent course={course} />
-
+          
           <div className="flex-1 overflow-y-auto min-h-0">
             <CourseItemBody
               course={course}
@@ -186,22 +172,16 @@ const CourseItem = function CourseItem({
         </DialogContent>
       </MotionLi>
 
-      <AlertDialog
-        open={showLastCourseAlert}
-        onOpenChange={setShowLastCourseAlert}
-      >
+      <AlertDialog open={showLastCourseAlert} onOpenChange={setShowLastCourseAlert}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Drop last course?</AlertDialogTitle>
             <AlertDialogDescription>
-              You are about to drop your last course. This will clear your
-              planner. Do you want to continue?
+              You are about to drop your last course. This will clear your planner. Do you want to continue?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={(e) => e.stopPropagation()}>
-              Cancel
-            </AlertDialogCancel>
+            <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={(e) => {
                 e.stopPropagation();

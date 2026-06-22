@@ -51,9 +51,7 @@ export function UserMenu() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {userData?.name || "Student"}
-            </p>
+            <p className="text-sm font-medium leading-none">{userData?.name || "Student"}</p>
             <p className="text-xs leading-none text-muted-foreground mt-1">
               {userData?.registrationNumber || user.email}
             </p>
@@ -65,10 +63,7 @@ export function UserMenu() {
           <span>Privacy Settings</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={handleSignOut}
-          className="text-red-600 focus:text-red-600 cursor-pointer"
-        >
+        <DropdownMenuItem onClick={handleSignOut} className="text-red-600 focus:text-red-600 cursor-pointer">
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>

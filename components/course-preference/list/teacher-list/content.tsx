@@ -20,7 +20,7 @@ export function TeacherListContent({
     courseTeachers,
     searchQuery,
     slotFilter,
-    colorFilter
+    colorFilter,
   );
 
   if (courseTeachers.length === 0)
@@ -52,7 +52,7 @@ export function TeacherListContent({
               index={index}
               className={clashes.length > 0 ? "opacity-50" : ""}
             />
-          )
+          ),
         )}
       </MotionUl>
     </AnimatePresenceWrapper>

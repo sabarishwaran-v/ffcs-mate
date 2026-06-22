@@ -9,9 +9,7 @@ import { ExportTimetableHeader } from "../ui/timetable-header";
 import { useFeatureFlags } from "@/lib/store";
 
 export function ExportPreview() {
-  const hookOptimization = useFeatureFlags((state) =>
-    state.isEnabled("hookOptimization")
-  );
+  const hookOptimization = useFeatureFlags((state) => state.isEnabled("hookOptimization"));
   const { totalCredits } = useTimetableRenderData(hookOptimization);
 
   const [isMounted, setIsMounted] = useState(false);

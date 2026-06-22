@@ -20,10 +20,8 @@ import { IconButton } from "./ui/icon-button";
 export function SelectedCoursesTable() {
   const { courses, toggleTeacherInTimetable, getSelectedTeachers } =
     useScheduleStore();
-
-  const enableOptimizations = useFeatureFlags((state) =>
-    state.isEnabled("newOptimizations")
-  );
+  
+  const enableOptimizations = useFeatureFlags((state) => state.isEnabled("newOptimizations"));
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -32,18 +30,11 @@ export function SelectedCoursesTable() {
 
   const totalCredits = useTotalCredits();
 
-  const courseMap = useMemo(
-    () => new Map(courses.map((c) => [c.id, c])),
-    [courses]
-  );
+  const courseMap = useMemo(() => new Map(courses.map(c => [c.id, c])), [courses]);
 
   const sortedTeachers = getSelectedTeachers().sort((a, b) => {
-    const courseA = enableOptimizations
-      ? courseMap.get(a.course)
-      : courses.find((c) => c.id === a.course);
-    const courseB = enableOptimizations
-      ? courseMap.get(b.course)
-      : courses.find((c) => c.id === b.course);
+    const courseA = enableOptimizations ? courseMap.get(a.course) : courses.find((c) => c.id === a.course);
+    const courseB = enableOptimizations ? courseMap.get(b.course) : courses.find((c) => c.id === b.course);
     return (courseA?.name || "").localeCompare(courseB?.name || "");
   });
 
@@ -97,9 +88,7 @@ export function SelectedCoursesTable() {
               <tbody className="p-2 font-bold text-center bg-gray-100 border dark:bg-gray-900">
                 <AnimatePresenceWrapper>
                   {sortedTeachers.map((teacher, index) => {
-                    const course = enableOptimizations
-                      ? courseMap.get(teacher.course)
-                      : courses.find((c) => c.id === teacher.course);
+                    const course = enableOptimizations ? courseMap.get(teacher.course) : courses.find((c) => c.id === teacher.course);
                     return (
                       <MotionTr
                         key={teacher.id}
@@ -129,7 +118,9 @@ export function SelectedCoursesTable() {
                         <td className="px-6 py-4 text-sm whitespace-nowrap">
                           {teacher.name}
                         </td>
-                        <td className="px-6 py-4 text-sm whitespace-nowrap"></td>
+                        <td className="px-6 py-4 text-sm whitespace-nowrap">
+                          
+                        </td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <div className="space-y-1">
                             {teacher.venue.morning && (

@@ -55,42 +55,42 @@ export function TeacherDialog({
 
   const [open, setOpen] = useState(false);
   const [teacherName, setTeacherName] = useState(
-    teacherToEdit ? teacherToEdit.name : ""
+    teacherToEdit ? teacherToEdit.name : "",
   );
   const [selectedColor, setSelectedColor] = useState(
-    teacherToEdit ? teacherToEdit.color : "purple"
+    teacherToEdit ? teacherToEdit.color : "purple",
   );
   const [slots, setSlots] = useState(
-    teacherToEdit ? getAllSlots(teacherToEdit).join("+") : ""
+    teacherToEdit ? getAllSlots(teacherToEdit).join("+") : "",
   );
   const [venue, setVenue] = useState(
     teacherToEdit
       ? teacherToEdit.venue.morning || teacherToEdit.venue.afternoon || ""
-      : ""
+      : "",
   );
   const [selectedCourse, setSelectedCourse] = useState(
-    teacherToEdit ? teacherToEdit.course : course || ""
+    teacherToEdit ? teacherToEdit.course : course || "",
   );
 
   const handleColorChange = useCallback(
     (value: string) => setSelectedColor(value),
-    []
+    [],
   );
   const handleNameChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setTeacherName(e.target.value),
-    []
+    [],
   );
   const handleSlotsChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setSlots(e.target.value),
-    []
+    [],
   );
   const handleVenueChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setVenue(e.target.value),
-    []
+    [],
   );
   const handleCourseChange = useCallback(
     (value: string) => setSelectedCourse(value),
-    []
+    [],
   );
 
   const handleAddTeacher = () => {
@@ -212,7 +212,7 @@ export function TeacherDialog({
                         value={color.value}
                         className={cn(
                           "my-2",
-                          `bg-${color.value}-ui text-${color.value}-normal`
+                          `bg-${color.value}-ui text-${color.value}-normal`,
                         )}
                       >
                         {color.name}
@@ -293,6 +293,6 @@ const DialogHeaderMemo = memo(
         </DialogDescription>
       </DialogHeader>
     );
-  }
+  },
 );
 DialogHeaderMemo.displayName = "DialogHeaderMemo";

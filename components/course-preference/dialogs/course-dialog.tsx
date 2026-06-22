@@ -43,7 +43,7 @@ export function CourseDialog({
   const [code, setCode] = useState(courseToEdit ? courseToEdit.code : "");
   const [name, setName] = useState(courseToEdit ? courseToEdit.name : "");
   const [credits, setCredits] = useState(
-    courseToEdit ? courseToEdit.credits.toString() : "4"
+    courseToEdit ? courseToEdit.credits.toString() : "4",
   );
 
   const handleSave = useCallback(() => {
@@ -65,15 +65,15 @@ export function CourseDialog({
 
   const handleCodeChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value),
-    []
+    [],
   );
   const handleNameChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value),
-    []
+    [],
   );
   const handleCreditsChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setCredits(e.target.value),
-    []
+    [],
   );
 
   return (
@@ -171,6 +171,6 @@ const DialogHeaderMemo = memo(
         </DialogDescription>
       </DialogHeader>
     );
-  }
+  },
 );
 DialogHeaderMemo.displayName = "DialogHeaderMemo";

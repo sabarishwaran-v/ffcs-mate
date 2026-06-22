@@ -29,17 +29,15 @@ export const createTeacherSlice: StateCreator<
       return {
         teachers: [
           ...state.teachers,
-          {
-            ...teacher,
-            id: teacher.id || Math.random().toString(36).slice(2, 9),
-          },
+          { ...teacher, id: teacher.id || Math.random().toString(36).slice(2, 9) },
         ],
       };
     }),
 
   editTeacher: (id, updates) =>
     set((state) => {
-      const updateFn = (t: Teacher) => (t.id === id ? { ...t, ...updates } : t);
+      const updateFn = (t: Teacher) =>
+        t.id === id ? { ...t, ...updates } : t;
 
       clearClashDetectionCaches();
 
@@ -60,7 +58,7 @@ export const createTeacherSlice: StateCreator<
 
       const newTimetables = state.timetables.map((timetable) => {
         const newSelectedTeachers = timetable.selectedTeachers.filter(
-          (t) => t.id !== id
+          (t) => t.id !== id,
         );
         return {
           ...timetable,
@@ -70,8 +68,8 @@ export const createTeacherSlice: StateCreator<
               newSelectedTeachers.flatMap((t) => [
                 ...(t.slots.morning || []),
                 ...(t.slots.afternoon || []),
-              ])
-            )
+              ]),
+            ),
           ),
         };
       });
@@ -88,7 +86,7 @@ export const createTeacherSlice: StateCreator<
 
       const newTimetables = state.timetables.map((timetable) => {
         const newSelectedTeachers = timetable.selectedTeachers.filter(
-          (t) => t.course !== courseId
+          (t) => t.course !== courseId,
         );
         return {
           ...timetable,
@@ -98,8 +96,8 @@ export const createTeacherSlice: StateCreator<
               newSelectedTeachers.flatMap((t) => [
                 ...(t.slots.morning || []),
                 ...(t.slots.afternoon || []),
-              ])
-            )
+              ]),
+            ),
           ),
         };
       });

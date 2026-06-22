@@ -66,7 +66,7 @@ const MotionDiv = memo(function MotionDiv({
       layout,
       layoutId,
       props,
-    ]
+    ],
   );
 
   return (
@@ -326,28 +326,28 @@ function Parallax({
       transformY = useTransform(
         scrollYProgress,
         [0, 1],
-        [`${amount}%`, `-${amount}%`]
+        [`${amount}%`, `-${amount}%`],
       );
       break;
     case "down":
       transformY = useTransform(
         scrollYProgress,
         [0, 1],
-        [`-${amount}%`, `${amount}%`]
+        [`-${amount}%`, `${amount}%`],
       );
       break;
     case "left":
       transformX = useTransform(
         scrollYProgress,
         [0, 1],
-        [`${amount}%`, `-${amount}%`]
+        [`${amount}%`, `-${amount}%`],
       );
       break;
     case "right":
       transformX = useTransform(
         scrollYProgress,
         [0, 1],
-        [`-${amount}%`, `${amount}%`]
+        [`-${amount}%`, `${amount}%`],
       );
       break;
   }

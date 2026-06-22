@@ -1,11 +1,7 @@
 import { StateCreator } from "zustand";
 import { StoreState } from "../types";
 import { getAllSlots } from "@/src/utils/timetable";
-import {
-  clearClashDetectionCaches,
-  hasClashUsingMap,
-  getDetailedClashMessage,
-} from "@/src/utils/clash-detection";
+import { clearClashDetectionCaches, hasClashUsingMap, getDetailedClashMessage } from "@/src/utils/clash-detection";
 import { defaultTimetable } from "@/src/mocks/fake-timetable";
 import { Timetable, Teacher } from "@/types";
 
@@ -51,77 +47,74 @@ export const createTimetableSlice: StateCreator<
   personalDataBackup: null,
   isReceivingCloudUpdate: false,
 
-  setRoomMode: (roomId) =>
-    set((state) => {
-      if (roomId && !state.activeRoomId) {
-        // Joining a room: backup personal data
-        return {
-          activeRoomId: roomId,
-          viewMode: "room",
-          personalDataBackup: {
-            courses: state.courses,
-            teachers: state.teachers,
-            timetables: state.timetables,
-            activeTimetableId: state.activeTimetableId,
-          },
-        };
-      } else if (!roomId && state.activeRoomId) {
-        // Leaving a room: restore personal data
-        if (state.personalDataBackup) {
-          return {
-            activeRoomId: null,
-            roomRole: null,
-            viewMode: "personal",
-            courses: state.personalDataBackup.courses,
-            teachers: state.personalDataBackup.teachers,
-            timetables: state.personalDataBackup.timetables,
-            activeTimetableId: state.personalDataBackup.activeTimetableId,
-            personalDataBackup: null,
-          };
-        } else {
-          return { activeRoomId: null, roomRole: null, viewMode: "personal" };
-        }
-      }
-      return { activeRoomId: roomId };
-    }),
-  setRoomRole: (role) => set({ roomRole: role }),
-  setViewMode: (mode) =>
-    set((state) => {
-      if (state.viewMode === mode) return {};
-
-      // We are switching modes. The inactive mode's data is in personalDataBackup, and active mode data is in the main state.
-      // So we just swap them!
-      const currentMainData = {
-        courses: state.courses,
-        teachers: state.teachers,
-        timetables: state.timetables,
-        activeTimetableId: state.activeTimetableId,
-      };
-
-      return {
-        viewMode: mode,
-        courses: state.personalDataBackup?.courses || [],
-        teachers: state.personalDataBackup?.teachers || [],
-        timetables: state.personalDataBackup?.timetables || [],
-        activeTimetableId: state.personalDataBackup?.activeTimetableId || null,
-        personalDataBackup: currentMainData,
-      };
-    }),
-  cloneToPersonal: () =>
-    set((state) => {
-      if (!state.activeRoomId) return {}; // Can only clone if in a room
-
-      // Copy the current room state (which is currently residing in the active state variables)
-      // into the personalDataBackup
-      return {
+  setRoomMode: (roomId) => set((state) => {
+    if (roomId && !state.activeRoomId) {
+      // Joining a room: backup personal data
+      return { 
+        activeRoomId: roomId,
+        viewMode: "room",
         personalDataBackup: {
-          courses: [...state.courses],
-          teachers: [...state.teachers],
-          timetables: [...state.timetables],
-          activeTimetableId: state.activeTimetableId,
-        },
+          courses: state.courses,
+          teachers: state.teachers,
+          timetables: state.timetables,
+          activeTimetableId: state.activeTimetableId
+        }
       };
-    }),
+    } else if (!roomId && state.activeRoomId) {
+      // Leaving a room: restore personal data
+      if (state.personalDataBackup) {
+        return {
+          activeRoomId: null,
+          roomRole: null,
+          viewMode: "personal",
+          courses: state.personalDataBackup.courses,
+          teachers: state.personalDataBackup.teachers,
+          timetables: state.personalDataBackup.timetables,
+          activeTimetableId: state.personalDataBackup.activeTimetableId,
+          personalDataBackup: null
+        };
+      } else {
+        return { activeRoomId: null, roomRole: null, viewMode: "personal" };
+      }
+    }
+    return { activeRoomId: roomId };
+  }),
+  setRoomRole: (role) => set({ roomRole: role }),
+  setViewMode: (mode) => set((state) => {
+    if (state.viewMode === mode) return {};
+    
+    // We are switching modes. The inactive mode's data is in personalDataBackup, and active mode data is in the main state.
+    // So we just swap them!
+    const currentMainData = {
+      courses: state.courses,
+      teachers: state.teachers,
+      timetables: state.timetables,
+      activeTimetableId: state.activeTimetableId
+    };
+
+    return {
+      viewMode: mode,
+      courses: state.personalDataBackup?.courses || [],
+      teachers: state.personalDataBackup?.teachers || [],
+      timetables: state.personalDataBackup?.timetables || [],
+      activeTimetableId: state.personalDataBackup?.activeTimetableId || null,
+      personalDataBackup: currentMainData
+    };
+  }),
+  cloneToPersonal: () => set((state) => {
+    if (!state.activeRoomId) return {}; // Can only clone if in a room
+    
+    // Copy the current room state (which is currently residing in the active state variables)
+    // into the personalDataBackup
+    return {
+      personalDataBackup: {
+        courses: [...state.courses],
+        teachers: [...state.teachers],
+        timetables: [...state.timetables],
+        activeTimetableId: state.activeTimetableId
+      }
+    };
+  }),
   setIsReceivingCloudUpdate: (val) => set({ isReceivingCloudUpdate: val }),
 
   createTimetable: (name) => {
@@ -148,18 +141,16 @@ export const createTimetableSlice: StateCreator<
   deleteTimetable: (id) =>
     set((state) => {
       let newTimetables = state.timetables.filter((t) => t.id !== id);
-
+      
       // Prevent completely emptying the timetables array to avoid state updates during render getters
       if (newTimetables.length === 0) {
-        newTimetables = [
-          {
-            id: Math.random().toString(36).substr(2, 9),
-            name: "Timetable 1",
-            selectedTeachers: [],
-            selectedSlots: [],
-            updatedAt: new Date(),
-          },
-        ];
+        newTimetables = [{
+          id: Math.random().toString(36).substr(2, 9),
+          name: "Timetable 1",
+          selectedTeachers: [],
+          selectedSlots: [],
+          updatedAt: new Date(),
+        }];
       }
 
       const newActiveTimetableId =
@@ -176,7 +167,7 @@ export const createTimetableSlice: StateCreator<
   renameTimetable: (id, name) =>
     set((state) => ({
       timetables: state.timetables.map((t) =>
-        t.id === id ? { ...t, name, updatedAt: new Date() } : t
+        t.id === id ? { ...t, name, updatedAt: new Date() } : t,
       ),
     })),
 
@@ -213,11 +204,7 @@ export const createTimetableSlice: StateCreator<
     if (!state.activeTimetableId) {
       currentTimetableId = state.timetables[0]?.id;
     }
-    return (
-      state.timetables.find((t) => t.id === currentTimetableId) ||
-      state.timetables[0] ||
-      null
-    );
+    return state.timetables.find((t) => t.id === currentTimetableId) || state.timetables[0] || null;
   },
 
   getSelectedTeachers: () => {
@@ -246,7 +233,7 @@ export const createTimetableSlice: StateCreator<
               selectedSlots: [],
               updatedAt: new Date(),
             }
-          : t
+          : t,
       ),
     }));
 
@@ -267,7 +254,7 @@ export const createTimetableSlice: StateCreator<
     if (!activeTimetable) return;
 
     const isSelected = activeTimetable.selectedTeachers.some(
-      (t) => t.id === teacherId
+      (t) => t.id === teacherId,
     );
 
     clearClashDetectionCaches();
@@ -278,29 +265,29 @@ export const createTimetableSlice: StateCreator<
 
         if (isSelected) {
           const newSelectedTeachers = t.selectedTeachers.filter(
-            (st) => st.id !== teacherId
+            (st) => st.id !== teacherId,
           );
           return {
             ...t,
             selectedTeachers: newSelectedTeachers,
             selectedSlots: Array.from(
-              new Set(newSelectedTeachers.flatMap((st) => getAllSlots(st)))
+              new Set(newSelectedTeachers.flatMap((st) => getAllSlots(st))),
             ),
             updatedAt: new Date(),
           };
         } else {
           // Inject author info
-          const newTeacher = {
+          const newTeacher = { 
             ...teacher,
             addedByUid: addedByUid || teacher.addedByUid,
-            addedByName: addedByName || teacher.addedByName,
+            addedByName: addedByName || teacher.addedByName 
           };
           const newSelectedTeachers = [...t.selectedTeachers, newTeacher];
           return {
             ...t,
             selectedTeachers: newSelectedTeachers,
             selectedSlots: Array.from(
-              new Set(newSelectedTeachers.flatMap((st) => getAllSlots(st)))
+              new Set(newSelectedTeachers.flatMap((st) => getAllSlots(st))),
             ),
             updatedAt: new Date(),
           };
@@ -323,10 +310,10 @@ export const createTimetableSlice: StateCreator<
     const newTeachersToPlace = teacherIds
       .map((id) => state.teachers.find((t) => t.id === id))
       .filter((t): t is Teacher => t !== undefined)
-      .map((t) => ({
+      .map(t => ({
         ...t,
         addedByUid: addedByUid || t.addedByUid,
-        addedByName: addedByName || t.addedByName,
+        addedByName: addedByName || t.addedByName
       }));
 
     // Filter out ANY currently selected slots belonging to this course (this implements the "Swap" feature)
@@ -337,21 +324,14 @@ export const createTimetableSlice: StateCreator<
     // Strict Clash Check: Do any of the new teachers clash with any remaining teachers?
     let clashMessage: string | undefined = undefined;
 
-    const currentCourse = state.courses.find((c) => c.id === courseId);
+    const currentCourse = state.courses.find(c => c.id === courseId);
     const currentCourseCode = currentCourse ? currentCourse.code : "Course";
 
     for (const newTeacher of newTeachersToPlace) {
       for (const existingTeacher of otherTeachersInTimetable) {
-        const existingCourse = state.courses.find(
-          (c) => c.id === existingTeacher.course
-        );
-        const detailedMsg = getDetailedClashMessage(
-          newTeacher,
-          existingTeacher,
-          currentCourseCode,
-          existingCourse?.code || "Another Course"
-        );
-
+        const existingCourse = state.courses.find(c => c.id === existingTeacher.course);
+        const detailedMsg = getDetailedClashMessage(newTeacher, existingTeacher, currentCourseCode, existingCourse?.code || "Another Course");
+        
         if (detailedMsg) {
           clashMessage = detailedMsg;
           break;
@@ -364,12 +344,7 @@ export const createTimetableSlice: StateCreator<
     if (!clashMessage) {
       for (let i = 0; i < newTeachersToPlace.length; i++) {
         for (let j = i + 1; j < newTeachersToPlace.length; j++) {
-          const detailedMsg = getDetailedClashMessage(
-            newTeachersToPlace[i],
-            newTeachersToPlace[j],
-            currentCourseCode,
-            currentCourseCode
-          );
+          const detailedMsg = getDetailedClashMessage(newTeachersToPlace[i], newTeachersToPlace[j], currentCourseCode, currentCourseCode);
           if (detailedMsg) {
             clashMessage = detailedMsg;
             break;
@@ -386,10 +361,7 @@ export const createTimetableSlice: StateCreator<
     // No clash! Proceed with state update.
     clearClashDetectionCaches();
 
-    const newSelectedTeachers = [
-      ...otherTeachersInTimetable,
-      ...newTeachersToPlace,
-    ];
+    const newSelectedTeachers = [...otherTeachersInTimetable, ...newTeachersToPlace];
     const newSelectedSlots = Array.from(
       new Set(newSelectedTeachers.flatMap((st) => getAllSlots(st)))
     );

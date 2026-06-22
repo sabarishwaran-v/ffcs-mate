@@ -6,7 +6,7 @@ export interface Course {
   title: string;
   type: string;
   credits: number;
-  category?: string;
+  category?: string; 
   slots?: string[];
   theorySlots?: string[];
   labSlots?: string[];
@@ -19,7 +19,7 @@ export const MOCK_COURSES: Course[] = parsedCourses.map((c: any) => ({
   type: c.type,
   credits: c.credits,
   theorySlots: c.theorySlots,
-  labSlots: c.labSlots,
+  labSlots: c.labSlots
 }));
 
 // Future-proofing: When real semester databases are added, this function will map

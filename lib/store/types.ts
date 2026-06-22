@@ -3,14 +3,14 @@ import { ClashInfo, Course, Teacher, Timetable } from "@/types";
 export type FeatureFlags = {
   newOptimizations: boolean;
   hookOptimization: boolean;
-};
+}
 
 export type FeatureFlagStore = {
   flags: FeatureFlags;
   setFlag: (flag: keyof FeatureFlags, value: boolean) => void;
   setFlags: (flags: Partial<FeatureFlags>) => void;
   isEnabled: (flag: keyof FeatureFlags) => boolean;
-};
+}
 
 export type State = {
   courses: Course[];
@@ -57,17 +57,8 @@ export type Actions = {
   setIsReceivingCloudUpdate: (val: boolean) => void;
   getSelectedTeachers: () => Teacher[];
   getSelectedSlots: () => string[];
-  toggleTeacherInTimetable: (
-    teacherId: string,
-    addedByUid?: string,
-    addedByName?: string
-  ) => void;
-  setCourseSlots: (
-    courseId: string,
-    teacherIds: string[],
-    addedByUid?: string,
-    addedByName?: string
-  ) => { success: boolean; clashMessage?: string };
+  toggleTeacherInTimetable: (teacherId: string, addedByUid?: string, addedByName?: string) => void;
+  setCourseSlots: (courseId: string, teacherIds: string[], addedByUid?: string, addedByName?: string) => { success: boolean; clashMessage?: string };
   isTeacherSelected: (teacherId: string) => boolean;
   clearSelectedTeachers: () => void;
 

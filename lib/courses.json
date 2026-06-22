@@ -5,7 +5,9 @@
     "name": "Engineering Clinics - Raspberry Pi using Python",
     "type": "PJT",
     "credits": 3,
-    "theorySlots": ["NILL"],
+    "theorySlots": [
+      "NILL"
+    ],
     "labSlots": []
   },
   {
@@ -14,7 +16,9 @@
     "name": "Engineering Clinics - System Design",
     "type": "PJT",
     "credits": 3,
-    "theorySlots": ["NILL"],
+    "theorySlots": [
+      "NILL"
+    ],
     "labSlots": []
   },
   {
@@ -23,7 +27,9 @@
     "name": "Engineering Clinics - II",
     "type": "PJT",
     "credits": 3,
-    "theorySlots": ["NILL"],
+    "theorySlots": [
+      "NILL"
+    ],
     "labSlots": []
   },
   {
@@ -32,7 +38,9 @@
     "name": "Senior Design Project",
     "type": "PJT",
     "credits": 3,
-    "theorySlots": ["NILL"],
+    "theorySlots": [
+      "NILL"
+    ],
     "labSlots": []
   },
   {
@@ -41,7 +49,9 @@
     "name": "Internship",
     "type": "PJT",
     "credits": 3,
-    "theorySlots": ["NILL"],
+    "theorySlots": [
+      "NILL"
+    ],
     "labSlots": []
   },
   {
@@ -50,7 +60,9 @@
     "name": "Industrial Chemistry for Engineers",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1"],
+    "theorySlots": [
+      "B1+TB1"
+    ],
     "labSlots": []
   },
   {
@@ -59,7 +71,9 @@
     "name": "Corrosion Science and Engineering",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["C1+TC1"],
+    "theorySlots": [
+      "C1+TC1"
+    ],
     "labSlots": []
   },
   {
@@ -68,7 +82,9 @@
     "name": "Energy Materials and Their Applications",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["A1+TA1"],
+    "theorySlots": [
+      "A1+TA1"
+    ],
     "labSlots": []
   },
   {
@@ -77,7 +93,9 @@
     "name": "Chemical and Biosensors",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["C2+TC2"],
+    "theorySlots": [
+      "C2+TC2"
+    ],
     "labSlots": []
   },
   {
@@ -86,7 +104,9 @@
     "name": "Organic Electronics",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["A2+TA2"],
+    "theorySlots": [
+      "A2+TA2"
+    ],
     "labSlots": []
   },
   {
@@ -95,7 +115,9 @@
     "name": "Computer Applications for Social Sciences",
     "type": "ETH",
     "credits": 1,
-    "theorySlots": ["TG2"],
+    "theorySlots": [
+      "TG2"
+    ],
     "labSlots": []
   },
   {
@@ -104,7 +126,9 @@
     "name": "Concepts of Data Mining",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["B2+TB2"],
+    "theorySlots": [
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -152,7 +176,12 @@
     "name": "Theory of Computation",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A1+TA1+TAA1", "A2+TA2+TAA2", "B1+TB1+TBB1", "B2+TB2+TBB2"],
+    "theorySlots": [
+      "A1+TA1+TAA1",
+      "A2+TA2+TAA2",
+      "B1+TB1+TBB1",
+      "B2+TB2+TBB2"
+    ],
     "labSlots": []
   },
   {
@@ -161,7 +190,10 @@
     "name": "Requirements Engineering Management",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
     "labSlots": []
   },
   {
@@ -170,7 +202,10 @@
     "name": "Software Design and Architecture",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -220,7 +255,13 @@
     "name": "Soft Computing",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["A1+TA1", "A2+TA2", "E1+TEE1", "E2+TE2", "E1+TE1"],
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2",
+      "E1+TEE1",
+      "E2+TE2",
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -229,8 +270,17 @@
     "name": "Cyber Security and Digital Forensics",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
-    "labSlots": ["L14+L15", "L33+L34", "L4+L5", "L43+L44", "L47+L48"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
+    "labSlots": [
+      "L14+L15",
+      "L33+L34",
+      "L4+L5",
+      "L43+L44",
+      "L47+L48"
+    ]
   },
   {
     "id": "x4z56qolm",
@@ -254,8 +304,16 @@
     "name": "Software Engineering",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
-    "labSlots": ["L10+L11", "L39+L40", "L4+L5", "L49+L50"]
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L39+L40",
+      "L4+L5",
+      "L49+L50"
+    ]
   },
   {
     "id": "30543wm53",
@@ -263,8 +321,16 @@
     "name": "Operating Systems",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
-    "labSlots": ["L14+L15", "L31+L32", "L8+L9", "L41+L42"]
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
+    "labSlots": [
+      "L14+L15",
+      "L31+L32",
+      "L8+L9",
+      "L41+L42"
+    ]
   },
   {
     "id": "nbqijnvv1",
@@ -272,7 +338,10 @@
     "name": "Cryptology",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
     "labSlots": []
   },
   {
@@ -281,8 +350,12 @@
     "name": "Blockchain Architecture Design",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F2+TF2"],
-    "labSlots": ["L10+L11"]
+    "theorySlots": [
+      "F2+TF2"
+    ],
+    "labSlots": [
+      "L10+L11"
+    ]
   },
   {
     "id": "nkb5symyx",
@@ -290,7 +363,10 @@
     "name": "Artificial Intelligence",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -299,8 +375,15 @@
     "name": "Data Visualization",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["E1+TE1", "E2+TE2"],
-    "labSlots": ["L2+L3", "L37+L38", "L45+L46"]
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2"
+    ],
+    "labSlots": [
+      "L2+L3",
+      "L37+L38",
+      "L45+L46"
+    ]
   },
   {
     "id": "avutbqeoh",
@@ -348,8 +431,15 @@
     "name": "NoSQL Databases",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
-    "labSlots": ["L10+L11", "L39+L40", "L55+L56"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L39+L40",
+      "L55+L56"
+    ]
   },
   {
     "id": "6e5fc9kpd",
@@ -357,8 +447,15 @@
     "name": "Network Security",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
-    "labSlots": ["L26+L27", "L43+L44", "L49+L50"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
+    "labSlots": [
+      "L26+L27",
+      "L43+L44",
+      "L49+L50"
+    ]
   },
   {
     "id": "hoyremxvx",
@@ -366,7 +463,11 @@
     "name": "Secure Group Communications",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["C2+TC2", "C1+TCC1", "C1+TC1"],
+    "theorySlots": [
+      "C2+TC2",
+      "C1+TCC1",
+      "C1+TC1"
+    ],
     "labSlots": []
   },
   {
@@ -411,7 +512,11 @@
     "name": "Software Quality and Reliability",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["D2+TD2", "D1+TD1", "D1+TDD1"],
+    "theorySlots": [
+      "D2+TD2",
+      "D1+TD1",
+      "D1+TDD1"
+    ],
     "labSlots": []
   },
   {
@@ -420,7 +525,10 @@
     "name": "Product Definition and Validation",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["F2+TF2", "F1+TF1"],
+    "theorySlots": [
+      "F2+TF2",
+      "F1+TF1"
+    ],
     "labSlots": []
   },
   {
@@ -429,7 +537,11 @@
     "name": "Design Thinking",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2", "F1+TFF1"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2",
+      "F1+TFF1"
+    ],
     "labSlots": []
   },
   {
@@ -438,8 +550,18 @@
     "name": "Design and Analysis of Algorithms",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C1+TC1", "C2+TC2", "C1+TCC1", "C2+TCC2"],
-    "labSlots": ["L22+L23", "L28+L29", "L37+L38", "L55+L56"]
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2",
+      "C1+TCC1",
+      "C2+TCC2"
+    ],
+    "labSlots": [
+      "L22+L23",
+      "L28+L29",
+      "L37+L38",
+      "L55+L56"
+    ]
   },
   {
     "id": "5zprnkjoe",
@@ -447,8 +569,18 @@
     "name": "Computer Networks",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C1+TC1", "C2+TC2", "C1+TCC1", "C2+TCC2"],
-    "labSlots": ["L10+L11", "L51+L52", "L55+L56", "L22+L23"]
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2",
+      "C1+TCC1",
+      "C2+TCC2"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L51+L52",
+      "L55+L56",
+      "L22+L23"
+    ]
   },
   {
     "id": "3w4s2g575",
@@ -456,8 +588,18 @@
     "name": "Artificial Intelligence",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["D1+TD1", "D2+TD2", "D1+TDD1", "D2+TDD2"],
-    "labSlots": ["L2+L3", "L20+L21", "L43+L44", "L53+L54"]
+    "theorySlots": [
+      "D1+TD1",
+      "D2+TD2",
+      "D1+TDD1",
+      "D2+TDD2"
+    ],
+    "labSlots": [
+      "L2+L3",
+      "L20+L21",
+      "L43+L44",
+      "L53+L54"
+    ]
   },
   {
     "id": "pvtdywmbv",
@@ -465,7 +607,10 @@
     "name": "Cryptocurrency Technologies and Bitcoin",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -515,7 +660,12 @@
     "name": "Data Warehousing and Data Mining",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2", "F1+TF1", "F2+TF2"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2",
+      "F1+TF1",
+      "F2+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -524,7 +674,12 @@
     "name": "Deep Learning",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2", "F1+TFF1", "F2+TFF2"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2",
+      "F1+TFF1",
+      "F2+TFF2"
+    ],
     "labSlots": []
   },
   {
@@ -533,7 +688,12 @@
     "name": "Digital Image Processing",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1", "B2+TB2", "E2+TE2", "E1+TE1"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2",
+      "E2+TE2",
+      "E1+TE1"
+    ],
     "labSlots": [
       "L14+L15",
       "L16+L17",
@@ -553,7 +713,10 @@
     "name": "Wireless and Mobile Computing",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -562,7 +725,12 @@
     "name": "Internet of Things",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2", "E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2",
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -571,8 +739,18 @@
     "name": "UI UX User Experience Design",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["G1+TG1", "G2+TG2"],
-    "labSlots": ["L22+L23", "L26+L27", "L43+L44", "L51+L52", "L47+L48", "L8+L9"]
+    "theorySlots": [
+      "G1+TG1",
+      "G2+TG2"
+    ],
+    "labSlots": [
+      "L22+L23",
+      "L26+L27",
+      "L43+L44",
+      "L51+L52",
+      "L47+L48",
+      "L8+L9"
+    ]
   },
   {
     "id": "4zvh94uag",
@@ -580,8 +758,15 @@
     "name": "Network and System Administration",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
-    "labSlots": ["L10+L11", "L33+L34", "L39+L40"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L33+L34",
+      "L39+L40"
+    ]
   },
   {
     "id": "qle0m9nzq",
@@ -589,8 +774,15 @@
     "name": "Database Administration",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
-    "labSlots": ["L31+L32", "L37+L38", "L28+L29"]
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
+    "labSlots": [
+      "L31+L32",
+      "L37+L38",
+      "L28+L29"
+    ]
   },
   {
     "id": "j6h9pmgev",
@@ -598,7 +790,12 @@
     "name": "Applications of Artificial Intelligence",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["A1+TA1", "A2+TA2", "E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2",
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -607,8 +804,18 @@
     "name": "Information Security",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2", "F1+TFF1", "F2+TFF2"],
-    "labSlots": ["L14+L15", "L26+L27", "L35+L36", "L45+L46"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2",
+      "F1+TFF1",
+      "F2+TFF2"
+    ],
+    "labSlots": [
+      "L14+L15",
+      "L26+L27",
+      "L35+L36",
+      "L45+L46"
+    ]
   },
   {
     "id": "hcrdfiv6f",
@@ -616,7 +823,10 @@
     "name": "Enterprise Systems",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -625,7 +835,13 @@
     "name": "Reinforcement Learning",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["D1+TD1", "D2+TD2", "F1+TF1", "F2+TF2", "F1+TFF1"],
+    "theorySlots": [
+      "D1+TD1",
+      "D2+TD2",
+      "F1+TF1",
+      "F2+TF2",
+      "F1+TFF1"
+    ],
     "labSlots": []
   },
   {
@@ -634,8 +850,15 @@
     "name": "Mining Massive Data Sets",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["G1+TG1", "G2+TG2"],
-    "labSlots": ["L39+L40", "L31+L32", "L8+L9"]
+    "theorySlots": [
+      "G1+TG1",
+      "G2+TG2"
+    ],
+    "labSlots": [
+      "L39+L40",
+      "L31+L32",
+      "L8+L9"
+    ]
   },
   {
     "id": "f9i05dbq0",
@@ -643,8 +866,15 @@
     "name": "Network Intrusion Detection and Prevention System",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["G2+TG2", "G1+TG1"],
-    "labSlots": ["L10+L11", "L20+L21", "L51+L52"]
+    "theorySlots": [
+      "G2+TG2",
+      "G1+TG1"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L20+L21",
+      "L51+L52"
+    ]
   },
   {
     "id": "k8g0s4vk8",
@@ -652,8 +882,12 @@
     "name": "Digital Design",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["G1"],
-    "labSlots": ["L16+L17"]
+    "theorySlots": [
+      "G1"
+    ],
+    "labSlots": [
+      "L16+L17"
+    ]
   },
   {
     "id": "0l8smtvo3",
@@ -661,7 +895,11 @@
     "name": "Probability and Random Processes",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A1+TA1+TAA1", "A2+TA2+TAA2", "B1+TB1+TBB1"],
+    "theorySlots": [
+      "A1+TA1+TAA1",
+      "A2+TA2+TAA2",
+      "B1+TB1+TBB1"
+    ],
     "labSlots": []
   },
   {
@@ -670,7 +908,9 @@
     "name": "Hybrid and Electric Vehicles",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A2+TA2+TAA2"],
+    "theorySlots": [
+      "A2+TA2+TAA2"
+    ],
     "labSlots": []
   },
   {
@@ -679,7 +919,11 @@
     "name": "Analog Devices and Circuits",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1", "B2+TB2", "C1+TCC1"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2",
+      "C1+TCC1"
+    ],
     "labSlots": [
       "L22+L23",
       "L26+L27",
@@ -695,7 +939,12 @@
     "name": "Computer Organization and Architecture",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["B1+TB1+TBB1", "A2+TA2+TAA2", "B2+TB2+TBB2", "A1+TA1+TAA1"],
+    "theorySlots": [
+      "B1+TB1+TBB1",
+      "A2+TA2+TAA2",
+      "B2+TB2+TBB2",
+      "A1+TA1+TAA1"
+    ],
     "labSlots": []
   },
   {
@@ -704,8 +953,12 @@
     "name": "Data Acquisition and Transmission Systems",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["D1+TD1"],
-    "labSlots": ["L33+L34"]
+    "theorySlots": [
+      "D1+TD1"
+    ],
+    "labSlots": [
+      "L33+L34"
+    ]
   },
   {
     "id": "90ceym4bi",
@@ -713,8 +966,12 @@
     "name": "Digital System Design for ASICs and FPGAs",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["D1+TD1"],
-    "labSlots": ["L31+L32"]
+    "theorySlots": [
+      "D1+TD1"
+    ],
+    "labSlots": [
+      "L31+L32"
+    ]
   },
   {
     "id": "j7gjojx39",
@@ -722,8 +979,19 @@
     "name": "Microprocessors and Microcontrollers",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C1+TC1", "C2+TC2", "A1+TA1"],
-    "labSlots": ["L10+L11", "L2+L3", "L39+L40", "L41+L42", "L45+L46", "L51+L52"]
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2",
+      "A1+TA1"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L2+L3",
+      "L39+L40",
+      "L41+L42",
+      "L45+L46",
+      "L51+L52"
+    ]
   },
   {
     "id": "r8bbcz3bw",
@@ -731,7 +999,10 @@
     "name": "Computer Architecture",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A2+TA2+TAA2", "A1+TA1+TAA1"],
+    "theorySlots": [
+      "A2+TA2+TAA2",
+      "A1+TA1+TAA1"
+    ],
     "labSlots": []
   },
   {
@@ -740,7 +1011,11 @@
     "name": "Linear Integrated Circuits and Applications",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B2+TB2", "B1+TB1", "A1+TA1"],
+    "theorySlots": [
+      "B2+TB2",
+      "B1+TB1",
+      "A1+TA1"
+    ],
     "labSlots": [
       "L14+L15",
       "L28+L29",
@@ -756,7 +1031,9 @@
     "name": "Antennas and Wave Propagation",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D2+TD2"],
+    "theorySlots": [
+      "D2+TD2"
+    ],
     "labSlots": []
   },
   {
@@ -765,8 +1042,12 @@
     "name": "Embedded Hardware Software System Design",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1"],
-    "labSlots": ["L55+L56"]
+    "theorySlots": [
+      "B1+TB1"
+    ],
+    "labSlots": [
+      "L55+L56"
+    ]
   },
   {
     "id": "z7xc126qs",
@@ -774,8 +1055,12 @@
     "name": "CMOS VLSI Design",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["A1+TA1"],
-    "labSlots": ["L49+L50"]
+    "theorySlots": [
+      "A1+TA1"
+    ],
+    "labSlots": [
+      "L49+L50"
+    ]
   },
   {
     "id": "1h0729d2n",
@@ -783,8 +1068,15 @@
     "name": "HDL Verification and Methodology",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
-    "labSlots": ["L20+L21", "L55+L56", "L51+L52"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
+    "labSlots": [
+      "L20+L21",
+      "L55+L56",
+      "L51+L52"
+    ]
   },
   {
     "id": "9k6zuxji1",
@@ -792,7 +1084,9 @@
     "name": "Neural Networks and Fuzzy Systems",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F2+TBB1+TF2"],
+    "theorySlots": [
+      "F2+TBB1+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -801,8 +1095,12 @@
     "name": "Speech processing",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C2+TC2"],
-    "labSlots": ["L22+L23"]
+    "theorySlots": [
+      "C2+TC2"
+    ],
+    "labSlots": [
+      "L22+L23"
+    ]
   },
   {
     "id": "0dn1e0v2q",
@@ -810,7 +1108,10 @@
     "name": "Introduction to IoT",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -819,8 +1120,12 @@
     "name": "Scripting Languages",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C1+TC1"],
-    "labSlots": ["L31+L32"]
+    "theorySlots": [
+      "C1+TC1"
+    ],
+    "labSlots": [
+      "L31+L32"
+    ]
   },
   {
     "id": "v5y9d33c5",
@@ -828,7 +1133,9 @@
     "name": "Automotive Electrical and Electronic Systems",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["D2+TD2+TDD2"],
+    "theorySlots": [
+      "D2+TD2+TDD2"
+    ],
     "labSlots": []
   },
   {
@@ -837,8 +1144,12 @@
     "name": "Analog IC Design",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["D1+TD1"],
-    "labSlots": ["L33+L34"]
+    "theorySlots": [
+      "D1+TD1"
+    ],
+    "labSlots": [
+      "L33+L34"
+    ]
   },
   {
     "id": "urm213ql6",
@@ -846,7 +1157,9 @@
     "name": "Low Power VLSI Design",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1"],
+    "theorySlots": [
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -855,7 +1168,9 @@
     "name": "Robotics and Automation",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["E1+SE1+TE1"],
+    "theorySlots": [
+      "E1+SE1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -864,8 +1179,12 @@
     "name": "IoT Domain Analyst",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["C1"],
-    "labSlots": ["L49+L50"]
+    "theorySlots": [
+      "C1"
+    ],
+    "labSlots": [
+      "L49+L50"
+    ]
   },
   {
     "id": "uq7tbwr7i",
@@ -873,8 +1192,12 @@
     "name": "Image Analysis and Computer Vision",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["E2+TE2"],
-    "labSlots": ["L2+L3"]
+    "theorySlots": [
+      "E2+TE2"
+    ],
+    "labSlots": [
+      "L2+L3"
+    ]
   },
   {
     "id": "zq7dwm7qy",
@@ -882,7 +1205,10 @@
     "name": "Business Communication and Value Science - IV",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["G1", "G2"],
+    "theorySlots": [
+      "G1",
+      "G2"
+    ],
     "labSlots": []
   },
   {
@@ -891,7 +1217,15 @@
     "name": "Basic French",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["C1", "C2", "D1", "D2", "G1", "G2", "F2"],
+    "theorySlots": [
+      "C1",
+      "C2",
+      "D1",
+      "D2",
+      "G1",
+      "G2",
+      "F2"
+    ],
     "labSlots": []
   },
   {
@@ -900,7 +1234,13 @@
     "name": "Basic Spanish",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["D2", "A1", "A2", "F1", "F2"],
+    "theorySlots": [
+      "D2",
+      "A1",
+      "A2",
+      "F1",
+      "F2"
+    ],
     "labSlots": []
   },
   {
@@ -909,7 +1249,13 @@
     "name": "German for Beginners",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["E2", "F1", "F2", "G1", "G2"],
+    "theorySlots": [
+      "E2",
+      "F1",
+      "F2",
+      "G1",
+      "G2"
+    ],
     "labSlots": []
   },
   {
@@ -918,7 +1264,12 @@
     "name": "Korean for Beginners",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["C2", "D1", "D2", "A1"],
+    "theorySlots": [
+      "C2",
+      "D1",
+      "D2",
+      "A1"
+    ],
     "labSlots": []
   },
   {
@@ -927,7 +1278,9 @@
     "name": "German for Advanced Learners",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1"],
+    "theorySlots": [
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -936,7 +1289,9 @@
     "name": "Contemporary Sociological Issues",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F2+TBB1+TF2"],
+    "theorySlots": [
+      "F2+TBB1+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -945,7 +1300,9 @@
     "name": "Indirect Tax",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["G1+TG1"],
+    "theorySlots": [
+      "G1+TG1"
+    ],
     "labSlots": []
   },
   {
@@ -954,7 +1311,9 @@
     "name": "Introduction of French Theatre from Classics to Contemporary",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["E1"],
+    "theorySlots": [
+      "E1"
+    ],
     "labSlots": []
   },
   {
@@ -963,7 +1322,9 @@
     "name": "History of Modern World",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["E2+SE2+TE2"],
+    "theorySlots": [
+      "E2+SE2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -972,7 +1333,9 @@
     "name": "Development Economics - I",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["C1+SC1+TC1"],
+    "theorySlots": [
+      "C1+SC1+TC1"
+    ],
     "labSlots": []
   },
   {
@@ -981,7 +1344,9 @@
     "name": "Econometrics - I",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["D1+TD1"],
+    "theorySlots": [
+      "D1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -990,7 +1355,9 @@
     "name": "Strategic Business Leader",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["D1+SD1+TD1"],
+    "theorySlots": [
+      "D1+SD1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -999,7 +1366,9 @@
     "name": "Public Finance",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F2+TBB1+TF2"],
+    "theorySlots": [
+      "F2+TBB1+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -1008,7 +1377,9 @@
     "name": "Indian Administration",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A2+TA2+TAA2"],
+    "theorySlots": [
+      "A2+TA2+TAA2"
+    ],
     "labSlots": []
   },
   {
@@ -1017,7 +1388,9 @@
     "name": "India in the World Affairs",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["C2+SC2+TC2"],
+    "theorySlots": [
+      "C2+SC2+TC2"
+    ],
     "labSlots": []
   },
   {
@@ -1026,7 +1399,9 @@
     "name": "Introduction to Hindi Language and Literature",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["F2"],
+    "theorySlots": [
+      "F2"
+    ],
     "labSlots": []
   },
   {
@@ -1035,7 +1410,10 @@
     "name": "Essence of Indian Traditional Knowledge",
     "type": "TH",
     "credits": 1,
-    "theorySlots": ["TG1", "TG2"],
+    "theorySlots": [
+      "TG1",
+      "TG2"
+    ],
     "labSlots": []
   },
   {
@@ -1044,7 +1422,10 @@
     "name": "Introduction to Social Inequalities",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["C2+TC2", "F1+TF1"],
+    "theorySlots": [
+      "C2+TC2",
+      "F1+TF1"
+    ],
     "labSlots": []
   },
   {
@@ -1053,7 +1434,9 @@
     "name": "Pursuit of Happiness",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E2+TE2"],
+    "theorySlots": [
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -1062,7 +1445,10 @@
     "name": "Dynamics of Gender Psychology",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
     "labSlots": []
   },
   {
@@ -1071,7 +1457,9 @@
     "name": "Basic Psychology for Engineers",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["A2+TA2"],
+    "theorySlots": [
+      "A2+TA2"
+    ],
     "labSlots": []
   },
   {
@@ -1080,7 +1468,10 @@
     "name": "Introduction to Psychology",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -1089,7 +1480,9 @@
     "name": "Introduction to GIS",
     "type": "ETH",
     "credits": 1,
-    "theorySlots": ["TG1"],
+    "theorySlots": [
+      "TG1"
+    ],
     "labSlots": []
   },
   {
@@ -1098,7 +1491,10 @@
     "name": "Geography of Asia and Sub-Saharan Africa",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D2+TD2", "A1+TA1"],
+    "theorySlots": [
+      "D2+TD2",
+      "A1+TA1"
+    ],
     "labSlots": []
   },
   {
@@ -1107,7 +1503,10 @@
     "name": "Critical Thinking and Formal Logic",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -1116,7 +1515,9 @@
     "name": "Indian National Movement",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F1+TF1+TFF1"],
+    "theorySlots": [
+      "F1+TF1+TFF1"
+    ],
     "labSlots": []
   },
   {
@@ -1125,7 +1526,10 @@
     "name": "Water and Society",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D1+TD1", "D2+TD2"],
+    "theorySlots": [
+      "D1+TD1",
+      "D2+TD2"
+    ],
     "labSlots": []
   },
   {
@@ -1134,7 +1538,9 @@
     "name": "Constitution of India: Formation and Implementation",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["B2+TB2+TBB2"],
+    "theorySlots": [
+      "B2+TB2+TBB2"
+    ],
     "labSlots": []
   },
   {
@@ -1143,7 +1549,9 @@
     "name": "Political Theory & Ideologies",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["E1+SE1+TE1"],
+    "theorySlots": [
+      "E1+SE1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -1152,7 +1560,9 @@
     "name": "Introduction to Study of Archaeology",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["B1+TB1+TBB1"],
+    "theorySlots": [
+      "B1+TB1+TBB1"
+    ],
     "labSlots": []
   },
   {
@@ -1161,7 +1571,9 @@
     "name": "Anthropology and Human Evolution",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1"],
+    "theorySlots": [
+      "B1+TB1"
+    ],
     "labSlots": []
   },
   {
@@ -1170,7 +1582,9 @@
     "name": "Mathematics For Economics",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A1+TA1+TAA1"],
+    "theorySlots": [
+      "A1+TA1+TAA1"
+    ],
     "labSlots": []
   },
   {
@@ -1179,7 +1593,10 @@
     "name": "Applications of Moral Philosophy",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E2+TE2", "D1+TD1"],
+    "theorySlots": [
+      "E2+TE2",
+      "D1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -1188,7 +1605,9 @@
     "name": "Indian Political Thought",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["D2+SD2+TD2"],
+    "theorySlots": [
+      "D2+SD2+TD2"
+    ],
     "labSlots": []
   },
   {
@@ -1237,8 +1656,12 @@
     "name": "Introduction to Regression Analysis",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C2+TC2"],
-    "labSlots": ["L8+L9"]
+    "theorySlots": [
+      "C2+TC2"
+    ],
+    "labSlots": [
+      "L8+L9"
+    ]
   },
   {
     "id": "ld5u8yxud",
@@ -1246,8 +1669,12 @@
     "name": "Numerical Methods for Engineers",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["F1"],
-    "labSlots": ["L39+L40"]
+    "theorySlots": [
+      "F1"
+    ],
+    "labSlots": [
+      "L39+L40"
+    ]
   },
   {
     "id": "5e1v27wnc",
@@ -1255,8 +1682,14 @@
     "name": "Optimization Techniques",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B2+TB2", "C1+TC1"],
-    "labSlots": ["L20+L21", "L37+L38"]
+    "theorySlots": [
+      "B2+TB2",
+      "C1+TC1"
+    ],
+    "labSlots": [
+      "L20+L21",
+      "L37+L38"
+    ]
   },
   {
     "id": "33e7ykkqe",
@@ -1264,7 +1697,10 @@
     "name": "Linear Algebra",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["C2+TC2", "E1+TE1"],
+    "theorySlots": [
+      "C2+TC2",
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -1273,7 +1709,9 @@
     "name": "Stochastic Processes",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A2+TA2+TAA2"],
+    "theorySlots": [
+      "A2+TA2+TAA2"
+    ],
     "labSlots": []
   },
   {
@@ -1282,8 +1720,12 @@
     "name": "Biostatistics",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["D2+TD2"],
-    "labSlots": ["L14+L15"]
+    "theorySlots": [
+      "D2+TD2"
+    ],
+    "labSlots": [
+      "L14+L15"
+    ]
   },
   {
     "id": "x4c770pqu",
@@ -1291,8 +1733,12 @@
     "name": "Fundamentals of Machine learning",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["E2+TE2"],
-    "labSlots": ["L26+L27"]
+    "theorySlots": [
+      "E2+TE2"
+    ],
+    "labSlots": [
+      "L26+L27"
+    ]
   },
   {
     "id": "lut2vgl9y",
@@ -1300,8 +1746,15 @@
     "name": "Fundamentals of Manufacturing Processes",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
-    "labSlots": ["L10+L11", "L37+L38", "L53+L54"]
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L37+L38",
+      "L53+L54"
+    ]
   },
   {
     "id": "fkrgwn931",
@@ -1309,7 +1762,9 @@
     "name": "Introduction to Mechanical Engineering Design Process",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1"],
+    "theorySlots": [
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -1319,7 +1774,10 @@
     "type": "LO",
     "credits": 2,
     "theorySlots": [],
-    "labSlots": ["L43+L44+L55+L56", "L14+L15+L26+L27"]
+    "labSlots": [
+      "L43+L44+L55+L56",
+      "L14+L15+L26+L27"
+    ]
   },
   {
     "id": "7qoa0p4wj",
@@ -1327,7 +1785,9 @@
     "name": "Production Planning and Inventory Control",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D1+TD1"],
+    "theorySlots": [
+      "D1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -1336,8 +1796,15 @@
     "name": "Thermal Engineering Systems",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C1+TC1", "C2+TC2"],
-    "labSlots": ["L2+L3", "L41+L42", "L51+L52"]
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2"
+    ],
+    "labSlots": [
+      "L2+L3",
+      "L41+L42",
+      "L51+L52"
+    ]
   },
   {
     "id": "ghm5dxwdj",
@@ -1345,7 +1812,9 @@
     "name": "Mechatronics",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["B1+TB1+TBB1"],
+    "theorySlots": [
+      "B1+TB1+TBB1"
+    ],
     "labSlots": []
   },
   {
@@ -1354,8 +1823,15 @@
     "name": "Theory of Machines",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
-    "labSlots": ["L20+L21", "L55+L56", "L47+L48"]
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
+    "labSlots": [
+      "L20+L21",
+      "L55+L56",
+      "L47+L48"
+    ]
   },
   {
     "id": "g7kl1d92x",
@@ -1363,8 +1839,12 @@
     "name": "Fluid Dynamics and Hydraulic Machines",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["E2+TE2"],
-    "labSlots": ["L22+L23"]
+    "theorySlots": [
+      "E2+TE2"
+    ],
+    "labSlots": [
+      "L22+L23"
+    ]
   },
   {
     "id": "t5gk6z6la",
@@ -1372,7 +1852,9 @@
     "name": "Renewable Source of Energy",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B2+TB2"],
+    "theorySlots": [
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -1381,7 +1863,9 @@
     "name": "Operations Research",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E2+TE2"],
+    "theorySlots": [
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -1390,8 +1874,12 @@
     "name": "Advanced Machining Processes",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["D2+TD2"],
-    "labSlots": ["L4+L5"]
+    "theorySlots": [
+      "D2+TD2"
+    ],
+    "labSlots": [
+      "L4+L5"
+    ]
   },
   {
     "id": "fj93xqo5g",
@@ -1399,7 +1887,9 @@
     "name": "Robot Dynamics",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["C1+SC1+TC1"],
+    "theorySlots": [
+      "C1+SC1+TC1"
+    ],
     "labSlots": []
   },
   {
@@ -1408,8 +1898,12 @@
     "name": "Automobile Engineering",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["A2+TA2"],
-    "labSlots": ["L28+L29"]
+    "theorySlots": [
+      "A2+TA2"
+    ],
+    "labSlots": [
+      "L28+L29"
+    ]
   },
   {
     "id": "4rmut7smb",
@@ -1417,8 +1911,12 @@
     "name": "Introduction to Mechanical Vibrations",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C2+TC2"],
-    "labSlots": ["L28+L29"]
+    "theorySlots": [
+      "C2+TC2"
+    ],
+    "labSlots": [
+      "L28+L29"
+    ]
   },
   {
     "id": "sa3565dsr",
@@ -1448,7 +1946,9 @@
     "name": "Fundamentals of Consumer Behaviour",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["B1+TB1"],
+    "theorySlots": [
+      "B1+TB1"
+    ],
     "labSlots": []
   },
   {
@@ -1457,7 +1957,9 @@
     "name": "Fundamentals of Human Resource Management",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["B2+TB2"],
+    "theorySlots": [
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -1466,7 +1968,14 @@
     "name": "Entrepreneurship",
     "type": "TH",
     "credits": 2,
-    "theorySlots": ["C1", "A1", "G1", "C2", "A2", "G2"],
+    "theorySlots": [
+      "C1",
+      "A1",
+      "G1",
+      "C2",
+      "A2",
+      "G2"
+    ],
     "labSlots": []
   },
   {
@@ -1475,7 +1984,10 @@
     "name": "Business Research Methods",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["C1+TC1", "C2+TC2"],
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2"
+    ],
     "labSlots": []
   },
   {
@@ -1484,8 +1996,16 @@
     "name": "Business Problem Solving with Computer Applications",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["G2", "G1", "E1"],
-    "labSlots": ["L20+L21", "L31+L32", "L39+L40"]
+    "theorySlots": [
+      "G2",
+      "G1",
+      "E1"
+    ],
+    "labSlots": [
+      "L20+L21",
+      "L31+L32",
+      "L39+L40"
+    ]
   },
   {
     "id": "w7fojikv6",
@@ -1493,7 +2013,9 @@
     "name": "Team Building and Leadership Skills",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["F1+TF1"],
+    "theorySlots": [
+      "F1+TF1"
+    ],
     "labSlots": []
   },
   {
@@ -1502,7 +2024,12 @@
     "name": "Financial Management",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2", "F2+TFF2", "D1+TD1"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2",
+      "F2+TFF2",
+      "D1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -1511,7 +2038,11 @@
     "name": "Financial Management",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["D1+TD1", "D2+TD2", "B1+TB1"],
+    "theorySlots": [
+      "D1+TD1",
+      "D2+TD2",
+      "B1+TB1"
+    ],
     "labSlots": []
   },
   {
@@ -1520,7 +2051,10 @@
     "name": "Operations and Supply Chain Management",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -1529,7 +2063,9 @@
     "name": "Business Environment",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F2+TBB1+TF2"],
+    "theorySlots": [
+      "F2+TBB1+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -1538,7 +2074,9 @@
     "name": "Performance Management",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F1+TBB2+TF1"],
+    "theorySlots": [
+      "F1+TBB2+TF1"
+    ],
     "labSlots": []
   },
   {
@@ -1547,7 +2085,11 @@
     "name": "Operation Research",
     "type": "ETH",
     "credits": 2,
-    "theorySlots": ["D1", "D2", "E1"],
+    "theorySlots": [
+      "D1",
+      "D2",
+      "E1"
+    ],
     "labSlots": []
   },
   {
@@ -1556,7 +2098,11 @@
     "name": "Advanced Finance",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["A2+TA2", "B1+TB1", "B2+TB2"],
+    "theorySlots": [
+      "A2+TA2",
+      "B1+TB1",
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -1565,7 +2111,9 @@
     "name": "Security Analysis and Portfolio Management",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["E1+TE1"],
+    "theorySlots": [
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -1574,7 +2122,9 @@
     "name": "HR Analytics",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["D1+TD1"],
+    "theorySlots": [
+      "D1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -1583,7 +2133,10 @@
     "name": "Marketing Analytics",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
     "labSlots": []
   },
   {
@@ -1592,7 +2145,9 @@
     "name": "Advanced Performance Management",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A1+TA1+TAA1"],
+    "theorySlots": [
+      "A1+TA1+TAA1"
+    ],
     "labSlots": []
   },
   {
@@ -1601,7 +2156,9 @@
     "name": "Brand Management",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1"],
+    "theorySlots": [
+      "B1+TB1"
+    ],
     "labSlots": []
   },
   {
@@ -1610,7 +2167,9 @@
     "name": "Advertisement and Sales Promotion",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["C1+TC1"],
+    "theorySlots": [
+      "C1+TC1"
+    ],
     "labSlots": []
   },
   {
@@ -1619,7 +2178,9 @@
     "name": "Supply Chain Analytics",
     "type": "ETH",
     "credits": 2,
-    "theorySlots": ["G2"],
+    "theorySlots": [
+      "G2"
+    ],
     "labSlots": []
   },
   {
@@ -1628,7 +2189,10 @@
     "name": "Business Analytics",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["F1+TF1", "F2+TF2"],
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -1637,7 +2201,9 @@
     "name": "Investment Banking and Financial Services",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["F1+TBB2+TF1"],
+    "theorySlots": [
+      "F1+TBB2+TF1"
+    ],
     "labSlots": []
   },
   {
@@ -1646,7 +2212,9 @@
     "name": "International Business",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["C2+SC2+TC2"],
+    "theorySlots": [
+      "C2+SC2+TC2"
+    ],
     "labSlots": []
   },
   {
@@ -1655,7 +2223,9 @@
     "name": "Condensed Matter Physics",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D2+TD2"],
+    "theorySlots": [
+      "D2+TD2"
+    ],
     "labSlots": []
   },
   {
@@ -1664,7 +2234,9 @@
     "name": "Optoelectronics",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["F2+TF2"],
+    "theorySlots": [
+      "F2+TF2"
+    ],
     "labSlots": []
   },
   {
@@ -1673,7 +2245,9 @@
     "name": "Introduction to Nanotechnology",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["E1+TE1"],
+    "theorySlots": [
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -1682,7 +2256,9 @@
     "name": "Solar Photovoltaics : Fundamentals and Technologies",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D1+TD1"],
+    "theorySlots": [
+      "D1+TD1"
+    ],
     "labSlots": []
   },
   {
@@ -1691,7 +2267,10 @@
     "name": "Arithmetic problem solving",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -1700,7 +2279,12 @@
     "name": "Enhancing Problem Solving Skills",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B2+TB2", "E2+TE2", "B1+TB1", "E1+TE1"],
+    "theorySlots": [
+      "B2+TB2",
+      "E2+TE2",
+      "B1+TB1",
+      "E1+TE1"
+    ],
     "labSlots": []
   },
   {
@@ -1757,7 +2341,14 @@
     "name": "Basic Competitive Coding - II",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["C1+TC1", "C2+TC2", "F2+TF2", "A1+TA1", "A2+TA2", "F1+TF1"],
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2",
+      "F2+TF2",
+      "A1+TA1",
+      "A2+TA2",
+      "F1+TF1"
+    ],
     "labSlots": []
   },
   {
@@ -1812,7 +2403,10 @@
     "name": "Requirements Engineering Management",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["E1+TE1", "E2+TE2"],
+    "theorySlots": [
+      "E1+TE1",
+      "E2+TE2"
+    ],
     "labSlots": []
   },
   {
@@ -1821,7 +2415,10 @@
     "name": "Software Design and Architecture",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
     "labSlots": []
   },
   {
@@ -1892,7 +2489,12 @@
     "name": "Software Project Management",
     "type": "ETH",
     "credits": 3,
-    "theorySlots": ["C1+TC1", "C2+TC2", "C1+TCC1", "C2+TCC2"],
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2",
+      "C1+TCC1",
+      "C2+TCC2"
+    ],
     "labSlots": []
   },
   {
@@ -1901,8 +2503,20 @@
     "name": "Principles of Design Patterns",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["F1+TF1", "F2+TF2", "F1+TFF1", "F2+TFF2"],
-    "labSlots": ["L14+L15", "L26+L27", "L4+L5", "L49+L50", "L55+L56", "L41+L42"]
+    "theorySlots": [
+      "F1+TF1",
+      "F2+TF2",
+      "F1+TFF1",
+      "F2+TFF2"
+    ],
+    "labSlots": [
+      "L14+L15",
+      "L26+L27",
+      "L4+L5",
+      "L49+L50",
+      "L55+L56",
+      "L41+L42"
+    ]
   },
   {
     "id": "zu3m83d95",
@@ -1910,8 +2524,17 @@
     "name": "Internet and Web Technologies",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
-    "labSlots": ["L14+L15", "L22+L23", "L28+L29", "L37+L38", "L43+L44"]
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
+    "labSlots": [
+      "L14+L15",
+      "L22+L23",
+      "L28+L29",
+      "L37+L38",
+      "L43+L44"
+    ]
   },
   {
     "id": "hgxw9qzyy",
@@ -1919,8 +2542,17 @@
     "name": "Software Testing",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
-    "labSlots": ["L22+L23", "L4+L5", "L49+L50", "L55+L56", "L8+L9"]
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
+    "labSlots": [
+      "L22+L23",
+      "L4+L5",
+      "L49+L50",
+      "L55+L56",
+      "L8+L9"
+    ]
   },
   {
     "id": "st2wshya7",
@@ -1928,7 +2560,10 @@
     "name": "Storage Technologies and Management",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["D1+TD1", "D2+TD2"],
+    "theorySlots": [
+      "D1+TD1",
+      "D2+TD2"
+    ],
     "labSlots": []
   },
   {
@@ -1937,8 +2572,17 @@
     "name": "Advanced Server Side Programming",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["C1+TC1", "C2+TC2"],
-    "labSlots": ["L10+L11", "L2+L3", "L31+L32", "L37+L38", "L53+L54"]
+    "theorySlots": [
+      "C1+TC1",
+      "C2+TC2"
+    ],
+    "labSlots": [
+      "L10+L11",
+      "L2+L3",
+      "L31+L32",
+      "L37+L38",
+      "L53+L54"
+    ]
   },
   {
     "id": "l9kj4lwu2",
@@ -1946,8 +2590,15 @@
     "name": "Application Development and Deployment Architecture",
     "type": "ETH",
     "credits": 4,
-    "theorySlots": ["A1+TA1", "A2+TA2"],
-    "labSlots": ["L4+L5", "L43+L44", "L8+L9"]
+    "theorySlots": [
+      "A1+TA1",
+      "A2+TA2"
+    ],
+    "labSlots": [
+      "L4+L5",
+      "L43+L44",
+      "L8+L9"
+    ]
   },
   {
     "id": "om3eogfzl",
@@ -1955,7 +2606,10 @@
     "name": "Formal Language and Automata Theory",
     "type": "TH",
     "credits": 4,
-    "theorySlots": ["A1+TA1+TAA1", "A2+TA2+TAA2"],
+    "theorySlots": [
+      "A1+TA1+TAA1",
+      "A2+TA2+TAA2"
+    ],
     "labSlots": []
   },
   {
@@ -1964,7 +2618,10 @@
     "name": "Mobile Computing",
     "type": "TH",
     "credits": 3,
-    "theorySlots": ["B1+TB1", "B2+TB2"],
+    "theorySlots": [
+      "B1+TB1",
+      "B2+TB2"
+    ],
     "labSlots": []
   }
 ]

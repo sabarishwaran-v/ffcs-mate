@@ -2,10 +2,7 @@
 
 import React from "react";
 
-export class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  { hasError: boolean; error: Error | null }
-> {
+export class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean, error: Error | null }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -22,7 +19,7 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: 20, color: "red" }}>
+        <div style={{ padding: 20, color: 'red' }}>
           <h1>Client-side error:</h1>
           <pre>{this.state.error?.message}</pre>
           <pre>{this.state.error?.stack}</pre>

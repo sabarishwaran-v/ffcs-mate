@@ -30,8 +30,8 @@ export const useScheduleStore = create<StoreState>()(
         activeTimetableId: state.activeTimetableId,
         activeSemester: state.activeSemester,
       }),
-    }
-  )
+    },
+  ),
 );
 
 export const useFeatureFlags = create<FeatureFlagStore>()(
@@ -39,7 +39,7 @@ export const useFeatureFlags = create<FeatureFlagStore>()(
     (set, get) => ({
       flags: {
         newOptimizations: false,
-        hookOptimization: false,
+        hookOptimization: false
       },
 
       setFlag: (flag, value) =>

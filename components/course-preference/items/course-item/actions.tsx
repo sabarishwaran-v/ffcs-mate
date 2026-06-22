@@ -17,13 +17,10 @@ export default function CourseItemActions({
 }: CourseItemActionsProps) {
   const removeCourse = useScheduleStore((state) => state.removeCourse);
 
-  const handleRemove = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation(); // Prevent expanding the accordion when clicking delete
-      removeCourse(course.id);
-    },
-    [course.id, removeCourse]
-  );
+  const handleRemove = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent expanding the accordion when clicking delete
+    removeCourse(course.id);
+  }, [course.id, removeCourse]);
 
   return (
     <>

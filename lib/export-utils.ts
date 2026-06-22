@@ -5,7 +5,7 @@
  */
 export async function exportToPdf(
   element: HTMLElement,
-  filename: string
+  filename: string,
 ): Promise<void> {
   // Add a class to the element for styling during export
   const jsPDF = (await import("jspdf")).default;
@@ -79,7 +79,7 @@ export async function exportToPdf(
 export async function exportToImage(
   element: HTMLElement,
   filename: string,
-  isDarkMode: boolean = false
+  isDarkMode: boolean = false,
 ): Promise<void> {
   // Add a class to the element for styling during export
   element.classList.add("exporting");

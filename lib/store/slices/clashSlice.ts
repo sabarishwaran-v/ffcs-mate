@@ -10,7 +10,9 @@ import { useFeatureFlags } from "@/lib/store";
 
 export type ClashSlice = Pick<
   StoreState,
-  "teacherSlotClash" | "hasSameSlotClashWithSelected" | "getAllClashesEnhanced"
+  | "teacherSlotClash"
+  | "hasSameSlotClashWithSelected"
+  | "getAllClashesEnhanced"
 >;
 
 // Cache for stringified slot representations to optimize hasSameSlotClashWithSelected
@@ -25,12 +27,16 @@ function getSlotRepresentation(teacher: Teacher): string {
   return representation;
 }
 
-export const createClashSlice: StateCreator<StoreState, [], [], ClashSlice> = (
-  set,
-  get
-) => ({
+export const createClashSlice: StateCreator<
+  StoreState,
+  [],
+  [],
+  ClashSlice
+> = (set, get) => ({
   teacherSlotClash: (teacherId) => {
-    const teacherToConsider = get().teachers.find((t) => t.id === teacherId);
+    const teacherToConsider = get().teachers.find(
+      (t) => t.id === teacherId,
+    );
     if (!teacherToConsider) return [];
 
     const otherSelectedTeachers = get()
@@ -39,21 +45,21 @@ export const createClashSlice: StateCreator<StoreState, [], [], ClashSlice> = (
 
     const clashes: Teacher[] = hasClashEnhanced(
       teacherToConsider,
-      otherSelectedTeachers
+      otherSelectedTeachers,
     );
 
     return clashes;
   },
 
   hasSameSlotClashWithSelected: (teacherId) => {
-    const teacherToConsider = get().teachers.find((t) => t.id === teacherId);
+    const teacherToConsider = get().teachers.find(
+      (t) => t.id === teacherId,
+    );
     if (!teacherToConsider) return false;
 
-    const useOptimizations = useFeatureFlags
-      .getState()
-      .isEnabled("newOptimizations");
+    const useOptimizations = useFeatureFlags.getState().isEnabled("newOptimizations");
 
-    const sortedTeacherToConsiderSlots = useOptimizations
+    const sortedTeacherToConsiderSlots = useOptimizations 
       ? getSlotRepresentation(teacherToConsider)
       : [...getAllSlots(teacherToConsider)].sort().join(",");
 
@@ -65,7 +71,7 @@ export const createClashSlice: StateCreator<StoreState, [], [], ClashSlice> = (
       const otherTeacherSlots = useOptimizations
         ? getSlotRepresentation(otherSelectedTeacher)
         : [...getAllSlots(otherSelectedTeacher)].sort().join(",");
-
+        
       if (
         teacherToConsider.course === otherSelectedTeacher.course &&
         sortedTeacherToConsiderSlots === otherTeacherSlots

@@ -7,11 +7,7 @@ import { useScheduleStore } from "@/lib/store";
 import { CourseListContent } from "./course-list/content";
 import { CourseFilters } from "./course-list/filters";
 
-export function CourseList({
-  externalSortBy,
-}: {
-  externalSortBy?: "code" | "name";
-}) {
+export function CourseList({ externalSortBy }: { externalSortBy?: "code" | "name" }) {
   const { courses, teachers } = useScheduleStore();
   const [internalSortBy, setSortBy] = useState<"code" | "name">("code");
   const sortBy = externalSortBy || internalSortBy;

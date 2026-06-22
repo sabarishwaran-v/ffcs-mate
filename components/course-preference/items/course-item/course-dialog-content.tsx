@@ -27,6 +27,7 @@ export default function CourseDialogContent({ course }: Props) {
   return (
     <div className="bg-background/95 backdrop-blur-md p-4 sm:p-6 pb-4 shadow-sm z-10 border-b border-border flex-shrink-0">
       <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+        
         {/* Left Side: Course Info */}
         <div className="flex-1">
           <h2 className="text-base sm:text-lg font-bold text-foreground leading-snug">
@@ -54,6 +55,7 @@ export default function CourseDialogContent({ course }: Props) {
             <span className="w-10 text-center">{ltpjc.C.toFixed(1)}</span>
           </div>
         </div>
+
       </div>
     </div>
   );

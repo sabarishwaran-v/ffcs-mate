@@ -66,10 +66,10 @@ export function ClashDetails({ clashes }: ClashDetailsProps) {
               <ul className="space-y-2 pl-6">
                 {slotClashes.map((clash, index) => {
                   const course1 = courses.find(
-                    (c) => c.id === clash.teacher1.course
+                    (c) => c.id === clash.teacher1.course,
                   );
                   const course2 = courses.find(
-                    (c) => c.id === clash.teacher2.course
+                    (c) => c.id === clash.teacher2.course,
                   );
 
                   return (
@@ -86,14 +86,14 @@ export function ClashDetails({ clashes }: ClashDetailsProps) {
                       <div
                         className={cn(
                           "flex flex-col sm:flex-row sm:items-center gap-2 p-2 rounded-md",
-                          "bg-red-ui"
+                          "bg-red-ui",
                         )}
                       >
                         <div className="flex items-center gap-2 flex-1">
                           <Badge
                             className={cn(
                               "rounded-full",
-                              `bg-${clash.teacher1.color}-ui text-${clash.teacher1.color}-dim`
+                              `bg-${clash.teacher1.color}-ui text-${clash.teacher1.color}-dim`,
                             )}
                           >
                             {course1?.code || "Unknown"}
@@ -116,7 +116,7 @@ export function ClashDetails({ clashes }: ClashDetailsProps) {
                           <Badge
                             className={cn(
                               "rounded-full",
-                              `bg-${clash.teacher2.color}-ui text-${clash.teacher2.color}-dim`
+                              `bg-${clash.teacher2.color}-ui text-${clash.teacher2.color}-dim`,
                             )}
                           >
                             {course2?.code || "Unknown"}
@@ -131,7 +131,7 @@ export function ClashDetails({ clashes }: ClashDetailsProps) {
                 })}
               </ul>
             </MotionDiv>
-          )
+          ),
         )}
       </ScrollArea>
     </div>

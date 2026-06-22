@@ -28,7 +28,7 @@ export function ExportSection() {
   const hasSelectedCourses = selectedTeachers.length > 0;
 
   const [isMounted, setIsMounted] = useState(false);
-
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -121,7 +121,7 @@ export function ExportSection() {
             <div
               className={cn(
                 "border rounded-md p-4 max-h-[60vh] overflow-auto",
-                "flex justify-center items-start"
+                "flex justify-center items-start",
               )}
             >
               <ScrollAnimation animation="fadeIn" duration={0.5}>

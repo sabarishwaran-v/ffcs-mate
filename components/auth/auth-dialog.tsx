@@ -7,14 +7,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useAuth } from "@/components/providers/auth-provider";
 import { UserMenu } from "./user-menu";
 
@@ -31,9 +24,9 @@ export function AuthDialog() {
       const provider = new GoogleAuthProvider();
       // Force account selection to prevent auto-login with wrong accounts
       provider.setCustomParameters({
-        prompt: "select_account",
+        prompt: 'select_account'
       });
-
+      
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
@@ -41,8 +34,7 @@ export function AuthDialog() {
       if (!user.email?.endsWith("@vitapstudent.ac.in")) {
         await signOut(auth);
         toast.error("Access Denied", {
-          description:
-            "Only @vitapstudent.ac.in email addresses are allowed to collaborate.",
+          description: "Only @vitapstudent.ac.in email addresses are allowed to collaborate.",
         });
         setIsLoading(false);
         return;
@@ -53,8 +45,8 @@ export function AuthDialog() {
       let batchYear = "";
 
       if (user.email?.endsWith("@vitapstudent.ac.in")) {
-        const emailLocalPart = user.email.split("@")[0];
-        const nameParts = emailLocalPart.split(".");
+        const emailLocalPart = user.email.split('@')[0];
+        const nameParts = emailLocalPart.split('.');
         regNo = nameParts[nameParts.length - 1].toUpperCase();
         batchYear = regNo.substring(0, 2);
       } else {
@@ -82,8 +74,8 @@ export function AuthDialog() {
             displayIdentity: "full_name", // 'full_name' or 'reg_no'
             discoverable: true,
             showPresence: true,
-            allowExport: true,
-          },
+            allowExport: true
+          }
         });
         toast.success("Welcome to FFCS MATE Collaboration!", {
           description: `Logged in as ${regNo}`,
@@ -97,14 +89,11 @@ export function AuthDialog() {
       setIsOpen(false);
     } catch (error: any) {
       // Firebase throws this if the user simply clicks the 'X' on the Google Login popup
-      if (
-        error.code === "auth/popup-closed-by-user" ||
-        error.code === "auth/cancelled-popup-request"
-      ) {
+      if (error.code === "auth/popup-closed-by-user" || error.code === "auth/cancelled-popup-request") {
         // Silently ignore. Do NOT console.error this or Next.js will show a scary red screen in Dev mode!
         return;
       }
-
+      
       console.error("Firebase Auth Error:", error);
       toast.error("Authentication Failed", {
         description: error.message,
@@ -122,61 +111,49 @@ export function AuthDialog() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         {isHomePage ? (
-          <Button
-            variant="outline"
-            className="flex rounded-xl font-semibold bg-background hover:bg-muted/50 border-border w-full sm:w-auto"
-          >
+          <Button variant="outline" className="flex rounded-xl font-semibold bg-background hover:bg-muted/50 border-border w-full sm:w-auto">
             Sign In
           </Button>
         ) : (
-          <Button
-            variant="default"
-            className="flex rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-blue-600 text-white hover:opacity-90 shadow-lg shadow-purple-500/20 transition-all duration-300 w-full sm:w-auto"
-          >
+          <Button variant="default" className="flex rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-blue-600 text-white hover:opacity-90 shadow-lg shadow-purple-500/20 transition-all duration-300 w-full sm:w-auto">
             ✨ Collaborate with Friends
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-xl border-border/50 shadow-2xl rounded-2xl">
         <DialogHeader className="mb-2">
-          <DialogTitle className="text-2xl font-extrabold tracking-tight">
-            Hold up! Before you enter...
-          </DialogTitle>
+          <DialogTitle className="text-2xl font-extrabold tracking-tight">Hold up! Before you enter...</DialogTitle>
           <DialogDescription className="text-base text-muted-foreground mt-2">
-            This is an independent, student-built tool to help us navigate
-            course registration. To keep this site alive and useful, you must
-            agree to the ground rules.
+            This is an independent, student-built tool to help us navigate course registration. To keep this site alive and useful, you must agree to the ground rules.
           </DialogDescription>
         </DialogHeader>
-
+        
         <div className="flex flex-col space-y-4 py-2">
           <ul className="space-y-3 text-sm text-foreground/90 font-medium">
             <li className="flex items-start">
-              <span className="mr-2 text-purple-500">•</span>I will only use my
-              @vitapstudent.ac.in email address to verify my student status.
+              <span className="mr-2 text-purple-500">•</span>
+              I will only use my @vitapstudent.ac.in email address to verify my student status.
             </li>
             <li className="flex items-start">
-              <span className="mr-2 text-purple-500">•</span>I consent to FFCS
-              Mate securely storing my Name, Email, and Registration Number for
-              collaboration.
+              <span className="mr-2 text-purple-500">•</span>
+              I consent to FFCS Mate securely storing my Name, Email, and Registration Number for collaboration.
             </li>
             <li className="flex items-start">
-              <span className="mr-2 text-purple-500">•</span>I will not use
-              bots, scripts, or spam the collaboration rooms.
+              <span className="mr-2 text-purple-500">•</span>
+              I will not use bots, scripts, or spam the collaboration rooms.
             </li>
             <li className="flex items-start">
-              <span className="mr-2 text-purple-500">•</span>I understand this
-              platform is completely unaffiliated with VIT-AP.
+              <span className="mr-2 text-purple-500">•</span>
+              I understand this platform is completely unaffiliated with VIT-AP.
             </li>
           </ul>
 
           <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
-            If people abuse the system, the site gets taken down. Let's protect
-            this resource for everyone.
+            If people abuse the system, the site gets taken down. Let's protect this resource for everyone.
           </p>
 
-          <Button
-            onClick={handleGoogleSignIn}
+          <Button 
+            onClick={handleGoogleSignIn} 
             disabled={isLoading}
             className="w-full h-12 mt-4 text-base font-semibold bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 rounded-xl transition-all flex items-center justify-center gap-3"
           >
@@ -184,11 +161,7 @@ export function AuthDialog() {
               <span className="animate-pulse">Connecting...</span>
             ) : (
               <>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5 bg-white rounded-full p-0.5"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" className="h-5 w-5 bg-white rounded-full p-0.5" aria-hidden="true">
                   <path
                     d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z"
                     fill="#EA4335"
@@ -210,12 +183,8 @@ export function AuthDialog() {
               </>
             )}
           </Button>
-
-          <Button
-            variant="outline"
-            className="w-full h-12 rounded-xl"
-            onClick={() => setIsOpen(false)}
-          >
+          
+          <Button variant="outline" className="w-full h-12 rounded-xl" onClick={() => setIsOpen(false)}>
             Cancel
           </Button>
         </div>

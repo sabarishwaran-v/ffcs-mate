@@ -37,7 +37,7 @@ const TeacherClashTooltip = memo(
           >
             <AlertCircle
               className={cn(
-                identicalSlotClash ? "text-yellow-dim" : "text-red-dim"
+                identicalSlotClash ? "text-yellow-dim" : "text-red-dim",
               )}
             />
           </MotionDiv>
@@ -48,7 +48,7 @@ const TeacherClashTooltip = memo(
             "border-2 p-1",
             identicalSlotClash
               ? "bg-yellow-ui text-yellow-normal border-yellow-normal"
-              : "bg-red-ui text-red-normal border-red-normal"
+              : "bg-red-ui text-red-normal border-red-normal",
           )}
         >
           <div className="p-1">
@@ -69,7 +69,7 @@ const TeacherClashTooltip = memo(
         </TooltipContent>
       </Tooltip>
     );
-  }
+  },
 );
 TeacherClashTooltip.displayName = "TeacherClashTooltip";
 

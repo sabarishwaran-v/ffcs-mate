@@ -25,14 +25,16 @@ export default function CourseItemBody({
   const [selectedTheoryId, setSelectedTheoryId] = useState<string | null>(null);
   const [selectedLabId, setSelectedLabId] = useState<string | null>(null);
 
-  const mockCourse = MOCK_COURSES.find((c) => c.id === course.id);
+  const mockCourse = MOCK_COURSES.find(c => c.id === course.id);
   const theorySlots = course.theorySlots || mockCourse?.theorySlots || [];
   const labSlots = course.labSlots || mockCourse?.labSlots || [];
 
   const theoryTeachers = courseTeachers.filter((t) =>
     theorySlots.includes(t.name)
   );
-  const labTeachers = courseTeachers.filter((t) => labSlots.includes(t.name));
+  const labTeachers = courseTeachers.filter((t) =>
+    labSlots.includes(t.name)
+  );
 
   const isEmbedded = theoryTeachers.length > 0 && labTeachers.length > 0;
   const requiresTheory = theoryTeachers.length > 0;
@@ -48,7 +50,7 @@ export default function CourseItemBody({
 
     if (placedTheory) setSelectedTheoryId(placedTheory.id);
     if (placedLab) setSelectedLabId(placedLab.id);
-
+    
     setHasInitialized(true);
   }, [theoryTeachers, labTeachers, isTeacherSelected, hasInitialized]);
 
@@ -66,12 +68,7 @@ export default function CourseItemBody({
       return;
     }
 
-    const result = setCourseSlots(
-      course.id,
-      slotsToPlace,
-      user?.uid,
-      userData?.name
-    );
+    const result = setCourseSlots(course.id, slotsToPlace, user?.uid, userData?.name);
     if (!result.success) {
       toast.error(result.clashMessage || "Cannot place slots due to a clash");
     } else {
@@ -83,11 +80,8 @@ export default function CourseItemBody({
   const isCurrentlyPlaced = () => {
     const placedTheory = theoryTeachers.find((t) => isTeacherSelected(t.id));
     const placedLab = labTeachers.find((t) => isTeacherSelected(t.id));
-
-    if (requiresTheory && requiresLab)
-      return (
-        placedTheory?.id === selectedTheoryId && placedLab?.id === selectedLabId
-      );
+    
+    if (requiresTheory && requiresLab) return placedTheory?.id === selectedTheoryId && placedLab?.id === selectedLabId;
     if (requiresTheory) return placedTheory?.id === selectedTheoryId;
     if (requiresLab) return placedLab?.id === selectedLabId;
     return false;
@@ -167,11 +161,7 @@ export default function CourseItemBody({
       <div className="p-4 bg-[#0f172a] border-t border-slate-700/50 flex justify-end shrink-0 sticky bottom-0">
         <button
           onClick={handleUpdateTimetable}
-          disabled={
-            isCurrentlyPlaced() ||
-            (!selectedTheoryId && requiresTheory) ||
-            (!selectedLabId && requiresLab)
-          }
+          disabled={isCurrentlyPlaced() || (!selectedTheoryId && requiresTheory) || (!selectedLabId && requiresLab)}
           className="px-6 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all bg-sky-600 text-white hover:bg-sky-500 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed"
         >
           {isCurrentlyPlaced() ? (

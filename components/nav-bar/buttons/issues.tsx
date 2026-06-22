@@ -1,6 +1,6 @@
 "use client";
 
-import { SiGithub } from "@icons-pack/react-simple-icons";
+import { SiGithub } from '@icons-pack/react-simple-icons';
 
 import { AnimatedButton } from "@/components/ui/button";
 
@@ -11,7 +11,7 @@ export function IssueButton() {
       onClick={() => {
         window.open(
           "https://github.com/Sabarishwaran-V/ffcs-mate/issues/new",
-          "_blank"
+          "_blank",
         );
       }}
     >

@@ -18,7 +18,7 @@ const TeacherSlots = memo(
             variant="outline"
             className={cn(
               "border-none select-none rounded-full",
-              `bg-${color}-solid text-white`
+              `bg-${color}-solid text-white`,
             )}
           >
             {slot}
@@ -26,7 +26,7 @@ const TeacherSlots = memo(
         </MotionDiv>
       );
     });
-  }
+  },
 );
 TeacherSlots.displayName = "TeacherSlots";
 

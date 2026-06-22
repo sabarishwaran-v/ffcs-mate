@@ -88,7 +88,7 @@ const NonEditActions = memo(
           isSelected
             ? `bg-${teacher.color}-solid text-white`
             : `text-${teacher.color}-dim`,
-          hasClash && isSelected && `bg-red-solid text-white`
+          hasClash && isSelected && `bg-red-solid text-white`,
         )}
         onClick={handleButtonClick}
       >
@@ -99,6 +99,6 @@ const NonEditActions = memo(
         )}
       </AnimatedButton>
     );
-  }
+  },
 );
 NonEditActions.displayName = "NonEditActions";

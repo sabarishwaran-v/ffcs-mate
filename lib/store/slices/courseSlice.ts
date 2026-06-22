@@ -23,17 +23,14 @@ export const createCourseSlice: StateCreator<
         return state;
       }
       return {
-        courses: [
-          ...state.courses,
-          { ...course, id: course.id || crypto.randomUUID() },
-        ],
+        courses: [...state.courses, { ...course, id: course.id || crypto.randomUUID() }],
       };
     }),
 
   editCourse: (id, updates) =>
     set((state) => ({
       courses: state.courses.map((c) =>
-        c.id === id ? { ...c, ...updates } : c
+        c.id === id ? { ...c, ...updates } : c,
       ),
     })),
 
@@ -42,7 +39,7 @@ export const createCourseSlice: StateCreator<
       const newTimetables = state.timetables.map((timetable) => ({
         ...timetable,
         selectedTeachers: timetable.selectedTeachers.filter(
-          (t) => t.course !== id
+          (t) => t.course !== id,
         ),
         selectedSlots: Array.from(
           new Set(
@@ -51,8 +48,8 @@ export const createCourseSlice: StateCreator<
               .flatMap((t) => [
                 ...(t.slots.morning || []),
                 ...(t.slots.afternoon || []),
-              ])
-          )
+              ]),
+          ),
         ),
       }));
 

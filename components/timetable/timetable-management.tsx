@@ -90,7 +90,7 @@ export function TimetableManagement() {
                   onClick={() => setActiveTimetable(timetable.id)}
                   className={cn(
                     "flex items-center justify-between p-3 cursor-pointer",
-                    timetable.id === activeTimetableId && "bg-accent"
+                    timetable.id === activeTimetableId && "bg-accent",
                   )}
                 >
                   <div className="flex-1">
@@ -170,9 +170,7 @@ export function TimetableManagement() {
           className="mt-2 text-sm text-muted-foreground"
         >
           Total available courses: {courses.length} | Selected in this
-          timetable:{" "}
-          {new Set(activeTimetable.selectedTeachers.map((t) => t.course)).size}{" "}
-          | Total credits:{" "}
+          timetable: {new Set(activeTimetable.selectedTeachers.map(t => t.course)).size} | Total credits:{" "}
           {activeTimetable.selectedTeachers.reduce((sum, teacher) => {
             const course = courses.find((c) => c.id === teacher.course);
             return sum + getCreditsFromSlotString(teacher.name, course);

@@ -2,12 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useAuth } from "@/components/providers/auth-provider";
-import {
-  doc,
-  onSnapshot,
-  updateDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { doc, onSnapshot, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useScheduleStore } from "@/lib/store";
 import { syncToCloud } from "@/lib/store/sync";
@@ -16,13 +11,11 @@ import { toast } from "sonner";
 
 export function RoomSyncProvider({ roomId }: { roomId: string }) {
   const { user, userData } = useAuth();
-  const setRoomMode = useScheduleStore((state) => state.setRoomMode);
-  const setRoomRole = useScheduleStore((state) => state.setRoomRole);
-  const setIsReceivingCloudUpdate = useScheduleStore(
-    (state) => state.setIsReceivingCloudUpdate
-  );
-  const setCloudData = useScheduleStore((state) => state.setCloudData);
-
+  const setRoomMode = useScheduleStore(state => state.setRoomMode);
+  const setRoomRole = useScheduleStore(state => state.setRoomRole);
+  const setIsReceivingCloudUpdate = useScheduleStore(state => state.setIsReceivingCloudUpdate);
+  const setCloudData = useScheduleStore(state => state.setCloudData);
+  
   const lastUpdateRef = useRef<string | null>(null);
 
   // 1. Enter Room Mode
@@ -39,7 +32,7 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
       try {
         await updateDoc(doc(db, "rooms", roomId), {
           [`members.${user.uid}.lastSeen`]: serverTimestamp(),
-          [`members.${user.uid}.status`]: "online",
+          [`members.${user.uid}.status`]: "online"
         });
       } catch (e) {
         // Room might be deleted or user removed
@@ -52,7 +45,7 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
     const handleBeforeUnload = () => {
       // Attempt to fire a sync update to mark offline
       const url = `https://firestore.googleapis.com/v1/projects/${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}/databases/(default)/documents/rooms/${roomId}?updateMask.fieldPaths=members.${user.uid}.status&updateMask.fieldPaths=members.${user.uid}.lastSeen`;
-      // We can't easily do authenticated REST calls in beforeunload synchronously,
+      // We can't easily do authenticated REST calls in beforeunload synchronously, 
       // so the 25-second serverTimeout is our primary offline mechanism.
     };
 
@@ -67,13 +60,13 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
   // 2. Listen to Cloud changes
   useEffect(() => {
     if (!roomId) return;
-
+    
     const unsub = onSnapshot(doc(db, "rooms", roomId), (snapshot) => {
       if (!snapshot.exists()) return;
-
+      
       const data = snapshot.data();
       const sharedTimetable = data.sharedTimetable;
-
+      
       // Update room role
       if (user?.uid && data.members && data.members[user.uid]) {
         setRoomRole(data.members[user.uid].role || "editor");
@@ -83,10 +76,10 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
       if (user?.uid && data.members && data.hostId) {
         const now = Date.now();
         const TIMEOUT_MS = 25000; // 25 seconds timeout
-
+        
         let hostIsActive = false;
         const activeMembers: any[] = [];
-
+        
         Object.entries(data.members).forEach(([uid, m]: [string, any]) => {
           // Fallback to current time if no lastSeen (e.g. just joined)
           const lastSeenMs = m.lastSeen ? m.lastSeen.toMillis() : now;
@@ -100,39 +93,34 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
         if (!hostIsActive && activeMembers.length > 0) {
           activeMembers.sort((a, b) => a.joinedAt - b.joinedAt);
           const nextHostUid = activeMembers[0].uid;
-
+          
           if (nextHostUid === user.uid) {
             // I am the new host!
             updateDoc(doc(db, "rooms", roomId), {
-              hostId: user.uid,
+              hostId: user.uid
             });
           }
         }
       }
-
+      
       if (sharedTimetable) {
         // Prevent echo: only update if the cloud timestamp is newer/different from the last one we received or sent
         if (sharedTimetable.lastUpdated !== lastUpdateRef.current) {
           // Show toast if someone else made the change
-          if (
-            sharedTimetable.lastActor &&
-            sharedTimetable.lastActor.uid !== user?.uid
-          ) {
-            toast.info(
-              `${sharedTimetable.lastActor.regNo} ${sharedTimetable.lastActor.action}`
-            );
+          if (sharedTimetable.lastActor && sharedTimetable.lastActor.uid !== user?.uid) {
+            toast.info(`${sharedTimetable.lastActor.regNo} ${sharedTimetable.lastActor.action}`);
           }
-
+          
           lastUpdateRef.current = sharedTimetable.lastUpdated;
-
+          
           setIsReceivingCloudUpdate(true);
           setCloudData({
             courses: sharedTimetable.courses || [],
             teachers: sharedTimetable.teachers || [],
             timetables: sharedTimetable.timetables || [],
-            activeTimetableId: sharedTimetable.activeTimetableId || null,
+            activeTimetableId: sharedTimetable.activeTimetableId || null
           });
-
+          
           // Let the store settle before allowing local mutations to broadcast
           setTimeout(() => {
             setIsReceivingCloudUpdate(false);
@@ -153,7 +141,7 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
       if (state.viewMode === "personal") return; // Don't broadcast personal changes
 
       // Check if relevant state changed
-      const stateChanged =
+      const stateChanged = 
         state.timetables !== prevState.timetables ||
         state.courses !== prevState.courses ||
         state.teachers !== prevState.teachers ||
@@ -161,73 +149,43 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
 
       if (stateChanged) {
         let actionStr = "updated the timetable";
-
+        
         // Check Course Adds/Removes
         if (state.courses.length > prevState.courses.length) {
-          const added = state.courses.find(
-            (c) => !prevState.courses.find((pc) => pc.id === c.id)
-          );
+          const added = state.courses.find(c => !prevState.courses.find(pc => pc.id === c.id));
           if (added) actionStr = `added ${added.code} to the list`;
         } else if (state.courses.length < prevState.courses.length) {
-          const removed = prevState.courses.find(
-            (pc) => !state.courses.find((c) => c.id === pc.id)
-          );
+          const removed = prevState.courses.find(pc => !state.courses.find(c => c.id === pc.id));
           if (removed) actionStr = `removed ${removed.code} from the list`;
-        }
+        } 
         // Check Teacher/Slot Adds
         else if (state.teachers.length > prevState.teachers.length) {
-          const added = state.teachers.find(
-            (t) => !prevState.teachers.find((pt) => pt.id === t.id)
-          );
+          const added = state.teachers.find(t => !prevState.teachers.find(pt => pt.id === t.id));
           if (added) {
-            const course = state.courses.find((c) => c.id === added.course);
-            const typeStr =
-              course?.type === "ELA"
-                ? "Lab slot"
-                : course?.type === "ETH"
-                ? "Theory slot"
-                : "slot";
-            actionStr = `assigned a ${typeStr} for ${
-              course?.code || "a course"
-            }`;
+            const course = state.courses.find(c => c.id === added.course);
+            const typeStr = course?.type === "ELA" ? "Lab slot" : course?.type === "ETH" ? "Theory slot" : "slot";
+            actionStr = `assigned a ${typeStr} for ${course?.code || "a course"}`;
           }
-        }
+        } 
         // Check Teacher/Slot Removes
         else if (state.teachers.length < prevState.teachers.length) {
-          const removed = prevState.teachers.find(
-            (pt) => !state.teachers.find((t) => t.id === pt.id)
-          );
+          const removed = prevState.teachers.find(pt => !state.teachers.find(t => t.id === pt.id));
           if (removed) {
-            const course = state.courses.find((c) => c.id === removed.course);
-            const typeStr =
-              course?.type === "ELA"
-                ? "Lab slot"
-                : course?.type === "ETH"
-                ? "Theory slot"
-                : "slot";
-            actionStr = `unassigned ${typeStr} for ${
-              course?.code || "a course"
-            }`;
+            const course = state.courses.find(c => c.id === removed.course);
+            const typeStr = course?.type === "ELA" ? "Lab slot" : course?.type === "ETH" ? "Theory slot" : "slot";
+            actionStr = `unassigned ${typeStr} for ${course?.code || "a course"}`;
           }
-        }
+        } 
         // Check Teacher/Slot Modifications
         else {
-          const modified = state.teachers.find((t) => {
-            const pt = prevState.teachers.find((p) => p.id === t.id);
+          const modified = state.teachers.find(t => {
+            const pt = prevState.teachers.find(p => p.id === t.id);
             if (!pt) return false;
-            return (
-              JSON.stringify(pt.slots) !== JSON.stringify(t.slots) ||
-              pt.name !== t.name
-            );
+            return JSON.stringify(pt.slots) !== JSON.stringify(t.slots) || pt.name !== t.name;
           });
           if (modified) {
-            const course = state.courses.find((c) => c.id === modified.course);
-            const typeStr =
-              course?.type === "ELA"
-                ? "Lab slot"
-                : course?.type === "ETH"
-                ? "Theory slot"
-                : "slot";
+            const course = state.courses.find(c => c.id === modified.course);
+            const typeStr = course?.type === "ELA" ? "Lab slot" : course?.type === "ETH" ? "Theory slot" : "slot";
             actionStr = `modified ${typeStr} for ${course?.code || "a course"}`;
           } else if (state.activeTimetableId !== prevState.activeTimetableId) {
             actionStr = "switched timetable views";
@@ -237,21 +195,17 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
         const timestamp = new Date().toISOString();
         lastUpdateRef.current = timestamp; // Immediately cache what we're sending to prevent echo
 
-        syncToCloud(
-          roomId,
-          {
-            timetables: state.timetables,
-            courses: state.courses,
-            teachers: state.teachers,
-            activeTimetableId: state.activeTimetableId,
-          },
-          {
-            uid: user?.uid || "",
-            name: userData?.name || "Unknown",
-            regNo: userData?.registrationNumber || "Someone",
-            action: actionStr,
-          }
-        );
+        syncToCloud(roomId, {
+          timetables: state.timetables,
+          courses: state.courses,
+          teachers: state.teachers,
+          activeTimetableId: state.activeTimetableId
+        }, {
+          uid: user?.uid || "",
+          name: userData?.name || "Unknown",
+          regNo: userData?.registrationNumber || "Someone",
+          action: actionStr
+        });
       }
     });
 
@@ -266,7 +220,7 @@ export function RoomSyncProvider({ roomId }: { roomId: string }) {
       try {
         const roomRef = doc(db, "rooms", roomId);
         await updateDoc(roomRef, {
-          [`members.${user.uid}.lastSeen`]: serverTimestamp(),
+          [`members.${user.uid}.lastSeen`]: serverTimestamp()
         });
       } catch (e) {
         // Ignore, room might have been deleted or permissions lost

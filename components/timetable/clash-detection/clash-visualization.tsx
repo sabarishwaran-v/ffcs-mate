@@ -18,7 +18,7 @@ export function ClashVisualization() {
   // Get all clashes in the current timetable
   const clashes = useMemo(
     () => getAllClashesEnhanced(selectedTeachers),
-    [getAllClashesEnhanced, selectedTeachers]
+    [getAllClashesEnhanced, selectedTeachers],
   );
 
   // Count of clashes
@@ -44,7 +44,7 @@ export function ClashVisualization() {
               "p-4 rounded-lg border flex items-center justify-between",
               clashCount > 0
                 ? "bg-reda-ui border-reda-dim text-reda-dim"
-                : "bg-greena-ui border-greena-dim text-greena-dim"
+                : "bg-greena-ui border-greena-dim text-greena-dim",
             )}
           >
             <div className="flex items-center gap-3">
@@ -71,9 +71,7 @@ export function ClashVisualization() {
                 </h3>
                 <p className={cn("text-sm")}>
                   {clashCount > 0
-                    ? `Found ${clashCount} clash${
-                        clashCount > 1 ? "es" : ""
-                      } in your timetable`
+                    ? `Found ${clashCount} clash${clashCount > 1 ? "es" : ""} in your timetable`
                     : "Your timetable is clash-free"}
                 </p>
               </div>

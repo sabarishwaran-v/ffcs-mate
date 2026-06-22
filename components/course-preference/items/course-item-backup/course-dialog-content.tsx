@@ -27,12 +27,15 @@ export default function CourseDialogContent({ course }: Props) {
   return (
     <div className="bg-[#1e293b] p-4 sm:p-6 pb-4 shadow-sm z-10 border-b border-slate-700/50 flex-shrink-0">
       <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+        
         {/* Left Side: Course Info */}
         <div className="flex-1">
           <h2 className="text-base sm:text-lg font-bold text-slate-200 leading-snug">
             {course.code} - {course.name}
           </h2>
-          <p className="text-sm font-medium text-slate-400 mt-1">{typeStr}</p>
+          <p className="text-sm font-medium text-slate-400 mt-1">
+            {typeStr}
+          </p>
         </div>
 
         {/* Right Side: Credits Box */}
@@ -52,6 +55,7 @@ export default function CourseDialogContent({ course }: Props) {
             <span className="w-10 text-center">{ltpjc.C.toFixed(1)}</span>
           </div>
         </div>
+
       </div>
     </div>
   );

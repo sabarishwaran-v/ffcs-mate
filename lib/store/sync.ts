@@ -3,11 +3,8 @@ import { db } from "@/lib/firebase";
 import { StoreState } from "./types";
 
 export const syncToCloud = async (
-  roomId: string,
-  state: Pick<
-    StoreState,
-    "timetables" | "courses" | "teachers" | "activeTimetableId"
-  >,
+  roomId: string, 
+  state: Pick<StoreState, "timetables" | "courses" | "teachers" | "activeTimetableId">,
   actor?: { uid: string; name: string; regNo: string; action: string }
 ) => {
   try {
@@ -18,19 +15,15 @@ export const syncToCloud = async (
       courses: state.courses,
       teachers: state.teachers,
       activeTimetableId: state.activeTimetableId,
-      lastUpdated: new Date().toISOString(),
+      lastUpdated: new Date().toISOString()
     };
     if (actor) {
       payload.lastActor = actor;
     }
 
-    await setDoc(
-      roomRef,
-      {
-        sharedTimetable: payload,
-      },
-      { merge: true }
-    );
+    await setDoc(roomRef, {
+      sharedTimetable: payload
+    }, { merge: true });
   } catch (error) {
     console.error("Failed to sync to cloud:", error);
   }

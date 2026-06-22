@@ -24,8 +24,7 @@ export function MobileNav() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isRoomPage = pathname?.startsWith("/room/");
-  const isCollaborationEnabled =
-    process.env.NEXT_PUBLIC_ENABLE_COLLABORATION !== "false";
+  const isCollaborationEnabled = process.env.NEXT_PUBLIC_ENABLE_COLLABORATION !== "false";
   const showRoomButton = !isHomePage && !isRoomPage && isCollaborationEnabled;
 
   return (

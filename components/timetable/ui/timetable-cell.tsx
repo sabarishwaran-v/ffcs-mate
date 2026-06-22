@@ -48,7 +48,7 @@ export const TimetableCell = memo(function TimetableCell({
               isClash ? "bg-red-solid text-white" : color,
               isSelectedManual &&
                 "bg-yellow-4 text-black-8 dark:bg-yellowdark-7 hover:bg-yellow-4 dark:hover:bg-yellowdark-7",
-              isClash && "relative"
+              isClash && "relative",
             )}
             onClick={handleClick}
             initial={{ opacity: 0, scale: 0.9 }}

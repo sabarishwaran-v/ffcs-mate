@@ -62,7 +62,7 @@ export const TimetableSelector = memo(function TimetableSelector({
               onClick={() => setActiveTimetable(timetable.id)}
               className={cn(
                 "flex items-center justify-between p-3 cursor-pointer",
-                timetable.id === activeTimetableId && "bg-accent"
+                timetable.id === activeTimetableId && "bg-accent",
               )}
             >
               <div className="flex-1">

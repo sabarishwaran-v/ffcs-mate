@@ -16,11 +16,7 @@ export function ShareButton() {
   };
 
   return (
-    <AnimatedButton
-      variant="outline"
-      onClick={handleCopyLink}
-      className="w-[100px]"
-    >
+    <AnimatedButton variant="outline" onClick={handleCopyLink} className="w-[100px]">
       {copied ? (
         <>
           <Check className="w-4 h-4 mr-2 text-green-500" />

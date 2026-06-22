@@ -27,11 +27,10 @@ export function CourseListContent({
 }: Props) {
   const filteredCourses = useFilteredCourses(courses, searchQuery, sortBy);
   const getTeachersForCourse = useTeachersForCourse(teachers);
-  const roomRole = useScheduleStore((state) => state.roomRole);
+  const roomRole = useScheduleStore(state => state.roomRole);
 
   if (courses.length === 0) {
-    const pathname =
-      typeof window !== "undefined" ? window.location.pathname : "";
+    const pathname = typeof window !== "undefined" ? window.location.pathname : "";
     const isRoom = pathname && pathname.startsWith("/room/");
     let href = "/select-courses";
     if (isRoom) {
@@ -46,11 +45,7 @@ export function CourseListContent({
       >
         {isRoom ? (
           roomRole === "spectator" ? (
-            <AnimatedButton
-              variant="outline"
-              disabled
-              className="bg-sky-600/10 text-sky-400 border-sky-500/30 opacity-50 cursor-not-allowed"
-            >
+            <AnimatedButton variant="outline" disabled className="bg-sky-600/10 text-sky-400 border-sky-500/30 opacity-50 cursor-not-allowed">
               Spectator Mode
             </AnimatedButton>
           ) : (
@@ -58,10 +53,7 @@ export function CourseListContent({
           )
         ) : (
           <Link href={href} passHref>
-            <AnimatedButton
-              variant="outline"
-              className="bg-sky-600/10 text-sky-400 hover:bg-sky-600/20 border-sky-500/30"
-            >
+            <AnimatedButton variant="outline" className="bg-sky-600/10 text-sky-400 hover:bg-sky-600/20 border-sky-500/30">
               Add Courses
             </AnimatedButton>
           </Link>
@@ -80,7 +72,7 @@ export function CourseListContent({
   }
 
   const uniqueFilteredCourses = Array.from(
-    new Map(filteredCourses.map((course) => [course.id, course])).values()
+    new Map(filteredCourses.map(course => [course.id, course])).values()
   );
 
   return (

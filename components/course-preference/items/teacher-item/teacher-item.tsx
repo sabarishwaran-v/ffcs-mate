@@ -54,8 +54,8 @@ export default function TeacherItem({
           identicalSlotClash
             ? "bg-yellow-ui"
             : hasClash
-            ? "bg-red-ui"
-            : `bg-${teacher.color}-ui`
+              ? "bg-red-ui"
+              : `bg-${teacher.color}-ui`,
         )}
         initial={{ opacity: 0, scale: 0.95, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}

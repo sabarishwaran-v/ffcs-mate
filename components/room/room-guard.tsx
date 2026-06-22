@@ -2,35 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { useAuth } from "@/components/providers/auth-provider";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  addDoc,
-  collection,
-  serverTimestamp,
-  query,
-  where,
-  getDocs,
-  updateDoc,
-  onSnapshot,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp, query, where, getDocs, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ShieldAlert, Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 
-export function RoomGuard({
-  roomId,
-  children,
-}: {
-  roomId: string;
-  children: React.ReactNode;
-}) {
+export function RoomGuard({ roomId, children }: { roomId: string, children: React.ReactNode }) {
   const { user, userData, loading: authLoading } = useAuth();
   const router = useRouter();
-
+  
   const [hasAccess, setHasAccess] = useState<boolean | null>(null);
   const [roomExists, setRoomExists] = useState<boolean | null>(null);
   const [isRequesting, setIsRequesting] = useState(false);
@@ -40,12 +22,10 @@ export function RoomGuard({
 
   useEffect(() => {
     if (authLoading) return;
-
+    
     // If not signed in, redirect to home to sign in
     if (!user) {
-      toast.error("Authentication Required", {
-        description: "You must sign in to join a room.",
-      });
+      toast.error("Authentication Required", { description: "You must sign in to join a room." });
       router.push("/");
       return;
     }
@@ -61,11 +41,7 @@ export function RoomGuard({
         setRoomExists(true);
         const roomData = roomSnap.data();
         setRoomHostId(roomData.activeHostId || roomData.creatorId || null);
-        const count = roomData.memberIds
-          ? roomData.memberIds.length
-          : roomData.members
-          ? Object.keys(roomData.members).length
-          : 0;
+        const count = roomData.memberIds ? roomData.memberIds.length : (roomData.members ? Object.keys(roomData.members).length : 0);
         setRoomSize(count);
 
         // Check if user is a member
@@ -75,7 +51,7 @@ export function RoomGuard({
           setHasAccess(false);
           // Check if they already sent a request
           const reqQuery = query(
-            collection(db, "invitations"),
+            collection(db, "invitations"), 
             where("roomId", "==", roomId),
             where("fromUid", "==", user.uid),
             where("type", "==", "request"),
@@ -98,10 +74,7 @@ export function RoomGuard({
       return;
     }
     if (roomSize >= 8) {
-      toast.error("Room is full!", {
-        description:
-          "You cannot request access because the room already has the maximum of 8 members.",
-      });
+      toast.error("Room is full!", { description: "You cannot request access because the room already has the maximum of 8 members." });
       return;
     }
     setIsRequesting(true);
@@ -115,11 +88,11 @@ export function RoomGuard({
         toUid: roomHostId, // Crucial: so it shows in host's inbox
         status: "pending",
         type: "request",
-        createdAt: serverTimestamp(),
+        createdAt: serverTimestamp()
       });
       setRequestSent(true);
       toast.success("Request sent successfully!", {
-        description: "Waiting for the host to approve your request.",
+        description: "Waiting for the host to approve your request."
       });
     } catch (error: any) {
       toast.error("Failed to send request", { description: error.message });
@@ -131,19 +104,17 @@ export function RoomGuard({
   const handleCancelRequest = async () => {
     try {
       const reqQuery = query(
-        collection(db, "invitations"),
+        collection(db, "invitations"), 
         where("roomId", "==", roomId),
         where("fromUid", "==", user?.uid),
         where("type", "==", "request"),
         where("status", "==", "pending")
       );
       const reqSnap = await getDocs(reqQuery);
-
-      const deletePromises = reqSnap.docs.map((docSnap) =>
-        updateDoc(doc(db, "invitations", docSnap.id), { status: "cancelled" })
-      );
+      
+      const deletePromises = reqSnap.docs.map(docSnap => updateDoc(doc(db, "invitations", docSnap.id), { status: "cancelled" }));
       await Promise.all(deletePromises);
-
+      
       setRequestSent(false);
       toast.success("Request cancelled.");
     } catch (error) {
@@ -156,9 +127,7 @@ export function RoomGuard({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
         <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
-        <p className="text-muted-foreground animate-pulse">
-          Verifying room access...
-        </p>
+        <p className="text-muted-foreground animate-pulse">Verifying room access...</p>
       </div>
     );
   }
@@ -171,13 +140,9 @@ export function RoomGuard({
         </div>
         <h1 className="text-3xl font-bold">Room Not Found</h1>
         <p className="text-muted-foreground max-w-md">
-          The room code{" "}
-          <span className="font-mono font-bold text-foreground">{roomId}</span>{" "}
-          does not exist or has been closed.
+          The room code <span className="font-mono font-bold text-foreground">{roomId}</span> does not exist or has been closed.
         </p>
-        <Button onClick={() => router.push("/")} className="mt-4">
-          Return Home
-        </Button>
+        <Button onClick={() => router.push("/")} className="mt-4">Return Home</Button>
       </div>
     );
   }
@@ -190,48 +155,28 @@ export function RoomGuard({
         </div>
         <h1 className="text-3xl font-bold">Access Denied</h1>
         <p className="text-muted-foreground max-w-md">
-          You are not a member of room{" "}
-          <span className="font-mono font-bold text-foreground">{roomId}</span>.
-          You must request access from the host.
+          You are not a member of room <span className="font-mono font-bold text-foreground">{roomId}</span>. You must request access from the host.
         </p>
-
+        
         {requestSent ? (
           <div className="mt-6 p-4 border rounded-lg bg-muted/50 flex flex-col items-center gap-4">
             <div className="flex flex-col items-center gap-2">
               <Loader2 className="h-5 w-5 animate-spin text-purple-500" />
               <p className="font-medium">Request Pending</p>
-              <p className="text-sm text-muted-foreground">
-                Waiting for the host to accept your request...
-              </p>
+              <p className="text-sm text-muted-foreground">Waiting for the host to accept your request...</p>
             </div>
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={handleCancelRequest}
-            >
+            <Button variant="destructive" size="sm" onClick={handleCancelRequest}>
               Cancel Request
             </Button>
           </div>
         ) : (
-          <Button
-            onClick={handleRequestAccess}
-            disabled={isRequesting}
-            className="mt-4 gap-2 bg-gradient-to-r from-purple-500 to-blue-600 text-white"
-          >
-            {isRequesting ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Send className="h-4 w-4" />
-            )}
+          <Button onClick={handleRequestAccess} disabled={isRequesting} className="mt-4 gap-2 bg-gradient-to-r from-purple-500 to-blue-600 text-white">
+            {isRequesting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
             Request Access
           </Button>
         )}
-
-        <Button
-          variant="ghost"
-          onClick={() => router.push("/")}
-          className="mt-2 text-muted-foreground"
-        >
+        
+        <Button variant="ghost" onClick={() => router.push("/")} className="mt-2 text-muted-foreground">
           Go back
         </Button>
       </div>

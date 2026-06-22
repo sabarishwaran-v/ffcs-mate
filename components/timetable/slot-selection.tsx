@@ -35,7 +35,7 @@ const SlotButton = ({
     variant={isSelected ? "default" : "outline"}
     className={cn(
       "flex items-center gap-1 px-3 py-1.5 rounded-md text-sm transition-all duration-500 basis-1/6",
-      isSelected && "bg-yellow-ui text-yellow-normal"
+      isSelected && "bg-yellow-ui text-yellow-normal",
     )}
     onClick={onClick}
   >
@@ -63,7 +63,7 @@ const SlotGroup = ({
         toggleSlot(slot);
       }
     },
-    [toggleSlot]
+    [toggleSlot],
   );
 
   const isSlotSelected = useCallback(
@@ -73,7 +73,7 @@ const SlotGroup = ({
       }
       return selectedSlots.includes(slot);
     },
-    [selectedSlots]
+    [selectedSlots],
   );
 
   return (
@@ -105,7 +105,7 @@ export function SlotSelector() {
       e.stopPropagation();
       clearSelectedSlots();
     },
-    [clearSelectedSlots]
+    [clearSelectedSlots],
   );
 
   const slotSections = useMemo(
@@ -125,7 +125,7 @@ export function SlotSelector() {
         ],
       },
     ],
-    []
+    [],
   );
 
   return (

@@ -43,7 +43,7 @@ function useMotionHighlight<T extends string>(): MotionHighlightContextType<T> {
   const context = React.useContext(MotionHighlightContext);
   if (!context) {
     throw new Error(
-      "useMotionHighlight must be used within a MotionHighlightProvider"
+      "useMotionHighlight must be used within a MotionHighlightProvider",
     );
   }
   return context as unknown as MotionHighlightContextType<T>;
@@ -131,7 +131,7 @@ function MotionHighlight<T extends string>({
   React.useImperativeHandle(ref, () => localRef.current as HTMLDivElement);
 
   const [activeValue, setActiveValue] = React.useState<T | null>(
-    value ?? defaultValue ?? null
+    value ?? defaultValue ?? null,
   );
   const [boundsState, setBoundsState] = React.useState<Bounds | null>(null);
   const [activeClassNameState, setActiveClassNameState] =
@@ -142,7 +142,7 @@ function MotionHighlight<T extends string>({
       setActiveValue((prev) => (prev === id ? prev : id));
       if (id !== activeValue) onValueChange?.(id as T);
     },
-    [activeValue, onValueChange]
+    [activeValue, onValueChange],
   );
 
   const safeSetBounds = React.useCallback(
@@ -178,7 +178,7 @@ function MotionHighlight<T extends string>({
         return newBounds;
       });
     },
-    [props]
+    [props],
   );
 
   const clearBounds = React.useCallback(() => {
@@ -200,7 +200,7 @@ function MotionHighlight<T extends string>({
     const onScroll = () => {
       if (!activeValue) return;
       const activeEl = container.querySelector<HTMLElement>(
-        `[data-value="${activeValue}"][data-highlight="true"]`
+        `[data-value="${activeValue}"][data-highlight="true"]`,
       );
       if (activeEl) safeSetBounds(activeEl.getBoundingClientRect());
     };
@@ -218,7 +218,7 @@ function MotionHighlight<T extends string>({
             data-slot="motion-highlight-container"
             className={cn(
               "relative",
-              (props as ParentModeMotionHighlightProps)?.containerClassName
+              (props as ParentModeMotionHighlightProps)?.containerClassName,
             )}
           >
             <AnimatePresence initial={false}>
@@ -250,7 +250,7 @@ function MotionHighlight<T extends string>({
                   className={cn(
                     "absolute bg-muted z-0",
                     className,
-                    activeClassNameState
+                    activeClassNameState,
                   )}
                 />
               )}
@@ -270,7 +270,7 @@ function MotionHighlight<T extends string>({
       exitDelay,
       className,
       activeClassNameState,
-    ]
+    ],
   );
 
   return (
@@ -305,7 +305,7 @@ function MotionHighlight<T extends string>({
                 >
                   {child}
                 </MotionHighlightItem>
-              ))
+              )),
             )
         : children}
     </MotionHighlightContext.Provider>
@@ -314,7 +314,7 @@ function MotionHighlight<T extends string>({
 
 function getNonOverridingDataAttributes(
   element: React.ReactElement,
-  dataAttributes: Record<string, unknown>
+  dataAttributes: Record<string, unknown>,
 ): Record<string, unknown> {
   return Object.keys(dataAttributes).reduce<Record<string, unknown>>(
     (acc, key) => {
@@ -323,7 +323,7 @@ function getNonOverridingDataAttributes(
       }
       return acc;
     },
-    {}
+    {},
   );
 }
 
@@ -493,7 +493,7 @@ function MotionHighlightItem({
                 className={cn(
                   "absolute inset-0 bg-muted z-0",
                   contextClassName,
-                  activeClassName
+                  activeClassName,
                 )}
                 transition={itemTransition}
                 initial={{ opacity: 0 }}
@@ -519,7 +519,7 @@ function MotionHighlightItem({
           >
             {children}
           </div>
-        </>
+        </>,
       );
     }
 
@@ -552,7 +552,7 @@ function MotionHighlightItem({
               className={cn(
                 "absolute inset-0 bg-muted z-0",
                 contextClassName,
-                activeClassName
+                activeClassName,
               )}
               transition={itemTransition}
               initial={{ opacity: 0 }}

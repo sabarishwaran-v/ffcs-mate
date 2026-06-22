@@ -27,7 +27,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-
+      
       if (!currentUser) {
         setUserData(null);
         setLoading(false);
@@ -39,7 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!user) return;
-
+    
     // Listen to user document changes in real-time (like privacy settings updates)
     const unsubscribeDoc = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
       if (docSnap.exists()) {

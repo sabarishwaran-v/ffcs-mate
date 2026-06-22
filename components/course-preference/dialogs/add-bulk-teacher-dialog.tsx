@@ -67,7 +67,7 @@ export function BulkAddTeachersDialog({
     let lines: string[] = [];
     if (merge) {
       lines = mergeSlots(
-        rawInput.split("\n").filter((line) => line.trim() !== "")
+        rawInput.split("\n").filter((line) => line.trim() !== ""),
       );
     } else {
       lines = rawInput.split("\n").filter((line) => line.trim() !== "");

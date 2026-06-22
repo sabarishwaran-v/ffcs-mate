@@ -10,9 +10,7 @@ import type { CellRenderData, Teacher, TimetableRenderData } from "@/types";
 
 import { useTotalCredits } from "./useTotalCredits";
 
-export function useTimetableRenderData(
-  hookOptimization: boolean = false
-): TimetableRenderData {
+export function useTimetableRenderData(hookOptimization: boolean = false): TimetableRenderData {
   const { getSelectedTeachers, courses, getAllClashesEnhanced } =
     useScheduleStore();
   const { manualSelectedSlots } = manualSlotSelectionStore();
@@ -22,7 +20,7 @@ export function useTimetableRenderData(
   // Memoize all clashes
   const allClashes = useMemo(
     () => getAllClashesEnhanced(selectedTeachers),
-    [getAllClashesEnhanced, selectedTeachers]
+    [getAllClashesEnhanced, selectedTeachers],
   );
   const allClashesCount = allClashes.length;
 
@@ -39,14 +37,14 @@ export function useTimetableRenderData(
     const precomputedClashDetails = calculateClashDetails(
       selectedTeachers,
       slotOccupancyMap,
-      courseCodeMap
+      courseCodeMap,
     );
 
     // Generate the base cell data for rendering
     return generateCellsData(
       courseCodeMap,
       slotOccupancyMap,
-      precomputedClashDetails
+      precomputedClashDetails,
     );
   }, [selectedTeachers, courses, hookOptimization]);
 
@@ -65,9 +63,7 @@ export function useTimetableRenderData(
 
           finalCells[day][slotKey] = {
             ...baseCell,
-            isSelectedManual: timePeriodSlots.some((s) =>
-              isSlotSelected.has(s)
-            ),
+            isSelectedManual: timePeriodSlots.some((s) => isSlotSelected.has(s)),
           };
         }
       }
@@ -79,23 +75,17 @@ export function useTimetableRenderData(
       const precomputedClashDetails = calculateClashDetails(
         selectedTeachers,
         slotOccupancyMap,
-        courseCodeMap
+        courseCodeMap,
       );
 
       return generateCellsData(
         courseCodeMap,
         slotOccupancyMap,
         precomputedClashDetails,
-        manualSelectedSlots
+        manualSelectedSlots,
       );
     }
-  }, [
-    selectedTeachers,
-    courses,
-    manualSelectedSlots,
-    hookOptimization,
-    baseCellsData,
-  ]);
+  }, [selectedTeachers, courses, manualSelectedSlots, hookOptimization, baseCellsData]);
 
   return {
     cellsData,
@@ -133,7 +123,7 @@ function buildSlotOccupancyMap(teachers: Teacher[]) {
 function calculateClashDetails(
   teachers: Teacher[],
   slotOccupancyMap: Map<string, { teacher: Teacher; day: string }[]>,
-  courseCodeMap: Map<string, string>
+  courseCodeMap: Map<string, string>,
 ) {
   const clashDetails: Record<string, { courses: string[] } | null> = {};
 
@@ -146,7 +136,7 @@ function calculateClashDetails(
         if (currentSlotTeachers.length > 1) {
           clashDetails[cellKey] = getDirectClashDetails(
             currentSlotTeachers,
-            courseCodeMap
+            courseCodeMap,
           );
         } else if (currentSlotTeachers.length === 1) {
           const mainTeacher = currentSlotTeachers[0].teacher;
@@ -155,7 +145,7 @@ function calculateClashDetails(
             teachers,
             day,
             courseCodeMap,
-            currentSlot
+            currentSlot,
           );
 
           if (crossSlotClash) {
@@ -172,7 +162,7 @@ function calculateClashDetails(
 // Helper function to get direct clash details (multiple teachers in same slot)
 function getDirectClashDetails(
   slotTeachers: { teacher: Teacher; day: string }[],
-  courseCodeMap: Map<string, string>
+  courseCodeMap: Map<string, string>,
 ) {
   const clashingCourseCodes: string[] = [];
   const processedTeacherIds = new Set<string>();
@@ -196,7 +186,7 @@ function getCrossSlotClashDetails(
   allTeachers: Teacher[],
   day: string,
   courseCodeMap: Map<string, string>,
-  currentSlot: string = ""
+  currentSlot: string = "",
 ) {
   const clashingCourseCodes: string[] = [];
   const processedTeacherIds = new Set<string>();
@@ -216,7 +206,7 @@ function getCrossSlotClashDetails(
 
     // Check if any of the clashing slots occur on the specified day
     const relevantClashesForDay = clashingSlots.filter((slot) =>
-      getDaysForSlot(slot).includes(day)
+      getDaysForSlot(slot).includes(day),
     );
 
     if (relevantClashesForDay.length > 0) {
@@ -248,7 +238,7 @@ function generateCellsData(
   courseCodeMap: Map<string, string>,
   slotOccupancyMap: Map<string, { teacher: Teacher; day: string }[]>,
   clashDetails: Record<string, { courses: string[] } | null>,
-  manualSelectedSlots: string[] = []
+  manualSelectedSlots: string[] = [],
 ): Record<string, Record<string, CellRenderData>> {
   const cells: Record<string, Record<string, CellRenderData>> = {};
 
@@ -263,7 +253,7 @@ function generateCellsData(
       const teachersInCell = getTeachersInCell(
         day,
         timePeriodSlots,
-        slotOccupancyMap
+        slotOccupancyMap,
       );
 
       const clashKeyA = `${day}-${slotA}`;
@@ -309,7 +299,7 @@ function generateCellsData(
 function getTeachersInCell(
   day: string,
   slots: string[],
-  slotOccupancyMap: Map<string, { teacher: Teacher; day: string }[]>
+  slotOccupancyMap: Map<string, { teacher: Teacher; day: string }[]>,
 ) {
   const teachersInCell: Teacher[] = [];
   const processedTeacherIds = new Set<string>();

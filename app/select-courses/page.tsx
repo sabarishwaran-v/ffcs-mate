@@ -42,7 +42,7 @@ function SelectCoursesContent() {
     );
   }
 
-  const semesterName = semester === 'winter2025' ? 'Winter Semester 2025-26' : semester === 'fall2026' ? 'Fall Semester 2026' : semester === 'spring2026' ? 'Spring Semester 2026' : 'Active Semester';
+  const semesterName = semester === 'winter2025' ? 'Winter Semester 2025-26' : 'Active Semester';
 
   const [searchQuery, setSearchQuery] = useState("");
   const coursesParam = searchParams?.get("courses");

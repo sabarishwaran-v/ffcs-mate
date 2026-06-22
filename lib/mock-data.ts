@@ -27,7 +27,6 @@ export const MOCK_COURSES: Course[] = parsedCourses.map((c: any) => ({
 // For now, it just returns the default MOCK_COURSES.
 export const getCoursesForSemester = (semester: string | null): Course[] => {
   if (!semester) return [];
-  // Example future logic:
-  // if (semester === "fall2026") return FALL_2026_COURSES;
+  // if (semester === "winter2026") return WINTER_2026_COURSES;
   return MOCK_COURSES;
 };

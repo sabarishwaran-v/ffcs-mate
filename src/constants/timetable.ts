@@ -1,0 +1,148 @@
+import { TimeRange } from "@/types";
+
+import { TimetableData } from "../types/timetable";
+
+export const days = ["MON", "TUE", "WED", "THU", "FRI"];
+
+export const THEORY_HOURS: TimeRange[] = [
+  { start: "8:00 AM", end: "8:50 AM" },
+  { start: "9:00 AM", end: "9:50 AM" },
+  { start: "10:00 AM", end: "10:50 AM" },
+  { start: "11:00 AM", end: "11:50 AM" },
+  { start: "12:00 PM", end: "12:50 PM" },
+  { start: "-", end: "-" }, // Break
+  { start: "", end: "" }, // Lunch
+  { start: "2:00 PM", end: "2:50 PM" },
+  { start: "3:00 PM", end: "3:50 PM" },
+  { start: "4:00 PM", end: "4:50 PM" },
+  { start: "5:00 PM", end: "5:50 PM" },
+  { start: "6:00 PM", end: "6:50 PM" },
+  { start: "6:51 PM", end: "7:00 PM" },
+];
+
+export const LAB_HOURS: TimeRange[] = [
+  { start: "08:00 AM", end: "09:40 AM" },
+  { start: "09:50 AM", end: "11:30 AM" },
+  { start: "11:40 AM", end: "01:20 PM" },
+  { start: "", end: "" }, // Lunch
+  { start: "2:00 PM", end: "3:40 PM" },
+  { start: "3:51 PM", end: "5:30 PM" },
+  { start: "5:40 PM", end: "7:20 PM" },
+];
+
+export const timetableData: TimetableData = {
+  MON: [
+    ["A1", "L1"],
+    ["F1", "L2"],
+    ["D1", "L3"],
+    ["TB1", "L4"],
+    ["TG1", "L5"],
+    ["L6"],
+    [""],
+    ["A2", "L31"],
+    ["F2", "L32"],
+    ["D2", "L33"],
+    ["TB2", "L34"],
+    ["TG2", "L35"],
+    ["L36"],
+  ],
+  TUE: [
+    ["B1", "L7"],
+    ["G1", "L8"],
+    ["E1", "L9"],
+    ["TC1", "L10"],
+    ["TAA1", "L11"],
+    ["L12"],
+    [""],
+    ["B2", "L37"],
+    ["G2", "L38"],
+    ["E2", "L39"],
+    ["TC2", "L40"],
+    ["TAA2", "L41"],
+    ["L42"],
+  ],
+  WED: [
+    ["C1", "L13"],
+    ["A1", "L14"],
+    ["F1", "L15"],
+    ["L16"],
+    ["L17"],
+    ["L18"],
+    [""],
+    ["C2", "L43"],
+    ["A2", "L44"],
+    ["F2", "L45"],
+    ["TD2", "L46"],
+    ["TBB2", "L47"],
+    ["L48"],
+  ],
+  THU: [
+    ["D1", "L19"],
+    ["B1", "L20"],
+    ["G1", "L21"],
+    ["TE1", "L22"],
+    ["TCC1", "L23"],
+    ["L24"],
+    [""],
+    ["D2", "L49"],
+    ["B2", "L50"],
+    ["G2", "L51"],
+    ["TE2", "L52"],
+    ["TCC2", "L53"],
+    ["L54"],
+  ],
+  FRI: [
+    ["E1", "L25"],
+    ["C1", "L26"],
+    ["TA1", "L27"],
+    ["TF1", "L28"],
+    ["TD1", "L29"],
+    ["L30"],
+    [""],
+    ["E2", "L55"],
+    ["C2", "L56"],
+    ["TA2", "L57"],
+    ["TF2", "L58"],
+    ["TDD2", "L59"],
+    ["L60"],
+  ],
+};
+
+export const clashMapping: Record<string, string[]> = {
+  A1: ["L1", "L14"],
+  B1: ["L7", "L20"],
+  C1: ["L13", "L26"],
+  D1: ["L19", "L3"],
+  E1: ["L25", "L9"],
+  F1: ["L2", "L15"],
+  G1: ["L8", "L21"],
+  TA1: ["L27"],
+  TB1: ["L4", "L5"],
+  TC1: ["L10", "L11"],
+  TD1: ["L29"],
+  TE1: ["L22", "L23"],
+  TF1: ["L28", "L29"],
+  TG1: ["L5"],
+  TAA1: ["L11"],
+  TCC1: ["L23"],
+
+  A2: ["L31", "L44"],
+  B2: ["L37", "L50"],
+  C2: ["L43", "L56"],
+  D2: ["L49", "L33"],
+  E2: ["L55", "L39"],
+  F2: ["L32", "L45"],
+  G2: ["L38", "L51"],
+
+  TA2: ["L57"],
+  TB2: ["L34", "L35"],
+  TC2: ["L40", "L41"],
+  TD2: ["L46", "L47"],
+  TE2: ["L52", "L53"],
+  TF2: ["L58", "L59"],
+  TG2: ["L35"],
+
+  TBB2: ["L47"],
+  TCC2: ["L53"],
+  TDD2: ["L59"],
+};

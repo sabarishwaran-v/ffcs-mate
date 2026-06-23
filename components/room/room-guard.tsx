@@ -62,7 +62,11 @@ export function RoomGuard({ roomId, children }: { roomId: string, children: Reac
         }
       } catch (error) {
         console.error("Error checking room access", error);
+        setHasAccess(false);
       }
+    }, (error) => {
+      console.error("Snapshot error:", error);
+      setHasAccess(false);
     });
 
     return () => unsubRoom();

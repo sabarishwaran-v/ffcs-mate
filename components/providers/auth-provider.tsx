@@ -41,14 +41,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!user) return;
     
     // Listen to user document changes in real-time (like privacy settings updates)
-    const unsubscribeDoc = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
-      if (docSnap.exists()) {
-        setUserData(docSnap.data());
-      } else {
+    const unsubscribeDoc = onSnapshot(doc(db, "users", user.uid), 
+      (docSnap) => {
+        if (docSnap.exists()) {
+          setUserData(docSnap.data());
+        } else {
+          setUserData(null);
+        }
+        setLoading(false);
+      },
+      (error) => {
+        console.error("Error fetching user data:", error);
         setUserData(null);
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    );
 
     return () => unsubscribeDoc();
   }, [user]);

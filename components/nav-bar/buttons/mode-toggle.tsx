@@ -78,18 +78,15 @@ export function ModeToggle({ isMobile = false }: { isMobile?: boolean }) {
         <PopoverTrigger asChild>
           {button}
         </PopoverTrigger>
-        <PopoverContent side="bottom" align="end" className="w-64 p-4 animate-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 shadow-lg border-primary/20">
-          <div className="flex gap-3">
-            <div className="bg-primary/10 p-2 rounded-full h-fit mt-0.5">
-              <Paintbrush className="w-4 h-4 text-primary" />
-            </div>
-            <div className="space-y-1">
-              <h4 className="font-semibold text-sm leading-none tracking-tight">Customize Theme</h4>
-              <p className="text-xs text-muted-foreground leading-snug">
-                You can switch between Light and Dark mode here anytime!
-              </p>
-            </div>
-          </div>
+        <PopoverContent 
+          side="bottom" 
+          align="center" 
+          sideOffset={10} 
+          className="relative w-auto p-2 px-3 min-w-0 bg-primary text-primary-foreground border-none rounded-md shadow-md animate-in fade-in slide-in-from-top-1"
+        >
+          {/* Custom upward arrow */}
+          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rotate-45 rounded-sm" />
+          <span className="relative z-10 text-xs font-medium whitespace-nowrap">Switch between themes</span>
         </PopoverContent>
       </Popover>
     </MotionDiv>

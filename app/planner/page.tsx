@@ -28,10 +28,12 @@ import {
 } from "@/components/ui/motion";
 import { EditProvider } from "@/src/providers/edit-provider";
 import { PlannerGuard } from "@/components/planner-guard";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 export default function Home() {
   return (
     <PlannerGuard>
+      <ScrollToTop />
       <main className="container p-4 mx-auto">
         {/* <WarnMessage /> */}
 

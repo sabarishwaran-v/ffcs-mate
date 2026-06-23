@@ -1,5 +1,6 @@
 import { Check, Plus } from "lucide-react";
 import { memo, useCallback } from "react";
+import { toast } from "sonner";
 
 import { AnimatedButton } from "@/components/ui/button";
 import { useScheduleStore } from "@/lib/store";
@@ -76,7 +77,10 @@ const NonEditActions = memo(
     const { toggleTeacherInTimetable } = useScheduleStore();
 
     const handleButtonClick = useCallback(() => {
-      toggleTeacherInTimetable(teacher.id);
+      const response = toggleTeacherInTimetable(teacher.id);
+      if (response && !response.success && response.clashMessage) {
+        toast.error(response.clashMessage);
+      }
     }, [teacher.id, toggleTeacherInTimetable]);
 
     return (

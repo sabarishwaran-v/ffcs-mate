@@ -4,7 +4,7 @@ import { clearClashDetectionCaches } from "@/src/utils/clash-detection";
 
 export type UtilitySlice = Pick<
   StoreState,
-  "clearAll" | "clearClashCaches" | "activeSemester" | "setSemester"
+  "clearAll" | "clearClashCaches" | "activeSemester" | "setSemester" | "no8amRule" | "setNo8amRule"
 >;
 
 export const createUtilitySlice: StateCreator<
@@ -14,6 +14,9 @@ export const createUtilitySlice: StateCreator<
   UtilitySlice
 > = (set, get) => ({
   activeSemester: null,
+  no8amRule: false,
+
+  setNo8amRule: (val: boolean) => set({ no8amRule: val }),
 
   setSemester: (semester: string | null) => {
     const current = get().activeSemester;

@@ -13,6 +13,8 @@ import { Course, Teacher } from "@/types";
 import { MOCK_COURSES } from "@/lib/mock-data";
 import { CourseSortMenu } from "@/components/course-preference/ui/sort-menu";
 import { CourseSelectionModal } from "./course-selection-modal";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 import {
   Card,
@@ -137,8 +139,20 @@ const CoursePreferenceHeaderActions = memo(({
     href += `&roomId=${roomId}`;
   }
 
+  const no8amRule = useScheduleStore(state => state.no8amRule);
+  const setNo8amRule = useScheduleStore(state => state.setNo8amRule);
+
   return (
-    <div className="flex items-center gap-2 flex-wrap">
+    <div className="flex items-center gap-4 flex-wrap">
+      <div className="flex items-center space-x-2 bg-secondary/50 px-3 py-1.5 rounded-md border">
+        <Switch 
+          id="no-8am-rule" 
+          checked={no8amRule} 
+          onCheckedChange={setNo8amRule}
+        />
+        <Label htmlFor="no-8am-rule" className="cursor-pointer text-sm font-semibold">No 8 AM Classes</Label>
+      </div>
+
       {totalCourses > 1 && (
         <CourseSortMenu
           value={sortBy}

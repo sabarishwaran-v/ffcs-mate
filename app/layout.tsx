@@ -45,16 +45,16 @@ export const metadata: Metadata = {
     "academic planner",
     "VIT Vellore",
   ],
-  authors: [{ name: "Praveen Kumar", url: "https://praveen-2006.is-a.dev/" }],
-  creator: "Praveen Kumar",
-  publisher: "Praveen Kumar",
+  authors: [{ name: "Sabarishwaran V", url: "https://ffcsmate.vercel.app/" }],
+  creator: "Sabarishwaran V",
+  publisher: "Sabarishwaran V",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://ffcs-planner-v2.vercel.app",
+    process.env.NEXT_PUBLIC_SITE_URL || "https://ffcsmate.vercel.app",
   ),
   alternates: {
     canonical: "/",
@@ -67,15 +67,15 @@ export const metadata: Metadata = {
     description:
       "Plan your FFCS schedule with ease. Create, manage, and optimize your VIT University timetable with advanced clash detection and visual scheduling tools.",
     siteName: "FFCS MATE",
-    images: `${process.env.NEXT_PUBLIC_SITE_URL || "https://ffcs-planner-v2.vercel.app"}/opengraph-image.png`,
+    images: `${process.env.NEXT_PUBLIC_SITE_URL || "https://ffcsmate.vercel.app"}/opengraph-image.png`,
   },
   twitter: {
     card: "summary_large_image",
     title: "FFCS MATE - Plan Your VIT Schedule with Ease",
     description:
       "Plan your FFCS schedule with ease. Create, manage, and optimize your VIT University timetable with advanced clash detection and visual scheduling tools.",
-    creator: "@InfiniteCoder06",
-    images: `${process.env.NEXT_PUBLIC_SITE_URL || "https://ffcs-planner-v2.vercel.app"}/twitter-image.png`,
+    creator: "@Sabarishwaran_V",
+    images: `${process.env.NEXT_PUBLIC_SITE_URL || "https://ffcsmate.vercel.app"}/twitter-image.png`,
   },
   robots: {
     index: true,

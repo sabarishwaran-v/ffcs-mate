@@ -18,19 +18,29 @@ import { ErrorBoundary } from "@/components/error-boundary";
 function SelectCoursesContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const semester = searchParams?.get("semester");
+  const urlSemester = searchParams?.get("semester");
+  const storeSemester = useScheduleStore(state => state.activeSemester);
   const setSemester = useScheduleStore(state => state.setSemester);
 
-  useEffect(() => {
-    // Only set the semester in Zustand once searchParams has successfully hydrated it
-    if (semester) {
-      setSemester(semester);
-    }
-  }, [semester, setSemester]);
+  const effectiveSemester = urlSemester || storeSemester;
 
-  // If semester is null, Next.js might still be hydrating the URL parameters.
-  // Instead of violently kicking the user out, we just wait safely.
-  if (!semester) {
+  useEffect(() => {
+    if (urlSemester && urlSemester !== storeSemester) {
+      setSemester(urlSemester);
+    }
+  }, [urlSemester, storeSemester, setSemester]);
+
+  useEffect(() => {
+    if (!effectiveSemester) {
+      // Give it a brief moment to hydrate before redirecting to home
+      const timer = setTimeout(() => {
+        router.push("/");
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [effectiveSemester, router]);
+
+  if (!effectiveSemester) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-background text-foreground gap-4">
         <Loader2 className="w-8 h-8 animate-spin text-purple-500" />
@@ -41,6 +51,8 @@ function SelectCoursesContent() {
       </div>
     );
   }
+
+  const semester = effectiveSemester;
 
   const semesterName = semester === 'winter2025' ? 'Winter Semester 2025-26' : 'Active Semester';
 

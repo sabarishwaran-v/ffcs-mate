@@ -35,6 +35,7 @@ export default function Dashboard() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isWarningOpen, setIsWarningOpen] = useState(false);
+  const [isContinueOpen, setIsContinueOpen] = useState(false);
   
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractionComplete, setExtractionComplete] = useState(false);
@@ -294,7 +295,8 @@ export default function Dashboard() {
                       // Since setSemester wipes courses if it changes, we check fresh state
                       const freshCourses = useScheduleStore.getState().courses;
                       if (freshCourses.length > 0) {
-                        router.push('/planner');
+                        setIsDialogOpen(false);
+                        setIsContinueOpen(true);
                       } else {
                         router.push(`/select-courses?semester=${selectedSemester}`);
                       }
@@ -302,7 +304,8 @@ export default function Dashboard() {
                     }
 
                     if (courses.length > 0) {
-                      router.push('/planner');
+                      setIsDialogOpen(false);
+                      setIsContinueOpen(true);
                     } else {
                       router.push(`/select-courses?semester=${selectedSemester}`);
                     }
@@ -344,6 +347,42 @@ export default function Dashboard() {
             >
               Wipe and Switch
             </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={isContinueOpen} onOpenChange={setIsContinueOpen}>
+        <AlertDialogContent className="bg-card border border-border rounded-2xl shadow-2xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-xl font-bold flex items-center gap-2">
+              <CalendarCheck className="w-6 h-6 text-purple-500" />
+              Resume Session
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-base text-muted-foreground mt-2">
+              We found an existing timetable and course selection in your browser. Do you want to resume planning where you left off, or start completely fresh?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="mt-6 sm:justify-end flex-col sm:flex-row gap-3">
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setIsContinueOpen(false);
+                useScheduleStore.getState().clearAll();
+                router.push(`/select-courses?semester=${selectedSemester}`);
+              }} 
+              className="rounded-xl border-red-500/50 text-red-500 hover:bg-red-500/10 hover:text-red-600"
+            >
+              Start New (Discard Old)
+            </Button>
+            <Button 
+              onClick={() => {
+                setIsContinueOpen(false);
+                router.push('/planner');
+              }}
+              className="bg-purple-600 hover:bg-purple-700 text-white rounded-xl border-0"
+            >
+              Continue Planning
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle, Info, Users, ShieldAlert, Download, CalendarCheck, Sparkles, Loader2, CheckCircle2, Database } from "lucide-react";
+import { db } from "@/lib/firebase";
+import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
 
 import { Footer } from "@/components/footer";
 import { MotionDiv, ScrollAnimation, Stagger } from "@/components/ui/motion";
@@ -41,19 +43,53 @@ export default function Dashboard() {
   const [extractionComplete, setExtractionComplete] = useState(false);
   const [dataAcknowledged, setDataAcknowledged] = useState(false);
 
-  const handleSemesterSelect = (val: string) => {
+  // Semesters state
+  const [availableSemesters, setAvailableSemesters] = useState<any[]>([]);
+  const [isLoadingSemesters, setIsLoadingSemesters] = useState(true);
+
+  useEffect(() => {
+    const fetchSemesters = async () => {
+      try {
+        const q = query(collection(db, "semesters"), where("isActive", "==", true));
+        const querySnapshot = await getDocs(q);
+        const semestersData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setAvailableSemesters(semestersData);
+      } catch (err) {
+        console.error("Failed to fetch semesters from Firestore", err);
+      } finally {
+        setIsLoadingSemesters(false);
+      }
+    };
+    fetchSemesters();
+  }, []);
+
+  const handleSemesterSelect = async (val: string) => {
     setSelectedSemester(val);
     setIsExtracting(true);
     setExtractionComplete(false);
     setDataAcknowledged(false);
 
-    // Mock Data Extraction
-    setTimeout(() => {
-      setIsExtracting(false);
-      setExtractionComplete(true);
-      // Auto-tick the acknowledgement for a better UX feel
-      setDataAcknowledged(true);
-    }, 2500);
+    try {
+      // Fetch the full semester document to get the courses array
+      const docRef = doc(db, "semesters", val);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        useScheduleStore.setState({ courses: data.courses || [] });
+      } else {
+        console.warn("Semester document not found!");
+      }
+    } catch (err) {
+      console.error("Failed to fetch course data", err);
+    }
+
+    setIsExtracting(false);
+    setExtractionComplete(true);
+    setDataAcknowledged(true);
   };
 
   return (
@@ -232,10 +268,14 @@ export default function Dashboard() {
                   className="w-full bg-background border border-border rounded-xl p-4 pr-12 text-foreground font-medium text-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 hover:border-purple-500/50 transition-all appearance-none cursor-pointer"
                   value={selectedSemester}
                   onChange={(e) => handleSemesterSelect(e.target.value)}
-                  disabled={isExtracting}
+                  disabled={isExtracting || isLoadingSemesters}
                 >
-                  <option value="" disabled>-- Select a Semester --</option>
-                  <option value="winter2025">Winter Semester 2025-26</option>
+                  <option value="" disabled>
+                    {isLoadingSemesters ? "Loading Semesters..." : "-- Select a Semester --"}
+                  </option>
+                  {availableSemesters.map((sem) => (
+                    <option key={sem.id} value={sem.id}>{sem.name}</option>
+                  ))}
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                   {isExtracting ? (

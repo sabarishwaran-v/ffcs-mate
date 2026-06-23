@@ -25,18 +25,22 @@ export const createUtilitySlice: StateCreator<
       const timetable = state.timetables.find((t) => t.id === state.activeTimetableId);
       if (!timetable) return;
 
+      const removedCourseIds = new Set<string>();
       const removedCourseCodes: string[] = [];
 
       timetable.selectedTeachers.forEach((teacher) => {
         if (teacher) {
           const course = state.courses.find((c) => c.id === teacher.course);
-          const courseCode = course?.code || "Unknown";
-          const courseType = course?.type || undefined;
+          if (!course) return;
+          if (removedCourseIds.has(course.id)) return; // Already dropped this course
+
+          const courseCode = course.code || "Unknown";
+          const courseType = course.type || undefined;
           
           if (check8amClash(teacher, courseCode, courseType)) {
-            // Drop it using toggleTeacherInTimetable
-            state.toggleTeacherInTimetable(teacher.id);
-            // wait, teacher might not have type, course does
+            // Drop the entire course (all components like Theory & Lab)
+            state.setCourseSlots(course.id, []);
+            removedCourseIds.add(course.id);
             removedCourseCodes.push(`${courseCode}${courseType ? ` (${courseType})` : ''}`);
           }
         }

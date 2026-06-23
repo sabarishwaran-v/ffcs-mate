@@ -156,7 +156,7 @@ interface TimetableProps {
 
 export const Timetable = React.memo(function Timetable({ hideControls = false }: TimetableProps = {}) {
   const timetableRef = useRef<HTMLDivElement>(null);
-  const { getSelectedTeachers, courses, activeRoomId } = useScheduleStore();
+  const { getSelectedTeachers, courses, activeRoomId, no8amRule } = useScheduleStore();
   const selectedTeachers = getSelectedTeachers();
 
   const AVATAR_COLORS = [
@@ -235,7 +235,9 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
     return matchingSlots.length > 0 ? matchingSlots.join(', ') : '-';
   };
 
-  const renderCell = (slotName: string, isLunch: boolean, isLabRow: boolean) => {
+  const renderCell = (slotName: string, isLunch: boolean, isLabRow: boolean, is8am: boolean = false) => {
+    const is8amRestricted = no8amRule && is8am;
+
     if (isLunch) {
       return (
         <td 
@@ -326,7 +328,7 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
         <Tooltip>
           <TooltipTrigger asChild>
             <td 
-              className="transition-colors hover:opacity-80 relative"
+              className={`transition-colors hover:opacity-80 relative ${is8amRestricted && !isSelected ? "opacity-60 bg-gray-200/50" : ""}`}
               style={{ 
                 border: `1px solid ${VTOP_COLORS.borderColor}`, 
                 backgroundColor: bg,
@@ -335,10 +337,17 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
                 verticalAlign: 'middle',
                 padding: '4px',
                 minWidth: '50px',
-                cursor: 'default'
+                cursor: 'default',
               }}
             >
-              {cellContent}
+              {is8amRestricted && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-10">
+                  <div className="w-[150%] border-t-[3px] border-red-500/50 rotate-[20deg]"></div>
+                </div>
+              )}
+              <div className={is8amRestricted ? "line-through text-gray-500 opacity-70" : ""}>
+                {cellContent}
+              </div>
             </td>
           </TooltipTrigger>
           {(isClash || (isSelected && author?.name)) && (
@@ -466,7 +475,8 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
                         }
                         const theoryTime = group.theoryTimes[0];
                         const slotName = getSlotName(day, theoryTime, false);
-                        return <React.Fragment key={`t-${day}-${idx}`}>{renderCell(slotName, false, false)}</React.Fragment>;
+                        const is8am = theoryTime && theoryTime.startsWith("08:00");
+                        return <React.Fragment key={`t-${day}-${idx}`}>{renderCell(slotName, false, false, !!is8am)}</React.Fragment>;
                       })}
                     </tr>
                     {/* Lab Row */}
@@ -478,7 +488,8 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
                         if (group.isLunch) return null; // Handled by rowSpan in theory row
                         const labTime = group.labTimes[0];
                         const slotName = getSlotName(day, labTime, true);
-                        return <React.Fragment key={`l-${day}-${idx}`}>{renderCell(slotName, false, true)}</React.Fragment>;
+                        const is8am = labTime && labTime.startsWith("08:00");
+                        return <React.Fragment key={`l-${day}-${idx}`}>{renderCell(slotName, false, true, !!is8am)}</React.Fragment>;
                       })}
                     </tr>
                   </React.Fragment>

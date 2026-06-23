@@ -47,12 +47,11 @@ export const TimetableCell = memo(function TimetableCell({
           <MotionTd
             suppressHydrationWarning
             className={cn(
-              "p-2 text-xs text-center border h-24 max-h-24 overflow-hidden transition-colors duration-200 dark:border-gray-700 hover:cursor-pointer",
+              "p-2 text-xs text-center border h-24 max-h-24 overflow-hidden transition-colors duration-200 dark:border-gray-700 hover:cursor-pointer relative",
               isClash ? "bg-red-solid text-white" : color,
               isSelectedManual &&
                 "bg-yellow-4 text-black-8 dark:bg-yellowdark-7 hover:bg-yellow-4 dark:hover:bg-yellowdark-7",
-              isClash && "relative",
-              is8amRestricted && !isSelectedManual && "opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-800"
+              is8amRestricted && !isSelectedManual && "opacity-60 cursor-not-allowed bg-gray-200/50 dark:bg-gray-800/50"
             )}
             onClick={handleClick}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -64,7 +63,14 @@ export const TimetableCell = memo(function TimetableCell({
               delay: slotIndex * 0.01 + dayIndex * 0.03,
             }}
           >
-            {is8amRestricted ? <del>{slotDisplayText}</del> : slotDisplayText}
+            {is8amRestricted && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-full border-t-2 border-red-500/40 rotate-[15deg]"></div>
+              </div>
+            )}
+            <span className={cn(is8amRestricted && "line-through text-gray-500")}>
+              {slotDisplayText}
+            </span>
             <MotionDiv
               className="mt-1 font-semibold"
               initial={{ opacity: 0 }}

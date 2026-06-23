@@ -27,8 +27,7 @@ export const createUtilitySlice: StateCreator<
 
       const removedCourseCodes: string[] = [];
 
-      timetable.teachers.forEach((teacherId) => {
-        const teacher = state.teachers.find((t) => t.id === teacherId);
+      timetable.selectedTeachers.forEach((teacher) => {
         if (teacher) {
           const course = state.courses.find((c) => c.id === teacher.course);
           const courseCode = course?.code || "Unknown";
@@ -37,7 +36,8 @@ export const createUtilitySlice: StateCreator<
           if (check8amClash(teacher, courseCode, courseType)) {
             // Drop it using toggleTeacherInTimetable
             state.toggleTeacherInTimetable(teacher.id);
-            removedCourseCodes.push(`${courseCode} (${teacher.type})`);
+            // wait, teacher might not have type, course does
+            removedCourseCodes.push(`${courseCode}${courseType ? ` (${courseType})` : ''}`);
           }
         }
       });

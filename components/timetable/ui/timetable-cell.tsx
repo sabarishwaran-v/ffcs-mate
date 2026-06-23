@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { TimetableRenderData } from "@/types";
+import { useScheduleStore } from "@/lib/store";
 
 interface TimetableCellProps {
   slotNamesInCell: string[];
@@ -30,12 +31,14 @@ export const TimetableCell = memo(function TimetableCell({
 }: TimetableCellProps) {
   const { color, teacherName, venue, isClash, clashDetails, isSelectedManual } =
     cellData;
+  const no8amRule = useScheduleStore((state) => state.no8amRule);
 
   const handleClick = useCallback(() => {
     slotNamesInCell.forEach(toggleSlot);
   }, [slotNamesInCell, toggleSlot]);
 
   const slotDisplayText = slotNamesInCell.join(" / ");
+  const is8amRestricted = no8amRule && slotIndex === 0;
 
   return (
     <TooltipProvider>
@@ -49,6 +52,7 @@ export const TimetableCell = memo(function TimetableCell({
               isSelectedManual &&
                 "bg-yellow-4 text-black-8 dark:bg-yellowdark-7 hover:bg-yellow-4 dark:hover:bg-yellowdark-7",
               isClash && "relative",
+              is8amRestricted && !isSelectedManual && "opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-800"
             )}
             onClick={handleClick}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -60,7 +64,7 @@ export const TimetableCell = memo(function TimetableCell({
               delay: slotIndex * 0.01 + dayIndex * 0.03,
             }}
           >
-            {slotDisplayText}
+            {is8amRestricted ? <del>{slotDisplayText}</del> : slotDisplayText}
             <MotionDiv
               className="mt-1 font-semibold"
               initial={{ opacity: 0 }}

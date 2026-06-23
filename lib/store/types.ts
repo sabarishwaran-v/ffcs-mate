@@ -23,11 +23,13 @@ export type State = {
   personalDataBackup: any | null;
   isReceivingCloudUpdate: boolean;
   activeSemester: string | null;
+  no8amRule: boolean;
 };
 
 export type Actions = {
   // Global Actions
   setSemester: (semester: string | null) => void;
+  setNo8amRule: (val: boolean) => void;
 
   // Course actions
   getCourse: (id: string) => Course | undefined;
@@ -57,7 +59,7 @@ export type Actions = {
   setIsReceivingCloudUpdate: (val: boolean) => void;
   getSelectedTeachers: () => Teacher[];
   getSelectedSlots: () => string[];
-  toggleTeacherInTimetable: (teacherId: string, addedByUid?: string, addedByName?: string) => void;
+  toggleTeacherInTimetable: (teacherId: string, addedByUid?: string, addedByName?: string) => { success: boolean; clashMessage?: string };
   setCourseSlots: (courseId: string, teacherIds: string[], addedByUid?: string, addedByName?: string) => { success: boolean; clashMessage?: string };
   isTeacherSelected: (teacherId: string) => boolean;
   clearSelectedTeachers: () => void;

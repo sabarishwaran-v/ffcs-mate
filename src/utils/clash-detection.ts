@@ -178,3 +178,19 @@ export function getDaysForSlot(slot: string): string[] {
 export const clearClashDetectionCaches = () => {
   slotDayMapCache.clear();
 };
+
+export function check8amClash(teacher: Teacher, courseCode: string, courseType?: string): string | null {
+  const slots = getAllSlots(teacher);
+  for (const slot of slots) {
+    const mappings = vitapSlotMapping[slot];
+    if (mappings) {
+      for (const m of mappings) {
+        if (m.time.startsWith('08:00') || m.time.startsWith('8:00')) {
+          const typeStr = courseType ? ` ( ${courseType} ) ` : ' ';
+          return `This course ${courseCode}${typeStr}has 8 AM class on ${m.day} ${slot} . Turn Off 8AM Rule to Add this Slot into TT`;
+        }
+      }
+    }
+  }
+  return null;
+}

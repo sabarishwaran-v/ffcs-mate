@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 import { StoreState } from "../types";
 import { getAllSlots } from "@/src/utils/timetable";
-import { clearClashDetectionCaches, hasClashUsingMap, getDetailedClashMessage } from "@/src/utils/clash-detection";
+import { clearClashDetectionCaches, hasClashUsingMap, getDetailedClashMessage, check8amClash } from "@/src/utils/clash-detection";
 import { defaultTimetable } from "@/src/mocks/fake-timetable";
 import { Timetable, Teacher } from "@/types";
 
@@ -248,14 +248,22 @@ export const createTimetableSlice: StateCreator<
     }
 
     const teacher = state.teachers.find((t) => t.id === teacherId);
-    if (!teacher) return;
+    if (!teacher) return { success: false };
 
     const activeTimetable = state.getActiveTimetable();
-    if (!activeTimetable) return;
+    if (!activeTimetable) return { success: false };
 
     const isSelected = activeTimetable.selectedTeachers.some(
       (t) => t.id === teacherId,
     );
+
+    if (!isSelected && state.no8amRule) {
+      const course = state.courses.find(c => c.id === teacher.course);
+      const clashMsg = check8amClash(teacher, course?.code || 'Course', course?.type);
+      if (clashMsg) {
+        return { success: false, clashMessage: clashMsg };
+      }
+    }
 
     clearClashDetectionCaches();
 
@@ -294,6 +302,8 @@ export const createTimetableSlice: StateCreator<
         }
       }),
     }));
+
+    return { success: true };
   },
 
   setCourseSlots: (courseId, teacherIds, addedByUid, addedByName) => {
@@ -328,6 +338,14 @@ export const createTimetableSlice: StateCreator<
     const currentCourseCode = currentCourse ? currentCourse.code : "Course";
 
     for (const newTeacher of newTeachersToPlace) {
+      if (state.no8amRule) {
+        const clashMsg = check8amClash(newTeacher, currentCourseCode, currentCourse?.type);
+        if (clashMsg) {
+          clashMessage = clashMsg;
+          break;
+        }
+      }
+
       for (const existingTeacher of otherTeachersInTimetable) {
         const existingCourse = state.courses.find(c => c.id === existingTeacher.course);
         const detailedMsg = getDetailedClashMessage(newTeacher, existingTeacher, currentCourseCode, existingCourse?.code || "Another Course");

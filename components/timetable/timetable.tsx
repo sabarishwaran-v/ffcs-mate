@@ -310,10 +310,10 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
     ) : isSelected ? (
       <div className="flex flex-col items-center leading-tight gap-0.5 py-1 relative w-full h-full justify-center">
         <span style={{ fontSize: '11px' }}>
-          {primarySlot} -
+          {primarySlot}-
         </span>
         <span style={{ fontSize: '11px' }}>
-          {uniqueCourses[0].code} -
+          {uniqueCourses[0].code}-
         </span>
         <span style={{ fontSize: '11px' }}>
           {uniqueCourses[0].type || "ELA"}

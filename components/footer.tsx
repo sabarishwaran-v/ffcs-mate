@@ -9,8 +9,8 @@ export function Footer() {
         <div className="flex items-center justify-center space-x-2 pb-4">
           <ChangelogDialog currentAppVersion={process.env.NEXT_PUBLIC_APP_VERSION} />
         </div>
-        <div className="max-w-2xl mx-auto text-center px-4 pb-4">
-          <p className="text-xs text-muted-foreground/60 italic">
+        <div className="max-w-4xl mx-auto text-center px-4 pb-4">
+          <p className="text-sm text-muted-foreground italic">
             FFCS MATE is an independent student-built tool and is not officially affiliated with, endorsed by, or connected to VIT-AP University.
           </p>
         </div>

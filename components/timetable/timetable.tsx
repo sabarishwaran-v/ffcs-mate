@@ -498,14 +498,14 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
             </tbody>
           </table>
 
-          {/* Uncroppable Diagonal Watermark Overlay */}
+          {/* Uncroppable Centered Watermark Overlay */}
           <div 
             className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-10"
             aria-hidden="true"
           >
             <span 
-              className="text-black font-black whitespace-nowrap select-none"
-              style={{ fontSize: '180px', opacity: 0.04, transform: 'rotate(-30deg)' }}
+              className="text-black font-black whitespace-nowrap select-none tracking-widest"
+              style={{ fontSize: '100px', opacity: 0.05 }}
             >
               FFCS MATE
             </span>

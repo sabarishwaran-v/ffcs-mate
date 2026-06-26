@@ -2,18 +2,21 @@
 
 > The ultimate, real-time timetable planner for VIT-AP students.
 
-FFCS MATE is a beautifully designed, intelligent web application built to help students plan their semester courses without the stress of clashes, overlapping exams, or complex spreadsheets. Built entirely from the ground up for v2.0, it now features real-time multiplayer collaboration, a premium glassmorphic UI, and cloud syncing.
+FFCS MATE is a beautifully designed, intelligent web application built to help VIT-AP students plan their semester courses before the actual FFCS registration portal opens. It eliminates the stress of registration by offering a visual timetable builder, instant clash detection, and multiplayer collaboration.
 
-![FFCS Mate Screenshot](public/icons/icon512_maskable.png)
+![FFCS Mate Screenshot](public/screenshot.png)
 
 ## Why FFCS MATE?
 
-Registering for courses can be incredibly stressful. You need to balance credits, avoid overlapping class times, ensure mid-term and final exams don't clash, and try to sync schedules with your friends. 
+Registering for courses on the actual day can be incredibly stressful and chaotic. If you wing it without a plan, you risk ending up with clashing slots, terrible gaps between your classes, and daily 8 AM classes. 
 
 FFCS MATE solves all of this by providing:
-- **Zero Clashes:** Our intelligent engine blocks overlapping slots and warns you about exam conflicts before you even log into VTOP.
-- **Real-Time Multiplayer:** Create a "Room", share the code, and build your timetable alongside your friends live.
-- **Peace of Mind:** Your timetable is synced to the cloud and verified securely using your `@vitapstudent.ac.in` account.
+
+- **Smart Clash Detection:** Instantly alerts you if two of your selected subjects have overlapping slots.
+- **VTOP-Style Grid:** Your schedule is rendered in the exact same format as the real VTOP portal, so you know exactly what to expect on registration day.
+- **"No 8 AM" Rule:** Hate waking up early? Flip a toggle to instantly strike out and block all 8 AM classes from your timetable.
+- **Real-Time Multiplayer:** Create a "Room", invite your friends, and build your timetables together on the same screen so you can get the exact same classes.
+- **Export & Save:** Once your timetable is perfect, download it as a high-quality image so you are ready to just click and register on the real day.
 
 ## Quickstart
 
@@ -40,4 +43,4 @@ To understand how this project is built and maintained, please refer to the foll
 - [Zustand](https://github.com/pmndrs/zustand) (State Management)
 
 ---
-Made with ❤️ for VITAPians by [Sabarish v](https://github.com/sabarishwaran-v).
+Made with ❤️ for VITAPians by [Sabarishwaran V](https://github.com/sabarishwaran-v).

@@ -405,7 +405,7 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
         className="bg-white rounded-md border border-border shadow-sm overflow-x-auto overflow-y-hidden"
         style={{ color: '#000', WebkitOverflowScrolling: 'touch' }} 
       >
-        <div className="min-w-max w-full">
+        <div className="min-w-max w-full relative">
           <table 
             className="w-full border-collapse" 
             style={{ 
@@ -497,6 +497,19 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
               })}
             </tbody>
           </table>
+
+          {/* Uncroppable Diagonal Watermark Overlay */}
+          <div 
+            className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-10"
+            aria-hidden="true"
+          >
+            <span 
+              className="text-black font-black whitespace-nowrap select-none"
+              style={{ fontSize: '180px', opacity: 0.04, transform: 'rotate(-30deg)' }}
+            >
+              FFCS MATE
+            </span>
+          </div>
         </div>
       </div>
     </div>

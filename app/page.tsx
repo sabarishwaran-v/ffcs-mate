@@ -206,13 +206,13 @@ export default function Dashboard() {
           setDataAcknowledged(false);
         }
       }}>
-        <DialogContent className="sm:max-w-[425px] p-0 overflow-hidden bg-card/80 backdrop-blur-xl border-border/50 shadow-2xl rounded-3xl">
+        <DialogContent className="sm:max-w-[425px] p-0 overflow-hidden bg-card border-border/50 shadow-2xl rounded-3xl">
           {/* Header image/gradient */}
           <div className="h-32 bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-cyan-500/20 w-full relative">
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:16px_16px]" />
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-card/80 to-transparent backdrop-blur-[2px]" />
+            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-card to-transparent" />
             <div className="absolute bottom-[-24px] left-6">
-              <div className="bg-card p-3 rounded-2xl shadow-xl border border-border/50 backdrop-blur-xl">
+              <div className="bg-card p-3 rounded-2xl shadow-xl border border-border/50">
                 <CalendarCheck className="w-8 h-8 text-purple-500" />
               </div>
             </div>

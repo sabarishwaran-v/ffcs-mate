@@ -15,10 +15,11 @@ import { useScheduleStore, useFeatureFlags } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { getCreditsFromSlotString } from "@/lib/ltpjc-parser";
 
+import { toast } from "sonner";
 import { IconButton } from "./ui/icon-button";
 
 export function SelectedCoursesTable() {
-  const { courses, toggleTeacherInTimetable, getSelectedTeachers } =
+  const { courses, dropCourse, getSelectedTeachers } =
     useScheduleStore();
   
   const enableOptimizations = useFeatureFlags((state) => state.isEnabled("newOptimizations"));
@@ -37,6 +38,13 @@ export function SelectedCoursesTable() {
     const courseB = enableOptimizations ? courseMap.get(b.course) : courses.find((c) => c.id === b.course);
     return (courseA?.name || "").localeCompare(courseB?.name || "");
   });
+
+  const handleDropCourse = (courseId: string, courseName?: string) => {
+    dropCourse(courseId);
+    toast.success("Course Removed", {
+      description: `${courseName || courseId} has been removed from your active timetable.`,
+    });
+  };
 
   if (!isMounted) return null;
 
@@ -137,7 +145,7 @@ export function SelectedCoursesTable() {
                             variant="red"
                             size="sm"
                             useAnimation={false}
-                            onClick={() => toggleTeacherInTimetable(teacher.id)}
+                            onClick={() => handleDropCourse(teacher.course, course?.name)}
                           ></IconButton>
                         </td>
                       </MotionTr>

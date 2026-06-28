@@ -24,6 +24,24 @@ import { useScheduleStore } from "@/lib/store";
 import CourseItemBody from "./body";
 import CourseDialogContent from "./course-dialog-content";
 
+const getCourseTypeString = (type?: string) => {
+  switch (type?.toUpperCase()) {
+    case "ETH":
+      return "Embedded Theory";
+    case "ELA":
+      return "Embedded Lab";
+    case "TH":
+      return "Theory Only";
+    case "LO":
+      return "Lab Only";
+    case "PJT":
+    case "EPJ":
+      return "Project";
+    default:
+      return type || "Unknown Type";
+  }
+};
+
 interface CourseItemProps {
   index: number;
   course: Course;
@@ -114,9 +132,14 @@ const CourseItem = function CourseItem({
               {course.credits} Credits
             </span>
           </div>
-          <p className="text-sm font-medium text-muted-foreground mt-1 line-clamp-2 leading-relaxed" title={course.name}>
-            {course.name}
-          </p>
+          <div className="flex justify-between items-center mt-1">
+            <p className="text-base font-semibold text-muted-foreground line-clamp-2 leading-relaxed flex-1 pr-2" title={course.name}>
+              {course.name}
+            </p>
+            <p className="text-xs font-extrabold text-muted-foreground/60 uppercase tracking-wider whitespace-nowrap">
+              {getCourseTypeString(course.type)}
+            </p>
+          </div>
         </div>
 
         <div className="flex gap-3 mt-5 pt-4 border-t border-border/50">

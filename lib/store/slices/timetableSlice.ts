@@ -240,6 +240,37 @@ export const createTimetableSlice: StateCreator<
     clearClashDetectionCaches();
   },
 
+  dropCourse: (courseId) => {
+    const state = get();
+    const currentTimetableId = state.activeTimetableId;
+    if (!currentTimetableId) return;
+
+    clearClashDetectionCaches();
+
+    set((state) => ({
+      timetables: state.timetables.map((t) => {
+        if (t.id !== currentTimetableId) return t;
+
+        const newSelectedTeachers = t.selectedTeachers.filter(
+          (st) => {
+            const teacherObj = state.teachers.find(teacher => teacher.id === st.id);
+            return teacherObj?.course !== courseId;
+          }
+        );
+
+        return {
+          ...t,
+          selectedTeachers: newSelectedTeachers,
+          selectedSlots: Array.from(
+            new Set(newSelectedTeachers.flatMap((st) => getAllSlots(st))),
+          ),
+          updatedAt: new Date(),
+        };
+      }),
+    }));
+  },
+
+
   toggleTeacherInTimetable: (teacherId, addedByUid, addedByName) => {
     const state = get();
     let currentTimetableId = state.activeTimetableId;

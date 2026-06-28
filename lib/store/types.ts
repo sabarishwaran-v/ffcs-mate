@@ -61,6 +61,7 @@ export type Actions = {
   getSelectedSlots: () => string[];
   toggleTeacherInTimetable: (teacherId: string, addedByUid?: string, addedByName?: string) => { success: boolean; clashMessage?: string };
   setCourseSlots: (courseId: string, teacherIds: string[], addedByUid?: string, addedByName?: string) => { success: boolean; clashMessage?: string };
+  dropCourse: (courseId: string) => void;
   isTeacherSelected: (teacherId: string) => boolean;
   clearSelectedTeachers: () => void;
 

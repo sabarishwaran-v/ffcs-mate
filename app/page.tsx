@@ -132,7 +132,7 @@ export default function Dashboard() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-foreground">Real-time Collaboration</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Invite friends to your Room, see their avatars, and build your timetables together simultaneously. Share schedules instantly.
+                Invite friends to your Room and build your timetables together simultaneously. Compare and share schedules instantly.
               </p>
             </MotionDiv>
 
@@ -160,7 +160,7 @@ export default function Dashboard() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-foreground">Export Beautifully</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Export your finalized timetable to a pristine Image or PDF. Keep it on your phone or share it to your class group with one click.
+                Export your finalized timetable to a pristine Image or PDF. Keep it on your phone or share it with your friends with one click.
               </p>
             </MotionDiv>
             

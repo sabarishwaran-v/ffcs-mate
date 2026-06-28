@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "FFCS MATE - Plan Your VIT Schedule with Ease",
+    default: "FFCS MATE - Plan Your VIT Class Schedule Easily",
     template: "%s | FFCS MATE",
   },
   description:
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "FFCS MATE - Plan Your VIT Schedule with Ease",
+    title: "FFCS MATE - Plan Your VIT Class Schedule Easily",
     description:
       "Plan your FFCS schedule with ease. Create, manage, and optimize your VIT University timetable with advanced clash detection and visual scheduling tools.",
     siteName: "FFCS MATE",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FFCS MATE - Plan Your VIT Schedule with Ease",
+    title: "FFCS MATE - Plan Your VIT Class Schedule Easily",
     description:
       "Plan your FFCS schedule with ease. Create, manage, and optimize your VIT University timetable with advanced clash detection and visual scheduling tools.",
     creator: "@Sabarishwaran_V",

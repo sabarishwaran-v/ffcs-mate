@@ -24,10 +24,10 @@ export const MOCK_COURSES: Course[] = parsedCourses
     labSlots: c.labSlots
   }))
   .sort((a, b) => {
-    // Keep Software Engineering and Database Systems at the very top for testing/demo purposes
-    const topKeywords = ["software engineering", "database systems"];
-    const aIsTop = topKeywords.some(keyword => a.title.toLowerCase().includes(keyword));
-    const bIsTop = topKeywords.some(keyword => b.title.toLowerCase().includes(keyword));
+    // Keep only the specific Software Engineering (CSE1005) and Database Systems (SWE2006) at the top
+    const topCodes = ["CSE1005", "SWE2006"];
+    const aIsTop = topCodes.includes(a.code);
+    const bIsTop = topCodes.includes(b.code);
     
     if (aIsTop && !bIsTop) return -1;
     if (!aIsTop && bIsTop) return 1;

@@ -189,6 +189,7 @@ export default function Dashboard() {
               controls 
               autoPlay 
               playsInline
+              muted
               className="w-full h-full object-contain"
               src="/demo-video.mov"
             >

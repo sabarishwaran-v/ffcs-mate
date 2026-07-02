@@ -92,6 +92,8 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
 };
 
+import NextTopLoader from 'next-top-loader';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -104,6 +106,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextTopLoader
+          color="#a855f7" // purple-500
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #a855f7,0 0 5px #a855f7"
+        />
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <TooltipProvider>

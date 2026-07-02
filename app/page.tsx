@@ -58,6 +58,14 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen bg-background overflow-hidden relative selection:bg-purple-500/30 flex flex-col">
+      {/* Announcement Banner */}
+      <div className="w-full bg-amber-500/10 border-b border-amber-500/20 relative z-50">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-center text-sm text-amber-700 dark:text-amber-400 font-semibold text-center">
+          <ShieldAlert className="w-4 h-4 mr-2 inline-block shrink-0" />
+          Fall 2026-27 Registration is on July 5th & 6th! We will update the course data as soon as the university releases it.
+        </div>
+      </div>
+
       {/* Abstract Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none" />
@@ -236,6 +244,7 @@ export default function Dashboard() {
                 >
                   <option value="" disabled>-- Select a Semester --</option>
                   <option value="winter2025">Winter Semester 2025-26</option>
+                  <option value="fall2026" disabled>Fall Semester 2026-27 (Coming Soon)</option>
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                   {isExtracting ? (

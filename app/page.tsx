@@ -191,7 +191,7 @@ export default function Dashboard() {
               playsInline
               muted
               className="w-full h-full object-contain"
-              src="/demo-video.mov"
+              src="/demo-video.mp4"
             >
               Your browser does not support the video tag.
             </video>

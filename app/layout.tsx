@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
 };
 
-import NextTopLoader from 'next-top-loader';
+import { TopLoader } from 'next-top-loader';
 
 export default function RootLayout({
   children,
@@ -106,7 +106,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextTopLoader
+        <TopLoader
           color="#a855f7" // purple-500
           initialPosition={0.08}
           crawlSpeed={200}

@@ -40,6 +40,7 @@ export default function Dashboard() {
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractionComplete, setExtractionComplete] = useState(false);
   const [dataAcknowledged, setDataAcknowledged] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleSemesterSelect = (val: string) => {
     setSelectedSemester(val);
@@ -307,6 +308,7 @@ export default function Dashboard() {
                         setIsDialogOpen(false);
                         setIsContinueOpen(true);
                       } else {
+                        setIsNavigating(true);
                         router.push(`/select-courses?semester=${selectedSemester}`);
                       }
                       return;
@@ -316,15 +318,25 @@ export default function Dashboard() {
                       setIsDialogOpen(false);
                       setIsContinueOpen(true);
                     } else {
+                      setIsNavigating(true);
                       router.push(`/select-courses?semester=${selectedSemester}`);
                     }
                   }
                 }}
-                disabled={!selectedSemester || !dataAcknowledged}
+                disabled={!selectedSemester || !dataAcknowledged || isNavigating}
                 className="rounded-xl px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-purple-500/25 border-0"
               >
-                Continue
-                <ArrowRight className="ml-2 w-4 h-4" />
+                {isNavigating ? (
+                  <>
+                    <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                    Loading...
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -346,16 +358,18 @@ export default function Dashboard() {
           </AlertDialogHeader>
           <AlertDialogFooter className="mt-6">
             <AlertDialogCancel className="rounded-xl">Cancel</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={() => {
-                // The wiping logic is safely handled by setSemester inside select-courses page load
-                // We just need to route them!
-                router.push(`/select-courses?semester=${selectedSemester}`);
-              }}
-              className="bg-red-600 hover:bg-red-700 text-white rounded-xl border-0"
-            >
-              Wipe and Switch
-            </AlertDialogAction>
+              <AlertDialogAction 
+                onClick={() => {
+                  setIsNavigating(true);
+                  useScheduleStore.getState().setSemester(selectedSemester);
+                  router.push(`/select-courses?semester=${selectedSemester}`);
+                }}
+                disabled={isNavigating}
+                className="bg-red-500 hover:bg-red-600 text-white border-0"
+              >
+                {isNavigating ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                Reset & Continue
+              </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

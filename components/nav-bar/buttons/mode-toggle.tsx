@@ -82,7 +82,7 @@ export function ModeToggle({ isMobile = false }: { isMobile?: boolean }) {
           side="bottom" 
           align="end" 
           sideOffset={10} 
-          className="relative w-auto p-2 px-3 min-w-0 bg-primary text-primary-foreground border-none rounded-md shadow-md animate-in fade-in slide-in-from-top-1"
+          className="relative hidden sm:block w-auto p-2 px-3 min-w-0 bg-primary text-primary-foreground border-none rounded-md shadow-md animate-in fade-in slide-in-from-top-1"
         >
           {/* Custom upward arrow */}
           <div className="absolute -top-1.5 right-4 w-3 h-3 bg-primary rotate-45 rounded-sm" />

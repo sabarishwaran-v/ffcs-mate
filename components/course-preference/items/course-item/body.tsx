@@ -336,8 +336,7 @@ export default function CourseItemBody({
       {/* Footer Action */}
       <div className="p-4 bg-background/95 backdrop-blur-md border-t border-border flex justify-between shrink-0 sticky bottom-0">
         <div>
-          {Object.values(allAvailableFaculties).filter(af => af.courseCode === course.code).length === 0 && 
-           ((useFacultyStore.getState().contributionsCount[course.code] || 0) < 10) && (
+          {((useFacultyStore.getState().contributionsCount[course.code] || 0) < 10) && (
             <button
               onClick={() => setIsContributeModalOpen(true)}
               className="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all border border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-500/10"

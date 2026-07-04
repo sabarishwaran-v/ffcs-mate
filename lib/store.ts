@@ -107,8 +107,13 @@ export const useFacultyStore = create<{
   isListening: boolean;
   fetchApprovedFaculties: () => void;
 }>((set, get) => ({
-  // Initialize with fallback data
-  approvedFaculties: fallbackData as Record<string, ApprovedFaculty>,
+  // Initialize with fallback data, mapping facultyName to faculty if needed
+  approvedFaculties: Object.fromEntries(
+    Object.entries(fallbackData).map(([k, v]) => [
+      k, 
+      { ...v, faculty: (v as any).facultyName || (v as any).faculty }
+    ])
+  ) as Record<string, ApprovedFaculty>,
   contributionsCount: {},
   isFetching: false,
   isListening: false,
@@ -122,9 +127,14 @@ export const useFacultyStore = create<{
       onSnapshot(q, (docSnap) => {
         if (docSnap.exists()) {
           const data = docSnap.data();
-          set({ approvedFaculties: data as Record<string, ApprovedFaculty> });
+          const mappedData = Object.fromEntries(
+            Object.entries(data).map(([k, v]) => [
+              k, 
+              { ...v, faculty: v.facultyName || v.faculty }
+            ])
+          );
+          set({ approvedFaculties: mappedData as Record<string, ApprovedFaculty> });
         } else {
-          // If no bundle exists in DB, keep using fallback
           console.log("No DB bundle, using fallback.");
         }
       }, (error) => {

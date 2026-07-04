@@ -195,7 +195,6 @@ export default function CourseItemBody({
                     {localFaculties[t.id] || t.faculty || "-"}
                   </span>
                   {/* HIDING CROWDSOURCING FOR NOW
-                  {/* HIDING CROWDSOURCING FOR NOW
                   {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
                     <button 
                       onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
@@ -204,7 +203,6 @@ export default function CourseItemBody({
                       <PlusCircle className="w-3 h-3" /> Add
                     </button>
                   )}
-                  */}
                   */}
                 </div>
                 <div className="flex justify-end">

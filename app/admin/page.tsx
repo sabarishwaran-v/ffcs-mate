@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { getOrGenerateTOTPSecret, verifyOTPAndGrantAccess } from './actions';
 import { ShieldAlert, Loader2, KeyRound } from 'lucide-react';
@@ -40,6 +40,22 @@ export default function AdminLogin() {
       }
     } catch (error: any) {
       toast.error(error.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast.error('Please enter your admin email first to reset password');
+      return;
+    }
+    setLoading(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success('Password reset email sent! Check your inbox.');
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to send reset email');
     } finally {
       setLoading(false);
     }
@@ -95,7 +111,16 @@ export default function AdminLogin() {
               />
             </div>
             <div>
-              <label className="text-xs font-semibold uppercase text-muted-foreground mb-1 block">Password</label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-xs font-semibold uppercase text-muted-foreground block">Password</label>
+                <button 
+                  type="button" 
+                  onClick={handleForgotPassword}
+                  className="text-xs text-red-500 hover:text-red-600 hover:underline"
+                >
+                  Forgot Password?
+                </button>
+              </div>
               <input 
                 type="password" 
                 required

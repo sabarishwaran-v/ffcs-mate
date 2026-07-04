@@ -265,7 +265,7 @@ export default function BulkFacultyParserModal({
 
       try {
         const batch = parsedTeachers.map(t => {
-          const deterministicId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\s+/g, '_')}`;
+          const deterministicId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\\s+/g, '_')}`;
           return {
             id: deterministicId,
             courseId: course.id,
@@ -276,21 +276,28 @@ export default function BulkFacultyParserModal({
             venue: t.venue.morning || t.venue.afternoon || "Unknown",
             submittedByUid: user?.uid || 'anonymous',
             submittedByName: userData?.name || 'Anonymous',
-            submittedAt: serverTimestamp(),
-            status: 'pending'
+            submittedAt: new Date().toISOString(), // Use local date for JSON
+            status: 'approved' // Set to approved directly for local override
           };
         });
         
-        const promises = batch.map(record => {
-          if (approvedFaculties[record.id]) return Promise.resolve();
-          const { id, ...data } = record;
-          return setDoc(doc(db, 'pending_faculties', id), data, { merge: true });
-        });
+        // --- NEW LOCAL OVERRIDE DOWNLOAD ---
+        // Instead of writing to Firebase (which is blocked by quota), download it directly!
+        const jsonString = JSON.stringify(batch, null, 2);
+        const blob = new Blob([jsonString], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `parsed_${course.code}_faculties.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
         
-        // Use allSettled so if one slot fails (e.g. someone else owns it), it doesn't fail the rest
-        await Promise.allSettled(promises);
-      } catch (firebaseErr) {
-        console.error("Silent sync failed, but local saved successfully", firebaseErr);
+        // We no longer push to pending_faculties
+        // const promises = batch.map(...)
+      } catch (err) {
+        console.error("Failed to generate download file", err);
       }
 
       toast.success(`Successfully added ${parsedTeachers.length} classes for ${course.code}!`);

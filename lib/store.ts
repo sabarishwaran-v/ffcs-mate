@@ -98,6 +98,8 @@ export const manualSlotSelectionStore = create<{
 import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
+import fallbackData from './fallback_faculties.json';
+
 export const useFacultyStore = create<{
   approvedFaculties: Record<string, ApprovedFaculty>;
   contributionsCount: Record<string, number>;
@@ -105,7 +107,8 @@ export const useFacultyStore = create<{
   isListening: boolean;
   fetchApprovedFaculties: () => void;
 }>((set, get) => ({
-  approvedFaculties: {},
+  // Initialize with fallback data
+  approvedFaculties: fallbackData as Record<string, ApprovedFaculty>,
   contributionsCount: {},
   isFetching: false,
   isListening: false,
@@ -119,13 +122,14 @@ export const useFacultyStore = create<{
       onSnapshot(q, (docSnap) => {
         if (docSnap.exists()) {
           const data = docSnap.data();
-          // The bundle is a map of id -> ApprovedFaculty
           set({ approvedFaculties: data as Record<string, ApprovedFaculty> });
         } else {
-          set({ approvedFaculties: {} });
+          // If no bundle exists in DB, keep using fallback
+          console.log("No DB bundle, using fallback.");
         }
       }, (error) => {
-        console.error("Failed to fetch approved faculties bundle:", error);
+        console.error("Failed to fetch approved faculties bundle. Using local fallback.", error);
+        // Do not clear the fallback data if there is an error (like quota exceeded)
       });
 
       const countDoc = doc(db, 'system', 'contributions_count');

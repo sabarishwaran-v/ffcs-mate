@@ -12,9 +12,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, CheckCircle2, Loader2, Sparkles, UploadCloud, FileImage, X } from "lucide-react";
 import { useAuth } from "@/components/providers/auth-provider";
-import { collection, setDoc, doc, serverTimestamp, increment } from "firebase/firestore";
+import { collection, setDoc, doc, serverTimestamp, increment, writeBatch } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Tesseract from 'tesseract.js';
+import { useOptimisticStore } from "@/lib/store";
 
 interface StudentContributeModalProps {
   isOpen: boolean;
@@ -42,8 +43,10 @@ export default function StudentContributeModal({
   const [unrecognizedSlots, setUnrecognizedSlots] = useState<string[]>([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [mismatchedCourseInfo, setMismatchedCourseInfo] = useState<string | null>(null);
+  const [isDone, setIsDone] = useState(false);
 
   const { user, userData } = useAuth();
+  const { addOptimisticFaculty } = useOptimisticStore();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -213,39 +216,50 @@ export default function StudentContributeModal({
     setIsSubmitting(true);
     
     try {
-      const batch = parsedTeachers.map(t => {
-        // Create unique ID for this pending submission
-        const uniqueId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\s+/g, '_')}_${user.uid}`;
-        return {
-          id: uniqueId,
+      const batch = writeBatch(db);
+      
+      parsedTeachers.forEach(t => {
+        const slot = t.name;
+        const faculty = t.faculty;
+        const venue = t.venue.morning || t.venue.afternoon || "Unknown";
+        
+        if (!slot || !faculty || !venue) return;
+        
+        const deterministicId = `${course.code}_${slot}_${faculty.replace(/\s+/g, '_')}_${user.uid}`;
+
+        // Save locally for immediate use
+        addOptimisticFaculty(deterministicId, {
+          id: deterministicId,
+          courseCode: course.code,
+          slot,
+          faculty,
+          venue,
+          approvedAt: "",
+          approvedBy: ""
+        });
+
+        batch.set(doc(db, 'pending_faculties', deterministicId), {
           courseId: course.id,
           courseCode: course.code,
           courseName: course.name,
-          slot: t.name,
-          facultyName: t.faculty,
-          venue: t.venue.morning || t.venue.afternoon || "Unknown",
+          slot: slot,
+          facultyName: faculty,
+          venue: venue,
           submittedByUid: user.uid,
           submittedByName: userData?.name || 'Anonymous Student',
           submittedAt: serverTimestamp(),
           status: 'pending'
-        };
-      });
-      
-      const promises = batch.map(record => {
-        const { id, ...data } = record;
-        return setDoc(doc(db, 'pending_faculties', id), data, { merge: true });
+        });
       });
       
       // Also increment the global submission count for this course
-      promises.push(
-        setDoc(
-          doc(db, 'system', 'contributions_count'),
-          { [course.code]: increment(1) },
-          { merge: true }
-        )
+      batch.set(
+        doc(db, 'system', 'contributions_count'),
+        { [course.code]: increment(1) },
+        { merge: true }
       );
       
-      await Promise.allSettled(promises);
+      await batch.commit();
 
       toast.success(`Thank you! Your contribution has been submitted for admin review.`);
       setImages([]);

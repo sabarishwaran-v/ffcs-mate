@@ -147,3 +147,19 @@ export const useFacultyStore = create<{
     }
   }
 }));
+
+export const useOptimisticStore = create<{
+  optimisticFaculties: Record<string, ApprovedFaculty>;
+  addOptimisticFaculty: (id: string, faculty: ApprovedFaculty) => void;
+}>()(
+  persist(
+    (set) => ({
+      optimisticFaculties: {},
+      addOptimisticFaculty: (id, faculty) => 
+        set((state) => ({ 
+          optimisticFaculties: { ...state.optimisticFaculties, [id]: faculty } 
+        })),
+    }),
+    { name: 'optimistic-faculties-v1' }
+  )
+);

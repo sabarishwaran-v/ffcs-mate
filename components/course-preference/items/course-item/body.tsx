@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Course, Teacher } from "@/types";
-import { useScheduleStore, useFacultyStore } from "@/lib/store";
+import { useScheduleStore, useFacultyStore, useOptimisticStore } from "@/lib/store";
 import { toast } from "sonner";
 import { Check, CalendarPlus, CheckCircle2, UploadCloud } from "lucide-react";
 import { MOCK_COURSES } from "@/lib/mock-data";
@@ -22,6 +22,7 @@ export default function CourseItemBody({
 }: CourseItemBodyProps) {
   const { isTeacherSelected, setCourseSlots } = useScheduleStore();
   const { approvedFaculties, fetchApprovedFaculties } = useFacultyStore();
+  const { optimisticFaculties } = useOptimisticStore();
   const { user, userData } = useAuth();
 
   const [selectedTheoryId, setSelectedTheoryId] = useState<string | null>(null);
@@ -66,13 +67,14 @@ export default function CourseItemBody({
   }, [theoryTeachers, labTeachers, isTeacherSelected, hasInitialized]);
 
   const localTeacherIds = courseTeachers.map(t => t.id).join(',');
-  const approvedTeacherIds = Object.keys(approvedFaculties).join(',');
+  const allAvailableFaculties = { ...optimisticFaculties, ...approvedFaculties };
+  const approvedTeacherIds = Object.keys(allAvailableFaculties).join(',');
 
   useEffect(() => {
     let shouldAdd: Teacher[] = [];
     let shouldRemove: string[] = [];
 
-    const courseApproved = Object.values(approvedFaculties).filter(af => af.courseCode === course.code);
+    const courseApproved = Object.values(allAvailableFaculties).filter(af => af.courseCode === course.code);
     
     courseApproved.forEach(af => {
       // Check if we already have this faculty (by deterministic ID or locally parsed name/slot combo)
@@ -231,7 +233,7 @@ export default function CourseItemBody({
           <div className="flex flex-col divide-y divide-border">
             {theoryTeachers.map((t) => {
               const deterministicId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\s+/g, '_')}`;
-              const approvedObj = approvedFaculties[t.id] || approvedFaculties[deterministicId];
+              const approvedObj = allAvailableFaculties[t.id] || allAvailableFaculties[deterministicId];
               return (
               <label
                 key={t.id}
@@ -290,7 +292,7 @@ export default function CourseItemBody({
           <div className="flex flex-col divide-y divide-border">
             {labTeachers.map((t) => {
               const deterministicId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\s+/g, '_')}`;
-              const approvedObj = approvedFaculties[t.id] || approvedFaculties[deterministicId];
+              const approvedObj = allAvailableFaculties[t.id] || allAvailableFaculties[deterministicId];
               return (
               <label
                 key={t.id}
@@ -334,7 +336,7 @@ export default function CourseItemBody({
       {/* Footer Action */}
       <div className="p-4 bg-background/95 backdrop-blur-md border-t border-border flex justify-between shrink-0 sticky bottom-0">
         <div>
-          {Object.values(approvedFaculties).filter(af => af.courseCode === course.code).length === 0 && 
+          {Object.values(allAvailableFaculties).filter(af => af.courseCode === course.code).length === 0 && 
            ((useFacultyStore.getState().contributionsCount[course.code] || 0) < 10) && (
             <button
               onClick={() => setIsContributeModalOpen(true)}

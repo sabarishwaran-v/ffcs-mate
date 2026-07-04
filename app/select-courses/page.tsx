@@ -11,6 +11,7 @@ import { AnimatedButton } from "@/components/ui/button";
 import { useScheduleStore } from "@/lib/store";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { toast } from "sonner";
+import { COURSE_BASKETS } from "@/lib/baskets";
 
 import { Suspense } from "react";
 import { ErrorBoundary } from "@/components/error-boundary";
@@ -85,6 +86,30 @@ function SelectCoursesContent() {
     setSelectedCourseIds(prev => 
       prev.includes(id) ? prev.filter(cId => cId !== id) : [...prev, id]
     );
+  };
+
+  const handleApplyBasket = (basketCodes: string[]) => {
+    // Find all matching course IDs in MOCK_COURSES
+    const idsToAdd: string[] = [];
+    basketCodes.forEach(code => {
+      // Find course matching the code exactly or loosely
+      const matchingCourse = MOCK_COURSES.find(c => 
+        c.code.replace(/\s+/g, '').toLowerCase() === code.replace(/\s+/g, '').toLowerCase()
+      );
+      if (matchingCourse) {
+        idsToAdd.push(matchingCourse.id);
+      }
+    });
+
+    if (idsToAdd.length > 0) {
+      setSelectedCourseIds(prev => {
+        const newSet = new Set([...prev, ...idsToAdd]);
+        return Array.from(newSet);
+      });
+      toast.success(`Added ${idsToAdd.length} available courses from basket!`);
+    } else {
+      toast.error("None of the courses in this basket are currently available in the database.");
+    }
   };
 
   const { courses, addCourse, removeCourse, teachers, addTeacher } = useScheduleStore();
@@ -191,6 +216,29 @@ function SelectCoursesContent() {
                 Search the list below and add them to your selection cart. Once you have picked everything you need, 
                 click Proceed to start planning your {semesterName}!!
               </p>
+            </div>
+          </MotionDiv>
+
+          <MotionDiv 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="w-full flex flex-col gap-4 mb-4"
+          >
+            {/* Quick Baskets */}
+            <div className="flex flex-wrap gap-2 items-center bg-secondary/30 p-3 rounded-xl border">
+              <span className="text-xs font-bold text-muted-foreground uppercase px-2">Quick Baskets:</span>
+              {COURSE_BASKETS.map(basket => (
+                <button
+                  key={basket.id}
+                  onClick={() => handleApplyBasket(basket.courseCodes)}
+                  className="text-xs font-semibold bg-background hover:bg-primary/10 border border-primary/20 text-primary px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5"
+                  title={`Add ${basket.name} courses`}
+                >
+                  <Plus className="w-3 h-3" />
+                  {basket.name}
+                </button>
+              ))}
             </div>
           </MotionDiv>
 

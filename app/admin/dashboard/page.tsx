@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth, db } from '@/lib/firebase';
-import { collection, query, onSnapshot, doc, deleteDoc, setDoc } from 'firebase/firestore';
+import { collection, query, onSnapshot, doc, deleteDoc, setDoc, writeBatch } from 'firebase/firestore';
 import { ShieldCheck, LogOut, CheckCircle, ChevronDown, ChevronRight, Trash2, LayoutList, Loader2 } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -89,6 +89,32 @@ export default function AdminDashboard() {
     try {
       await deleteDoc(doc(db, 'approved_faculties', id));
       toast.success('Revoked approved faculty.');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleDeleteCourse = async (courseCode: string) => {
+    if (!confirm(`Are you absolutely sure you want to delete ALL slots and faculties for ${courseCode}? This cannot be undone.`)) return;
+    
+    try {
+      const batch = writeBatch(db);
+      const courseData = groupedData[courseCode];
+      
+      let count = 0;
+      Object.values(courseData.slots).forEach(slotData => {
+        slotData.approved.forEach(a => {
+          batch.delete(doc(db, 'approved_faculties', a.id));
+          count++;
+        });
+      });
+
+      if (count > 0) {
+        await batch.commit();
+        toast.success(`Successfully deleted all ${count} slots for ${courseCode}.`);
+      } else {
+        toast.info(`No slots found for ${courseCode}.`);
+      }
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -203,6 +229,17 @@ export default function AdminDashboard() {
                       <LayoutList className="w-3.5 h-3.5" />
                       {Object.keys(course.slots).length} Slots
                     </span>
+                    <AnimatedButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteCourse(course.code);
+                      }}
+                      variant="outline"
+                      className="text-red-500 hover:text-red-600 hover:bg-red-50 px-3 py-1 h-auto text-xs"
+                    >
+                      <Trash2 className="w-3.5 h-3.5 mr-1" />
+                      Delete All
+                    </AnimatedButton>
                   </div>
                 </button>
                 

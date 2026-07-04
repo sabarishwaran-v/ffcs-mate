@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Course, Teacher } from "@/types";
 import { useScheduleStore } from "@/lib/store";
 import { toast } from "sonner";
-import { Check, CalendarPlus } from "lucide-react";
+import { Check, CalendarPlus, PlusCircle } from "lucide-react";
 import { MOCK_COURSES } from "@/lib/mock-data";
 import { useAuth } from "@/components/providers/auth-provider";
+import FacultyContributeModal from "./faculty-contribute-modal";
 
 interface CourseItemBodyProps {
   course: Course;
@@ -45,6 +46,10 @@ export default function CourseItemBody({
   const requiresLab = labTeachers.length > 0;
 
   const [hasInitialized, setHasInitialized] = useState(false);
+  
+  const [contributeModalOpen, setContributeModalOpen] = useState(false);
+  const [selectedTeacherForContribute, setSelectedTeacherForContribute] = useState<Teacher | null>(null);
+  const [localFaculties, setLocalFaculties] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (hasInitialized) return;
@@ -133,9 +138,19 @@ export default function CourseItemBody({
                 <span className="text-sm font-bold text-foreground">
                   {t.name}
                 </span>
-                <span className="text-sm font-medium text-muted-foreground truncate">
-                  {t.faculty || "-"}
-                </span>
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <span className="text-sm font-medium text-muted-foreground truncate">
+                    {localFaculties[t.id] || t.faculty || "-"}
+                  </span>
+                  {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
+                    <button 
+                      onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
+                      className="text-xs flex items-center gap-1 text-blue-500 hover:text-blue-600 hover:underline bg-blue-500/10 px-2 py-0.5 rounded-full"
+                    >
+                      <PlusCircle className="w-3 h-3" /> Add
+                    </button>
+                  )}
+                </div>
                 <div className="flex justify-end">
                   <input
                     type="radio"
@@ -173,9 +188,19 @@ export default function CourseItemBody({
                 <span className="text-sm font-bold text-foreground">
                   {t.name}
                 </span>
-                <span className="text-sm font-medium text-muted-foreground truncate">
-                  {t.faculty || "-"}
-                </span>
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <span className="text-sm font-medium text-muted-foreground truncate">
+                    {localFaculties[t.id] || t.faculty || "-"}
+                  </span>
+                  {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
+                    <button 
+                      onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
+                      className="text-xs flex items-center gap-1 text-blue-500 hover:text-blue-600 hover:underline bg-blue-500/10 px-2 py-0.5 rounded-full"
+                    >
+                      <PlusCircle className="w-3 h-3" /> Add
+                    </button>
+                  )}
+                </div>
                 <div className="flex justify-end">
                   <input
                     type="radio"
@@ -214,6 +239,19 @@ export default function CourseItemBody({
           )}
         </button>
       </div>
+
+      {/* Contribute Modal */}
+      {selectedTeacherForContribute && (
+        <FacultyContributeModal 
+          isOpen={contributeModalOpen}
+          onClose={() => setContributeModalOpen(false)}
+          course={course}
+          teacherSlot={selectedTeacherForContribute}
+          onSuccess={(newFaculty) => {
+            setLocalFaculties(prev => ({ ...prev, [selectedTeacherForContribute.id]: newFaculty }));
+          }}
+        />
+      )}
     </div>
   );
 }

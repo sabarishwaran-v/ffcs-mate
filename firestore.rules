@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 1. Rooms Collection (Live Timetable Sharing)
+    // - Anyone can read rooms (to join them via link)
+    // - Anyone can create a room
+    // - Only members can update/delete rooms
+    match /rooms/{roomId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if request.auth != null && request.auth.uid in resource.data.memberIds;
+    }
+    
+    // 2. Pending Faculties (Crowdsourcing Submissions)
+    // - Any logged in user (student) can submit a missing faculty
+    // - Only Admins can read (review) and delete (reject)
+    match /pending_faculties/{docId} {
+      allow create: if request.auth != null; // Students can submit
+      allow read, update, delete: if request.auth != null && request.auth.token.admin == true; // Admins only
+    }
+    
+    // 3. Approved Faculties
+    // - Anyone can read the approved faculties (for the live website to use)
+    // - Only Admins can write/approve
+    match /approved_faculties/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true; // Admins only
+    }
+
+    // 4. Admin Secrets (TOTP and Security)
+    // - Strictly backend Server Actions ONLY via Firebase Admin SDK
+    // - No client access whatsoever
+    match /admin_secrets/{uid} {
+      allow read, write: if false; // Only Admin SDK (Server Actions) bypasses this
+    }
+  }
+}

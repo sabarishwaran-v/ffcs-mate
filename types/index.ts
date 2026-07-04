@@ -54,6 +54,7 @@ export interface Course {
 export interface Teacher {
   id: string;
   name: string;
+  faculty?: string;
   color: string;
   slots: {
     morning: string[] | null;

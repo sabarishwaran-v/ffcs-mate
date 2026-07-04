@@ -60,10 +60,10 @@ export default function Dashboard() {
   return (
     <main className="min-h-screen bg-background overflow-hidden relative selection:bg-purple-500/30 flex flex-col">
       {/* Announcement Banner */}
-      <div className="w-full bg-amber-500/10 border-b border-amber-500/20 relative z-50">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-center text-sm text-amber-700 dark:text-amber-400 font-semibold text-center">
+      <div className="w-full bg-emerald-500/10 border-b border-emerald-500/20 relative z-50">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-center text-sm text-emerald-700 dark:text-emerald-400 font-semibold text-center">
           <ShieldAlert className="w-4 h-4 mr-2 inline-block shrink-0" />
-          Fall 2026-27 Registration is on July 5th & 6th! We will update the course data as soon as the university releases it.
+          Fall 2026-27 official course list is now live on FFCS Mate.
         </div>
       </div>
 
@@ -245,8 +245,8 @@ export default function Dashboard() {
                   disabled={isExtracting}
                 >
                   <option value="" disabled>-- Select a Semester --</option>
+                  <option value="fall2026">Fall Semester 2026-27</option>
                   <option value="winter2025">Winter Semester 2025-26</option>
-                  <option value="fall2026" disabled>Fall Semester 2026-27 (Coming Soon)</option>
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                   {isExtracting ? (

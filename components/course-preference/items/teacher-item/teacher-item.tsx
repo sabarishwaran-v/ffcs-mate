@@ -65,12 +65,19 @@ export default function TeacherItem({
         layout
       >
         <div className={className}>
-          <div className="flex items-center gap-2">
-            <p className="font-medium">{teacherNameEnh}</p>
-            <TeacherClashTooltip
-              clashedTeachers={clashedTeachers}
-              identicalSlotClash={identicalSlotClash}
-            />
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <p className="font-medium">{teacherNameEnh}</p>
+              <TeacherClashTooltip
+                clashedTeachers={clashedTeachers}
+                identicalSlotClash={identicalSlotClash}
+              />
+            </div>
+            {teacher.faculty && (
+              <p className="text-xs font-semibold text-muted-foreground bg-secondary/30 px-2 py-0.5 rounded-md self-start border border-border/50">
+                {teacher.faculty}
+              </p>
+            )}
           </div>
           {(teacher.venue.morning || teacher.venue.afternoon) && (
             <p className="text-xs text-muted-foreground">

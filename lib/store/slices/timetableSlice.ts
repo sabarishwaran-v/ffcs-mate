@@ -21,6 +21,7 @@ export type TimetableSlice = Pick<
   | "toggleTeacherInTimetable"
   | "isTeacherSelected"
   | "setCourseSlots"
+  | "dropCourse"
   | "activeRoomId"
   | "roomRole"
   | "viewMode"
@@ -240,7 +241,7 @@ export const createTimetableSlice: StateCreator<
     clearClashDetectionCaches();
   },
 
-  dropCourse: (courseId) => {
+  dropCourse: (courseId: string) => {
     const state = get();
     const currentTimetableId = state.activeTimetableId;
     if (!currentTimetableId) return;

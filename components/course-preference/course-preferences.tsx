@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useScheduleStore } from "@/lib/store";
 import { Course, Teacher } from "@/types";
 import { MOCK_COURSES } from "@/lib/mock-data";
+import facultyData from "@/lib/faculties.json";
 import { CourseSortMenu } from "@/components/course-preference/ui/sort-menu";
 import { CourseSelectionModal } from "./course-selection-modal";
 import { Switch } from "@/components/ui/switch";
@@ -75,22 +76,61 @@ export function CoursePreference() {
           ...(mockData.labSlots || [])
         ];
 
+        // Count occurrences to identify duplicate slots
+        const slotCounts: Record<string, number> = {};
+        allSlots.forEach(slotStr => {
+          slotCounts[slotStr] = (slotCounts[slotStr] || 0) + 1;
+        });
+        
+        const seenSlots: Record<string, number> = {};
+        
+        const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
+        
         // Pre-generate Teacher entities for every available slot of this course
         allSlots.forEach(slotStr => {
-          const fakeTeacherId = `${mockData.id}-${slotStr}`;
-          if (!teachers.find(t => t.id === fakeTeacherId)) {
-            
-            const parsedPeriods = slotStr.split('+').map(s => s.trim());
-            const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
-
-            addTeacher({
-              id: fakeTeacherId,
-              name: slotStr, 
-              color: isLab ? "#0ea5e9" : "#8b5cf6",
-              slots: { morning: parsedPeriods, afternoon: null },
-              venue: { morning: null, afternoon: null },
-              course: mockData.id,
+          seenSlots[slotStr] = (seenSlots[slotStr] || 0) + 1;
+          const index = seenSlots[slotStr];
+          const hasDuplicates = slotCounts[slotStr] > 1;
+          
+          const parsedPeriods = slotStr.split('+').map(s => s.trim());
+          const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
+          
+          const facultyKey = `${mockData.code}_${slotStr}`;
+          const faculties = typedFacultyData[facultyKey];
+          
+          if (faculties && faculties.length > 0) {
+            // Generate multiple slot options if faculty data exists
+            faculties.forEach((fac, fIndex) => {
+              const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
+              if (!teachers.find(t => t.id === fakeTeacherId)) {
+                addTeacher({
+                  id: fakeTeacherId,
+                  name: slotStr, 
+                  faculty: fac.faculty,
+                  color: isLab ? "#0ea5e9" : "#8b5cf6",
+                  slots: { morning: parsedPeriods, afternoon: null },
+                  venue: { morning: fac.venue || null, afternoon: null },
+                  course: mockData.id,
+                });
+              }
             });
+          } else {
+            // Fallback for when no faculty data is available (just one generic slot option)
+            const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
+            
+            if (!teachers.find(t => t.id === fakeTeacherId)) {
+              const facultyName = hasDuplicates ? `Faculty ${index}` : undefined;
+  
+              addTeacher({
+                id: fakeTeacherId,
+                name: slotStr, 
+                faculty: facultyName,
+                color: isLab ? "#0ea5e9" : "#8b5cf6",
+                slots: { morning: parsedPeriods, afternoon: null },
+                venue: { morning: null, afternoon: null },
+                course: mockData.id,
+              });
+            }
           }
         });
       }

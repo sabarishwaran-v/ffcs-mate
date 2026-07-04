@@ -13,7 +13,7 @@ export interface Course {
 }
 
 export const MOCK_COURSES: Course[] = parsedCourses
-  .filter((c: any) => c.type !== "PJT") // Remove project courses (they have no slots)
+  // .filter((c: any) => c.type !== "PJT") // Project courses are now allowed
   .map((c: any) => ({
     id: c.id,
     code: c.code,

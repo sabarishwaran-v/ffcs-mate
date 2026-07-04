@@ -29,12 +29,16 @@ export default function CourseItemBody({
   const theorySlots = course.theorySlots || mockCourse?.theorySlots || [];
   const labSlots = course.labSlots || mockCourse?.labSlots || [];
 
-  const theoryTeachers = courseTeachers.filter((t) =>
-    theorySlots.includes(t.name)
-  );
-  const labTeachers = courseTeachers.filter((t) =>
-    labSlots.includes(t.name)
-  );
+  const theoryTeachers = courseTeachers.filter((t) => {
+    const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
+    const isLab = allSlots.some(s => s.startsWith('L') && /[0-9]/.test(s));
+    return !isLab;
+  });
+
+  const labTeachers = courseTeachers.filter((t) => {
+    const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
+    return allSlots.some(s => s.startsWith('L') && /[0-9]/.test(s));
+  });
 
   const isEmbedded = theoryTeachers.length > 0 && labTeachers.length > 0;
   const requiresTheory = theoryTeachers.length > 0;
@@ -93,33 +97,55 @@ export default function CourseItemBody({
     return Boolean(placedTheory || placedLab);
   };
 
+  if (course.type.includes('PJT')) {
+    return (
+      <div className="flex flex-col max-h-[60vh] overflow-y-auto p-12 items-center text-center text-muted-foreground bg-secondary/10">
+        <div className="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-full flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </div>
+        <h3 className="text-lg font-bold text-foreground">Project Course</h3>
+        <p className="text-sm mt-2 max-w-sm">This is a Project course. It does not have any scheduled classes or timetable slots.</p>
+        <p className="text-xs mt-4 font-semibold text-blue-500 bg-blue-500/10 px-3 py-1 rounded-full">Automatically counts towards your total credits</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col max-h-[60vh] overflow-y-auto">
       {/* Theory Section */}
       {requiresTheory && (
         <div className="w-full">
-          <div className="bg-secondary/30 px-4 py-2 border-b border-border">
+          <div className="bg-secondary/30 px-6 py-2 border-b border-border grid grid-cols-[1fr_1fr_24px] gap-4 items-center">
             <span className="text-xs font-bold text-primary tracking-wider uppercase">
               {isEmbedded ? "Embedded Theory Slots" : "Theory Slots"}
             </span>
+            <span className="text-xs font-bold text-primary tracking-wider uppercase">
+              Faculty
+            </span>
+            <span></span>
           </div>
           <div className="flex flex-col divide-y divide-border">
             {theoryTeachers.map((t) => (
               <label
                 key={t.id}
-                className="flex items-center justify-between px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors"
+                className="grid grid-cols-[1fr_1fr_24px] gap-4 items-center px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors"
               >
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-sm font-bold text-foreground">
                   {t.name}
                 </span>
-                <input
-                  type="radio"
-                  name={`theory-${course.id}`}
-                  value={t.id}
-                  checked={selectedTheoryId === t.id}
-                  onChange={() => setSelectedTheoryId(t.id)}
-                  className="w-4 h-4 accent-sky-500 cursor-pointer"
-                />
+                <span className="text-sm font-medium text-muted-foreground truncate">
+                  {t.faculty || "-"}
+                </span>
+                <div className="flex justify-end">
+                  <input
+                    type="radio"
+                    name={`theory-${course.id}`}
+                    value={t.id}
+                    checked={selectedTheoryId === t.id}
+                    onChange={() => setSelectedTheoryId(t.id)}
+                    className="w-4 h-4 accent-sky-500 cursor-pointer"
+                  />
+                </div>
               </label>
             ))}
           </div>
@@ -129,28 +155,37 @@ export default function CourseItemBody({
       {/* Lab Section */}
       {requiresLab && (
         <div className="w-full">
-          <div className="bg-secondary/30 px-4 py-2 border-y border-border mt-2">
+          <div className="bg-secondary/30 px-6 py-2 border-y border-border mt-2 grid grid-cols-[1fr_1fr_24px] gap-4 items-center">
             <span className="text-xs font-bold text-primary tracking-wider uppercase">
               Lab Slots
             </span>
+            <span className="text-xs font-bold text-primary tracking-wider uppercase">
+              Faculty
+            </span>
+            <span></span>
           </div>
           <div className="flex flex-col divide-y divide-border">
             {labTeachers.map((t) => (
               <label
                 key={t.id}
-                className="flex items-center justify-between px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors"
+                className="grid grid-cols-[1fr_1fr_24px] gap-4 items-center px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors"
               >
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-sm font-bold text-foreground">
                   {t.name}
                 </span>
-                <input
-                  type="radio"
-                  name={`lab-${course.id}`}
-                  value={t.id}
-                  checked={selectedLabId === t.id}
-                  onChange={() => setSelectedLabId(t.id)}
-                  className="w-4 h-4 accent-sky-500 cursor-pointer"
-                />
+                <span className="text-sm font-medium text-muted-foreground truncate">
+                  {t.faculty || "-"}
+                </span>
+                <div className="flex justify-end">
+                  <input
+                    type="radio"
+                    name={`lab-${course.id}`}
+                    value={t.id}
+                    checked={selectedLabId === t.id}
+                    onChange={() => setSelectedLabId(t.id)}
+                    className="w-4 h-4 accent-sky-500 cursor-pointer"
+                  />
+                </div>
               </label>
             ))}
           </div>

@@ -91,3 +91,11 @@ export interface ClashInfo {
   teacher1: Teacher;
   teacher2: Teacher;
 }
+
+export interface ApprovedFaculty {
+  id: string;
+  courseCode: string;
+  slot: string;
+  faculty: string;
+  venue: string;
+}

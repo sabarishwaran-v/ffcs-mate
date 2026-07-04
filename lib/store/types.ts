@@ -39,9 +39,12 @@ export type Actions = {
 
   // Teacher actions
   addTeacher: (teacher: Omit<Teacher, "id"> & { id?: string }) => void;
+  addTeachers: (teachers: (Omit<Teacher, "id"> & { id?: string })[]) => void;
   editTeacher: (id: string, teacher: Partial<Omit<Teacher, "id">>) => void;
   removeTeacher: (id: string) => void;
+  removeTeachers: (ids: string[]) => void;
   deleteAllTeachersForCourse: (courseId: string) => void;
+  replaceCourseTeachers: (courseId: string, newTeachers: Teacher[]) => void;
 
   // Timetable actions
   createTimetable: (name?: string) => string;

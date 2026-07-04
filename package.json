@@ -37,6 +37,7 @@
     "speakeasy": "^2.0.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-radix-colors": "^2.1.0",
+    "tesseract.js": "^7.0.0",
     "zustand": "^5.0.14"
   },
   "devDependencies": {

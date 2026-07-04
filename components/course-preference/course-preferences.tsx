@@ -28,7 +28,8 @@ import { Separator } from "../ui/separator";
 export function CoursePreference() {
   const searchParams = useSearchParams();
   const courseIds = searchParams?.get("courses");
-  const { courses, addCourse, teachers, addTeacher } = useScheduleStore();
+  const { activeTimetableId, getActiveTimetable } = useScheduleStore();
+  const { courses, addCourse, teachers, addTeachers } = useScheduleStore();
   const [sortBy, setSortBy] = useState<"code" | "name">("code");
 
   useEffect(() => {
@@ -55,12 +56,13 @@ export function CoursePreference() {
       useScheduleStore.getState().removeCourse(id);
     });
 
-    ids.forEach(id => {
-      const mockData = MOCK_COURSES.find(c => c.id === id);
-      if (mockData) {
-        // Only add the course if it doesn't exist yet
-        if (!courses.find(c => c.id === id)) {
-          addCourse({
+    const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
+    const newTeachersToAdd: Parameters<typeof addTeachers>[0] = [];
+
+    MOCK_COURSES.forEach(mockData => {
+      // If course is selected (present in URL), and we haven't loaded it into store yet
+      if (ids.includes(mockData.id) && !courses.find(c => c.id === mockData.id)) {
+        addCourse({
             id: mockData.id,
             code: mockData.code,
             name: mockData.title,
@@ -69,29 +71,15 @@ export function CoursePreference() {
             theorySlots: mockData.theorySlots,
             labSlots: mockData.labSlots,
           });
-        }
 
-        const allSlots = [
-          ...(mockData.theorySlots || []),
-          ...(mockData.labSlots || [])
-        ];
+        const allSlots = [...(mockData.theorySlots || []), ...(mockData.labSlots || [])];
+        const uniqueSlotsCount = allSlots.reduce((acc, slot) => {
+          acc[slot] = (acc[slot] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>);
 
-        // Count occurrences to identify duplicate slots
-        const slotCounts: Record<string, number> = {};
-        allSlots.forEach(slotStr => {
-          slotCounts[slotStr] = (slotCounts[slotStr] || 0) + 1;
-        });
-        
-        const seenSlots: Record<string, number> = {};
-        
-        const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
-        
-        // Pre-generate Teacher entities for every available slot of this course
-        allSlots.forEach(slotStr => {
-          seenSlots[slotStr] = (seenSlots[slotStr] || 0) + 1;
-          const index = seenSlots[slotStr];
-          const hasDuplicates = slotCounts[slotStr] > 1;
-          
+        allSlots.forEach((slotStr, index) => {
+          const hasDuplicates = uniqueSlotsCount[slotStr] > 1;
           const parsedPeriods = slotStr.split('+').map(s => s.trim());
           const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
           
@@ -99,11 +87,10 @@ export function CoursePreference() {
           const faculties = typedFacultyData[facultyKey];
           
           if (faculties && faculties.length > 0) {
-            // Generate multiple slot options if faculty data exists
             faculties.forEach((fac, fIndex) => {
               const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
               if (!teachers.find(t => t.id === fakeTeacherId)) {
-                addTeacher({
+                newTeachersToAdd.push({
                   id: fakeTeacherId,
                   name: slotStr, 
                   faculty: fac.faculty,
@@ -115,13 +102,12 @@ export function CoursePreference() {
               }
             });
           } else {
-            // Fallback for when no faculty data is available (just one generic slot option)
             const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
             
             if (!teachers.find(t => t.id === fakeTeacherId)) {
               const facultyName = hasDuplicates ? `Faculty ${index}` : undefined;
   
-              addTeacher({
+              newTeachersToAdd.push({
                 id: fakeTeacherId,
                 name: slotStr, 
                 faculty: facultyName,
@@ -135,7 +121,11 @@ export function CoursePreference() {
         });
       }
     });
-  }, [courseIds, courses, teachers, addCourse, addTeacher]);
+
+    if (newTeachersToAdd.length > 0) {
+      addTeachers(newTeachersToAdd);
+    }
+  }, [courseIds, courses, teachers, addCourse, addTeachers]);
 
   return (
     <Card className="container m-3 mx-auto">

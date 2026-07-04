@@ -7,9 +7,12 @@ export type TeacherSlice = Pick<
   StoreState,
   | "teachers"
   | "addTeacher"
+  | "addTeachers"
   | "editTeacher"
   | "removeTeacher"
+  | "removeTeachers"
   | "deleteAllTeachersForCourse"
+  | "replaceCourseTeachers"
 >;
 
 export const createTeacherSlice: StateCreator<
@@ -31,6 +34,19 @@ export const createTeacherSlice: StateCreator<
           ...state.teachers,
           { ...teacher, id: teacher.id || Math.random().toString(36).slice(2, 9) },
         ],
+      };
+    }),
+
+  addTeachers: (teachersToAdd) =>
+    set((state) => {
+      const newTeachers = teachersToAdd
+        .filter((t) => !t.id || !state.teachers.some((existing) => existing.id === t.id))
+        .map((t) => ({ ...t, id: t.id || Math.random().toString(36).slice(2, 9) }));
+        
+      if (newTeachers.length === 0) return state;
+      
+      return {
+        teachers: [...state.teachers, ...newTeachers],
       };
     }),
 
@@ -80,6 +96,35 @@ export const createTeacherSlice: StateCreator<
       };
     }),
 
+  removeTeachers: (ids) =>
+    set((state) => {
+      if (ids.length === 0) return state;
+      clearClashDetectionCaches();
+
+      const newTimetables = state.timetables.map((timetable) => {
+        const newSelectedTeachers = timetable.selectedTeachers.filter(
+          (t) => !ids.includes(t.id),
+        );
+        return {
+          ...timetable,
+          selectedTeachers: newSelectedTeachers,
+          selectedSlots: Array.from(
+            new Set(
+              newSelectedTeachers.flatMap((t) => [
+                ...(t.slots.morning || []),
+                ...(t.slots.afternoon || []),
+              ]),
+            ),
+          ),
+        };
+      });
+
+      return {
+        teachers: state.teachers.filter((t) => !ids.includes(t.id)),
+        timetables: newTimetables,
+      };
+    }),
+
   deleteAllTeachersForCourse: (courseId) =>
     set((state) => {
       clearClashDetectionCaches();
@@ -105,6 +150,18 @@ export const createTeacherSlice: StateCreator<
       return {
         teachers: state.teachers.filter((t) => t.course !== courseId),
         timetables: newTimetables,
+      };
+    }),
+
+  replaceCourseTeachers: (courseId: string, newTeachers: Teacher[]) =>
+    set((state) => {
+      clearClashDetectionCaches();
+      
+      const filteredTeachers = state.teachers.filter((t) => !t.id.startsWith(courseId));
+      const finalTeachers = [...filteredTeachers, ...newTeachers];
+
+      return {
+        teachers: finalTeachers,
       };
     }),
 });

@@ -127,16 +127,13 @@ export function SelectedCoursesTable() {
                           {teacher.name}
                         </td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap">
-                          
+                          {teacher.faculty || "-"}
                         </td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <div className="space-y-1">
-                            {teacher.venue.morning && (
-                              <div>M: {teacher.venue.morning}</div>
-                            )}
-                            {teacher.venue.afternoon && (
-                              <div>A: {teacher.venue.afternoon}</div>
-                            )}
+                            {Array.from(new Set([teacher.venue.morning, teacher.venue.afternoon]))
+                              .filter(Boolean)
+                              .join(" | ")}
                           </div>
                         </td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap">

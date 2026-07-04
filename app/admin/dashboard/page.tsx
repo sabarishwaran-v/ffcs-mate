@@ -1,31 +1,34 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth, db } from '@/lib/firebase';
 import { collection, query, onSnapshot, doc, deleteDoc, setDoc } from 'firebase/firestore';
-import { ShieldCheck, LogOut, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { ShieldCheck, LogOut, CheckCircle, ChevronDown, ChevronRight, Trash2, LayoutList, Loader2 } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/button';
 import { toast } from 'sonner';
+import AdminBulkParser from './admin-bulk-parser';
 
-interface PendingFaculty {
+
+
+interface ApprovedFaculty {
   id: string;
   courseCode: string;
-  courseTitle: string;
+  courseTitle?: string;
   slot: string;
   faculty: string;
   venue: string;
-  submittedAt: string;
-  submittedBy: string;
+  approvedAt: string;
+  approvedBy: string;
 }
 
 export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [pending, setPending] = useState<PendingFaculty[]>([]);
+  const [approved, setApproved] = useState<ApprovedFaculty[]>([]);
+  const [expandedCourses, setExpandedCourses] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    // Listen for auth state and check claims
     const unsubscribeAuth = auth.onIdTokenChanged(async (user) => {
       if (!user) {
         router.push('/admin');
@@ -53,51 +56,81 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (loading) return;
 
-    // Listen to pending_faculties
-    const q = query(collection(db, 'pending_faculties'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const data: PendingFaculty[] = [];
+    if (loading) return;
+
+    const qApproved = query(collection(db, 'approved_faculties'));
+    const unsubApproved = onSnapshot(qApproved, (snapshot) => {
+      const data: ApprovedFaculty[] = [];
       snapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() } as PendingFaculty);
+        const d = doc.data();
+        data.push({ 
+          id: doc.id,
+          courseCode: d.courseCode,
+          courseTitle: d.courseTitle || d.courseName || "",
+          slot: d.slot,
+          faculty: d.faculty || d.facultyName || "",
+          venue: d.venue || "",
+          approvedAt: d.approvedAt || "",
+          approvedBy: d.approvedBy || ""
+        });
       });
-      // Sort oldest first
-      data.sort((a, b) => new Date(a.submittedAt).getTime() - new Date(b.submittedAt).getTime());
-      setPending(data);
-    }, (error) => {
-      console.error("Firestore error:", error);
-      toast.error("Could not load pending data. Check Firebase Security Rules.");
+      setApproved(data);
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubApproved();
+    };
   }, [loading]);
 
-  const handleApprove = async (item: PendingFaculty) => {
+
+
+  const handleDeleteApproved = async (id: string) => {
+    if (!confirm("Are you sure you want to revoke this approval? It will be removed from all students' planners.")) return;
     try {
-      // 1. Move to approved_faculties
-      await setDoc(doc(db, 'approved_faculties', item.id), {
-        courseCode: item.courseCode,
-        slot: item.slot,
-        faculty: item.faculty,
-        venue: item.venue,
-        approvedAt: new Date().toISOString(),
-        approvedBy: auth.currentUser?.email
-      });
-      // 2. Delete from pending
-      await deleteDoc(doc(db, 'pending_faculties', item.id));
-      toast.success('Approved successfully!');
+      await deleteDoc(doc(db, 'approved_faculties', id));
+      toast.success('Revoked approved faculty.');
     } catch (error: any) {
       toast.error(error.message);
     }
   };
 
-  const handleReject = async (id: string) => {
-    try {
-      await deleteDoc(doc(db, 'pending_faculties', id));
-      toast.success('Rejected and removed.');
-    } catch (error: any) {
-      toast.error(error.message);
+  const toggleCourse = (courseCode: string) => {
+    const newExpanded = new Set(expandedCourses);
+    if (newExpanded.has(courseCode)) {
+      newExpanded.delete(courseCode);
+    } else {
+      newExpanded.add(courseCode);
     }
+    setExpandedCourses(newExpanded);
   };
+
+  const groupedData = useMemo(() => {
+    const groups: Record<string, {
+      courseTitle: string;
+      slots: Record<string, { approved: ApprovedFaculty[] }>
+    }> = {};
+
+    const addToGroup = (courseCode: string, courseTitle: string, slot: string) => {
+      if (!groups[courseCode]) {
+        groups[courseCode] = { courseTitle: courseTitle || courseCode, slots: {} };
+      }
+      if (!groups[courseCode].slots[slot]) {
+        groups[courseCode].slots[slot] = { approved: [] };
+      }
+    };
+
+    approved.forEach(a => {
+      addToGroup(a.courseCode, a.courseTitle || "", a.slot);
+      groups[a.courseCode].slots[a.slot].approved.push(a);
+    });
+
+    return groups;
+  }, [approved]);
+
+  const displayCourses = useMemo(() => {
+    const courses = Object.entries(groupedData).map(([code, data]) => ({ code, ...data }));
+    return courses.sort((a, b) => a.code.localeCompare(b.code));
+  }, [groupedData]);
 
   if (loading) {
     return (
@@ -129,66 +162,92 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+      <AdminBulkParser />
+
       <div className="bg-card border rounded-2xl overflow-hidden shadow-sm">
-        <div className="p-6 border-b bg-secondary/20 flex justify-between items-center">
-          <h2 className="text-lg font-semibold">Pending Approvals ({pending.length})</h2>
+        <div className="flex items-center gap-4 border-b px-6 bg-secondary/20">
+          <button 
+             className={`py-4 px-4 font-semibold text-sm border-b-2 transition-colors flex items-center gap-2 border-primary text-primary`}
+          >
+            Live Courses Database
+            <span className="bg-secondary text-foreground text-xs px-2 py-0.5 rounded-full border">
+              {Object.keys(groupedData).length}
+            </span>
+          </button>
         </div>
         
-        {pending.length === 0 ? (
-          <div className="p-12 text-center text-muted-foreground">
-            <CheckCircle className="w-12 h-12 mx-auto mb-4 opacity-20" />
-            <p>You're all caught up! No pending submissions.</p>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-secondary/50 text-muted-foreground uppercase text-xs">
-                <tr>
-                  <th className="px-6 py-4">Course</th>
-                  <th className="px-6 py-4">Slot</th>
-                  <th className="px-6 py-4">Faculty</th>
-                  <th className="px-6 py-4">Venue</th>
-                  <th className="px-6 py-4">Submitted By</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                {pending.map((item) => (
-                  <tr key={item.id} className="hover:bg-secondary/20 transition-colors">
-                    <td className="px-6 py-4">
-                      <div className="font-semibold">{item.courseCode}</div>
-                      <div className="text-xs text-muted-foreground">{item.courseTitle}</div>
-                    </td>
-                    <td className="px-6 py-4 font-mono font-medium bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded">
-                      {item.slot}
-                    </td>
-                    <td className="px-6 py-4 font-medium">{item.faculty}</td>
-                    <td className="px-6 py-4">{item.venue}</td>
-                    <td className="px-6 py-4 text-xs text-muted-foreground">{item.submittedBy}</td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="flex justify-end gap-2">
-                        <AnimatedButton 
-                          onClick={() => handleReject(item.id)}
-                          className="bg-red-500/10 hover:bg-red-500/20 text-red-600 p-2 h-auto"
-                          title="Reject"
-                        >
-                          <XCircle className="w-5 h-5" />
-                        </AnimatedButton>
-                        <AnimatedButton 
-                          onClick={() => handleApprove(item.id)}
-                          className="bg-green-500 hover:bg-green-600 text-white p-2 h-auto"
-                          title="Approve"
-                        >
-                          <CheckCircle className="w-5 h-5" />
-                        </AnimatedButton>
+        <div className="p-6 flex flex-col gap-4">
+          {displayCourses.length === 0 ? (
+            <div className="py-12 text-center text-muted-foreground">
+              <CheckCircle className="w-12 h-12 mx-auto mb-4 opacity-20" />
+              <p>You're all caught up! No courses to display in this view.</p>
+            </div>
+          ) : (
+            displayCourses.map(course => (
+              <div key={course.code} className="border rounded-xl bg-card overflow-hidden shadow-sm hover:shadow transition-shadow">
+                <button 
+                  onClick={() => toggleCourse(course.code)}
+                  className="w-full flex items-center justify-between p-4 bg-secondary/10 hover:bg-secondary/30 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="bg-background p-2 rounded-lg border shadow-sm">
+                      {expandedCourses.has(course.code) ? <ChevronDown className="w-5 h-5 text-primary" /> : <ChevronRight className="w-5 h-5 text-muted-foreground" />}
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-bold text-lg">{course.code}</h3>
+                      <p className="text-xs font-medium text-muted-foreground">{course.courseTitle}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="bg-secondary text-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border">
+                      <LayoutList className="w-3.5 h-3.5" />
+                      {Object.keys(course.slots).length} Slots
+                    </span>
+                  </div>
+                </button>
+                
+                {expandedCourses.has(course.code) && (
+                  <div className="p-4 flex flex-col gap-4 bg-background">
+                    {Object.entries(course.slots).sort((a,b) => a[0].localeCompare(b[0])).map(([slot, data]) => (
+                      <div key={slot} className="border rounded-xl overflow-hidden shadow-sm">
+                        <div className="bg-secondary/40 px-5 py-3 font-mono font-bold text-primary text-sm flex justify-between items-center border-b">
+                          <span>{slot}</span>
+                          <span className="text-xs font-semibold bg-background px-2 py-1 rounded-md border text-muted-foreground">
+                            {data.approved.length} Faculties Total
+                          </span>
+                        </div>
+                        <div className="flex flex-col divide-y divide-border">
+                          {data.approved.map(a => (
+                            <div key={a.id} className="p-4 flex items-center justify-between bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors">
+                              <div className="flex flex-col">
+                                <span className="font-bold flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                                  <CheckCircle className="w-4 h-4" />
+                                  {a.faculty}
+                                </span>
+                                <span className="text-xs font-medium text-muted-foreground mt-1">
+                                  Venue: {a.venue} | <span className="opacity-60">Approved By: {a.approvedBy}</span>
+                                </span>
+                              </div>
+                              <AnimatedButton 
+                                onClick={() => handleDeleteApproved(a.id)} 
+                                variant="outline" 
+                                className="text-red-500 hover:text-red-600 hover:bg-red-50 p-2 h-auto" 
+                                title="Revoke Approval"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </AnimatedButton>
+                            </div>
+                          ))}
+
+                        </div>
                       </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

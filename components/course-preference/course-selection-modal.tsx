@@ -11,7 +11,7 @@ import { MotionDiv } from "@/components/ui/motion";
 
 export function CourseSelectionModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const { courses, addCourse, removeCourse, teachers, addTeacher } = useScheduleStore();
+  const { courses, addCourse, removeCourse, teachers, addTeachers } = useScheduleStore();
   
   // Initialize with current Zustand courses
   const [selectedCourseIds, setSelectedCourseIds] = useState<string[]>([]);
@@ -44,6 +44,9 @@ export function CourseSelectionModal() {
     const toRemove = currentCourseIds.filter(id => !selectedCourseIds.includes(id));
     toRemove.forEach(id => removeCourse(id));
 
+    const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
+    const newTeachersToAdd: Parameters<typeof addTeachers>[0] = [];
+
     selectedCourseIds.forEach(id => {
       const mockData = MOCK_COURSES.find(c => c.id === id);
       if (mockData) {
@@ -68,8 +71,6 @@ export function CourseSelectionModal() {
         
         const seenSlots: Record<string, number> = {};
         
-        const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
-        
         allSlots.forEach((slotStr) => {
           seenSlots[slotStr] = (seenSlots[slotStr] || 0) + 1;
           const index = seenSlots[slotStr];
@@ -82,11 +83,10 @@ export function CourseSelectionModal() {
           const faculties = typedFacultyData[facultyKey];
           
           if (faculties && faculties.length > 0) {
-            // Generate multiple slot options if faculty data exists
             faculties.forEach((fac, fIndex) => {
               const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
               if (!teachers.find(t => t.id === fakeTeacherId)) {
-                addTeacher({
+                newTeachersToAdd.push({
                   id: fakeTeacherId,
                   name: slotStr, 
                   faculty: fac.faculty,
@@ -98,13 +98,12 @@ export function CourseSelectionModal() {
               }
             });
           } else {
-            // Fallback for when no faculty data is available (just one generic slot option)
             const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
             
             if (!teachers.find(t => t.id === fakeTeacherId)) {
               const facultyName = hasDuplicates ? `Faculty ${index}` : undefined;
               
-              addTeacher({
+              newTeachersToAdd.push({
                 id: fakeTeacherId,
                 name: slotStr, 
                 faculty: facultyName,
@@ -118,6 +117,10 @@ export function CourseSelectionModal() {
         });
       }
     });
+
+    if (newTeachersToAdd.length > 0) {
+      addTeachers(newTeachersToAdd);
+    }
 
     setIsOpen(false);
   };

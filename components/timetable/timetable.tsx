@@ -200,7 +200,7 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
     );
 
     // Build slot data map for fast lookup
-    const tData: Record<string, { courses: any[], teacherNames: string[], authors: { uid?: string, name?: string }[] }> = {};
+    const tData: Record<string, { courses: any[], teacherNames: string[], authors: { uid?: string, name?: string }[], teachers: any[] }> = {};
     for (const teacher of selectedTeachers) {
       const course = courses.find(c => c.id === teacher.course);
       if (!course) continue;
@@ -208,11 +208,12 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
       const allSlots = getAllSlots(teacher);
       for (const slot of allSlots) {
         if (!tData[slot]) {
-          tData[slot] = { courses: [], teacherNames: [], authors: [] };
+          tData[slot] = { courses: [], teacherNames: [], authors: [], teachers: [] };
         }
         tData[slot].courses.push(course);
         tData[slot].teacherNames.push(teacher.name);
         tData[slot].authors.push({ uid: teacher.addedByUid, name: teacher.addedByName });
+        tData[slot].teachers.push(teacher);
       }
     }
 
@@ -302,6 +303,14 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
 
     const primarySlot = slotsInCell.find(s => timetableData[s]);
     const author = primarySlot ? timetableData[primarySlot].authors[0] : null;
+    const primaryTeacher = primarySlot ? timetableData[primarySlot].teachers[0] : null;
+
+    let cellVenue = null;
+    if (primaryTeacher) {
+       // Morning slots start with 08:00 to 13:00 roughly, we can just deduplicate venue strings if both exist
+       const venues = Array.from(new Set([primaryTeacher.venue?.morning, primaryTeacher.venue?.afternoon])).filter(Boolean);
+       if (venues.length > 0) cellVenue = venues[0]; // just show one
+    }
 
     const cellContent = isClash ? (
       <div className="font-bold flex flex-col items-center">
@@ -316,8 +325,13 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
           {uniqueCourses[0].code}-
         </span>
         <span style={{ fontSize: '11px' }}>
-          {uniqueCourses[0].type || "ELA"}
+          {uniqueCourses[0].type || "ELA"}{cellVenue ? "-" : ""}
         </span>
+        {cellVenue && (
+          <span style={{ fontSize: '11px' }}>
+            {cellVenue}
+          </span>
+        )}
         {activeRoomId && author?.name && (
           <div className={`absolute top-0 right-0 w-2 h-2 rounded-full shadow-sm ${getAvatarColor(author.uid || "")}`} />
         )}

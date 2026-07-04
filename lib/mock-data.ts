@@ -31,7 +31,7 @@ export const MOCK_COURSES: Course[] = parsedCourses
     
     if (aIsTop && !bIsTop) return -1;
     if (!aIsTop && bIsTop) return 1;
-    return 0;
+    return a.code.localeCompare(b.code); // Sort the rest alphabetically
   });
 
 // Future-proofing: When real semester databases are added, this function will map

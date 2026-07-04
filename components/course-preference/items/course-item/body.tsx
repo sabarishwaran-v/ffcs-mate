@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Course, Teacher } from "@/types";
-import { useScheduleStore } from "@/lib/store";
+import { useScheduleStore, useFacultyStore } from "@/lib/store";
 import { toast } from "sonner";
-import { Check, CalendarPlus, PlusCircle } from "lucide-react";
+import { Check, CalendarPlus, CheckCircle2 } from "lucide-react";
 import { MOCK_COURSES } from "@/lib/mock-data";
 import { useAuth } from "@/components/providers/auth-provider";
-import FacultyContributeModal from "./faculty-contribute-modal";
 
 interface CourseItemBodyProps {
   course: Course;
@@ -21,6 +20,7 @@ export default function CourseItemBody({
   onClose,
 }: CourseItemBodyProps) {
   const { isTeacherSelected, setCourseSlots } = useScheduleStore();
+  const { approvedFaculties, fetchApprovedFaculties } = useFacultyStore();
   const { user, userData } = useAuth();
 
   const [selectedTheoryId, setSelectedTheoryId] = useState<string | null>(null);
@@ -34,22 +34,22 @@ export default function CourseItemBody({
     const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
     const isLab = allSlots.some(s => s.startsWith('L') && /[0-9]/.test(s));
     return !isLab;
-  });
+  }).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
 
   const labTeachers = courseTeachers.filter((t) => {
     const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
     return allSlots.some(s => s.startsWith('L') && /[0-9]/.test(s));
-  });
+  }).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
 
   const isEmbedded = theoryTeachers.length > 0 && labTeachers.length > 0;
   const requiresTheory = theoryTeachers.length > 0;
   const requiresLab = labTeachers.length > 0;
 
   const [hasInitialized, setHasInitialized] = useState(false);
-  
-  const [contributeModalOpen, setContributeModalOpen] = useState(false);
-  const [selectedTeacherForContribute, setSelectedTeacherForContribute] = useState<Teacher | null>(null);
-  const [localFaculties, setLocalFaculties] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    fetchApprovedFaculties();
+  }, [fetchApprovedFaculties]);
 
   useEffect(() => {
     if (hasInitialized) return;
@@ -62,6 +62,61 @@ export default function CourseItemBody({
     
     setHasInitialized(true);
   }, [theoryTeachers, labTeachers, isTeacherSelected, hasInitialized]);
+
+  const localTeacherIds = courseTeachers.map(t => t.id).join(',');
+  const approvedTeacherIds = Object.keys(approvedFaculties).join(',');
+
+  useEffect(() => {
+    let shouldAdd: Teacher[] = [];
+    let shouldRemove: string[] = [];
+
+    const courseApproved = Object.values(approvedFaculties).filter(af => af.courseCode === course.code);
+    
+    courseApproved.forEach(af => {
+      // Check if we already have this faculty (by deterministic ID or locally parsed name/slot combo)
+      const existsLocally = courseTeachers.find(t => t.id === af.id || (t.name === af.slot && t.faculty === af.faculty));
+      if (!existsLocally) {
+        // Inject globally approved faculty into this student's local list
+        const template = courseTeachers.find(t => t.name === af.slot);
+        if (template) {
+          shouldAdd.push({
+            ...template,
+            id: af.id,
+            faculty: af.faculty,
+            venue: {
+              morning: template.slots.morning ? af.venue : null,
+              afternoon: template.slots.afternoon ? af.venue : null,
+            },
+            addedByName: "Verified Faculty",
+          });
+        }
+      }
+    });
+
+    // Remove mock "-" teachers if we have real data (parsed or approved) for that slot
+    const realTeacherSlots = new Set([
+      ...courseTeachers.filter(t => t.faculty && t.faculty !== "-").map(t => t.name),
+      ...shouldAdd.map(t => t.name)
+    ]);
+    
+    courseTeachers.forEach(t => {
+      if ((!t.faculty || t.faculty === "-") && realTeacherSlots.has(t.name)) {
+        shouldRemove.push(t.id);
+      }
+    });
+
+    if (shouldAdd.length > 0 || shouldRemove.length > 0) {
+      const store = useScheduleStore.getState();
+      
+      if (shouldAdd.length > 0) {
+        store.addTeachers(shouldAdd);
+      }
+      
+      if (shouldRemove.length > 0) {
+        store.removeTeachers(shouldRemove);
+      }
+    }
+  }, [approvedTeacherIds, course.code, localTeacherIds]);
 
   const handleUpdateTimetable = () => {
     const slotsToPlace: string[] = [];
@@ -102,7 +157,7 @@ export default function CourseItemBody({
     return Boolean(placedTheory || placedLab);
   };
 
-  if (course.type.includes('PJT')) {
+  if (course.type?.includes('PJT')) {
     return (
       <div className="flex flex-col max-h-[60vh] overflow-y-auto p-12 items-center text-center text-muted-foreground bg-secondary/10">
         <div className="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-full flex items-center justify-center mb-4">
@@ -117,42 +172,60 @@ export default function CourseItemBody({
 
   return (
     <div className="flex flex-col max-h-[60vh] overflow-y-auto">
+      {/* Faculty Action Header */}
+      <div className="bg-primary/5 p-4 border-b border-border flex justify-between items-center sticky top-0 z-10 backdrop-blur-sm">
+        <div>
+          <h4 className="text-sm font-bold text-foreground">Faculty Data</h4>
+          <p className="text-xs text-muted-foreground">Select your preferred slots and faculties</p>
+        </div>
+      </div>
+
       {/* Theory Section */}
       {requiresTheory && (
         <div className="w-full">
-          <div className="bg-secondary/30 px-6 py-2 border-b border-border grid grid-cols-[1fr_1fr_24px] gap-4 items-center">
+          <div className="bg-secondary/30 px-6 py-2 border-b border-border grid grid-cols-[1.5fr_3fr_1.5fr_24px] gap-4 items-center">
             <span className="text-xs font-bold text-primary tracking-wider uppercase">
-              {isEmbedded ? "Embedded Theory Slots" : "Theory Slots"}
+              {isEmbedded ? "Theory Slots" : "Theory Slots"}
             </span>
             <span className="text-xs font-bold text-primary tracking-wider uppercase">
               Faculty
             </span>
+            <span className="text-xs font-bold text-primary tracking-wider uppercase">
+              Venue
+            </span>
             <span></span>
           </div>
           <div className="flex flex-col divide-y divide-border">
-            {theoryTeachers.map((t) => (
+            {theoryTeachers.map((t) => {
+              const deterministicId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\s+/g, '_')}`;
+              const approvedObj = approvedFaculties[t.id] || approvedFaculties[deterministicId];
+              return (
               <label
                 key={t.id}
-                className="grid grid-cols-[1fr_1fr_24px] gap-4 items-center px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors"
+                className="grid grid-cols-[1.5fr_3fr_1.5fr_24px] gap-4 items-center px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors group"
               >
                 <span className="text-sm font-bold text-foreground">
                   {t.name}
                 </span>
+                
                 <div className="flex items-center gap-2 overflow-hidden">
                   <span className="text-sm font-medium text-muted-foreground truncate">
-                    {localFaculties[t.id] || t.faculty || "-"}
+                    {approvedObj ? (
+                      <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        {approvedObj.faculty}
+                      </span>
+                    ) : (
+                      t.faculty || "-"
+                    )}
                   </span>
-                  {/* HIDING CROWDSOURCING FOR NOW
-                  {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
-                    <button 
-                      onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
-                      className="text-xs flex items-center gap-1 text-blue-500 hover:text-blue-600 hover:underline bg-blue-500/10 px-2 py-0.5 rounded-full"
-                    >
-                      <PlusCircle className="w-3 h-3" /> Add
-                    </button>
-                  )}
-                  */}
                 </div>
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <span className="text-sm font-medium text-muted-foreground truncate">
+                    {t.venue.morning || t.venue.afternoon || "-"}
+                  </span>
+                </div>
+                
                 <div className="flex justify-end">
                   <input
                     type="radio"
@@ -164,7 +237,7 @@ export default function CourseItemBody({
                   />
                 </div>
               </label>
-            ))}
+            )})}
           </div>
         </div>
       )}
@@ -172,39 +245,49 @@ export default function CourseItemBody({
       {/* Lab Section */}
       {requiresLab && (
         <div className="w-full">
-          <div className="bg-secondary/30 px-6 py-2 border-y border-border mt-2 grid grid-cols-[1fr_1fr_24px] gap-4 items-center">
+          <div className="bg-secondary/30 px-6 py-2 border-y border-border mt-2 grid grid-cols-[1.5fr_3fr_1.5fr_24px] gap-4 items-center">
             <span className="text-xs font-bold text-primary tracking-wider uppercase">
               Lab Slots
             </span>
             <span className="text-xs font-bold text-primary tracking-wider uppercase">
               Faculty
             </span>
+            <span className="text-xs font-bold text-primary tracking-wider uppercase">
+              Venue
+            </span>
             <span></span>
           </div>
           <div className="flex flex-col divide-y divide-border">
-            {labTeachers.map((t) => (
+            {labTeachers.map((t) => {
+              const deterministicId = `${course.code}_${t.name}_${(t.faculty || '').replace(/\s+/g, '_')}`;
+              const approvedObj = approvedFaculties[t.id] || approvedFaculties[deterministicId];
+              return (
               <label
                 key={t.id}
-                className="grid grid-cols-[1fr_1fr_24px] gap-4 items-center px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors"
+                className="grid grid-cols-[1.5fr_3fr_1.5fr_24px] gap-4 items-center px-6 py-3 cursor-pointer hover:bg-secondary/50 transition-colors group"
               >
                 <span className="text-sm font-bold text-foreground">
                   {t.name}
                 </span>
+
                 <div className="flex items-center gap-2 overflow-hidden">
                   <span className="text-sm font-medium text-muted-foreground truncate">
-                    {localFaculties[t.id] || t.faculty || "-"}
+                    {approvedObj ? (
+                      <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        {approvedObj.faculty}
+                      </span>
+                    ) : (
+                      t.faculty || "-"
+                    )}
                   </span>
-                  {/* HIDING CROWDSOURCING FOR NOW
-                  {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
-                    <button 
-                      onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
-                      className="text-xs flex items-center gap-1 text-blue-500 hover:text-blue-600 hover:underline bg-blue-500/10 px-2 py-0.5 rounded-full"
-                    >
-                      <PlusCircle className="w-3 h-3" /> Add
-                    </button>
-                  )}
-                  */}
                 </div>
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <span className="text-sm font-medium text-muted-foreground truncate">
+                    {t.venue.morning || t.venue.afternoon || "-"}
+                  </span>
+                </div>
+
                 <div className="flex justify-end">
                   <input
                     type="radio"
@@ -216,7 +299,7 @@ export default function CourseItemBody({
                   />
                 </div>
               </label>
-            ))}
+            )})}
           </div>
         </div>
       )}
@@ -243,19 +326,6 @@ export default function CourseItemBody({
           )}
         </button>
       </div>
-
-      {/* Contribute Modal */}
-      {selectedTeacherForContribute && (
-        <FacultyContributeModal 
-          isOpen={contributeModalOpen}
-          onClose={() => setContributeModalOpen(false)}
-          course={course}
-          teacherSlot={selectedTeacherForContribute}
-          onSuccess={(newFaculty) => {
-            setLocalFaculties(prev => ({ ...prev, [selectedTeacherForContribute.id]: newFaculty }));
-          }}
-        />
-      )}
     </div>
   );
 }

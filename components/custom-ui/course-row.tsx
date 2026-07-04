@@ -17,11 +17,11 @@ export function CourseRow({ teacher }: CourseRowProps) {
   // Dynamically calculate credits for this specific component
   const componentCredits = getCreditsFromSlotString(teacher.name, course);
 
-  // Get venue for display (prefer morning, fallback to afternoon)
-  const venue = [
-    teacher.venue.morning && `M: ${teacher.venue.morning}`,
-    teacher.venue.afternoon && `A: ${teacher.venue.afternoon}`,
-  ]
+  // Get venue for display (remove M: and A:, and deduplicate)
+  const venue = Array.from(new Set([
+    teacher.venue.morning,
+    teacher.venue.afternoon,
+  ]))
     .filter(Boolean)
     .join(" | ");
 
@@ -31,7 +31,7 @@ export function CourseRow({ teacher }: CourseRowProps) {
       <td className="p-2 border">{course?.name}</td>
       <td className="p-2 text-center border">{componentCredits}</td>
       <td className="p-2 border">{teacher.name}</td>
-      <td className="p-2 border"></td>
+      <td className="p-2 border">{teacher.faculty || "-"}</td>
       <td className="p-2 border">{venue}</td>
     </tr>
   );

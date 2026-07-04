@@ -22,7 +22,9 @@ service cloud.firestore {
     // - Only Admins can read (review) and delete (reject)
     match /pending_faculties/{docId} {
       allow create: if request.auth != null; // Students can submit
-      allow read, update, delete: if request.auth != null && request.auth.token.admin == true; // Admins only
+      // Allow users to update their own pending submissions (e.g. if they re-parse OCR), or admins to approve
+      allow update: if request.auth != null && (request.auth.token.admin == true || resource.data.submittedByUid == request.auth.uid); 
+      allow read, delete: if request.auth != null && request.auth.token.admin == true; // Admins only
     }
     
     // 3. Approved Faculties

@@ -23,11 +23,11 @@ export function AppVersionMonitor() {
         
         // If server version exists and is different from our local version
         if (serverVersion && serverVersion !== currentVersion) {
-          // Prevent showing the toast multiple times in the same session
-          const lastNotifiedVersion = sessionStorage.getItem('last_notified_version');
+          // Prevent showing the toast multiple times across tabs and reloads
+          const lastNotifiedVersion = localStorage.getItem('last_notified_version');
           
           if (lastNotifiedVersion !== serverVersion && navigator.onLine) {
-            sessionStorage.setItem('last_notified_version', serverVersion);
+            localStorage.setItem('last_notified_version', serverVersion);
             console.log(`[FFCS MATE] New version detected! Server: ${serverVersion}, Local: ${currentVersion}.`);
             
             // Show a gentle toast instead of forcing a reload

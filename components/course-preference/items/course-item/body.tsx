@@ -209,12 +209,9 @@ export default function CourseItemBody({
                 </span>
                 
                 <div className="flex items-center gap-2 overflow-hidden">
-                  <span className="text-sm font-medium text-muted-foreground truncate">
+                  <span className="text-sm font-medium text-foreground truncate">
                     {approvedObj ? (
-                      <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {approvedObj.faculty}
-                      </span>
+                      approvedObj.faculty
                     ) : (
                       t.faculty || "-"
                     )}
@@ -271,12 +268,9 @@ export default function CourseItemBody({
                 </span>
 
                 <div className="flex items-center gap-2 overflow-hidden">
-                  <span className="text-sm font-medium text-muted-foreground truncate">
+                  <span className="text-sm font-medium text-foreground truncate">
                     {approvedObj ? (
-                      <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {approvedObj.faculty}
-                      </span>
+                      approvedObj.faculty
                     ) : (
                       t.faculty || "-"
                     )}

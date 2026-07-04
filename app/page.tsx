@@ -108,6 +108,15 @@ export default function Dashboard() {
             <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
               Say goodbye to clashing slots and messy spreadsheets. Collaborate with friends in real-time, instantly detect clashes, and build your perfect schedule before registration begins.
             </p>
+            <MotionDiv 
+              className="mt-6 flex sm:inline-flex flex-col sm:flex-row items-center justify-center gap-2 px-5 py-3 rounded-2xl sm:rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-sm font-medium text-center mx-auto max-w-[90%] sm:max-w-none"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Users className="w-4 h-4" />
+              Faculty & venue details will be crowdsourced by the student community during Mock FFCS!
+            </MotionDiv>
           </MotionDiv>
           
           <MotionDiv

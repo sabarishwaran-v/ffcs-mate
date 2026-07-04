@@ -103,6 +103,37 @@ export default function CourseItemBody({
       if ((!t.faculty || t.faculty === "-") && realTeacherSlots.has(t.name)) {
         shouldRemove.push(t.id);
       }
+      
+      // Remove verified faculties that were deleted from the database
+      if (t.addedByName === "Verified Faculty") {
+        const stillApproved = courseApproved.find(af => af.id === t.id || (af.slot === t.name && af.faculty === t.faculty));
+        if (!stillApproved) {
+          shouldRemove.push(t.id);
+        }
+      }
+    });
+
+    // Restore mock "-" teachers if a slot becomes completely empty
+    const finalSlots = new Set();
+    courseTeachers.forEach(t => {
+      if (!shouldRemove.includes(t.id)) finalSlots.add(t.name);
+    });
+    shouldAdd.forEach(t => finalSlots.add(t.name));
+
+    const allExpectedSlots = [...(course.theorySlots || mockCourse?.theorySlots || []), ...(course.labSlots || mockCourse?.labSlots || [])];
+    const missingSlots = allExpectedSlots.filter(slot => !finalSlots.has(slot));
+
+    missingSlots.forEach(slot => {
+      shouldAdd.push({
+        id: `${course.id}_${slot}`,
+        name: slot,
+        faculty: "-",
+        color: "bg-slate-500",
+        slots: { morning: [slot], afternoon: null },
+        venue: { morning: null, afternoon: null },
+        course: course.id,
+        addedByName: "System"
+      });
     });
 
     if (shouldAdd.length > 0 || shouldRemove.length > 0) {

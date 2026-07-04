@@ -142,6 +142,7 @@ export default function CourseItemBody({
                   <span className="text-sm font-medium text-muted-foreground truncate">
                     {localFaculties[t.id] || t.faculty || "-"}
                   </span>
+                  {/* HIDING CROWDSOURCING FOR NOW
                   {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
                     <button 
                       onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
@@ -150,6 +151,7 @@ export default function CourseItemBody({
                       <PlusCircle className="w-3 h-3" /> Add
                     </button>
                   )}
+                  */}
                 </div>
                 <div className="flex justify-end">
                   <input
@@ -192,6 +194,8 @@ export default function CourseItemBody({
                   <span className="text-sm font-medium text-muted-foreground truncate">
                     {localFaculties[t.id] || t.faculty || "-"}
                   </span>
+                  {/* HIDING CROWDSOURCING FOR NOW
+                  {/* HIDING CROWDSOURCING FOR NOW
                   {(!t.faculty || t.faculty === "-") && !localFaculties[t.id] && (
                     <button 
                       onClick={(e) => { e.preventDefault(); setSelectedTeacherForContribute(t); setContributeModalOpen(true); }}
@@ -200,6 +204,8 @@ export default function CourseItemBody({
                       <PlusCircle className="w-3 h-3" /> Add
                     </button>
                   )}
+                  */}
+                  */}
                 </div>
                 <div className="flex justify-end">
                   <input

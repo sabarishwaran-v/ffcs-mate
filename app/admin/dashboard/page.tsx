@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth, db } from '@/lib/firebase';
-import { collection, query, onSnapshot, doc, deleteDoc, setDoc, writeBatch, serverTimestamp } from 'firebase/firestore';
+import { collection, query, onSnapshot, doc, deleteDoc, writeBatch, serverTimestamp, getDocs, updateDoc, setDoc, deleteField } from "firebase/firestore";
 import { ShieldCheck, LogOut, CheckCircle, ChevronDown, ChevronRight, Trash2, LayoutList, Loader2, Sparkles, Inbox } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -70,25 +70,14 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (loading) return;
 
-    if (loading) return;
-
-    const qApproved = query(collection(db, 'approved_faculties'));
-    const unsubApproved = onSnapshot(qApproved, (snapshot) => {
-      const data: ApprovedFaculty[] = [];
-      snapshot.forEach((doc) => {
-        const d = doc.data();
-        data.push({ 
-          id: doc.id,
-          courseCode: d.courseCode,
-          courseTitle: d.courseTitle || d.courseName || "",
-          slot: d.slot,
-          faculty: d.faculty || d.facultyName || "",
-          venue: d.venue || "",
-          approvedAt: d.approvedAt || "",
-          approvedBy: d.approvedBy || ""
-        });
-      });
-      setApproved(data);
+    const unsubApproved = onSnapshot(doc(db, 'system', 'approved_faculties_bundle'), (docSnap) => {
+      if (docSnap.exists()) {
+        const bundleData = docSnap.data();
+        const data: ApprovedFaculty[] = Object.values(bundleData);
+        setApproved(data);
+      } else {
+        setApproved([]);
+      }
     });
 
     const qPending = query(collection(db, 'pending_faculties'));
@@ -121,7 +110,9 @@ export default function AdminDashboard() {
   const handleDeleteApproved = async (id: string) => {
     if (!confirm("Are you sure you want to revoke this approval? It will be removed from all students' planners.")) return;
     try {
-      await deleteDoc(doc(db, 'approved_faculties', id));
+      await updateDoc(doc(db, 'system', 'approved_faculties_bundle'), {
+        [id]: deleteField()
+      });
       toast.success('Revoked approved faculty.');
     } catch (error: any) {
       toast.error(error.message);
@@ -132,19 +123,19 @@ export default function AdminDashboard() {
     if (!confirm(`Are you absolutely sure you want to delete ALL slots and faculties for ${courseCode}? This cannot be undone.`)) return;
     
     try {
-      const batch = writeBatch(db);
       const courseData = groupedData[courseCode];
       
       let count = 0;
+      const updates: Record<string, any> = {};
       Object.values(courseData.slots).forEach(slotData => {
         slotData.approved.forEach(a => {
-          batch.delete(doc(db, 'approved_faculties', a.id));
+          updates[a.id] = deleteField();
           count++;
         });
       });
 
       if (count > 0) {
-        await batch.commit();
+        await updateDoc(doc(db, 'system', 'approved_faculties_bundle'), updates);
         toast.success(`Successfully deleted all ${count} slots for ${courseCode}.`);
       } else {
         toast.info(`No slots found for ${courseCode}.`);
@@ -159,22 +150,47 @@ export default function AdminDashboard() {
     
     try {
       const batch = writeBatch(db);
+      const bundleUpdates: Record<string, any> = {};
       const coursePendingSlots = pending.filter(p => p.courseCode === courseCode);
       
+      // Group pending slots by slot to determine best entry
+      const slots: Record<string, PendingFaculty[]> = {};
       coursePendingSlots.forEach(p => {
-        const deterministicId = `${courseCode}_${p.slot}_${p.faculty.replace(/\s+/g, '_')}`;
-        // Create approved document
-        batch.set(doc(db, 'approved_faculties', deterministicId), {
-          courseCode: p.courseCode,
-          courseName: p.courseTitle,
-          slot: p.slot,
-          facultyName: p.faculty,
-          venue: p.venue,
-          approvedAt: serverTimestamp(),
-          approvedBy: "Admin"
-        }, { merge: true });
+        if (!slots[p.slot]) slots[p.slot] = [];
+        slots[p.slot].push(p);
+      });
+
+      Object.entries(slots).forEach(([slot, pSlots]) => {
+        // Find most popular faculty
+        const facultyCounts: Record<string, number> = {};
+        pSlots.forEach(p => {
+          facultyCounts[p.faculty] = (facultyCounts[p.faculty] || 0) + 1;
+        });
+        const mostPopularFaculty = Object.keys(facultyCounts).reduce((a, b) => facultyCounts[a] > facultyCounts[b] ? a : b);
         
-        // Delete the pending document
+        // Find most popular venue for this faculty
+        const venueCounts: Record<string, number> = {};
+        pSlots.filter(p => p.faculty === mostPopularFaculty).forEach(p => {
+          venueCounts[p.venue] = (venueCounts[p.venue] || 0) + 1;
+        });
+        const mostPopularVenue = Object.keys(venueCounts).reduce((a, b) => venueCounts[a] > venueCounts[b] ? a : b);
+
+        const newId = `${courseCode}_${slot}_${mostPopularFaculty.replace(/\s+/g, '_')}`;
+        bundleUpdates[newId] = {
+          id: newId,
+          courseCode: courseCode,
+          courseTitle: pSlots[0].courseTitle,
+          slot: slot,
+          faculty: mostPopularFaculty,
+          venue: mostPopularVenue,
+          approvedAt: new Date().toISOString(),
+          approvedBy: "Admin"
+        };
+      });
+
+      // Update bundle and delete pending
+      batch.set(doc(db, 'system', 'approved_faculties_bundle'), bundleUpdates, { merge: true });
+      coursePendingSlots.forEach(p => {
         batch.delete(doc(db, 'pending_faculties', p.id));
       });
       

@@ -115,22 +115,17 @@ export const useFacultyStore = create<{
     
     set({ isFetching: true, isListening: true });
     try {
-      const q = collection(db, 'approved_faculties');
-      onSnapshot(q, (snapshot) => {
-        const faculties: Record<string, ApprovedFaculty> = {};
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          faculties[doc.id] = { 
-            id: doc.id, 
-            courseCode: data.courseCode,
-            slot: data.slot,
-            faculty: data.facultyName || data.faculty || "",
-            venue: data.venue || ""
-          };
-        });
-        set({ approvedFaculties: faculties });
+      const q = doc(db, 'system', 'approved_faculties_bundle');
+      onSnapshot(q, (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          // The bundle is a map of id -> ApprovedFaculty
+          set({ approvedFaculties: data as Record<string, ApprovedFaculty> });
+        } else {
+          set({ approvedFaculties: {} });
+        }
       }, (error) => {
-        console.error("Failed to fetch approved faculties:", error);
+        console.error("Failed to fetch approved faculties bundle:", error);
       });
 
       const countDoc = doc(db, 'system', 'contributions_count');

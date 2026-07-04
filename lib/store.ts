@@ -100,11 +100,13 @@ import { db } from '@/lib/firebase';
 
 export const useFacultyStore = create<{
   approvedFaculties: Record<string, ApprovedFaculty>;
+  contributionsCount: Record<string, number>;
   isFetching: boolean;
   isListening: boolean;
   fetchApprovedFaculties: () => void;
 }>((set, get) => ({
   approvedFaculties: {},
+  contributionsCount: {},
   isFetching: false,
   isListening: false,
   fetchApprovedFaculties: () => {
@@ -126,11 +128,19 @@ export const useFacultyStore = create<{
             venue: data.venue || ""
           };
         });
-        set({ approvedFaculties: faculties, isFetching: false });
+        set({ approvedFaculties: faculties });
       }, (error) => {
         console.error("Failed to fetch approved faculties:", error);
-        set({ isFetching: false, isListening: false });
       });
+
+      const countDoc = doc(db, 'system', 'contributions_count');
+      onSnapshot(countDoc, (docSnap) => {
+        if (docSnap.exists()) {
+          set({ contributionsCount: docSnap.data() as Record<string, number> });
+        }
+      });
+      
+      set({ isFetching: false });
     } catch (error) {
       console.error("Failed to setup listener:", error);
       set({ isFetching: false, isListening: false });

@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Course, Teacher } from "@/types";
 import { useScheduleStore, useFacultyStore } from "@/lib/store";
 import { toast } from "sonner";
-import { Check, CalendarPlus, CheckCircle2 } from "lucide-react";
+import { Check, CalendarPlus, CheckCircle2, UploadCloud } from "lucide-react";
 import { MOCK_COURSES } from "@/lib/mock-data";
 import { useAuth } from "@/components/providers/auth-provider";
+import StudentContributeModal from "./student-contribute-modal";
 
 interface CourseItemBodyProps {
   course: Course;
@@ -25,6 +26,7 @@ export default function CourseItemBody({
 
   const [selectedTheoryId, setSelectedTheoryId] = useState<string | null>(null);
   const [selectedLabId, setSelectedLabId] = useState<string | null>(null);
+  const [isContributeModalOpen, setIsContributeModalOpen] = useState(false);
 
   const mockCourse = MOCK_COURSES.find(c => c.id === course.id);
   const theorySlots = course.theorySlots || mockCourse?.theorySlots || [];
@@ -330,7 +332,18 @@ export default function CourseItemBody({
       )}
 
       {/* Footer Action */}
-      <div className="p-4 bg-background/95 backdrop-blur-md border-t border-border flex justify-end shrink-0 sticky bottom-0">
+      <div className="p-4 bg-background/95 backdrop-blur-md border-t border-border flex justify-between shrink-0 sticky bottom-0">
+        <div>
+          {Object.values(approvedFaculties).filter(af => af.courseCode === course.code).length === 0 && 
+           ((useFacultyStore.getState().contributionsCount[course.code] || 0) < 10) && (
+            <button
+              onClick={() => setIsContributeModalOpen(true)}
+              className="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all border border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-500/10"
+            >
+              <UploadCloud className="w-4 h-4" /> Contribute Data
+            </button>
+          )}
+        </div>
         <button
           onClick={handleUpdateTimetable}
           disabled={isCurrentlyPlaced() || (!selectedTheoryId && requiresTheory) || (!selectedLabId && requiresLab)}
@@ -351,6 +364,21 @@ export default function CourseItemBody({
           )}
         </button>
       </div>
+
+      <StudentContributeModal 
+        isOpen={isContributeModalOpen}
+        onClose={() => setIsContributeModalOpen(false)}
+        course={course}
+        availableTeachersTemplate={[...(course.theorySlots || mockCourse?.theorySlots || []), ...(course.labSlots || mockCourse?.labSlots || [])].map(slot => ({
+          id: `${course.id}-${slot}`,
+          course: course.id,
+          name: slot,
+          faculty: "-",
+          color: "bg-slate-500",
+          slots: { morning: [slot], afternoon: null },
+          venue: { morning: null, afternoon: null }
+        }))}
+      />
     </div>
   );
 }

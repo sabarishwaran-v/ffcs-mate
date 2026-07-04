@@ -3,8 +3,8 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth, db } from '@/lib/firebase';
-import { collection, query, onSnapshot, doc, deleteDoc, setDoc, writeBatch } from 'firebase/firestore';
-import { ShieldCheck, LogOut, CheckCircle, ChevronDown, ChevronRight, Trash2, LayoutList, Loader2 } from 'lucide-react';
+import { collection, query, onSnapshot, doc, deleteDoc, setDoc, writeBatch, serverTimestamp } from 'firebase/firestore';
+import { ShieldCheck, LogOut, CheckCircle, ChevronDown, ChevronRight, Trash2, LayoutList, Loader2, Sparkles, Inbox } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/button';
 import { toast } from 'sonner';
 import AdminBulkParser from './admin-bulk-parser';
@@ -22,11 +22,25 @@ interface ApprovedFaculty {
   approvedBy: string;
 }
 
+interface PendingFaculty {
+  id: string;
+  courseCode: string;
+  courseTitle?: string;
+  slot: string;
+  faculty: string;
+  venue: string;
+  submittedByUid: string;
+  submittedByName: string;
+}
+
 export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [approved, setApproved] = useState<ApprovedFaculty[]>([]);
+  const [pending, setPending] = useState<PendingFaculty[]>([]);
   const [expandedCourses, setExpandedCourses] = useState<Set<string>>(new Set());
+  const [expandedPendingCourses, setExpandedPendingCourses] = useState<Set<string>>(new Set());
+  const [activeTab, setActiveTab] = useState<'approved' | 'pending'>('approved');
 
   useEffect(() => {
     const unsubscribeAuth = auth.onIdTokenChanged(async (user) => {
@@ -77,8 +91,28 @@ export default function AdminDashboard() {
       setApproved(data);
     });
 
+    const qPending = query(collection(db, 'pending_faculties'));
+    const unsubPending = onSnapshot(qPending, (snapshot) => {
+      const data: PendingFaculty[] = [];
+      snapshot.forEach((doc) => {
+        const d = doc.data();
+        data.push({ 
+          id: doc.id,
+          courseCode: d.courseCode,
+          courseTitle: d.courseName || "",
+          slot: d.slot,
+          faculty: d.facultyName || "",
+          venue: d.venue || "",
+          submittedByUid: d.submittedByUid || "",
+          submittedByName: d.submittedByName || "Student"
+        });
+      });
+      setPending(data);
+    });
+
     return () => {
       unsubApproved();
+      unsubPending();
     };
   }, [loading]);
 
@@ -120,6 +154,42 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleApprovePendingCourse = async (courseCode: string) => {
+    if (!confirm(`Approve all pending slots for ${courseCode}? This will make them live for all users.`)) return;
+    
+    try {
+      const batch = writeBatch(db);
+      const coursePendingSlots = pending.filter(p => p.courseCode === courseCode);
+      
+      coursePendingSlots.forEach(p => {
+        const deterministicId = `${courseCode}_${p.slot}_${p.faculty.replace(/\s+/g, '_')}`;
+        // Create approved document
+        batch.set(doc(db, 'approved_faculties', deterministicId), {
+          courseCode: p.courseCode,
+          courseName: p.courseTitle,
+          slot: p.slot,
+          facultyName: p.faculty,
+          venue: p.venue,
+          approvedAt: serverTimestamp(),
+          approvedBy: "Admin"
+        }, { merge: true });
+        
+        // Delete the pending document
+        batch.delete(doc(db, 'pending_faculties', p.id));
+      });
+      
+      // Reset the contribution count for this course so the button reappears if needed later
+      batch.set(doc(db, 'system', 'contributions_count'), {
+        [courseCode]: 0
+      }, { merge: true });
+
+      await batch.commit();
+      toast.success(`Approved ${coursePendingSlots.length} slots for ${courseCode}!`);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
   const toggleCourse = (courseCode: string) => {
     const newExpanded = new Set(expandedCourses);
     if (newExpanded.has(courseCode)) {
@@ -128,6 +198,16 @@ export default function AdminDashboard() {
       newExpanded.add(courseCode);
     }
     setExpandedCourses(newExpanded);
+  };
+
+  const togglePendingCourse = (courseCode: string) => {
+    const newExpanded = new Set(expandedPendingCourses);
+    if (newExpanded.has(courseCode)) {
+      newExpanded.delete(courseCode);
+    } else {
+      newExpanded.add(courseCode);
+    }
+    setExpandedPendingCourses(newExpanded);
   };
 
   const groupedData = useMemo(() => {
@@ -153,10 +233,28 @@ export default function AdminDashboard() {
     return groups;
   }, [approved]);
 
-  const displayCourses = useMemo(() => {
-    const courses = Object.entries(groupedData).map(([code, data]) => ({ code, ...data }));
-    return courses.sort((a, b) => a.code.localeCompare(b.code));
-  }, [groupedData]);
+  const groupedPendingData = useMemo(() => {
+    const grouped: Record<string, {
+      code: string;
+      courseTitle: string;
+      slots: PendingFaculty[];
+    }> = {};
+    
+    pending.forEach(p => {
+      if (!grouped[p.courseCode]) {
+        grouped[p.courseCode] = {
+          code: p.courseCode,
+          courseTitle: p.courseTitle || "",
+          slots: []
+        };
+      }
+      grouped[p.courseCode].slots.push(p);
+    });
+    return grouped;
+  }, [pending]);
+
+  const displayCourses = Object.values(groupedData).sort((a,b) => a.code.localeCompare(b.code));
+  const displayPendingCourses = Object.values(groupedPendingData).sort((a,b) => a.code.localeCompare(b.code));
 
   if (loading) {
     return (
@@ -203,86 +301,174 @@ export default function AdminDashboard() {
         </div>
         
         <div className="p-6 flex flex-col gap-4">
-          {displayCourses.length === 0 ? (
-            <div className="py-12 text-center text-muted-foreground">
-              <CheckCircle className="w-12 h-12 mx-auto mb-4 opacity-20" />
-              <p>You're all caught up! No courses to display in this view.</p>
-            </div>
-          ) : (
-            displayCourses.map(course => (
-              <div key={course.code} className="border rounded-xl bg-card overflow-hidden shadow-sm hover:shadow transition-shadow">
-                <button 
-                  onClick={() => toggleCourse(course.code)}
-                  className="w-full flex items-center justify-between p-4 bg-secondary/10 hover:bg-secondary/30 transition-colors"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="bg-background p-2 rounded-lg border shadow-sm">
-                      {expandedCourses.has(course.code) ? <ChevronDown className="w-5 h-5 text-primary" /> : <ChevronRight className="w-5 h-5 text-muted-foreground" />}
-                    </div>
-                    <div className="text-left">
-                      <h3 className="font-bold text-lg">{course.code}</h3>
-                      <p className="text-xs font-medium text-muted-foreground">{course.courseTitle}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="bg-secondary text-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border">
-                      <LayoutList className="w-3.5 h-3.5" />
-                      {Object.keys(course.slots).length} Slots
-                    </span>
-                    <AnimatedButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDeleteCourse(course.code);
-                      }}
-                      variant="outline"
-                      className="text-red-500 hover:text-red-600 hover:bg-red-50 px-3 py-1 h-auto text-xs"
-                    >
-                      <Trash2 className="w-3.5 h-3.5 mr-1" />
-                      Delete All
-                    </AnimatedButton>
-                  </div>
-                </button>
-                
-                {expandedCourses.has(course.code) && (
-                  <div className="p-4 flex flex-col gap-4 bg-background">
-                    {Object.entries(course.slots).sort((a,b) => a[0].localeCompare(b[0])).map(([slot, data]) => (
-                      <div key={slot} className="border rounded-xl overflow-hidden shadow-sm">
-                        <div className="bg-secondary/40 px-5 py-3 font-mono font-bold text-primary text-sm flex justify-between items-center border-b">
-                          <span>{slot}</span>
-                          <span className="text-xs font-semibold bg-background px-2 py-1 rounded-md border text-muted-foreground">
-                            {data.approved.length} Faculties Total
-                          </span>
-                        </div>
-                        <div className="flex flex-col divide-y divide-border">
-                          {data.approved.map(a => (
-                            <div key={a.id} className="p-4 flex items-center justify-between bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors">
-                              <div className="flex flex-col">
-                                <span className="font-bold flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-                                  <CheckCircle className="w-4 h-4" />
-                                  {a.faculty}
-                                </span>
-                                <span className="text-xs font-medium text-muted-foreground mt-1">
-                                  Venue: {a.venue} | <span className="opacity-60">Approved By: {a.approvedBy}</span>
-                                </span>
-                              </div>
-                              <AnimatedButton 
-                                onClick={() => handleDeleteApproved(a.id)} 
-                                variant="outline" 
-                                className="text-red-500 hover:text-red-600 hover:bg-red-50 p-2 h-auto" 
-                                title="Revoke Approval"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </AnimatedButton>
-                            </div>
-                          ))}
+          <div className="flex gap-4 mb-6">
+            <button
+              onClick={() => setActiveTab('approved')}
+              className={`flex-1 py-3 rounded-lg font-bold text-sm transition-all border-2 ${
+                activeTab === 'approved' 
+                  ? 'border-primary bg-primary text-primary-foreground' 
+                  : 'border-border bg-background text-muted-foreground hover:bg-secondary/50'
+              }`}
+            >
+              Approved Faculties ({displayCourses.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('pending')}
+              className={`flex-1 py-3 rounded-lg font-bold text-sm transition-all border-2 flex items-center justify-center gap-2 ${
+                activeTab === 'pending' 
+                  ? 'border-purple-500 bg-purple-500 text-white' 
+                  : 'border-border bg-background text-muted-foreground hover:bg-secondary/50'
+              }`}
+            >
+              <Inbox className="w-4 h-4" /> Pending Review 
+              {displayPendingCourses.length > 0 && (
+                <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">{displayPendingCourses.length}</span>
+              )}
+            </button>
+          </div>
 
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+          {activeTab === 'approved' ? (
+            displayCourses.length === 0 ? (
+              <div className="py-12 text-center text-muted-foreground">
+                <CheckCircle className="w-12 h-12 mx-auto mb-4 opacity-20" />
+                <p>You're all caught up! No courses to display in this view.</p>
               </div>
-            ))
+            ) : (
+              displayCourses.map(course => (
+                <div key={course.code} className="border rounded-xl bg-card overflow-hidden shadow-sm hover:shadow transition-shadow">
+                  <button 
+                    onClick={() => toggleCourse(course.code)}
+                    className="w-full flex items-center justify-between p-4 bg-secondary/10 hover:bg-secondary/30 transition-colors"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="bg-background p-2 rounded-lg border shadow-sm">
+                        {expandedCourses.has(course.code) ? <ChevronDown className="w-5 h-5 text-primary" /> : <ChevronRight className="w-5 h-5 text-muted-foreground" />}
+                      </div>
+                      <div className="text-left">
+                        <h3 className="font-bold text-lg">{course.code}</h3>
+                        <p className="text-xs font-medium text-muted-foreground">{course.courseTitle}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <span className="bg-secondary text-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border">
+                        <LayoutList className="w-3.5 h-3.5" />
+                        {Object.keys(course.slots).length} Slots
+                      </span>
+                      <AnimatedButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteCourse(course.code);
+                        }}
+                        variant="outline"
+                        className="text-red-500 hover:text-red-600 hover:bg-red-50 px-3 py-1 h-auto text-xs"
+                      >
+                        <Trash2 className="w-3.5 h-3.5 mr-1" />
+                        Delete All
+                      </AnimatedButton>
+                    </div>
+                  </button>
+                  
+                  {expandedCourses.has(course.code) && (
+                    <div className="p-4 flex flex-col gap-4 bg-background">
+                      {Object.entries(course.slots).sort((a,b) => a[0].localeCompare(b[0])).map(([slot, data]) => (
+                        <div key={slot} className="border rounded-xl overflow-hidden shadow-sm">
+                          <div className="bg-secondary/40 px-5 py-3 font-mono font-bold text-primary text-sm flex justify-between items-center border-b">
+                            <span>{slot}</span>
+                            <span className="text-xs font-semibold bg-background px-2 py-1 rounded-md border text-muted-foreground">
+                              {data.approved.length} Faculties Total
+                            </span>
+                          </div>
+                          <div className="flex flex-col divide-y divide-border">
+                            {data.approved.map(a => (
+                              <div key={a.id} className="p-4 flex items-center justify-between bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors">
+                                <div className="flex flex-col">
+                                  <span className="font-bold flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                                    <CheckCircle className="w-4 h-4" />
+                                    {a.faculty}
+                                  </span>
+                                  <span className="text-xs font-medium text-muted-foreground mt-1">
+                                    Venue: {a.venue} | <span className="opacity-60">Approved By: {a.approvedBy}</span>
+                                  </span>
+                                </div>
+                                <AnimatedButton 
+                                  onClick={() => handleDeleteApproved(a.id)} 
+                                  variant="outline" 
+                                  className="text-red-500 hover:text-red-600 hover:bg-red-50 p-2 h-auto" 
+                                  title="Revoke Approval"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </AnimatedButton>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            )
+          ) : (
+            displayPendingCourses.length === 0 ? (
+              <div className="py-12 text-center text-muted-foreground">
+                <CheckCircle className="w-12 h-12 mx-auto mb-4 opacity-20 text-purple-500" />
+                <p>No pending student contributions to review.</p>
+              </div>
+            ) : (
+              displayPendingCourses.map(course => (
+                <div key={course.code} className="border-2 border-purple-500/20 rounded-xl bg-card overflow-hidden shadow-sm hover:shadow transition-shadow">
+                  <button 
+                    onClick={() => togglePendingCourse(course.code)}
+                    className="w-full flex items-center justify-between p-4 bg-purple-500/5 hover:bg-purple-500/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="bg-background p-2 rounded-lg border shadow-sm">
+                        {expandedPendingCourses.has(course.code) ? <ChevronDown className="w-5 h-5 text-purple-500" /> : <ChevronRight className="w-5 h-5 text-muted-foreground" />}
+                      </div>
+                      <div className="text-left">
+                        <h3 className="font-bold text-lg text-purple-700 dark:text-purple-400">{course.code}</h3>
+                        <p className="text-xs font-medium text-muted-foreground">{course.courseTitle || "Course Data Contribution"}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <span className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                        <Inbox className="w-3.5 h-3.5" />
+                        {course.slots.length} Pending Slots
+                      </span>
+                      <AnimatedButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleApprovePendingCourse(course.code);
+                        }}
+                        variant="default"
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 h-auto text-xs"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5 mr-1" />
+                        Approve All
+                      </AnimatedButton>
+                    </div>
+                  </button>
+                  
+                  {expandedPendingCourses.has(course.code) && (
+                    <div className="p-4 flex flex-col gap-3 bg-background">
+                      {course.slots.sort((a,b) => a.slot.localeCompare(b.slot)).map(a => (
+                        <div key={a.id} className="p-4 flex items-center justify-between bg-secondary/20 rounded-lg border">
+                          <div className="flex flex-col">
+                            <span className="font-bold flex items-center gap-2">
+                              <span className="bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300 text-xs px-2 py-0.5 rounded">{a.slot}</span>
+                              {a.faculty}
+                            </span>
+                            <span className="text-xs font-medium text-muted-foreground mt-1">
+                              Venue: {a.venue} | <span className="opacity-60">Submitted by: {a.submittedByName}</span>
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            )
           )}
         </div>
       </div>

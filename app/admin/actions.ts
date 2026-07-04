@@ -1,7 +1,7 @@
 'use server';
 
 import { getAdminDb, getAdminAuth } from '@/lib/firebase-admin';
-import { authenticator } from 'otplib';
+import speakeasy from 'speakeasy';
 import QRCode from 'qrcode';
 import crypto from 'crypto';
 
@@ -44,7 +44,8 @@ export async function getOrGenerateTOTPSecret(uid: string, email: string) {
     if (doc.exists) {
       return { success: true, requiresSetup: false };
     } else {
-      const secret = authenticator.generateSecret();
+      const secretObj = speakeasy.generateSecret({ name: 'FFCS Mate Admin (' + email + ')' });
+      const secret = secretObj.base32;
       const encryptedSecret = encryptSecret(secret);
       
       await adminDb.collection('admin_secrets').doc(uid).set({
@@ -53,8 +54,8 @@ export async function getOrGenerateTOTPSecret(uid: string, email: string) {
         createdAt: new Date().toISOString()
       });
 
-      const otpauth = authenticator.keyuri(email, 'FFCS Mate Admin', secret);
-      const qrCodeDataUrl = await QRCode.toDataURL(otpauth);
+      const otpauth = secretObj.otpauth_url;
+      const qrCodeDataUrl = await QRCode.toDataURL(otpauth!);
 
       return { success: true, requiresSetup: true, qrCodeDataUrl };
     }
@@ -80,7 +81,12 @@ export async function verifyOTPAndGrantAccess(uid: string, email: string, token:
     const encryptedSecret = doc.data()?.secret;
     const secret = decryptSecret(encryptedSecret);
 
-    const isValid = authenticator.verify({ token, secret });
+    const isValid = speakeasy.totp.verify({
+      secret: secret,
+      encoding: 'base32',
+      token: token,
+      window: 1 // Allow 30 seconds before/after
+    });
 
     if (isValid) {
       const adminAuth = getAdminAuth();

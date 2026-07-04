@@ -117,7 +117,14 @@ export const useFacultyStore = create<{
       onSnapshot(q, (snapshot) => {
         const faculties: Record<string, ApprovedFaculty> = {};
         snapshot.forEach((doc) => {
-          faculties[doc.id] = { id: doc.id, ...doc.data() } as ApprovedFaculty;
+          const data = doc.data();
+          faculties[doc.id] = { 
+            id: doc.id, 
+            courseCode: data.courseCode,
+            slot: data.slot,
+            faculty: data.facultyName || data.faculty || "",
+            venue: data.venue || ""
+          };
         });
         set({ approvedFaculties: faculties, isFetching: false });
       }, (error) => {

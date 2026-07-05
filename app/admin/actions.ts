@@ -3,7 +3,7 @@
 import { getAdminDb, getAdminAuth } from '@/lib/firebase-admin';
 import speakeasy from 'speakeasy';
 import QRCode from 'qrcode';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 function encryptSecret(text: string): string {
   const ENCRYPTION_KEY = process.env.TOTP_ENCRYPTION_KEY || 'default_fallback_key_minimum_32_chars!';

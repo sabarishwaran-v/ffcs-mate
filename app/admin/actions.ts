@@ -33,11 +33,15 @@ function isAllowedEmail(email: string) {
 }
 
 export async function getOrGenerateTOTPSecret(uid: string, email: string) {
-  if (!isAllowedEmail(email)) {
-    return { success: false, error: 'Unauthorized email address.' };
-  }
-
   try {
+    if (!email) {
+      return { success: false, error: 'Email is required' };
+    }
+    
+    if (!isAllowedEmail(email)) {
+      return { success: false, error: 'Unauthorized email address.' };
+    }
+
     const adminDb = getAdminDb();
     const doc = await adminDb.collection('admin_secrets').doc(uid).get();
 
@@ -61,16 +65,21 @@ export async function getOrGenerateTOTPSecret(uid: string, email: string) {
     }
   } catch (error: any) {
     console.error("TOTP Gen Error:", error);
-    return { success: false, error: error.message };
+    // Return stringified error to prevent non-serializable errors crashing Next.js
+    return { success: false, error: error?.message || String(error) || 'Unknown server error' };
   }
 }
 
 export async function verifyOTPAndGrantAccess(uid: string, email: string, token: string) {
-  if (!isAllowedEmail(email)) {
-    return { success: false, error: 'Unauthorized email address.' };
-  }
-
   try {
+    if (!email) {
+      return { success: false, error: 'Email is required' };
+    }
+    
+    if (!isAllowedEmail(email)) {
+      return { success: false, error: 'Unauthorized email address.' };
+    }
+
     const adminDb = getAdminDb();
     const doc = await adminDb.collection('admin_secrets').doc(uid).get();
     
@@ -97,6 +106,6 @@ export async function verifyOTPAndGrantAccess(uid: string, email: string, token:
     }
   } catch (error: any) {
     console.error("OTP Verify Error:", error);
-    return { success: false, error: error.message };
+    return { success: false, error: error?.message || String(error) || 'Unknown server error' };
   }
 }

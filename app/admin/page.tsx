@@ -8,6 +8,7 @@ import { getOrGenerateTOTPSecret, verifyOTPAndGrantAccess } from './actions';
 import { ShieldAlert, Loader2, KeyRound } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/button';
 import { toast } from 'sonner';
+import QRCode from 'qrcode';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -34,7 +35,12 @@ export default function AdminLogin() {
         await auth.signOut();
       } else {
         if (result.requiresSetup && result.qrCodeDataUrl) {
-          setQrCodeUrl(result.qrCodeDataUrl);
+          try {
+            const dataUrl = await QRCode.toDataURL(result.qrCodeDataUrl);
+            setQrCodeUrl(dataUrl);
+          } catch (e) {
+            console.error("Failed to generate QR code", e);
+          }
         }
         setStep(2);
       }

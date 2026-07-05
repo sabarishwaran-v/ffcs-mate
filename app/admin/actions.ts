@@ -2,7 +2,6 @@
 
 import { getAdminDb, getAdminAuth } from '@/lib/firebase-admin';
 import speakeasy from 'speakeasy';
-import QRCode from 'qrcode';
 import crypto from 'node:crypto';
 
 function encryptSecret(text: string): string {
@@ -59,9 +58,8 @@ export async function getOrGenerateTOTPSecret(uid: string, email: string) {
       });
 
       const otpauth = secretObj.otpauth_url;
-      const qrCodeDataUrl = await QRCode.toDataURL(otpauth!);
 
-      return { success: true, requiresSetup: true, qrCodeDataUrl };
+      return { success: true, requiresSetup: true, qrCodeDataUrl: otpauth };
     }
   } catch (error: any) {
     console.error("TOTP Gen Error:", error);

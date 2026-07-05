@@ -228,13 +228,14 @@ export default function AdminDashboard() {
 
   const groupedData = useMemo(() => {
     const groups: Record<string, {
+      code: string;
       courseTitle: string;
       slots: Record<string, { approved: ApprovedFaculty[] }>
     }> = {};
 
     const addToGroup = (courseCode: string, courseTitle: string, slot: string) => {
       if (!groups[courseCode]) {
-        groups[courseCode] = { courseTitle: courseTitle || courseCode, slots: {} };
+        groups[courseCode] = { code: courseCode, courseTitle: courseTitle || courseCode, slots: {} };
       }
       if (!groups[courseCode].slots[slot]) {
         groups[courseCode].slots[slot] = { approved: [] };

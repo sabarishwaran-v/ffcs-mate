@@ -59,13 +59,6 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen bg-background overflow-hidden relative selection:bg-purple-500/30 flex flex-col">
-      {/* Announcement Banner */}
-      <div className="w-full bg-emerald-500/10 border-b border-emerald-500/20 relative z-50">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-center text-sm text-emerald-700 dark:text-emerald-400 font-semibold text-center">
-          <ShieldAlert className="w-4 h-4 mr-2 inline-block shrink-0" />
-          Fall 2026-27 official course list is now live on FFCS Mate.
-        </div>
-      </div>
 
       {/* Abstract Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none" />

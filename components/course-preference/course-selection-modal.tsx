@@ -85,7 +85,7 @@ export function CourseSelectionModal() {
           if (faculties && faculties.length > 0) {
             faculties.forEach((fac, fIndex) => {
               const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
-              if (!teachers.find(t => t.id === fakeTeacherId)) {
+              if (!teachers.find(t => t.id === fakeTeacherId || (t.course === mockData.id && t.name === slotStr && t.faculty === fac.faculty))) {
                 newTeachersToAdd.push({
                   id: fakeTeacherId,
                   name: slotStr, 
@@ -100,7 +100,7 @@ export function CourseSelectionModal() {
           } else {
             const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
             
-            if (!teachers.find(t => t.id === fakeTeacherId)) {
+            if (!teachers.find(t => t.id === fakeTeacherId || (t.course === mockData.id && t.name === slotStr))) {
               const facultyName = hasDuplicates ? `Faculty ${index}` : undefined;
               
               newTeachersToAdd.push({

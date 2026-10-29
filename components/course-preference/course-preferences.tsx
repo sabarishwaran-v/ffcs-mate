@@ -48,7 +48,8 @@ export function CoursePreference() {
 
     // If courseIds is empty string (though Proceed button prevents this), ids should be empty
     const ids = courseIds ? courseIds.split(",") : [];
-    const currentCourseIds = useScheduleStore.getState().courses.map(c => c.id);
+    const state = useScheduleStore.getState();
+    const currentCourseIds = state.courses.map(c => c.id);
 
     // Remove any course that is currently in the planner but no longer in the basket selection
     const toRemove = currentCourseIds.filter(id => !ids.includes(id));
@@ -56,13 +57,16 @@ export function CoursePreference() {
       useScheduleStore.getState().removeCourse(id);
     });
 
+    const currentCourses = useScheduleStore.getState().courses;
+    const currentTeachers = useScheduleStore.getState().teachers;
     const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
     const newTeachersToAdd: Parameters<typeof addTeachers>[0] = [];
 
     MOCK_COURSES.forEach(mockData => {
-      // If course is selected (present in URL), and we haven't loaded it into store yet
-      if (ids.includes(mockData.id) && !courses.find(c => c.id === mockData.id)) {
-        addCourse({
+      // If course is selected (present in URL)
+      if (ids.includes(mockData.id)) {
+        if (!currentCourses.find(c => c.id === mockData.id)) {
+          useScheduleStore.getState().addCourse({
             id: mockData.id,
             code: mockData.code,
             name: mockData.title,
@@ -71,25 +75,32 @@ export function CoursePreference() {
             theorySlots: mockData.theorySlots,
             labSlots: mockData.labSlots,
           });
+        }
 
-        const allSlots = [...(mockData.theorySlots || []), ...(mockData.labSlots || [])];
-        const uniqueSlotsCount = allSlots.reduce((acc, slot) => {
-          acc[slot] = (acc[slot] || 0) + 1;
-          return acc;
-        }, {} as Record<string, number>);
+        // Check if real teachers exist for this course in the store
+        const existingRealTeachers = currentTeachers.filter(
+          t => t.course === mockData.id && t.faculty && t.faculty !== "-"
+        );
 
-        allSlots.forEach((slotStr, index) => {
-          const hasDuplicates = uniqueSlotsCount[slotStr] > 1;
-          const parsedPeriods = slotStr.split('+').map(s => s.trim());
-          const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
-          
-          const facultyKey = `${mockData.code}_${slotStr}`;
-          const faculties = typedFacultyData[facultyKey];
-          
-          if (faculties && faculties.length > 0) {
-            faculties.forEach((fac, fIndex) => {
-              const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
-              if (!teachers.find(t => t.id === fakeTeacherId)) {
+        // If no real teachers loaded yet, populate from faculties.json
+        if (existingRealTeachers.length === 0) {
+          const allSlots = [...(mockData.theorySlots || []), ...(mockData.labSlots || [])];
+          const uniqueSlotsCount = allSlots.reduce((acc, slot) => {
+            acc[slot] = (acc[slot] || 0) + 1;
+            return acc;
+          }, {} as Record<string, number>);
+
+          allSlots.forEach((slotStr, index) => {
+            const hasDuplicates = uniqueSlotsCount[slotStr] > 1;
+            const parsedPeriods = slotStr.split('+').map(s => s.trim());
+            const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
+            
+            const facultyKey = `${mockData.code}_${slotStr}`;
+            const faculties = typedFacultyData[facultyKey];
+            
+            if (faculties && faculties.length > 0) {
+              faculties.forEach((fac, fIndex) => {
+                const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
                 newTeachersToAdd.push({
                   id: fakeTeacherId,
                   name: slotStr, 
@@ -99,14 +110,11 @@ export function CoursePreference() {
                   venue: { morning: fac.venue || null, afternoon: null },
                   course: mockData.id,
                 });
-              }
-            });
-          } else {
-            const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
-            
-            if (!teachers.find(t => t.id === fakeTeacherId)) {
+              });
+            } else {
+              const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
               const facultyName = hasDuplicates ? `Faculty ${index}` : undefined;
-  
+    
               newTeachersToAdd.push({
                 id: fakeTeacherId,
                 name: slotStr, 
@@ -117,15 +125,25 @@ export function CoursePreference() {
                 course: mockData.id,
               });
             }
-          }
-        });
+          });
+        }
       }
     });
 
     if (newTeachersToAdd.length > 0) {
-      addTeachers(newTeachersToAdd);
+      // Clean up any placeholder "-" teachers for courses being updated with real data
+      const coursesBeingAdded = new Set(newTeachersToAdd.map(t => t.course));
+      const placeholderIdsToRemove = currentTeachers
+        .filter(t => coursesBeingAdded.has(t.course) && (!t.faculty || t.faculty === "-"))
+        .map(t => t.id);
+
+      if (placeholderIdsToRemove.length > 0) {
+        useScheduleStore.getState().removeTeachers(placeholderIdsToRemove);
+      }
+
+      useScheduleStore.getState().addTeachers(newTeachersToAdd);
     }
-  }, [courseIds, courses, teachers, addCourse, addTeachers]);
+  }, [courseIds]);
 
   return (
     <Card className="container m-3 mx-auto">

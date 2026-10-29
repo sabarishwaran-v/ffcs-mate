@@ -4,7 +4,7 @@ import { Calendar, ChevronDown, Copy, Edit, Trash2, Users } from "lucide-react";
 import { memo } from "react";
 
 import { Badge } from "@/components/ui/badge";
-import { AnimatedButton } from "@/components/ui/button";
+import { AnimatedButton, Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,7 +41,7 @@ export const TimetableSelector = memo(function TimetableSelector({
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <AnimatedButton
+          <Button
             variant="outline"
             className="flex items-center gap-2"
             disabled={!timetables.length}
@@ -53,7 +53,7 @@ export const TimetableSelector = memo(function TimetableSelector({
               {activeTimetable?.selectedTeachers.length || 0} courses
             </Badge>
             <ChevronDown className="w-4 h-4" />
-          </AnimatedButton>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-80">
           {timetables.map((timetable) => (
@@ -88,7 +88,7 @@ export const TimetableSelector = memo(function TimetableSelector({
                 </div>
               </div>
               <div className="flex items-center gap-1 ml-2">
-                <AnimatedButton
+                <Button
                   variant="ghost"
                   size="sm"
                   onClick={(e) => {
@@ -97,8 +97,8 @@ export const TimetableSelector = memo(function TimetableSelector({
                   }}
                 >
                   <Edit className="w-3 h-3" />
-                </AnimatedButton>
-                <AnimatedButton
+                </Button>
+                <Button
                   variant="ghost"
                   size="sm"
                   onClick={(e) => {
@@ -107,9 +107,9 @@ export const TimetableSelector = memo(function TimetableSelector({
                   }}
                 >
                   <Copy className="w-3 h-3" />
-                </AnimatedButton>
+                </Button>
                 {timetables.length > 1 && (
-                  <AnimatedButton
+                  <Button
                     variant="ghost"
                     size="sm"
                     onClick={(e) => {
@@ -118,7 +118,7 @@ export const TimetableSelector = memo(function TimetableSelector({
                     }}
                   >
                     <Trash2 className="w-3 h-3 text-red-500" />
-                  </AnimatedButton>
+                  </Button>
                 )}
               </div>
             </DropdownMenuItem>

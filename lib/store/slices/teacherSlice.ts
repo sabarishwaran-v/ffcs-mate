@@ -25,8 +25,23 @@ export const createTeacherSlice: StateCreator<
 
   addTeacher: (teacher) =>
     set((state) => {
-      // Prevent duplicate teachers
-      if (teacher.id && state.teachers.some((t) => t.id === teacher.id)) {
+      // Prevent duplicate teachers by ID or matching content
+      const isDuplicate = state.teachers.some((t) => {
+        if (teacher.id && t.id === teacher.id) return true;
+        if (
+          teacher.course &&
+          t.course === teacher.course &&
+          t.name === teacher.name &&
+          ((t.faculty || '').trim().toLowerCase() === (teacher.faculty || '').trim().toLowerCase()) &&
+          ((t.venue?.morning || '') === (teacher.venue?.morning || '')) &&
+          ((t.venue?.afternoon || '') === (teacher.venue?.afternoon || ''))
+        ) {
+          return true;
+        }
+        return false;
+      });
+
+      if (isDuplicate) {
         return state;
       }
       return {
@@ -39,9 +54,34 @@ export const createTeacherSlice: StateCreator<
 
   addTeachers: (teachersToAdd) =>
     set((state) => {
-      const newTeachers = teachersToAdd
-        .filter((t) => !t.id || !state.teachers.some((existing) => existing.id === t.id))
-        .map((t) => ({ ...t, id: t.id || Math.random().toString(36).slice(2, 9) }));
+      const currentTeachers = [...state.teachers];
+      const newTeachers: Teacher[] = [];
+
+      for (const t of teachersToAdd) {
+        const isDuplicate = currentTeachers.some((existing) => {
+          if (t.id && existing.id === t.id) return true;
+          if (
+            t.course &&
+            existing.course === t.course &&
+            existing.name === t.name &&
+            ((existing.faculty || '').trim().toLowerCase() === (t.faculty || '').trim().toLowerCase()) &&
+            ((existing.venue?.morning || '') === (t.venue?.morning || '')) &&
+            ((existing.venue?.afternoon || '') === (t.venue?.afternoon || ''))
+          ) {
+            return true;
+          }
+          return false;
+        });
+
+        if (!isDuplicate) {
+          const teacherWithId = {
+            ...t,
+            id: t.id || `${t.course || 'course'}_${t.name}_${Math.random().toString(36).slice(2, 9)}`,
+          };
+          currentTeachers.push(teacherWithId);
+          newTeachers.push(teacherWithId);
+        }
+      }
         
       if (newTeachers.length === 0) return state;
       

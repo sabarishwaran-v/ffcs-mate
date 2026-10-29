@@ -41,7 +41,7 @@ export function Title() {
   }, [pathname, isHomePage]);
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b shadow-sm mb-6">
+    <div className={`sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b shadow-sm ${isHomePage ? "" : "mb-6"}`}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div 
           onClick={() => {
@@ -92,7 +92,7 @@ export function Title() {
             </DialogTitle>
             <DialogDescription className="text-base text-muted-foreground mt-2">
               Are you sure you want to leave the planner? Don't worry, your <strong className="text-foreground font-semibold">
-                {activeSemester === 'winter2025' ? 'Winter Semester 2025-26' : 'Semester'}
+                {activeSemester?.includes('winter') ? 'Winter Semester 2026-27' : activeSemester === 'fall2026' ? 'Fall Semester 2026-27' : 'Semester'}
               </strong> data is stored safely and you can continue editing at any time!
             </DialogDescription>
           </DialogHeader>

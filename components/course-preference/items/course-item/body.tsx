@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { Course, Teacher } from "@/types";
 import { useScheduleStore, useFacultyStore, useOptimisticStore } from "@/lib/store";
 import { toast } from "sonner";
-import { Check, CalendarPlus, CheckCircle2, UploadCloud } from "lucide-react";
+import { Check, CalendarPlus, CheckCircle2, UploadCloud, RotateCcw, FileCode } from "lucide-react";
 import { MOCK_COURSES } from "@/lib/mock-data";
 import { useAuth } from "@/components/providers/auth-provider";
-import StudentContributeModal from "./student-contribute-modal";
+import MockHtmlUploadModal from "./mock-html-upload-modal";
+import { Button } from "@/components/ui/button";
+import facultyData from "@/lib/faculties.json";
 
 interface CourseItemBodyProps {
   course: Course;
@@ -22,28 +24,53 @@ export default function CourseItemBody({
 }: CourseItemBodyProps) {
   const { isTeacherSelected, setCourseSlots } = useScheduleStore();
   const { approvedFaculties, fetchApprovedFaculties } = useFacultyStore();
-  const { optimisticFaculties } = useOptimisticStore();
+  const { optimisticFaculties, customCourseOverrides, removeCourseCustomOverride } = useOptimisticStore();
   const { user, userData } = useAuth();
 
   const [selectedTheoryId, setSelectedTheoryId] = useState<string | null>(null);
   const [selectedLabId, setSelectedLabId] = useState<string | null>(null);
   const [isContributeModalOpen, setIsContributeModalOpen] = useState(false);
 
+  const hasCustomOverride = !!customCourseOverrides[course.code];
+  const customOverrideData = customCourseOverrides[course.code];
+
   const mockCourse = MOCK_COURSES.find(c => c.id === course.id);
   const theorySlots = course.theorySlots || mockCourse?.theorySlots || [];
   const labSlots = course.labSlots || mockCourse?.labSlots || [];
 
-  const theoryTeachers = courseTeachers.filter((t) => {
-    const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
-    const isLab = allSlots.some(s => s.startsWith('L') && /[0-9]/.test(s));
-    return !isLab;
-  }).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+  const dedupeTeachers = (list: Teacher[]) => {
+    const seen = new Set<string>();
+    return list.filter((t) => {
+      const facName = (t.faculty || "").trim().toLowerCase();
+      const morningVenue = (t.venue?.morning || "").trim().toLowerCase();
+      const afternoonVenue = (t.venue?.afternoon || "").trim().toLowerCase();
+      const key = `${t.name}_${facName}_${morningVenue}_${afternoonVenue}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
 
-  const labTeachers = courseTeachers.filter((t) => {
-    const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
-    return allSlots.some(s => s.startsWith('L') && /[0-9]/.test(s));
-  }).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+  const theoryTeachers = dedupeTeachers(
+    courseTeachers.filter((t) => {
+      const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
+      const isLab = allSlots.some((s) => s.startsWith("L") && /[0-9]/.test(s));
+      return !isLab;
+    })
+  ).sort((a, b) =>
+    a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" })
+  );
 
+  const labTeachers = dedupeTeachers(
+    courseTeachers.filter((t) => {
+      const allSlots = [...(t.slots.morning || []), ...(t.slots.afternoon || [])];
+      return allSlots.some((s) => s.startsWith("L") && /[0-9]/.test(s));
+    })
+  ).sort((a, b) =>
+    a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" })
+  );
+
+  const hasPublicFaculties = courseTeachers.some(t => t.faculty && t.faculty !== "-" && !hasCustomOverride);
   const isEmbedded = theoryTeachers.length > 0 && labTeachers.length > 0;
   const requiresTheory = theoryTeachers.length > 0;
   const requiresLab = labTeachers.length > 0;
@@ -66,26 +93,82 @@ export default function CourseItemBody({
     setHasInitialized(true);
   }, [theoryTeachers, labTeachers, isTeacherSelected, hasInitialized]);
 
-  const localTeacherIds = courseTeachers.map(t => t.id).join(',');
-  const allAvailableFaculties = { ...optimisticFaculties, ...approvedFaculties };
+  const allAvailableFaculties = hasCustomOverride
+    ? { ...(customOverrideData?.faculties || {}) }
+    : { ...optimisticFaculties, ...approvedFaculties };
   const approvedTeacherIds = Object.keys(allAvailableFaculties).join(',');
+
+  const handleRevertToPublic = () => {
+    removeCourseCustomOverride(course.code);
+
+    const typedFacultyData = facultyData as Record<string, { faculty: string; venue: string }[]>;
+    const publicApproved = Object.values(approvedFaculties).filter(af => af.courseCode === course.code);
+
+    const publicTeachersToAdd: Teacher[] = [];
+    if (publicApproved.length > 0) {
+      publicApproved.forEach(af => {
+        const id = af.id || `${course.code}_${af.slot}_${(af.faculty || '').replace(/[^a-zA-Z0-9]/g, '_')}`;
+        publicTeachersToAdd.push({
+          id,
+          course: course.id,
+          name: af.slot,
+          faculty: af.faculty,
+          color: "bg-slate-500",
+          slots: { morning: [af.slot], afternoon: null },
+          venue: { morning: af.venue || null, afternoon: null }
+        });
+      });
+    } else {
+      const allSlots = [...(course.theorySlots || mockCourse?.theorySlots || []), ...(course.labSlots || mockCourse?.labSlots || [])];
+      allSlots.forEach((slotStr) => {
+        const facultyKey = `${course.code}_${slotStr}`;
+        const facs = typedFacultyData[facultyKey];
+        if (facs && facs.length > 0) {
+          facs.forEach((fac, fIndex) => {
+            publicTeachersToAdd.push({
+              id: `${course.id}-${slotStr}-f${fIndex}`,
+              name: slotStr,
+              color: "bg-slate-500",
+              faculty: fac.faculty,
+              slots: { morning: [slotStr], afternoon: null },
+              venue: { morning: fac.venue || null, afternoon: null },
+              course: course.id
+            });
+          });
+        }
+      });
+    }
+
+    const state = useScheduleStore.getState();
+    const currentCourseTeacherIds = state.teachers.filter(t => t.course === course.id).map(t => t.id);
+    state.removeTeachers(currentCourseTeacherIds);
+    if (publicTeachersToAdd.length > 0) {
+      state.addTeachers(publicTeachersToAdd);
+    }
+    toast.success(`Reverted ${course.code} to public faculty data.`);
+  };
 
   useEffect(() => {
     let shouldAdd: Teacher[] = [];
     let shouldRemove: string[] = [];
 
+    const stateTeachers = useScheduleStore.getState().teachers.filter(t => t.course === course.id);
     const courseApproved = Object.values(allAvailableFaculties).filter(af => af.courseCode === course.code);
     
     courseApproved.forEach(af => {
       // Check if we already have this faculty (by deterministic ID or locally parsed name/slot combo)
-      const existsLocally = courseTeachers.find(t => t.id === af.id || (t.name === af.slot && t.faculty === af.faculty));
+      const existsLocally = stateTeachers.find(t => 
+        (af.id && t.id === af.id) || 
+        (t.name === af.slot && (t.faculty || '').trim().toLowerCase() === (af.faculty || '').trim().toLowerCase())
+      );
       if (!existsLocally) {
         // Inject globally approved faculty into this student's local list
-        const template = courseTeachers.find(t => t.name === af.slot);
+        const template = stateTeachers.find(t => t.name === af.slot);
         if (template) {
+          const deterministicId = af.id || `${course.code}_${af.slot}_${(af.faculty || '').replace(/[^a-zA-Z0-9]/g, '_')}`;
           shouldAdd.push({
             ...template,
-            id: af.id,
+            id: deterministicId,
             faculty: af.faculty,
             venue: {
               morning: template.slots.morning ? af.venue : null,
@@ -99,18 +182,21 @@ export default function CourseItemBody({
 
     // Remove mock "-" teachers if we have real data (parsed or approved) for that slot
     const realTeacherSlots = new Set([
-      ...courseTeachers.filter(t => t.faculty && t.faculty !== "-").map(t => t.name),
+      ...stateTeachers.filter(t => t.faculty && t.faculty !== "-").map(t => t.name),
       ...shouldAdd.map(t => t.name)
     ]);
     
-    courseTeachers.forEach(t => {
+    stateTeachers.forEach(t => {
       if ((!t.faculty || t.faculty === "-") && realTeacherSlots.has(t.name)) {
         shouldRemove.push(t.id);
       }
       
       // Remove verified faculties that were deleted from the database
       if (t.addedByName === "Verified Faculty") {
-        const stillApproved = courseApproved.find(af => af.id === t.id || (af.slot === t.name && af.faculty === t.faculty));
+        const stillApproved = courseApproved.find(af => 
+          (af.id && af.id === t.id) || 
+          (af.slot === t.name && (af.faculty || '').trim().toLowerCase() === (t.faculty || '').trim().toLowerCase())
+        );
         if (!stillApproved) {
           shouldRemove.push(t.id);
         }
@@ -119,7 +205,7 @@ export default function CourseItemBody({
 
     // Restore mock "-" teachers if a slot becomes completely empty
     const finalSlots = new Set();
-    courseTeachers.forEach(t => {
+    stateTeachers.forEach(t => {
       if (!shouldRemove.includes(t.id)) finalSlots.add(t.name);
     });
     shouldAdd.forEach(t => finalSlots.add(t.name));
@@ -151,7 +237,7 @@ export default function CourseItemBody({
         store.removeTeachers(shouldRemove);
       }
     }
-  }, [approvedTeacherIds, course.code, localTeacherIds]);
+  }, [approvedTeacherIds, course.code, course.id]);
 
   const handleUpdateTimetable = () => {
     const slotsToPlace: string[] = [];
@@ -213,6 +299,32 @@ export default function CourseItemBody({
           <h4 className="text-sm font-bold text-foreground">Faculty Data</h4>
           <p className="text-xs text-muted-foreground">Select your preferred slots and faculties</p>
         </div>
+
+        {hasCustomOverride ? (
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/30 flex items-center gap-1.5">
+              <FileCode className="w-3.5 h-3.5" /> Using Custom Mock Data
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRevertToPublic}
+              className="text-xs h-7 px-2.5 flex items-center gap-1 border-border hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
+            >
+              <RotateCcw className="w-3 h-3" /> Revert to Public
+            </Button>
+          </div>
+        ) : (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsContributeModalOpen(true)}
+            className="text-xs h-8 px-3 flex items-center gap-1.5 border-primary/30 text-primary hover:bg-primary/10"
+          >
+            <UploadCloud className="w-3.5 h-3.5" />
+            {hasPublicFaculties ? "Upload Custom HTML" : "Add Mock FFCS HTML"}
+          </Button>
+        )}
       </div>
 
       {/* Theory Section */}
@@ -334,17 +446,7 @@ export default function CourseItemBody({
       )}
 
       {/* Footer Action */}
-      <div className="p-4 bg-background/95 backdrop-blur-md border-t border-border flex justify-between shrink-0 sticky bottom-0">
-        <div>
-          {((useFacultyStore.getState().contributionsCount[course.code] || 0) < 10) && (
-            <button
-              onClick={() => setIsContributeModalOpen(true)}
-              className="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition-all border border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-500/10"
-            >
-              <UploadCloud className="w-4 h-4" /> Contribute Data
-            </button>
-          )}
-        </div>
+      <div className="p-4 bg-background/95 backdrop-blur-md border-t border-border flex justify-end shrink-0 sticky bottom-0">
         <button
           onClick={handleUpdateTimetable}
           disabled={isCurrentlyPlaced() || (!selectedTheoryId && requiresTheory) || (!selectedLabId && requiresLab)}
@@ -366,19 +468,10 @@ export default function CourseItemBody({
         </button>
       </div>
 
-      <StudentContributeModal 
+      <MockHtmlUploadModal 
         isOpen={isContributeModalOpen}
         onClose={() => setIsContributeModalOpen(false)}
         course={course}
-        availableTeachersTemplate={[...(course.theorySlots || mockCourse?.theorySlots || []), ...(course.labSlots || mockCourse?.labSlots || [])].map(slot => ({
-          id: `${course.id}-${slot}`,
-          course: course.id,
-          name: slot,
-          faculty: "-",
-          color: "bg-slate-500",
-          slots: { morning: [slot], afternoon: null },
-          venue: { morning: null, afternoon: null }
-        }))}
       />
     </div>
   );

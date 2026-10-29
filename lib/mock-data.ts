@@ -24,8 +24,8 @@ export const MOCK_COURSES: Course[] = parsedCourses
     labSlots: c.labSlots
   }))
   .sort((a, b) => {
-    // Keep only the specific Software Engineering (CSE1005) and Database Systems (SWE2006) at the top
-    const topCodes = ["CSE1005", "SWE2006"];
+    // Keep popular courses like Introduction to Programming (CSE1022) at the top
+    const topCodes = ["CSE1022", "MAT1002", "PHY1008", "CHY1009"];
     const aIsTop = topCodes.includes(a.code);
     const bIsTop = topCodes.includes(b.code);
     

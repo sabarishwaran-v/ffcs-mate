@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, PlayCircle, Info, Users, ShieldAlert, Download, CalendarCheck, Sparkles, Loader2, CheckCircle2, Database } from "lucide-react";
+import { ArrowRight, PlayCircle, Info, Users, ShieldAlert, Download, CalendarCheck, Sparkles, Loader2, CheckCircle2, Database, UploadCloud, FileCode, HelpCircle } from "lucide-react";
 
 import { Footer } from "@/components/footer";
 import { MotionDiv, ScrollAnimation, Stagger } from "@/components/ui/motion";
@@ -34,6 +34,7 @@ export default function Dashboard() {
   const [selectedSemester, setSelectedSemester] = useState<string>("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isHtmlGuideOpen, setIsHtmlGuideOpen] = useState(false);
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   const [isContinueOpen, setIsContinueOpen] = useState(false);
   
@@ -59,6 +60,13 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen bg-background overflow-hidden relative selection:bg-purple-500/30 flex flex-col">
+      {/* Announcement Banner */}
+      <div className="w-full bg-emerald-500/10 border-b border-emerald-500/20 relative z-50">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-center text-sm text-emerald-700 dark:text-emerald-400 font-semibold text-center">
+          <ShieldAlert className="w-4 h-4 mr-2 inline-block shrink-0" />
+          Winter Semester 2026-27 official course list & slot timetable are now live on FFCS Mate.
+        </div>
+      </div>
 
       {/* Abstract Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none" />
@@ -98,38 +106,47 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
               Say goodbye to clashing slots and messy spreadsheets. Collaborate with friends in real-time, instantly detect clashes, and build your perfect schedule before registration begins.
             </p>
-            {process.env.NODE_ENV === 'development' && (
-              <MotionDiv 
-                className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-2 px-5 py-3 rounded-2xl sm:rounded-full bg-purple-500/10 border border-purple-500/20 max-w-[90%] sm:max-w-none mx-auto"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <Users className="w-4 h-4 text-purple-500 shrink-0" />
-                <span className="text-sm font-medium text-purple-600 dark:text-purple-400 text-center sm:text-left">
-                  Faculty & venue details will be crowdsourced by the student community during Mock FFCS!
-                </span>
-              </MotionDiv>
-            )}
           </MotionDiv>
           
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8"
           >
-            <AnimatedButton onClick={() => setIsDialogOpen(true)} size="lg" className="w-full sm:w-auto px-8 py-6 text-lg rounded-xl bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 group">
+            <AnimatedButton onClick={() => setIsDialogOpen(true)} size="lg" className="w-full sm:w-auto px-7 py-6 text-base sm:text-lg rounded-xl bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 group">
               Start Planning Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </AnimatedButton>
-            <AnimatedButton onClick={() => setIsVideoOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg rounded-xl border-border bg-card/50 backdrop-blur hover:bg-muted/50">
+            <AnimatedButton onClick={() => setIsHtmlGuideOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-6 py-6 text-base sm:text-lg rounded-xl border-purple-500/30 bg-purple-500/5 text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 transition-colors">
+              <Download className="mr-2 w-5 h-5 text-purple-500" />
+              How to Download HTML
+            </AnimatedButton>
+            <AnimatedButton onClick={() => setIsVideoOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-6 py-6 text-base sm:text-lg rounded-xl border-border bg-card/50 backdrop-blur hover:bg-muted/50">
               <PlayCircle className="mr-2 w-5 h-5" />
               Watch Demo
             </AnimatedButton>
+          </MotionDiv>
+
+          <MotionDiv 
+            className="inline-flex flex-wrap items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-sm font-medium w-fit max-w-[95%] mx-auto text-center"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <UploadCloud className="w-4 h-4 text-purple-500 shrink-0" />
+            <span>
+              Inside the planner, easily upload your saved Mock FFCS HTML to view faculty & venue details!
+            </span>
+            <button
+              onClick={() => setIsHtmlGuideOpen(true)}
+              className="underline font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors inline-flex items-center gap-0.5 ml-1"
+            >
+              How to download? ➜
+            </button>
           </MotionDiv>
         </div>
 
@@ -211,6 +228,114 @@ export default function Dashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* How to Download HTML Guide Dialog */}
+      <Dialog open={isHtmlGuideOpen} onOpenChange={setIsHtmlGuideOpen}>
+        <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-card border border-border p-6 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="text-left">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                <FileCode className="w-5 h-5" />
+              </div>
+              <div>
+                <DialogTitle className="text-xl font-bold text-foreground">
+                  How to Save & Download Mock FFCS HTML
+                </DialogTitle>
+                <DialogDescription className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                  Follow these 4 simple steps to save your course page from VTOP with all faculty & venue details.
+                </DialogDescription>
+              </div>
+            </div>
+          </DialogHeader>
+
+          <div className="mt-4 space-y-3.5">
+            {/* Step 1 */}
+            <div className="flex gap-3.5 p-3.5 rounded-xl border border-border/60 bg-muted/30">
+              <div className="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                1
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-foreground">Log in to VTOP & Open Mock FFCS</h4>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  Log into your official VTOP account at <span className="font-mono text-purple-600 dark:text-purple-400 font-medium">vtop.vitap.ac.in</span> and navigate to <span className="font-semibold text-foreground">Course Registration ➔ Mock FFCS</span>.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex gap-3.5 p-3.5 rounded-xl border border-border/60 bg-muted/30">
+              <div className="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                2
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-foreground">Click the Subject to Open Slots Table</h4>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  Click on the course you want to add faculty data for so that its Theory and Lab slots table opens up on your screen.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex gap-3.5 p-3.5 rounded-xl border border-purple-500/30 bg-purple-500/5">
+              <div className="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                3
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  Save Page as HTML Only
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-700 dark:text-purple-300">
+                    Important
+                  </span>
+                </h4>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  Press <kbd className="px-1.5 py-0.5 text-[11px] font-mono bg-background border rounded shadow-xs font-semibold">Ctrl + S</kbd> (Windows) or <kbd className="px-1.5 py-0.5 text-[11px] font-mono bg-background border rounded shadow-xs font-semibold">Cmd + S</kbd> (Mac).
+                </p>
+                <div className="mt-2 text-xs p-2.5 rounded-lg bg-background/80 border border-purple-500/20 text-foreground">
+                  💡 In the <strong>"Format"</strong> or <strong>"Save as type"</strong> dropdown, choose <span className="font-semibold text-purple-600 dark:text-purple-400">Webpage, HTML Only</span> (or <code>.html</code>).
+                </div>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="flex gap-3.5 p-3.5 rounded-xl border border-emerald-500/30 bg-emerald-500/5">
+              <div className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                4
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-foreground">Upload into FFCS Mate Planner</h4>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  In FFCS Mate, open that course in your preferences and click <span className="font-semibold text-emerald-600 dark:text-emerald-400">"Add Mock FFCS HTML"</span>. Drop or select your saved file — faculties and venues will appear instantly!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-border">
+            <span className="text-xs text-muted-foreground text-center sm:text-left">
+              🔒 100% Private & Safe: Processing is done on your device.
+            </span>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <Button
+                variant="outline"
+                onClick={() => setIsHtmlGuideOpen(false)}
+                className="w-full sm:w-auto rounded-xl"
+              >
+                Close
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsHtmlGuideOpen(false);
+                  setIsDialogOpen(true);
+                }}
+                className="w-full sm:w-auto rounded-xl bg-purple-600 hover:bg-purple-700 text-white"
+              >
+                Start Planning Now
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Onboarding Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={(open) => {
         setIsDialogOpen(open);
@@ -251,8 +376,8 @@ export default function Dashboard() {
                   disabled={isExtracting}
                 >
                   <option value="" disabled>-- Select a Semester --</option>
+                  <option value="winter2026">Winter Semester 2026-27</option>
                   <option value="fall2026">Fall Semester 2026-27</option>
-                  <option value="winter2025">Winter Semester 2025-26</option>
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                   {isExtracting ? (

@@ -95,7 +95,10 @@ export interface ClashInfo {
 export interface ApprovedFaculty {
   id: string;
   courseCode: string;
+  courseTitle?: string;
   slot: string;
   faculty: string;
   venue: string;
+  approvedAt?: string;
+  approvedBy?: string;
 }

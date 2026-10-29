@@ -1,1 +1,2422 @@
-{}
+{
+  "ENG2001_G2": [
+    {
+      "faculty": "ARGHYA CHAKRABORTY",
+      "venue": "AB2-G14"
+    },
+    {
+      "faculty": "PURNENDU BIKASH DEBNATH",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "Neethu P Antony",
+      "venue": "AB2-G17"
+    },
+    {
+      "faculty": "Amar Wayal",
+      "venue": "AB2-G19"
+    }
+  ],
+  "ENG2001_D2": [
+    {
+      "faculty": "Rakhi N K",
+      "venue": "AB2-G19"
+    },
+    {
+      "faculty": "Chandini Stephens",
+      "venue": "AB2-G17"
+    },
+    {
+      "faculty": "SINJINI CHAKRABORTY",
+      "venue": "AB2-220"
+    },
+    {
+      "faculty": "Vishnu V",
+      "venue": "AB1-G01"
+    }
+  ],
+  "ENG2001_G1": [
+    {
+      "faculty": "Rasheda Parveen",
+      "venue": "AB2-G17"
+    },
+    {
+      "faculty": "Pragnya Parimita Chayani",
+      "venue": "AB1-G10"
+    },
+    {
+      "faculty": "Ritu Varghese",
+      "venue": "AB2-G14"
+    },
+    {
+      "faculty": "SHARANYA GHOSH",
+      "venue": "AB2-G19"
+    },
+    {
+      "faculty": "P ARUL NEHRU",
+      "venue": "AB1-G02"
+    }
+  ],
+  "ENG2001_E2": [
+    {
+      "faculty": "SOUMYADEEP CHAKRABORTY",
+      "venue": "AB2-102"
+    },
+    {
+      "faculty": "Raghavi R K",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "ARGHYA CHAKRABORTY",
+      "venue": "AB2-212"
+    },
+    {
+      "faculty": "UDITA BANERJEE",
+      "venue": "AB2-111"
+    },
+    {
+      "faculty": "ARUNAVA ACHARYA",
+      "venue": "AB2-G17"
+    }
+  ],
+  "ENG2001_E1": [
+    {
+      "faculty": "Srirupa Poddar",
+      "venue": "AB2-212"
+    },
+    {
+      "faculty": "Rakhi N K",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "MANISHA BHADRAN",
+      "venue": "AB2-G17"
+    },
+    {
+      "faculty": "SRUTHI SASIDHARAN",
+      "venue": "AB2-G14"
+    },
+    {
+      "faculty": "Jabeen Yasmeen",
+      "venue": "AB2-G19"
+    }
+  ],
+  "ENG2001_D1": [
+    {
+      "faculty": "Anupama A.P",
+      "venue": "AB2-G17"
+    },
+    {
+      "faculty": "SRUTHI SASIDHARAN",
+      "venue": "AB2-212"
+    },
+    {
+      "faculty": "ARUNAVA ACHARYA",
+      "venue": "CB-112"
+    },
+    {
+      "faculty": "SHARANYA GHOSH",
+      "venue": "AB2-G19"
+    }
+  ],
+  "ENG2001_L35+L36": [
+    {
+      "faculty": "RAMESH KUMAR MAHTHA",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L5+L6": [
+    {
+      "faculty": "Anindita Shome",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L3+L4": [
+    {
+      "faculty": "Neelima Adapa",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L45+L46": [
+    {
+      "faculty": "Neelima Adapa",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L47+L48": [
+    {
+      "faculty": "RAMESH KUMAR MAHTHA",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L27+L28": [
+    {
+      "faculty": "Neethu P Antony",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L9+L10": [
+    {
+      "faculty": "Neelima Adapa",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L53+L54": [
+    {
+      "faculty": "SOUMYADEEP CHAKRABORTY",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L13+L14": [
+    {
+      "faculty": "SRUTHI SASIDHARAN",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L55+L56": [
+    {
+      "faculty": "PURNENDU BIKASH DEBNATH",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L1+L2": [
+    {
+      "faculty": "Karishma Bisht",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L29+L30": [
+    {
+      "faculty": "Pragya Sengupta",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L7+L8": [
+    {
+      "faculty": "Srirupa Poddar",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L41+L42": [
+    {
+      "faculty": "ARUNAVA ACHARYA",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L57+L58": [
+    {
+      "faculty": "Pragya Sengupta",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L23+L24": [
+    {
+      "faculty": "Neethu P Antony",
+      "venue": "AB2-117"
+    }
+  ],
+  "ENG2001_L15+L16": [
+    {
+      "faculty": "Amar Wayal",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L25+L26": [
+    {
+      "faculty": "SHARANYA GHOSH",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L19+L20": [
+    {
+      "faculty": "Shubhra Ghoshal",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L43+L44": [
+    {
+      "faculty": "Pragnya Parimita Chayani",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L51+L52": [
+    {
+      "faculty": "Amar Wayal",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L31+L32": [
+    {
+      "faculty": "Tannistha Dasgupta",
+      "venue": "AB2-117"
+    },
+    {
+      "faculty": "Deepjoy Katuwal",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L33+L34": [
+    {
+      "faculty": "P ARUL NEHRU",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L11+L12": [
+    {
+      "faculty": "Arpana Venu",
+      "venue": "AB2-117"
+    }
+  ],
+  "ENG2001_L21+L22": [
+    {
+      "faculty": "Ann Mary George",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L37+L38": [
+    {
+      "faculty": "Ann Mary George",
+      "venue": "AB1-221"
+    }
+  ],
+  "ENG2001_L39+L40": [
+    {
+      "faculty": "Farooq Ahmad Mir",
+      "venue": "AB2-117"
+    }
+  ],
+  "ENG2001_L49+L50": [
+    {
+      "faculty": "INZAMUL SARKAR",
+      "venue": "AB2-117"
+    }
+  ],
+  "CSE1022_E2+TE2": [
+    {
+      "faculty": "NARESH BODA",
+      "venue": "CB-G13"
+    },
+    {
+      "faculty": "Anil Kumar Nayak",
+      "venue": "CB-G11"
+    },
+    {
+      "faculty": "Prof.SENSE Dig Crs Faculty-1",
+      "venue": "CB-112"
+    },
+    {
+      "faculty": "RAJESH VELPULA",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "YATHIRAJULA RAMESH BABU",
+      "venue": "CB-108"
+    },
+    {
+      "faculty": "POTHARAJU RAMESH",
+      "venue": "CB-110"
+    },
+    {
+      "faculty": "Sambhudutta Nanda",
+      "venue": "CB-114"
+    },
+    {
+      "faculty": "NIKITA RAMACHANDRA",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "Swati Shukla",
+      "venue": "CB-113"
+    },
+    {
+      "faculty": "R.SAI PRASAD GOUD",
+      "venue": "CB-107"
+    },
+    {
+      "faculty": "PRAVEEN TIWARI",
+      "venue": "CB-G12"
+    }
+  ],
+  "CSE1022_F2+TFF2": [
+    {
+      "faculty": "POTHI REDDY KRISHNA MOHAN REDDY",
+      "venue": "CB-108"
+    },
+    {
+      "faculty": "MAMILLA SREENIVASULU",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "POTHARAJU RAMESH",
+      "venue": "CB-107"
+    }
+  ],
+  "CSE1022_F1+TF1": [
+    {
+      "faculty": "NIKITA RAMACHANDRA",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "Prof.SENSE Dig Crs Faculty-1",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "R.SAI PRASAD GOUD",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "YATHIRAJULA RAMESH BABU",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "Chandan Nayak",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "Abdul Kayom Md Khairuzzaman",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "SAURABH KHARWAR",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "Swati Shukla",
+      "venue": "AB1-409"
+    }
+  ],
+  "CSE1022_F2+TF2": [
+    {
+      "faculty": "Abdul Kayom Md Khairuzzaman",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "NIKITA RAMACHANDRA",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "MADDULURI SUNEETHA",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "Prof.SENSE Dig Crs Faculty-1",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "VANGAPANDU DHANUNJAYA NAIDU",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "SAURABH KHARWAR",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "Chandan Nayak",
+      "venue": "AB1-323"
+    },
+    {
+      "faculty": "SONIA DAS",
+      "venue": "AB1-415"
+    }
+  ],
+  "CSE1022_A2+TA2": [
+    {
+      "faculty": "MARRIBOYINA SREEDEVI",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "CHARULATA PALAI",
+      "venue": "CB-G16"
+    },
+    {
+      "faculty": "Yallanti Sowjanya Kumari",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "Posham Uppamma",
+      "venue": "AB1-420"
+    },
+    {
+      "faculty": "BALARAJU RAMESH",
+      "venue": "AB1-421"
+    },
+    {
+      "faculty": "CHATTU KANNAIAH",
+      "venue": "CB-107"
+    },
+    {
+      "faculty": "Battula Venkata Satish Babu",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "Jonnadula Harikiran",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "TATA GAYATHRI",
+      "venue": "CB-G17"
+    },
+    {
+      "faculty": "Hemant Kumar Reddy",
+      "venue": "CB-G12"
+    },
+    {
+      "faculty": "PRADEEP KUMAR JENA",
+      "venue": "CB-G14"
+    },
+    {
+      "faculty": "Karthika Natarajan",
+      "venue": "CB-G15"
+    },
+    {
+      "faculty": "Afzal Hussain Shahid",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "Pamulapati Ashok Reddy",
+      "venue": "CB-G11"
+    },
+    {
+      "faculty": "Ravi Sankar Barpanda",
+      "venue": "CB-G13"
+    },
+    {
+      "faculty": "Prof.SCOPE Dig Crs Faculty-10",
+      "venue": "CB-108"
+    },
+    {
+      "faculty": "PUTTA DURGA",
+      "venue": "CB-G18"
+    }
+  ],
+  "CSE1022_B2+TB2": [
+    {
+      "faculty": "TIRUMANADHAM N S KOTI MANIKUMAR",
+      "venue": "AB2-411"
+    },
+    {
+      "faculty": "JAVVAJI VENKATA KANAKA RATNAM",
+      "venue": "AB1-G01"
+    },
+    {
+      "faculty": "Battula Venkata Satish Babu",
+      "venue": "AB1-323"
+    },
+    {
+      "faculty": "Mukkoti Maruthi Venkata Chalapathi",
+      "venue": "AB1-G10"
+    },
+    {
+      "faculty": "Karthika Natarajan",
+      "venue": "AB1-134"
+    },
+    {
+      "faculty": "Mohan Allam",
+      "venue": "AB1-138"
+    },
+    {
+      "faculty": "REGONDA NAGARAJU",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "SYAMALA MURALI KRISHNA",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "Samuka Mohanty",
+      "venue": "AB1-137"
+    },
+    {
+      "faculty": "MARRIBOYINA SREEDEVI",
+      "venue": "AB2-319"
+    },
+    {
+      "faculty": "Yallanti Sowjanya Kumari",
+      "venue": "AB2-410"
+    },
+    {
+      "faculty": "Nandha Kumar R",
+      "venue": "AB1-133"
+    },
+    {
+      "faculty": "TATA GAYATHRI",
+      "venue": "AB1-219"
+    },
+    {
+      "faculty": "Ramkumar D",
+      "venue": "AB1-320"
+    },
+    {
+      "faculty": "Deepasikha Mishra",
+      "venue": "AB1-135"
+    },
+    {
+      "faculty": "CHARULATA PALAI",
+      "venue": "AB1-301"
+    },
+    {
+      "faculty": "IMMADI MURALI KRISHNA",
+      "venue": "AB1-G02"
+    },
+    {
+      "faculty": "D. Paul Joseph",
+      "venue": "AB1-G11"
+    }
+  ],
+  "CSE1022_F1+TFF1": [
+    {
+      "faculty": "Sambhudutta Nanda",
+      "venue": "AB1-137"
+    },
+    {
+      "faculty": "RAJESH VELPULA",
+      "venue": "AB1-135"
+    },
+    {
+      "faculty": "PRAVEEN TIWARI",
+      "venue": "AB1-134"
+    }
+  ],
+  "CSE1022_E1+TE1": [
+    {
+      "faculty": "MAMILLA SREENIVASULU",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "NARESH BODA",
+      "venue": "AB1-323"
+    },
+    {
+      "faculty": "VANGAPANDU DHANUNJAYA NAIDU",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "YATHIRAJULA RAMESH BABU",
+      "venue": "AB1-138"
+    },
+    {
+      "faculty": "POTHARAJU RAMESH",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "MADDULURI SUNEETHA",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "Chandan Nayak",
+      "venue": "AB1-320"
+    },
+    {
+      "faculty": "PRAVEEN TIWARI",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "Abdul Kayom Md Khairuzzaman",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "SONIA DAS",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "POTHI REDDY KRISHNA MOHAN REDDY",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "R.SAI PRASAD GOUD",
+      "venue": "AB1-302"
+    }
+  ],
+  "CSE1022_A1+TA1": [
+    {
+      "faculty": "CHATTU KANNAIAH",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "Posham Uppamma",
+      "venue": "AB1-G11"
+    },
+    {
+      "faculty": "Arindam Dey",
+      "venue": "AB1-320"
+    },
+    {
+      "faculty": "REGONDA NAGARAJU",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "Jonnadula Harikiran",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "TATA GAYATHRI",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "MARRIBOYINA SREEDEVI",
+      "venue": "AB1-301"
+    },
+    {
+      "faculty": "Pamulapati Ashok Reddy",
+      "venue": "AB1-135"
+    },
+    {
+      "faculty": "SYAMALA MURALI KRISHNA",
+      "venue": "AB1-219"
+    },
+    {
+      "faculty": "Nandha Kumar R",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "Yallanti Sowjanya Kumari",
+      "venue": "AB1-G02"
+    },
+    {
+      "faculty": "BALARAJU RAMESH",
+      "venue": "AB1-134"
+    },
+    {
+      "faculty": "TIRUMANADHAM N S KOTI MANIKUMAR",
+      "venue": "AB1-133"
+    },
+    {
+      "faculty": "Ravi Sankar Barpanda",
+      "venue": "AB1-138"
+    },
+    {
+      "faculty": "Hemant Kumar Reddy",
+      "venue": "AB1-137"
+    },
+    {
+      "faculty": "CHARULATA PALAI",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "PRADEEP KUMAR JENA",
+      "venue": "AB1-323"
+    },
+    {
+      "faculty": "D. Paul Joseph",
+      "venue": "AB1-G10"
+    }
+  ],
+  "CSE1022_B1+TB1": [
+    {
+      "faculty": "Posham Uppamma",
+      "venue": "AB2-214"
+    },
+    {
+      "faculty": "BALARAJU RAMESH",
+      "venue": "AB2-216"
+    },
+    {
+      "faculty": "Mukkoti Maruthi Venkata Chalapathi",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "JAVVAJI VENKATA KANAKA RATNAM",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "Ramkumar D",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "REGONDA NAGARAJU",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "Jonnadula Harikiran",
+      "venue": "AB2-112"
+    },
+    {
+      "faculty": "SYAMALA MURALI KRISHNA",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "TIRUMANADHAM N S KOTI MANIKUMAR",
+      "venue": "AB2-215"
+    },
+    {
+      "faculty": "Ravi Sankar Barpanda",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "IMMADI MURALI KRISHNA",
+      "venue": "CB-G12"
+    },
+    {
+      "faculty": "PUTTA DURGA",
+      "venue": "CB-G11"
+    },
+    {
+      "faculty": "CHATTU KANNAIAH",
+      "venue": "CB-G13"
+    },
+    {
+      "faculty": "Deepasikha Mishra",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "Battula Venkata Satish Babu",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "Pamulapati Ashok Reddy",
+      "venue": "AB2-218"
+    },
+    {
+      "faculty": "Hemant Kumar Reddy",
+      "venue": "AB1-323"
+    }
+  ],
+  "CSE1022_L53+L54": [
+    {
+      "faculty": "RAJESH VELPULA",
+      "venue": "CB-419"
+    },
+    {
+      "faculty": "MARRIBOYINA SREEDEVI",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Maheshuni Sankush Krishna",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "NARESH BODA",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE1022_L57+L58": [
+    {
+      "faculty": "NIKITA RAMACHANDRA",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "POTHI REDDY KRISHNA MOHAN REDDY",
+      "venue": "CB-419"
+    },
+    {
+      "faculty": "MAMILLA SREENIVASULU",
+      "venue": "CB-416"
+    },
+    {
+      "faculty": "MADDULURI SUNEETHA",
+      "venue": "CB-101"
+    }
+  ],
+  "CSE1022_L37+L38": [
+    {
+      "faculty": "Anil Kumar Nayak",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "Sambhudutta Nanda",
+      "venue": "CB-419"
+    },
+    {
+      "faculty": "Posham Uppamma",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Jonnadula Harikiran",
+      "venue": "AB1-314"
+    },
+    {
+      "faculty": "SYAMALA MURALI KRISHNA",
+      "venue": "AB2-306"
+    }
+  ],
+  "CSE1022_L33+L34": [
+    {
+      "faculty": "Swati Shukla",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "Posham Uppamma",
+      "venue": "AB1-303"
+    },
+    {
+      "faculty": "Jonnadula Harikiran",
+      "venue": "AB1-309"
+    },
+    {
+      "faculty": "CHATTU KANNAIAH",
+      "venue": "AB1-319"
+    }
+  ],
+  "CSE1022_L41+L42": [
+    {
+      "faculty": "Jayendra Kumar",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Hemant Kumar Reddy",
+      "venue": "AB1-309"
+    },
+    {
+      "faculty": "BALARAJU RAMESH",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Ravi Sankar Barpanda",
+      "venue": "AB1-G32"
+    }
+  ],
+  "CSE1022_L43+L44": [
+    {
+      "faculty": "POTHI REDDY KRISHNA MOHAN REDDY",
+      "venue": "CB-416"
+    },
+    {
+      "faculty": "SONIA DAS",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "MAMILLA SREENIVASULU",
+      "venue": "CB-209"
+    },
+    {
+      "faculty": "Abdul Kayom Md Khairuzzaman",
+      "venue": "CB-121"
+    }
+  ],
+  "CSE1022_L5+L6": [
+    {
+      "faculty": "TIRUMANADHAM N S KOTI MANIKUMAR",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Sambhudutta Nanda",
+      "venue": "CB-409"
+    },
+    {
+      "faculty": "VANGAPANDU DHANUNJAYA NAIDU",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Ravi Sankar Barpanda",
+      "venue": "AB1-G32"
+    }
+  ],
+  "CSE1022_L17+L18": [
+    {
+      "faculty": "Battula Venkata Satish Babu",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "MAMILLA SREENIVASULU",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Karthika Natarajan",
+      "venue": "AB1-309"
+    },
+    {
+      "faculty": "CHATTU KANNAIAH",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE1022_L19+L20": [
+    {
+      "faculty": "RAJESH VELPULA",
+      "venue": "CB-409"
+    },
+    {
+      "faculty": "TATA GAYATHRI",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "D. Paul Joseph",
+      "venue": "AB1-309"
+    }
+  ],
+  "CSE1022_L29+L30": [
+    {
+      "faculty": "Anil Kumar Nayak",
+      "venue": "CB-301"
+    },
+    {
+      "faculty": "Mohan Allam",
+      "venue": "AB2-115"
+    },
+    {
+      "faculty": "MAMILLA SREENIVASULU",
+      "venue": "CB-228"
+    },
+    {
+      "faculty": "JAVVAJI VENKATA KANAKA RATNAM",
+      "venue": "AB2-301"
+    }
+  ],
+  "CSE1022_L35+L36": [
+    {
+      "faculty": "Yallanti Sowjanya Kumari",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Pamulapati Ashok Reddy",
+      "venue": "AB1-G32"
+    },
+    {
+      "faculty": "Maheshuni Sankush Krishna",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "D. Paul Joseph",
+      "venue": "AB1-309"
+    }
+  ],
+  "CSE1022_L7+L8": [
+    {
+      "faculty": "Maheshuni Sankush Krishna",
+      "venue": "CB-409"
+    },
+    {
+      "faculty": "Karthika Natarajan",
+      "venue": "AB1-314"
+    },
+    {
+      "faculty": "Ramkumar D",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "CHARULATA PALAI",
+      "venue": "AB1-309"
+    }
+  ],
+  "CSE1022_L15+L16": [
+    {
+      "faculty": "BALARAJU RAMESH",
+      "venue": "AB2-404"
+    },
+    {
+      "faculty": "SYAMALA MURALI KRISHNA",
+      "venue": "AB1-309"
+    },
+    {
+      "faculty": "Sambhudutta Nanda",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Anil Kumar Nayak",
+      "venue": "CB-106"
+    },
+    {
+      "faculty": "Hemant Kumar Reddy",
+      "venue": "AB1-319"
+    }
+  ],
+  "CSE1022_L25+L26": [
+    {
+      "faculty": "MARRIBOYINA SREEDEVI",
+      "venue": "AB2-115"
+    },
+    {
+      "faculty": "Prof.SENSE Dig Crs Faculty-1",
+      "venue": "CB-405"
+    },
+    {
+      "faculty": "Deepasikha Mishra",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "Ramkumar D",
+      "venue": "AB2-119"
+    }
+  ],
+  "CSE1022_L9+L10": [
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "CB-302"
+    },
+    {
+      "faculty": "Pavan Kumar Y V",
+      "venue": "CB-303"
+    },
+    {
+      "faculty": "Battula Venkata Satish Babu",
+      "venue": "AB1-314"
+    }
+  ],
+  "CSE1022_L11+L12": [
+    {
+      "faculty": "MARRIBOYINA SREEDEVI",
+      "venue": "AB2-115"
+    },
+    {
+      "faculty": "TATA GAYATHRI",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "CHARULATA PALAI",
+      "venue": "AB1-303"
+    },
+    {
+      "faculty": "Swati Shukla",
+      "venue": "CB-121"
+    }
+  ],
+  "CSE1022_L13+L14": [
+    {
+      "faculty": "Jonnadula Harikiran",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "PRADEEP KUMAR JENA",
+      "venue": "AB2-115"
+    },
+    {
+      "faculty": "SONIA DAS",
+      "venue": "CB-106"
+    },
+    {
+      "faculty": "IMMADI MURALI KRISHNA",
+      "venue": "AB1-119"
+    }
+  ],
+  "CSE1022_L27+L28": [
+    {
+      "faculty": "RAJESH VELPULA",
+      "venue": "AB1-G32"
+    },
+    {
+      "faculty": "REGONDA NAGARAJU",
+      "venue": "AB1-304"
+    },
+    {
+      "faculty": "PRADEEP KUMAR JENA",
+      "venue": "AB1-119"
+    },
+    {
+      "faculty": "CHARULATA PALAI",
+      "venue": "AB1-303"
+    }
+  ],
+  "CSE1022_L47+L48": [
+    {
+      "faculty": "TIRUMANADHAM N S KOTI MANIKUMAR",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "SYAMALA MURALI KRISHNA",
+      "venue": "AB1-309"
+    },
+    {
+      "faculty": "Chandan Nayak",
+      "venue": "CB-105"
+    }
+  ],
+  "CSE1022_L3+L4": [
+    {
+      "faculty": "MADDULURI SUNEETHA",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Yallanti Sowjanya Kumari",
+      "venue": "AB1-G32"
+    },
+    {
+      "faculty": "Samuka Mohanty",
+      "venue": "AB1-303"
+    },
+    {
+      "faculty": "TATA GAYATHRI",
+      "venue": "AB1-119"
+    }
+  ],
+  "CSE1022_L45+L46": [
+    {
+      "faculty": "REGONDA NAGARAJU",
+      "venue": "CB-321"
+    },
+    {
+      "faculty": "Arindam Dey",
+      "venue": "CB-303"
+    },
+    {
+      "faculty": "NARESH BODA",
+      "venue": "AB1-G32"
+    },
+    {
+      "faculty": "IMMADI MURALI KRISHNA",
+      "venue": "CB-302"
+    }
+  ],
+  "CSE1022_L1+L2": [
+    {
+      "faculty": "VANGAPANDU DHANUNJAYA NAIDU",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Battula Venkata Satish Babu",
+      "venue": "AB1-G32"
+    },
+    {
+      "faculty": "PUTTA DURGA",
+      "venue": "AB1-319"
+    }
+  ],
+  "CSE1022_L21+L22": [
+    {
+      "faculty": "PUTTA DURGA",
+      "venue": "AB2-404"
+    },
+    {
+      "faculty": "JAVVAJI VENKATA KANAKA RATNAM",
+      "venue": "AB2-306"
+    },
+    {
+      "faculty": "Deepasikha Mishra",
+      "venue": "AB1-303"
+    },
+    {
+      "faculty": "SONIA DAS",
+      "venue": "CB-301"
+    }
+  ],
+  "CSE1022_L39+L40": [
+    {
+      "faculty": "Posham Uppamma",
+      "venue": "AB2-115"
+    },
+    {
+      "faculty": "Afzal Hussain Shahid",
+      "venue": "AB1-314"
+    },
+    {
+      "faculty": "CHATTU KANNAIAH",
+      "venue": "AB2-301"
+    },
+    {
+      "faculty": "Pamulapati Ashok Reddy",
+      "venue": "AB2-119"
+    }
+  ],
+  "CSE1022_L49+L50": [
+    {
+      "faculty": "BALARAJU RAMESH",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Hemant Kumar Reddy",
+      "venue": "AB1-G32"
+    },
+    {
+      "faculty": "Anil Kumar Nayak",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Ravi Sankar Barpanda",
+      "venue": "AB1-119"
+    }
+  ],
+  "CSE1022_L51+L52": [
+    {
+      "faculty": "Nandha Kumar R",
+      "venue": "AB1-119"
+    },
+    {
+      "faculty": "Mukkoti Maruthi Venkata Chalapathi",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "REGONDA NAGARAJU",
+      "venue": "AB1-303"
+    },
+    {
+      "faculty": "Swati Shukla",
+      "venue": "CB-303"
+    }
+  ],
+  "CSE1022_L23+L24": [
+    {
+      "faculty": "Yallanti Sowjanya Kumari",
+      "venue": "AB2-306"
+    },
+    {
+      "faculty": "G Bharath Reddy",
+      "venue": "AB1-319"
+    },
+    {
+      "faculty": "Pamulapati Ashok Reddy",
+      "venue": "AB1-304"
+    },
+    {
+      "faculty": "Pavan Kumar Y V",
+      "venue": "AB1-303"
+    }
+  ],
+  "CSE1022_L55+L56": [
+    {
+      "faculty": "VANGAPANDU DHANUNJAYA NAIDU",
+      "venue": "CB-209"
+    },
+    {
+      "faculty": "SONIA DAS",
+      "venue": "CB-228"
+    },
+    {
+      "faculty": "SAURABH KHARWAR",
+      "venue": "CB-122"
+    },
+    {
+      "faculty": "MADDULURI SUNEETHA",
+      "venue": "CB-202"
+    }
+  ],
+  "CSE1022_L31+L32": [
+    {
+      "faculty": "Nandha Kumar R",
+      "venue": "AB1-314"
+    },
+    {
+      "faculty": "Mukkoti Maruthi Venkata Chalapathi",
+      "venue": "AB2-306"
+    },
+    {
+      "faculty": "TIRUMANADHAM N S KOTI MANIKUMAR",
+      "venue": "AB2-115"
+    },
+    {
+      "faculty": "NARESH BODA",
+      "venue": "CB-105"
+    }
+  ],
+  "ECE1002_C2+TC2": [
+    {
+      "faculty": "Ankur Pandey",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "KIRAN KUMAR NALLAMEKALA",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "EMANDI JAGADEESWARA RAO",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "KUMAR VAIBHAV TEJAN",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "DUVVURI SRI SATYA SITA RAMA SARATH BABU",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "SIVAKAVI NAGA VENKATA BRAMARESWARA RAO",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "KARUMANCHI BEULAH SUJAN",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "LAVATI HEMANTH KRISHNA",
+      "venue": "AB1-420"
+    },
+    {
+      "faculty": "KRISHNENDU K",
+      "venue": "AB1-421"
+    }
+  ],
+  "ECE1002_C2+TCC2": [
+    {
+      "faculty": "PULLURI HARISH",
+      "venue": "AB1-135"
+    },
+    {
+      "faculty": "YARLAGADDA RAGHUVAMSI",
+      "venue": "AB1-134"
+    }
+  ],
+  "ECE1002_D2+TD2": [
+    {
+      "faculty": "EMANDI JAGADEESWARA RAO",
+      "venue": "AB1-420"
+    },
+    {
+      "faculty": "MULLAPUDI SIVA",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "Moumita Saha",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "PULLURI HARISH",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "M. Krishnasamy",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "MEERA PATEL",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "KRISHNENDU K",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "ARKDEV",
+      "venue": "AB1-415"
+    }
+  ],
+  "ECE1002_D2+TDD2": [
+    {
+      "faculty": "KRANTHI KUMAR REDDY MISSAL",
+      "venue": "AB1-301"
+    },
+    {
+      "faculty": "Jayashree Pradhan",
+      "venue": "AB1-219"
+    }
+  ],
+  "ECE1002_D1+TD1": [
+    {
+      "faculty": "DUVVURI SRI SATYA SITA RAMA SARATH BABU",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "KOYYANA SRINIVASA RAO",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "KARUMANCHI BEULAH SUJAN",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "EMANDI JAGADEESWARA RAO",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "SIVAKAVI NAGA VENKATA BRAMARESWARA RAO",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "Ankur Pandey",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "YARLAGADDA RAGHUVAMSI",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "KIRAN KUMAR NALLAMEKALA",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "Pavan Kumar Y V",
+      "venue": "AB1-409"
+    }
+  ],
+  "ECE1002_C1+TC1": [
+    {
+      "faculty": "PULLURI HARISH",
+      "venue": "AB1-409"
+    },
+    {
+      "faculty": "MULLAPUDI SIVA",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "M. Krishnasamy",
+      "venue": "AB1-324"
+    },
+    {
+      "faculty": "KUMAR VAIBHAV TEJAN",
+      "venue": "AB1-414"
+    },
+    {
+      "faculty": "Moumita Saha",
+      "venue": "AB1-405"
+    },
+    {
+      "faculty": "ARKDEV",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "MEERA PATEL",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "Jayashree Pradhan",
+      "venue": "AB1-406"
+    },
+    {
+      "faculty": "LAVATI HEMANTH KRISHNA",
+      "venue": "AB1-415"
+    }
+  ],
+  "ECE1002_C1+TCC1": [
+    {
+      "faculty": "KRANTHI KUMAR REDDY MISSAL",
+      "venue": "AB1-133"
+    },
+    {
+      "faculty": "Ankur Pandey",
+      "venue": "AB1-G10"
+    }
+  ],
+  "ECE1002_D1+TDD1": [
+    {
+      "faculty": "LAVATI HEMANTH KRISHNA",
+      "venue": "AB1-133"
+    },
+    {
+      "faculty": "KRISHNENDU K",
+      "venue": "AB1-219"
+    }
+  ],
+  "ECE1002_L5+L6": [
+    {
+      "faculty": "G D V Santhosh Kumar",
+      "venue": "AB2-219"
+    },
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L27+L28": [
+    {
+      "faculty": "KOYYANA SRINIVASA RAO",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "KIRAN KUMAR NALLAMEKALA",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L55+L56": [
+    {
+      "faculty": "SIVAKAVI NAGA VENKATA BRAMARESWARA RAO",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "KOYYANA SRINIVASA RAO",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L25+L26": [
+    {
+      "faculty": "Moumita Saha",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L29+L30": [
+    {
+      "faculty": "KUMAR VAIBHAV TEJAN",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "DUVVURI SRI SATYA SITA RAMA SARATH BABU",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L41+L42": [
+    {
+      "faculty": "KARUMANCHI BEULAH SUJAN",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L13+L14": [
+    {
+      "faculty": "KIRAN KUMAR NALLAMEKALA",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L3+L4": [
+    {
+      "faculty": "KARUMANCHI BEULAH SUJAN",
+      "venue": "AB2-219"
+    },
+    {
+      "faculty": "KRANTHI KUMAR REDDY MISSAL",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L51+L52": [
+    {
+      "faculty": "YARLAGADDA RAGHUVAMSI",
+      "venue": "AB2-211"
+    },
+    {
+      "faculty": "M. Krishnasamy",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L1+L2": [
+    {
+      "faculty": "SIVAKAVI NAGA VENKATA BRAMARESWARA RAO",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L7+L8": [
+    {
+      "faculty": "KRANTHI KUMAR REDDY MISSAL",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L9+L10": [
+    {
+      "faculty": "SIVAKAVI NAGA VENKATA BRAMARESWARA RAO",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "ARKDEV",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L15+L16": [
+    {
+      "faculty": "M. Krishnasamy",
+      "venue": "AB2-219"
+    },
+    {
+      "faculty": "Moumita Saha",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L35+L36": [
+    {
+      "faculty": "ARKDEV",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L39+L40": [
+    {
+      "faculty": "Moumita Saha",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "MULLAPUDI SIVA",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L45+L46": [
+    {
+      "faculty": "YARLAGADDA RAGHUVAMSI",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "Pavan Kumar Y V",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L49+L50": [
+    {
+      "faculty": "ARKDEV",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "MEERA PATEL",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L19+L20": [
+    {
+      "faculty": "Jayashree Pradhan",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L21+L22": [
+    {
+      "faculty": "YARLAGADDA RAGHUVAMSI",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "Ankur Pandey",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L23+L24": [
+    {
+      "faculty": "PULLURI HARISH",
+      "venue": "AB2-219"
+    },
+    {
+      "faculty": "MULLAPUDI SIVA",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L33+L34": [
+    {
+      "faculty": "MEERA PATEL",
+      "venue": "AB2-219"
+    },
+    {
+      "faculty": "Pavan Kumar Y V",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L11+L12": [
+    {
+      "faculty": "M. Krishnasamy",
+      "venue": "AB2-211"
+    }
+  ],
+  "ECE1002_L47+L48": [
+    {
+      "faculty": "KRANTHI KUMAR REDDY MISSAL",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L57+L58": [
+    {
+      "faculty": "Jayashree Pradhan",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L43+L44": [
+    {
+      "faculty": "G D V Santhosh Kumar",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "Pavan Kumar Y V",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L53+L54": [
+    {
+      "faculty": "KUNTAL CHAKRABORTY",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L17+L18": [
+    {
+      "faculty": "Jayashree Pradhan",
+      "venue": "AB1-115"
+    }
+  ],
+  "ECE1002_L31+L32": [
+    {
+      "faculty": "KARUMANCHI BEULAH SUJAN",
+      "venue": "AB1-115"
+    },
+    {
+      "faculty": "MEERA PATEL",
+      "venue": "AB2-219"
+    }
+  ],
+  "ECE1002_L37+L38": [
+    {
+      "faculty": "KIRAN KUMAR NALLAMEKALA",
+      "venue": "AB2-219"
+    },
+    {
+      "faculty": "DUVVURI SRI SATYA SITA RAMA SARATH BABU",
+      "venue": "AB2-211"
+    }
+  ],
+  "MAT1002_B1+TB1+TBB1": [
+    {
+      "faculty": "Dibyendu Sekhar Mandal",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "Parul Saini",
+      "venue": "AB1-G02"
+    },
+    {
+      "faculty": "Sk Ashadul Rahaman",
+      "venue": "AB1-137"
+    },
+    {
+      "faculty": "Amrendra Singh Gill",
+      "venue": "AB2-317"
+    },
+    {
+      "faculty": "Santi Ranjan Das",
+      "venue": "AB1-G11"
+    },
+    {
+      "faculty": "Jyotsna Sharma",
+      "venue": "AB1-135"
+    },
+    {
+      "faculty": "SOWNDARRAJAN P T",
+      "venue": "AB1-G10"
+    },
+    {
+      "faculty": "REETIKA CHAWLA",
+      "venue": "AB2-G19"
+    },
+    {
+      "faculty": "Archana Tiwari",
+      "venue": "AB2-G14"
+    },
+    {
+      "faculty": "Reddimalla Naresh",
+      "venue": "AB2-101"
+    },
+    {
+      "faculty": "Jyotirmoy Roy",
+      "venue": "AB1-133"
+    },
+    {
+      "faculty": "Prakash S",
+      "venue": "AB2-118"
+    },
+    {
+      "faculty": "ROHIT VERMA",
+      "venue": "AB2-G17"
+    },
+    {
+      "faculty": "Varunkumar Merugu",
+      "venue": "AB1-G01"
+    },
+    {
+      "faculty": "Akshay Kumar",
+      "venue": "AB1-134"
+    },
+    {
+      "faculty": "Kottu Durga Prasad",
+      "venue": "AB2-102"
+    }
+  ],
+  "MAT1002_B2+TB2+TBB2": [
+    {
+      "faculty": "ABHILASH CHAND",
+      "venue": "AB1-415"
+    },
+    {
+      "faculty": "Lisna PC",
+      "venue": "AB2-102"
+    },
+    {
+      "faculty": "Chiranjeev Kumar Shahu",
+      "venue": "AB2-111"
+    },
+    {
+      "faculty": "Ravi Kumar Bandaru",
+      "venue": "AB2-118"
+    },
+    {
+      "faculty": "NARENDRA KUMAR",
+      "venue": "AB1-417"
+    },
+    {
+      "faculty": "Jyotsna Sharma",
+      "venue": "AB1-419"
+    },
+    {
+      "faculty": "Parul Saini",
+      "venue": "CB-110"
+    },
+    {
+      "faculty": "Prashant Patel",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "Santi Ranjan Das",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "PARVEEN",
+      "venue": "AB1-420"
+    },
+    {
+      "faculty": "Debgopal Sahoo",
+      "venue": "AB2-313"
+    },
+    {
+      "faculty": "Akshay Kumar",
+      "venue": "AB2-312"
+    },
+    {
+      "faculty": "Nimai Sarkar",
+      "venue": "AB2-212"
+    },
+    {
+      "faculty": "K. Panduranga",
+      "venue": "AB1-416"
+    },
+    {
+      "faculty": "SOWNDARRAJAN P T",
+      "venue": "AB1-421"
+    },
+    {
+      "faculty": "A. Ramesh",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "Varunkumar Merugu",
+      "venue": "AB2-101"
+    }
+  ],
+  "MAT1002_A1+TA1+TAA1": [
+    {
+      "faculty": "Satyanarayana Badeti",
+      "venue": "AB2-215"
+    },
+    {
+      "faculty": "Ramasamy Kavikumar",
+      "venue": "AB2-118"
+    },
+    {
+      "faculty": "NARENDRA KUMAR",
+      "venue": "CB-G14"
+    },
+    {
+      "faculty": "ABHILASH CHAND",
+      "venue": "AB2-218"
+    },
+    {
+      "faculty": "PARVEEN",
+      "venue": "AB2-111"
+    },
+    {
+      "faculty": "BIHALAN BHATTACHARYA",
+      "venue": "AB2-212"
+    },
+    {
+      "faculty": "K. Panduranga",
+      "venue": "AB2-G19"
+    },
+    {
+      "faculty": "Prashant Patel",
+      "venue": "CB-G17"
+    },
+    {
+      "faculty": "Raja Solanki",
+      "venue": "AB2-102"
+    },
+    {
+      "faculty": "KAVYA R NAIR",
+      "venue": "AB2-317"
+    },
+    {
+      "faculty": "Archana Tiwari",
+      "venue": "AB2-214"
+    },
+    {
+      "faculty": "Abhik Digar",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "Chiranjeev Kumar Shahu",
+      "venue": "CB-G16"
+    },
+    {
+      "faculty": "ARPITA DEVI",
+      "venue": "AB2-216"
+    },
+    {
+      "faculty": "Nimai Sarkar",
+      "venue": "CB-G15"
+    },
+    {
+      "faculty": "Debgopal Sahoo",
+      "venue": "AB2-101"
+    },
+    {
+      "faculty": "A. Ramesh",
+      "venue": "CB-G18"
+    }
+  ],
+  "MAT1002_A2+TA2+TAA2": [
+    {
+      "faculty": "Ravi Kumar Bandaru",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "Sk Ashadul Rahaman",
+      "venue": "AB2-G19"
+    },
+    {
+      "faculty": "Reddimalla Naresh",
+      "venue": "AB2-111"
+    },
+    {
+      "faculty": "REETIKA CHAWLA",
+      "venue": "AB2-220"
+    },
+    {
+      "faculty": "BIHALAN BHATTACHARYA",
+      "venue": "AB2-319"
+    },
+    {
+      "faculty": "Prakash S",
+      "venue": "AB2-118"
+    },
+    {
+      "faculty": "KAVYA R NAIR",
+      "venue": "AB2-313"
+    },
+    {
+      "faculty": "ARPITA DEVI",
+      "venue": "AB1-320"
+    },
+    {
+      "faculty": "Satyendra Singh Chauhan",
+      "venue": "AB2-212"
+    },
+    {
+      "faculty": "Vemula Ramakrishna Reddy",
+      "venue": "AB2-112"
+    },
+    {
+      "faculty": "Ramasamy Kavikumar",
+      "venue": "AB1-G01"
+    },
+    {
+      "faculty": "ROHIT VERMA",
+      "venue": "AB2-317"
+    },
+    {
+      "faculty": "Jyotirmoy Roy",
+      "venue": "AB2-318"
+    },
+    {
+      "faculty": "Raja Solanki",
+      "venue": "AB1-G02"
+    },
+    {
+      "faculty": "Abhik Digar",
+      "venue": "AB2-101"
+    },
+    {
+      "faculty": "Kottu Durga Prasad",
+      "venue": "AB2-102"
+    },
+    {
+      "faculty": "RAMA KRISHNA RONGALI",
+      "venue": "AB2-312"
+    }
+  ],
+  "PHY1008_C2+TC2": [
+    {
+      "faculty": "MANAS RANJAN PANDA",
+      "venue": "CB-G11"
+    },
+    {
+      "faculty": "M Venkata Rajanikanth",
+      "venue": "CB-G18"
+    },
+    {
+      "faculty": "Virendra Kumar Verma",
+      "venue": "CB-G14"
+    },
+    {
+      "faculty": "Madhusudhana Rao N",
+      "venue": "CB-G12"
+    },
+    {
+      "faculty": "Debajit Goswami",
+      "venue": "CB-G13"
+    },
+    {
+      "faculty": "SK SAZIM",
+      "venue": "CB-231"
+    },
+    {
+      "faculty": "Kotnana Ganesh",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "Muniyandi Muneeswaran",
+      "venue": "CB-230"
+    }
+  ],
+  "PHY1008_D2+TD2": [
+    {
+      "faculty": "Prachi Jain",
+      "venue": "CB-G18"
+    },
+    {
+      "faculty": "Kosuri Yellareswararao",
+      "venue": "CB-G17"
+    },
+    {
+      "faculty": "Nagarjuna Neella",
+      "venue": "CB-G11"
+    },
+    {
+      "faculty": "POTNURU LOKESWARA RAO",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "SARONATH HALDER",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "SK SAZIM",
+      "venue": "CB-230"
+    },
+    {
+      "faculty": "Kotnana Ganesh",
+      "venue": "AB1-324"
+    }
+  ],
+  "PHY1008_B1+TB1": [
+    {
+      "faculty": "Roopas Kiran Sirugudu",
+      "venue": "AB2-212"
+    }
+  ],
+  "PHY1008_D1+TD1": [
+    {
+      "faculty": "Dwarasala Adilakshmi",
+      "venue": "CB-G12"
+    },
+    {
+      "faculty": "Lakshmi Sowjanya Pali",
+      "venue": "CB-G13"
+    },
+    {
+      "faculty": "Nandam Ashok",
+      "venue": "CB-G14"
+    },
+    {
+      "faculty": "Kingshuk Sarkar",
+      "venue": "CB-219"
+    },
+    {
+      "faculty": "Nallamuthu S",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "Ganesh Kotagiri",
+      "venue": "CB-218"
+    },
+    {
+      "faculty": "Narendra Nath Dutta",
+      "venue": "CB-217"
+    },
+    {
+      "faculty": "S Dasaradha Ramarao",
+      "venue": "CB-201"
+    }
+  ],
+  "PHY1008_C1+TC1": [
+    {
+      "faculty": "POTNURU LOKESWARA RAO",
+      "venue": "CB-219"
+    },
+    {
+      "faculty": "Kingshuk Sarkar",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "Ganesh Kotagiri",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "Manmadha Rao Banki",
+      "venue": "CB-217"
+    },
+    {
+      "faculty": "S Dasaradha Ramarao",
+      "venue": "CB-218"
+    },
+    {
+      "faculty": "Lakshmi Sowjanya Pali",
+      "venue": "CB-201"
+    },
+    {
+      "faculty": "Dwarasala Adilakshmi",
+      "venue": "CB-120"
+    }
+  ],
+  "PHY1008_C1+TCC1": [
+    {
+      "faculty": "Nagarjuna Neella",
+      "venue": "AB2-216"
+    },
+    {
+      "faculty": "Nallamuthu S",
+      "venue": "AB2-214"
+    },
+    {
+      "faculty": "Virendra Kumar Verma",
+      "venue": "AB2-215"
+    }
+  ],
+  "PHY1008_D1+TDD1": [
+    {
+      "faculty": "DEBMALYA DAS",
+      "venue": "AB2-214"
+    },
+    {
+      "faculty": "K Senthil",
+      "venue": "AB1-G10"
+    },
+    {
+      "faculty": "NARAYANA THOTA",
+      "venue": "AB1-138"
+    }
+  ],
+  "PHY1008_C2+TCC2": [
+    {
+      "faculty": "Kosuri Yellareswararao",
+      "venue": "AB2-220"
+    },
+    {
+      "faculty": "SARONATH HALDER",
+      "venue": "AB2-101"
+    },
+    {
+      "faculty": "Prachi Jain",
+      "venue": "AB2-102"
+    }
+  ],
+  "PHY1008_D2+TDD2": [
+    {
+      "faculty": "Manmadha Rao Banki",
+      "venue": "AB1-134"
+    },
+    {
+      "faculty": "KRISHNA PRASAD BERA",
+      "venue": "AB1-137"
+    },
+    {
+      "faculty": "Narendra Nath Dutta",
+      "venue": "AB1-135"
+    }
+  ],
+  "PHY1008_L21+L22": [
+    {
+      "faculty": "POTNURU LOKESWARA RAO",
+      "venue": "AB1-120"
+    },
+    {
+      "faculty": "Narendra Nath Dutta",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L25+L26": [
+    {
+      "faculty": "SK SAZIM",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L27+L28": [
+    {
+      "faculty": "Roopas Kiran Sirugudu",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L39+L40": [
+    {
+      "faculty": "Khadheer Pasha Sk",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "SARONATH HALDER",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L41+L42": [
+    {
+      "faculty": "KRISHNA PRASAD BERA",
+      "venue": "AB1-120"
+    },
+    {
+      "faculty": "Sudagar J",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L45+L46": [
+    {
+      "faculty": "K UMA MAHENDRA KUMAR",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "S Dasaradha Ramarao",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L47+L48": [
+    {
+      "faculty": "SK SAZIM",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L55+L56": [
+    {
+      "faculty": "Ganesh Kotagiri",
+      "venue": "AB1-120"
+    },
+    {
+      "faculty": "Nallamuthu S",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L7+L8": [
+    {
+      "faculty": "NILANJAN ROY",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L9+L10": [
+    {
+      "faculty": "Virendra Kumar Verma",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "Khadheer Pasha Sk",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L11+L12": [
+    {
+      "faculty": "Dwarasala Adilakshmi",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "POTNURU LOKESWARA RAO",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L17+L18": [
+    {
+      "faculty": "Sudagar J",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "Prachi Jain",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L1+L2": [
+    {
+      "faculty": "NARAYANA THOTA",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "Nandam Ashok",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L23+L24": [
+    {
+      "faculty": "DEBMALYA DAS",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "S Dasaradha Ramarao",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L29+L30": [
+    {
+      "faculty": "K UMA MAHENDRA KUMAR",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "Debajit Goswami",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L35+L36": [
+    {
+      "faculty": "SHUBHADEEP PAL",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L37+L38": [
+    {
+      "faculty": "Kingshuk Sarkar",
+      "venue": "AB1-120"
+    },
+    {
+      "faculty": "Lakshmi Sowjanya Pali",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L3+L4": [
+    {
+      "faculty": "Khadheer Pasha Sk",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L53+L54": [
+    {
+      "faculty": "SARONATH HALDER",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "Prachi Jain",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L5+L6": [
+    {
+      "faculty": "MANAS RANJAN PANDA",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L13+L14": [
+    {
+      "faculty": "DEBMALYA DAS",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L19+L20": [
+    {
+      "faculty": "MANAS RANJAN PANDA",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "Kotnana Ganesh",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L31+L32": [
+    {
+      "faculty": "K UMA MAHENDRA KUMAR",
+      "venue": "CB-224"
+    },
+    {
+      "faculty": "KRISHNA PRASAD BERA",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L57+L58": [
+    {
+      "faculty": "Kotnana Ganesh",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L15+L16": [
+    {
+      "faculty": "Kosuri Yellareswararao",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L33+L34": [
+    {
+      "faculty": "Khadheer Pasha Sk",
+      "venue": "AB1-120"
+    },
+    {
+      "faculty": "Roopas Kiran Sirugudu",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L51+L52": [
+    {
+      "faculty": "K Senthil",
+      "venue": "CB-224"
+    }
+  ],
+  "PHY1008_L43+L44": [
+    {
+      "faculty": "Khadheer Pasha Sk",
+      "venue": "AB1-120"
+    }
+  ],
+  "PHY1008_L49+L50": [
+    {
+      "faculty": "Manmadha Rao Banki",
+      "venue": "AB1-120"
+    }
+  ]
+}

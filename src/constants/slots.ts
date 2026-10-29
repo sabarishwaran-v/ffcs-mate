@@ -9,12 +9,22 @@ export const morningTheorySlots = [
   "TA1",
   "TB1",
   "TC1",
+  "TD1",
   "TE1",
   "TF1",
   "TG1",
-  "TD1",
   "TAA1",
+  "TBB1",
   "TCC1",
+  "TDD1",
+  "TEE1",
+  "TFF1",
+  "TGG1",
+  "SC2",
+  "SD2",
+  "SE2",
+  "ECS",
+  "CLUB"
 ];
 
 export const afternoonTheorySlots = [
@@ -25,17 +35,23 @@ export const afternoonTheorySlots = [
   "E2",
   "F2",
   "G2",
+  "TA2",
   "TB2",
   "TC2",
   "TD2",
   "TE2",
   "TF2",
   "TG2",
-  "TA2",
   "TAA2",
   "TBB2",
   "TCC2",
   "TDD2",
+  "TEE2",
+  "TFF2",
+  "TGG2",
+  "SC1",
+  "SD1",
+  "SE1"
 ];
 
 export const morningLabSlots = [

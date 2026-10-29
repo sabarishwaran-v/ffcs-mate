@@ -12,6 +12,7 @@ import { useScheduleStore } from "@/lib/store";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { toast } from "sonner";
 import { COURSE_BASKETS } from "@/lib/baskets";
+import facultyData from "@/lib/faculties.json";
 
 import { Suspense } from "react";
 import { ErrorBoundary } from "@/components/error-boundary";
@@ -55,7 +56,7 @@ function SelectCoursesContent() {
 
   const semester = effectiveSemester;
 
-  const semesterName = semester === 'winter2025' ? 'Winter Semester 2025-26' : 'Active Semester';
+  const semesterName = semester?.includes('winter') ? 'Winter Semester 2026-27' : semester === 'fall2026' ? 'Fall Semester 2026-27' : 'Active Semester';
 
   const [searchQuery, setSearchQuery] = useState("");
   const coursesParam = searchParams?.get("courses");
@@ -112,7 +113,7 @@ function SelectCoursesContent() {
     }
   };
 
-  const { courses, addCourse, removeCourse, teachers, addTeacher } = useScheduleStore();
+  const { courses, addCourse, removeCourse, teachers, addTeachers } = useScheduleStore();
 
   const handleProceed = () => {
     if (selectedCourseIds.length === 0) return;
@@ -121,6 +122,9 @@ function SelectCoursesContent() {
     const currentCourseIds = courses.map(c => c.id);
     const toRemove = currentCourseIds.filter(id => !selectedCourseIds.includes(id));
     toRemove.forEach(id => removeCourse(id));
+
+    const typedFacultyData = facultyData as Record<string, { faculty: string, venue: string }[]>;
+    const newTeachersToAdd: Parameters<typeof addTeachers>[0] = [];
 
     selectedCourseIds.forEach(id => {
       const mockData = MOCK_COURSES.find(c => c.id === id);
@@ -137,23 +141,58 @@ function SelectCoursesContent() {
           });
         }
         const allSlots = [...(mockData.theorySlots || []), ...(mockData.labSlots || [])];
-        allSlots.forEach(slotStr => {
-          const fakeTeacherId = `${mockData.id}-${slotStr}`;
-          if (!teachers.find(t => t.id === fakeTeacherId)) {
-            const parsedPeriods = slotStr.split('+').map(s => s.trim());
-            const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
-            addTeacher({
-              id: fakeTeacherId,
-              name: slotStr, 
-              color: isLab ? "#0ea5e9" : "#8b5cf6",
-              slots: { morning: parsedPeriods, afternoon: null },
-              venue: { morning: null, afternoon: null },
-              course: mockData.id,
+        const uniqueSlotsCount = allSlots.reduce((acc, slot) => {
+          acc[slot] = (acc[slot] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>);
+
+        allSlots.forEach((slotStr, index) => {
+          const hasDuplicates = uniqueSlotsCount[slotStr] > 1;
+          const parsedPeriods = slotStr.split('+').map(s => s.trim());
+          const isLab = parsedPeriods.some(s => s.startsWith('L') && /[0-9]/.test(s));
+          
+          const facultyKey = `${mockData.code}_${slotStr}`;
+          const faculties = typedFacultyData[facultyKey];
+          
+          if (faculties && faculties.length > 0) {
+            faculties.forEach((fac, fIndex) => {
+              const fakeTeacherId = `${mockData.id}-${slotStr}-f${fIndex}`;
+              if (!teachers.find(t => t.id === fakeTeacherId || (t.course === mockData.id && t.name === slotStr && t.faculty === fac.faculty))) {
+                newTeachersToAdd.push({
+                  id: fakeTeacherId,
+                  name: slotStr, 
+                  faculty: fac.faculty,
+                  color: isLab ? "#0ea5e9" : "#8b5cf6",
+                  slots: { morning: parsedPeriods, afternoon: null },
+                  venue: { morning: fac.venue || null, afternoon: null },
+                  course: mockData.id,
+                });
+              }
             });
+          } else {
+            const fakeTeacherId = hasDuplicates ? `${mockData.id}-${slotStr}-${index}` : `${mockData.id}-${slotStr}`;
+            
+            if (!teachers.find(t => t.id === fakeTeacherId || (t.course === mockData.id && t.name === slotStr))) {
+              const facultyName = hasDuplicates ? `Faculty ${index}` : undefined;
+  
+              newTeachersToAdd.push({
+                id: fakeTeacherId,
+                name: slotStr, 
+                faculty: facultyName,
+                color: isLab ? "#0ea5e9" : "#8b5cf6",
+                slots: { morning: parsedPeriods, afternoon: null },
+                venue: { morning: null, afternoon: null },
+                course: mockData.id,
+              });
+            }
           }
         });
       }
     });
+
+    if (newTeachersToAdd.length > 0) {
+      addTeachers(newTeachersToAdd);
+    }
 
     const roomId = searchParams?.get("roomId");
     if (roomId) {

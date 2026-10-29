@@ -95,7 +95,7 @@ export const manualSlotSelectionStore = create<{
     }),
 }));
 
-import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, doc, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 import fallbackData from './fallback_faculties.json';
@@ -107,11 +107,11 @@ export const useFacultyStore = create<{
   isListening: boolean;
   fetchApprovedFaculties: () => void;
 }>((set, get) => ({
-  // Initialize with fallback data, mapping facultyName to faculty if needed
+  // Initialize with fallback data, mapping facultyName to faculty and ensuring deterministic id
   approvedFaculties: Object.fromEntries(
     Object.entries(fallbackData).map(([k, v]) => [
       k, 
-      { ...v, faculty: (v as any).facultyName || (v as any).faculty }
+      { ...v, id: (v as any).id || k, faculty: (v as any).facultyName || (v as any).faculty }
     ])
   ) as Record<string, ApprovedFaculty>,
   contributionsCount: {},
@@ -130,10 +130,22 @@ export const useFacultyStore = create<{
           const mappedData = Object.fromEntries(
             Object.entries(data).map(([k, v]) => [
               k, 
-              { ...v, faculty: v.facultyName || v.faculty }
+              { ...v, id: (v as any).id || k, faculty: (v as any).facultyName || (v as any).faculty }
             ])
           );
-          set({ approvedFaculties: mappedData as Record<string, ApprovedFaculty> });
+          // Preserve local fallback data and overlay DB data
+          const localFallback = Object.fromEntries(
+            Object.entries(fallbackData).map(([k, v]) => [
+              k, 
+              { ...v, id: (v as any).id || k, faculty: (v as any).facultyName || (v as any).faculty }
+            ])
+          );
+          set({ 
+            approvedFaculties: {
+              ...localFallback,
+              ...mappedData,
+            } as Record<string, ApprovedFaculty> 
+          });
         } else {
           console.log("No DB bundle, using fallback.");
         }
@@ -157,18 +169,67 @@ export const useFacultyStore = create<{
   }
 }));
 
+export interface CustomCourseData {
+  courseCode: string;
+  faculties: Record<string, ApprovedFaculty>;
+  isCustomOverride: boolean;
+  uploadedAt: string;
+}
+
 export const useOptimisticStore = create<{
   optimisticFaculties: Record<string, ApprovedFaculty>;
+  customCourseOverrides: Record<string, CustomCourseData>;
   addOptimisticFaculty: (id: string, faculty: ApprovedFaculty) => void;
+  setCourseCustomOverride: (courseCode: string, faculties: Record<string, ApprovedFaculty>) => void;
+  removeCourseCustomOverride: (courseCode: string) => void;
+  hasCourseCustomOverride: (courseCode: string) => boolean;
 }>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       optimisticFaculties: {},
+      customCourseOverrides: {},
       addOptimisticFaculty: (id, faculty) => 
         set((state) => ({ 
           optimisticFaculties: { ...state.optimisticFaculties, [id]: faculty } 
         })),
+      setCourseCustomOverride: (courseCode, faculties) =>
+        set((state) => ({
+          customCourseOverrides: {
+            ...state.customCourseOverrides,
+            [courseCode]: {
+              courseCode,
+              faculties,
+              isCustomOverride: true,
+              uploadedAt: new Date().toISOString(),
+            },
+          },
+          optimisticFaculties: {
+            ...state.optimisticFaculties,
+            ...faculties,
+          },
+        })),
+      removeCourseCustomOverride: (courseCode) =>
+        set((state) => {
+          const updatedOverrides = { ...state.customCourseOverrides };
+          const override = updatedOverrides[courseCode];
+          delete updatedOverrides[courseCode];
+
+          const updatedOptimistic = { ...state.optimisticFaculties };
+          if (override?.faculties) {
+            Object.keys(override.faculties).forEach((id) => {
+              delete updatedOptimistic[id];
+            });
+          }
+
+          return {
+            customCourseOverrides: updatedOverrides,
+            optimisticFaculties: updatedOptimistic,
+          };
+        }),
+      hasCourseCustomOverride: (courseCode) => {
+        return !!get().customCourseOverrides[courseCode];
+      },
     }),
-    { name: 'optimistic-faculties-v1' }
+    { name: 'optimistic-faculties-v2' }
   )
 );

@@ -316,7 +316,7 @@ function SelectCoursesContent() {
                         {course.code}
                       </span>
                       <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-md">
-                        {course.credits} Credits
+                        {course.credits} {course.credits === 1 ? "Credit" : "Credits"}
                       </span>
                     </div>
                     <h3 className="font-semibold text-foreground line-clamp-2 min-h-[2.5rem]">{course.title}</h3>

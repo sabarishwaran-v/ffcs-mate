@@ -187,7 +187,7 @@ export function CourseSelectionModal() {
                           {course.code}
                         </span>
                         <span className="text-xs text-muted-foreground font-medium bg-muted px-2 py-0.5 rounded-full">
-                          {course.credits} Credits
+                          {course.credits} {course.credits === 1 ? "Credit" : "Credits"}
                         </span>
                       </div>
                       <h3 className="font-semibold text-foreground/90 leading-tight mb-4 flex-1">

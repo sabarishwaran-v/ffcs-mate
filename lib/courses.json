@@ -516,7 +516,7 @@
     "code": "CSE1005",
     "name": "Software Engineering",
     "type": "TH",
-    "credits": 3,
+    "credits": 4,
     "theorySlots": [
       "A1+TA1+TAA1",
       "A2+TA2+TAA2",
@@ -4182,7 +4182,7 @@
     "code": "STS1011",
     "name": "Quantitative Skills - I",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "G2+TG2",
       "G1+TG1"
@@ -4194,7 +4194,7 @@
     "code": "STS2007",
     "name": "Enhancing Problem Solving Skills",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "B1+TB1",
       "B2+TB2"
@@ -4206,7 +4206,7 @@
     "code": "STS2011",
     "name": "Qualitative and Quantitative Skills Practice - II",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "A1+TA1",
       "A2+TA2",
@@ -4256,7 +4256,7 @@
     "code": "STS3009",
     "name": "Competitive Coding - II",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "F2+TF2"
     ],
@@ -4267,7 +4267,7 @@
     "code": "STS4005",
     "name": "Basic Competitive Coding - II",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "A2+TA2",
       "B2+TB2",
@@ -4286,7 +4286,7 @@
     "code": "STS4006",
     "name": "Advanced Competitive Coding - II",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "A1+TA1",
       "A2+TA2",
@@ -4316,7 +4316,7 @@
     "code": "STS4011",
     "name": "Quantitative Skills Practice",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "F1+TF1",
       "G2+TG2"
@@ -4328,7 +4328,7 @@
     "code": "STS5003",
     "name": "Competitive Coding - II",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "D2+TD2"
     ],
@@ -4339,7 +4339,7 @@
     "code": "STS5011",
     "name": "Qualitative and Quantitative Skills Practice - II",
     "type": "TH",
-    "credits": 1.5,
+    "credits": 1,
     "theorySlots": [
       "B2+TB2"
     ],

@@ -52,7 +52,7 @@ export default function CourseDialogContent({ course }: Props) {
             <span className="w-8 text-center">{ltpjc.T}</span>
             <span className="w-8 text-center">{ltpjc.P}</span>
             <span className="w-8 text-center">{ltpjc.J}</span>
-            <span className="w-10 text-center">{ltpjc.C.toFixed(1)}</span>
+            <span className="w-10 text-center">{Number.isInteger(ltpjc.C) ? ltpjc.C : ltpjc.C.toFixed(1)}</span>
           </div>
         </div>
 

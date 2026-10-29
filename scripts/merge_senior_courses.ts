@@ -37,10 +37,12 @@ async function mergeSeniorCourses() {
 
     if (!coursesMap.has(courseCode)) {
       let credits = 4;
-      if (histCreditMap[courseCode]) {
-        credits = histCreditMap[courseCode];
+      if (courseCode === 'CSE1005') {
+        credits = 4;
       } else if (courseCode.startsWith('STS')) {
-        credits = 1.5;
+        credits = 1;
+      } else if (histCreditMap[courseCode]) {
+        credits = histCreditMap[courseCode];
       } else if (courseCode.startsWith('LIB') || courseCode.startsWith('HUM') || courseCode.startsWith('FRL')) {
         credits = 3;
       } else if (courseCode.startsWith('ECS') || courseType === 'PJT') {

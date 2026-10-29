@@ -54,7 +54,7 @@ export function parseMockHtmlDetailed(htmlContent: string): ParseResult {
         code: 'EMPTY_FILE',
         title: 'Empty File',
         message: 'The uploaded file is completely empty (0 bytes).',
-        suggestion: 'Please verify the file on your device and re-save the page from VTOP.',
+        suggestion: 'Please verify the file on your device and re-save the page from the FFCS registration website.',
       },
     };
   }
@@ -62,7 +62,7 @@ export function parseMockHtmlDetailed(htmlContent: string): ParseResult {
   // 2. Strip HTML comments to avoid matching commented-out elements
   const cleanContent = htmlContent.replace(/<!--[\s\S]*?-->/g, '');
 
-  // 3. Detect VTOP Login Page (Session Timeout / Not Logged In)
+  // 3. Detect Login Page (Session Timeout / Not Logged In)
   const isLoginPage =
     /<title>[^<]*Login[^<]*<\/title>/i.test(cleanContent) ||
     /name=["'](txtUserName|txtPassword|captcha)["']/i.test(cleanContent) ||
@@ -74,9 +74,9 @@ export function parseMockHtmlDetailed(htmlContent: string): ParseResult {
       success: false,
       error: {
         code: 'LOGIN_PAGE',
-        title: 'VTOP Session Expired',
-        message: 'The uploaded HTML file is the VTOP Login screen rather than a course registration page.',
-        suggestion: 'Log in to VTOP, open the course in Mock FFCS registration to view its slot list, and then press Ctrl+S (or Cmd+S) to save the page.',
+        title: 'Registration Session Expired',
+        message: 'The uploaded HTML file is the login screen rather than a course registration page.',
+        suggestion: 'Log in to the FFCS registration website, open the course in Mock FFCS to view its slot list, and then press Ctrl+S (or Cmd+S) to save the page.',
       },
     };
   }
@@ -138,7 +138,7 @@ export function parseMockHtmlDetailed(htmlContent: string): ParseResult {
         code: 'NO_VTOP_COURSE_DATA',
         title: 'Unrecognized HTML Document',
         message: 'Could not find any VIT-AP course registration table or course code in this file.',
-        suggestion: 'Make sure this file was saved directly from the official VIT-AP Mock FFCS registration portal.',
+        suggestion: 'Make sure this file was saved directly from the official Mock FFCS registration portal.',
       },
     };
   }
@@ -166,7 +166,7 @@ export function parseMockHtmlDetailed(htmlContent: string): ParseResult {
         code: 'SEMESTER_MISMATCH',
         title: 'Semester Mismatch',
         message: semesterNote,
-        suggestion: 'Please open the current Winter Semester 2026-27 Mock FFCS registration on VTOP and save that page.',
+        suggestion: 'Please open the current Winter Semester 2026-27 Mock FFCS registration portal and save that page.',
       },
     };
   }
@@ -285,7 +285,7 @@ export function parseMockHtmlDetailed(htmlContent: string): ParseResult {
         code: 'NO_OFFERINGS_FOUND',
         title: 'No Faculty Slots Found',
         message: `Found course header "${courseCode} - ${courseTitle}", but no theory or lab slots were available in the table.`,
-        suggestion: 'Make sure the course table had finished loading in VTOP before you saved the HTML page.',
+        suggestion: 'Make sure the course table had finished loading in the registration portal before you saved the HTML page.',
       },
     };
   }

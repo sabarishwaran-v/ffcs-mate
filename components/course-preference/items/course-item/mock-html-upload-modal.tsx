@@ -90,8 +90,8 @@ export default function MockHtmlUploadModal({
       setParseError({
         code: "NON_HTML" as any,
         title: `Unsupported File Format (.${extension})`,
-        message: `You uploaded a .${extension} file. This tool requires the .html file saved from VTOP Mock FFCS.`,
-        suggestion: "In VTOP Mock registration, press Ctrl+S (or Cmd+S on Mac) and save as 'Webpage, HTML Only' (.html).",
+        message: `You uploaded a .${extension} file. This tool requires the .html file saved from the Mock FFCS registration website.`,
+        suggestion: "In Mock FFCS registration, press Ctrl+S (or Cmd+S on Mac) and save as 'Webpage, HTML Only' (.html).",
       });
       return;
     }
@@ -101,8 +101,8 @@ export default function MockHtmlUploadModal({
       setParseError({
         code: "FILE_TOO_LARGE",
         title: "File Too Large",
-        message: `The uploaded file is ${(file.size / (1024 * 1024)).toFixed(1)}MB. HTML files saved from VTOP are typically under 1MB.`,
-        suggestion: "When saving from VTOP, choose 'Webpage, HTML Only' instead of 'Webpage, Complete' to avoid saving images.",
+        message: `The uploaded file is ${(file.size / (1024 * 1024)).toFixed(1)}MB. HTML files saved from the portal are typically under 1MB.`,
+        suggestion: "When saving the page, choose 'Webpage, HTML Only' instead of 'Webpage, Complete' to avoid saving unnecessary files.",
       });
       return;
     }
@@ -118,7 +118,7 @@ export default function MockHtmlUploadModal({
             code: "NO_VTOP_COURSE_DATA",
             title: "Unrecognized HTML File",
             message: "Could not find course registration details in this file.",
-            suggestion: "Ensure you saved the specific course registration popup from VTOP Mock FFCS.",
+            suggestion: "Ensure you saved the specific course registration popup from the Mock FFCS portal.",
           }
         );
         return;
@@ -329,7 +329,7 @@ export default function MockHtmlUploadModal({
                 Click to browse or drag & drop your Mock FFCS HTML
               </p>
               <p className="text-xs text-muted-foreground mt-1 max-w-sm">
-                In VTOP Mock registration, press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">Ctrl + S</kbd> (or <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">Cmd + S</kbd>) to save the page as an HTML file.
+                In Mock FFCS registration, press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">Ctrl + S</kbd> (or <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[11px]">Cmd + S</kbd>) to save the page as an HTML file.
               </p>
             </div>
           )}
@@ -412,7 +412,7 @@ export default function MockHtmlUploadModal({
               </div>
 
               <div className="p-3 rounded-lg bg-background/80 border border-border text-xs text-muted-foreground">
-                Please upload the HTML file for <strong>{course.code}</strong>. You can save it from VTOP by opening the {course.code} course registration popup.
+                Please upload the HTML file for <strong>{course.code}</strong>. You can save it from the registration portal by opening the {course.code} course registration popup.
               </div>
 
               <div className="pt-2 flex justify-end">

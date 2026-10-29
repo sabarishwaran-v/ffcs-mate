@@ -237,7 +237,7 @@ export default function Dashboard() {
                   How to Save & Download Mock FFCS HTML
                 </DialogTitle>
                 <DialogDescription className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  Follow these 4 simple steps to save your course page from VTOP with all faculty & venue details.
+                  Follow these 4 simple steps to save your course page from the FFCS registration portal with all faculty & venue details.
                 </DialogDescription>
               </div>
             </div>
@@ -250,9 +250,9 @@ export default function Dashboard() {
                 1
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-foreground">Log in to VTOP & Open Mock FFCS</h4>
+                <h4 className="text-sm font-semibold text-foreground">Open FFCS Registration Website</h4>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                  Log into your official VTOP account at <span className="font-mono text-purple-600 dark:text-purple-400 font-medium">vtop.vitap.ac.in</span> and navigate to <span className="font-semibold text-foreground">Course Registration ➔ Mock FFCS</span>.
+                  Log in to the official FFCS registration portal using the link provided by the university and open <span className="font-semibold text-foreground">Mock FFCS</span>.
                 </p>
               </div>
             </div>

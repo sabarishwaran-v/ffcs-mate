@@ -47,7 +47,7 @@ describe('Mock FFCS HTML Parser & Exception Diagnostics', () => {
     const res = parseMockHtmlDetailed(loginHtml);
     expect(res.success).toBe(false);
     expect(res.error?.code).toBe('LOGIN_PAGE');
-    expect(res.error?.title).toBe('VTOP Session Expired');
+    expect(res.error?.title).toBe('Registration Session Expired');
   });
 
   it('should detect TIMETABLE_PAGE_NOT_REGISTRATION exception', () => {

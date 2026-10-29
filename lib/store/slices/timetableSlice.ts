@@ -319,6 +319,14 @@ export const createTimetableSlice: StateCreator<
           // Inject author info
           const newTeacher = { 
             ...teacher,
+            slots: {
+              morning: teacher.slots?.morning
+                ? teacher.slots.morning.flatMap(s => (typeof s === "string" ? s.split("+").map(p => p.trim()) : [])).filter(Boolean)
+                : null,
+              afternoon: teacher.slots?.afternoon
+                ? teacher.slots.afternoon.flatMap(s => (typeof s === "string" ? s.split("+").map(p => p.trim()) : [])).filter(Boolean)
+                : null,
+            },
             addedByUid: addedByUid || teacher.addedByUid,
             addedByName: addedByName || teacher.addedByName 
           };
@@ -354,6 +362,14 @@ export const createTimetableSlice: StateCreator<
       .filter((t): t is Teacher => t !== undefined)
       .map(t => ({
         ...t,
+        slots: {
+          morning: t.slots?.morning
+            ? t.slots.morning.flatMap(s => (typeof s === "string" ? s.split("+").map(p => p.trim()) : [])).filter(Boolean)
+            : null,
+          afternoon: t.slots?.afternoon
+            ? t.slots.afternoon.flatMap(s => (typeof s === "string" ? s.split("+").map(p => p.trim()) : [])).filter(Boolean)
+            : null,
+        },
         addedByUid: addedByUid || t.addedByUid,
         addedByName: addedByName || t.addedByName
       }));

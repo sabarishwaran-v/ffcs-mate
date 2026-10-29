@@ -108,13 +108,15 @@ export default function CourseItemBody({
     if (publicApproved.length > 0) {
       publicApproved.forEach(af => {
         const id = af.id || `${course.code}_${af.slot}_${(af.faculty || '').replace(/[^a-zA-Z0-9]/g, '_')}`;
+        const periods = (af.slot || "").split("+").map(s => s.trim()).filter(Boolean);
+        const isLab = periods.some(s => s.startsWith("L") && /[0-9]/.test(s));
         publicTeachersToAdd.push({
           id,
           course: course.id,
           name: af.slot,
           faculty: af.faculty,
-          color: "bg-slate-500",
-          slots: { morning: [af.slot], afternoon: null },
+          color: isLab ? "#0ea5e9" : "#8b5cf6",
+          slots: { morning: periods, afternoon: null },
           venue: { morning: af.venue || null, afternoon: null }
         });
       });
@@ -123,14 +125,16 @@ export default function CourseItemBody({
       allSlots.forEach((slotStr) => {
         const facultyKey = `${course.code}_${slotStr}`;
         const facs = typedFacultyData[facultyKey];
+        const periods = (slotStr || "").split("+").map(s => s.trim()).filter(Boolean);
+        const isLab = periods.some(s => s.startsWith("L") && /[0-9]/.test(s));
         if (facs && facs.length > 0) {
           facs.forEach((fac, fIndex) => {
             publicTeachersToAdd.push({
               id: `${course.id}-${slotStr}-f${fIndex}`,
               name: slotStr,
-              color: "bg-slate-500",
+              color: isLab ? "#0ea5e9" : "#8b5cf6",
               faculty: fac.faculty,
-              slots: { morning: [slotStr], afternoon: null },
+              slots: { morning: periods, afternoon: null },
               venue: { morning: fac.venue || null, afternoon: null },
               course: course.id
             });
@@ -164,16 +168,34 @@ export default function CourseItemBody({
       if (!existsLocally) {
         // Inject globally approved faculty into this student's local list
         const template = stateTeachers.find(t => t.name === af.slot);
+        const periods = (af.slot || "").split("+").map(s => s.trim()).filter(Boolean);
+        const isLab = periods.some(s => s.startsWith("L") && /[0-9]/.test(s));
+        const deterministicId = af.id || `${course.code}_${af.slot}_${(af.faculty || '').replace(/[^a-zA-Z0-9]/g, '_')}`;
+
         if (template) {
-          const deterministicId = af.id || `${course.code}_${af.slot}_${(af.faculty || '').replace(/[^a-zA-Z0-9]/g, '_')}`;
           shouldAdd.push({
             ...template,
             id: deterministicId,
             faculty: af.faculty,
+            slots: {
+              morning: template.slots.morning ? periods : null,
+              afternoon: template.slots.afternoon ? periods : null,
+            },
             venue: {
               morning: template.slots.morning ? af.venue : null,
               afternoon: template.slots.afternoon ? af.venue : null,
             },
+            addedByName: "Verified Faculty",
+          });
+        } else {
+          shouldAdd.push({
+            id: deterministicId,
+            course: course.id,
+            name: af.slot,
+            faculty: af.faculty,
+            color: isLab ? "#0ea5e9" : "#8b5cf6",
+            slots: { morning: periods, afternoon: null },
+            venue: { morning: af.venue || null, afternoon: null },
             addedByName: "Verified Faculty",
           });
         }
@@ -214,12 +236,14 @@ export default function CourseItemBody({
     const missingSlots = allExpectedSlots.filter(slot => !finalSlots.has(slot));
 
     missingSlots.forEach(slot => {
+      const periods = (slot || "").split("+").map(s => s.trim()).filter(Boolean);
+      const isLab = periods.some(s => s.startsWith("L") && /[0-9]/.test(s));
       shouldAdd.push({
         id: `${course.id}_${slot}`,
         name: slot,
         faculty: "-",
-        color: "bg-slate-500",
-        slots: { morning: [slot], afternoon: null },
+        color: isLab ? "#0ea5e9" : "#8b5cf6",
+        slots: { morning: periods, afternoon: null },
         venue: { morning: null, afternoon: null },
         course: course.id,
         addedByName: "System"

@@ -278,7 +278,7 @@ export const Timetable = React.memo(function Timetable({ hideControls = false }:
           {uniqueCourses[0].code}-
         </span>
         <span style={{ fontSize: '11px' }}>
-          {uniqueCourses[0].type || "ELA"}{cellVenue ? "-" : ""}
+          {(isLabRow ? (uniqueCourses[0].type === "LO" ? "LO" : "ELA") : (uniqueCourses[0].type === "TH" ? "TH" : "ETH"))}{cellVenue ? "-" : ""}
         </span>
         {cellVenue && (
           <span style={{ fontSize: '11px' }}>

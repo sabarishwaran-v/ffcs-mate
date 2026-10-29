@@ -226,13 +226,16 @@ export default function MockHtmlUploadModal({
           approvedBy: isCleanMatch ? "Community Verified" : "Custom Local Mock",
         };
 
+        const periods = cleanSlot.split("+").map(s => s.trim()).filter(Boolean);
+        const isLab = periods.some(s => s.startsWith("L") && /[0-9]/.test(s));
+
         newTeachersToAdd.push({
           id: docId,
           course: course.id,
           name: cleanSlot,
           faculty: cleanFac,
-          color: "bg-slate-500",
-          slots: { morning: [cleanSlot], afternoon: null },
+          color: isLab ? "#0ea5e9" : "#8b5cf6",
+          slots: { morning: periods, afternoon: null },
           venue: { morning: cleanVen, afternoon: null },
         });
       });

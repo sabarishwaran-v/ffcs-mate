@@ -1,7 +1,26 @@
 import { StateCreator } from "zustand";
 import { StoreState } from "../types";
 import { clearClashDetectionCaches } from "@/src/utils/clash-detection";
+import { getAllSlots } from "@/src/utils/timetable";
 import { Teacher } from "@/types";
+
+function normalizeTeacher(teacher: Omit<Teacher, "id"> & { id?: string }): Teacher {
+  const normMorning = teacher.slots?.morning
+    ? teacher.slots.morning.flatMap(s => (typeof s === "string" ? s.split("+").map(p => p.trim()) : [])).filter(Boolean)
+    : null;
+  const normAfternoon = teacher.slots?.afternoon
+    ? teacher.slots.afternoon.flatMap(s => (typeof s === "string" ? s.split("+").map(p => p.trim()) : [])).filter(Boolean)
+    : null;
+
+  return {
+    ...teacher,
+    id: teacher.id || `${teacher.course || "course"}_${teacher.name || "slot"}_${Math.random().toString(36).slice(2, 9)}`,
+    slots: {
+      morning: normMorning,
+      afternoon: normAfternoon,
+    },
+  };
+}
 
 export type TeacherSlice = Pick<
   StoreState,
@@ -47,7 +66,7 @@ export const createTeacherSlice: StateCreator<
       return {
         teachers: [
           ...state.teachers,
-          { ...teacher, id: teacher.id || Math.random().toString(36).slice(2, 9) },
+          normalizeTeacher(teacher),
         ],
       };
     }),
@@ -74,10 +93,7 @@ export const createTeacherSlice: StateCreator<
         });
 
         if (!isDuplicate) {
-          const teacherWithId = {
-            ...t,
-            id: t.id || `${t.course || 'course'}_${t.name}_${Math.random().toString(36).slice(2, 9)}`,
-          };
+          const teacherWithId = normalizeTeacher(t);
           currentTeachers.push(teacherWithId);
           newTeachers.push(teacherWithId);
         }
@@ -121,10 +137,7 @@ export const createTeacherSlice: StateCreator<
           selectedTeachers: newSelectedTeachers,
           selectedSlots: Array.from(
             new Set(
-              newSelectedTeachers.flatMap((t) => [
-                ...(t.slots.morning || []),
-                ...(t.slots.afternoon || []),
-              ]),
+              newSelectedTeachers.flatMap((t) => getAllSlots(t)),
             ),
           ),
         };
@@ -150,10 +163,7 @@ export const createTeacherSlice: StateCreator<
           selectedTeachers: newSelectedTeachers,
           selectedSlots: Array.from(
             new Set(
-              newSelectedTeachers.flatMap((t) => [
-                ...(t.slots.morning || []),
-                ...(t.slots.afternoon || []),
-              ]),
+              newSelectedTeachers.flatMap((t) => getAllSlots(t)),
             ),
           ),
         };
@@ -178,10 +188,7 @@ export const createTeacherSlice: StateCreator<
           selectedTeachers: newSelectedTeachers,
           selectedSlots: Array.from(
             new Set(
-              newSelectedTeachers.flatMap((t) => [
-                ...(t.slots.morning || []),
-                ...(t.slots.afternoon || []),
-              ]),
+              newSelectedTeachers.flatMap((t) => getAllSlots(t)),
             ),
           ),
         };
@@ -198,7 +205,7 @@ export const createTeacherSlice: StateCreator<
       clearClashDetectionCaches();
       
       const filteredTeachers = state.teachers.filter((t) => !t.id.startsWith(courseId));
-      const finalTeachers = [...filteredTeachers, ...newTeachers];
+      const finalTeachers = [...filteredTeachers, ...newTeachers.map(normalizeTeacher)];
 
       return {
         teachers: finalTeachers,

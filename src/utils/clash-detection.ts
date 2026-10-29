@@ -83,21 +83,24 @@ export function hasClashEnhanced(
 }
 
 export function hasClashSlot(slot: string, teacher: Teacher): boolean {
+  const slotsToCheck = slot.split("+").map(s => s.trim()).filter(Boolean);
   const allSlots = getAllSlots(teacher);
-  if (allSlots.includes(slot)) return true;
 
-  const mappings1 = vitapSlotMapping[slot];
-  if (!mappings1) return false;
+  for (const s of slotsToCheck) {
+    if (allSlots.includes(s)) return true;
+    const mappings1 = vitapSlotMapping[s];
+    if (!mappings1) continue;
 
-  for (const tSlot of allSlots) {
-    const mappings2 = vitapSlotMapping[tSlot];
-    if (!mappings2) continue;
+    for (const tSlot of allSlots) {
+      const mappings2 = vitapSlotMapping[tSlot];
+      if (!mappings2) continue;
 
-    for (const m1 of mappings1) {
-      for (const m2 of mappings2) {
-        if (m1.day === m2.day && m1.day !== undefined) {
-          if (timesOverlap(m1.time, m2.time)) {
-            return true;
+      for (const m1 of mappings1) {
+        for (const m2 of mappings2) {
+          if (m1.day === m2.day && m1.day !== undefined) {
+            if (timesOverlap(m1.time, m2.time)) {
+              return true;
+            }
           }
         }
       }
@@ -161,12 +164,16 @@ export function getDaysForSlot(slot: string): string[] {
     return slotDayMapCache.get(slot)!;
   }
 
+  const subSlots = slot.split("+").map(s => s.trim()).filter(Boolean);
   const occurringDays: string[] = [];
-  const mappings = vitapSlotMapping[slot];
-  if (mappings) {
-    for (const m of mappings) {
-      if (m.day && !occurringDays.includes(m.day)) {
-        occurringDays.push(m.day);
+
+  for (const sub of subSlots) {
+    const mappings = vitapSlotMapping[sub];
+    if (mappings) {
+      for (const m of mappings) {
+        if (m.day && !occurringDays.includes(m.day)) {
+          occurringDays.push(m.day);
+        }
       }
     }
   }

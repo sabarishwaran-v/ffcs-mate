@@ -1,5 +1,6 @@
 import { StateCreator } from "zustand";
 import { StoreState } from "../types";
+import { getAllSlots } from "@/src/utils/timetable";
 
 export type CourseSlice = Pick<
   StoreState,
@@ -45,10 +46,7 @@ export const createCourseSlice: StateCreator<
           new Set(
             timetable.selectedTeachers
               .filter((t) => t.course !== id)
-              .flatMap((t) => [
-                ...(t.slots.morning || []),
-                ...(t.slots.afternoon || []),
-              ]),
+              .flatMap((t) => getAllSlots(t)),
           ),
         ),
       }));

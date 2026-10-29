@@ -115,17 +115,13 @@ export default function Dashboard() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
           >
-            <AnimatedButton onClick={() => setIsDialogOpen(true)} size="lg" className="w-full sm:w-auto px-7 py-6 text-base sm:text-lg rounded-xl bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 group">
+            <AnimatedButton onClick={() => setIsDialogOpen(true)} size="lg" className="w-full sm:w-auto px-8 py-6 text-lg rounded-xl bg-foreground text-background hover:bg-foreground/90 shadow-xl shadow-foreground/5 group">
               Start Planning Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </AnimatedButton>
-            <AnimatedButton onClick={() => setIsHtmlGuideOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-6 py-6 text-base sm:text-lg rounded-xl border-purple-500/30 bg-purple-500/5 text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 transition-colors">
-              <Download className="mr-2 w-5 h-5 text-purple-500" />
-              How to Download HTML
-            </AnimatedButton>
-            <AnimatedButton onClick={() => setIsVideoOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-6 py-6 text-base sm:text-lg rounded-xl border-border bg-card/50 backdrop-blur hover:bg-muted/50">
+            <AnimatedButton onClick={() => setIsVideoOpen(true)} variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg rounded-xl border-border bg-card/50 backdrop-blur hover:bg-muted/50">
               <PlayCircle className="mr-2 w-5 h-5" />
               Watch Demo
             </AnimatedButton>

@@ -14,6 +14,7 @@ import { ToastWrapper } from "./toast";
 import { Title } from "@/components/title";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { PrivacyOnboarding } from "@/components/auth/privacy-onboarding";
+import { CacheBuster } from "@/components/cache-cleaner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -123,6 +124,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TopLoader color="#a855f7" />
+        <CacheBuster />
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <TooltipProvider>

@@ -2418,5 +2418,2199 @@
       "faculty": "Manmadha Rao Banki",
       "venue": "AB1-120"
     }
+  ],
+  "CSE2007_C2+TC2": [
+    {
+      "faculty": "Beebi Naseeba",
+      "venue": "CB-407"
+    },
+    {
+      "faculty": "Bharathi V C",
+      "venue": "CB-415"
+    },
+    {
+      "faculty": "Nagendra Panini Challa",
+      "venue": "CB-423"
+    },
+    {
+      "faculty": "Devulapalli Sudheer",
+      "venue": "CB-408"
+    },
+    {
+      "faculty": "Yarlagadda Siva Reshma",
+      "venue": "CB-422"
+    },
+    {
+      "faculty": "Ajith Jubilson E",
+      "venue": "CB-418"
+    },
+    {
+      "faculty": "VASAVI SANIKOMMU",
+      "venue": "CB-412"
+    },
+    {
+      "faculty": "Dasari Sandeep",
+      "venue": "CB-413"
+    }
+  ],
+  "CSE2007_B1+TB1": [
+    {
+      "faculty": "Beebi Naseeba",
+      "venue": "CB-505"
+    },
+    {
+      "faculty": "Rajasekhar Boddu",
+      "venue": "CB-432"
+    },
+    {
+      "faculty": "Mannepuli Srujana",
+      "venue": "CB-504"
+    },
+    {
+      "faculty": "N Lakshmipathi Anantha",
+      "venue": "CB-506"
+    },
+    {
+      "faculty": "Asish Kumar Dalai",
+      "venue": "CB-507"
+    },
+    {
+      "faculty": "ZEBA SHAMSI",
+      "venue": "CB-510"
+    },
+    {
+      "faculty": "THOTA RAMATHULASI",
+      "venue": "CB-429"
+    },
+    {
+      "faculty": "VASAVI SANIKOMMU",
+      "venue": "CB-430"
+    },
+    {
+      "faculty": "VENKATESH B",
+      "venue": "CB-433"
+    },
+    {
+      "faculty": "SIDDIQUE IBRAHIM S.P",
+      "venue": "CB-431"
+    },
+    {
+      "faculty": "Ajith Jubilson E",
+      "venue": "CB-501"
+    }
+  ],
+  "CSE2007_B2+TB2": [
+    {
+      "faculty": "THOTA RAMATHULASI",
+      "venue": "CB-G14"
+    },
+    {
+      "faculty": "Bharathi V C",
+      "venue": "CB-407"
+    },
+    {
+      "faculty": "Beebi Naseeba",
+      "venue": "CB-415"
+    },
+    {
+      "faculty": "N Lakshmipathi Anantha",
+      "venue": "CB-418"
+    },
+    {
+      "faculty": "PATAN MUSHIYA KATOON",
+      "venue": "CB-326"
+    },
+    {
+      "faculty": "VASAVI SANIKOMMU",
+      "venue": "CB-G15"
+    },
+    {
+      "faculty": "VENKATESH B",
+      "venue": "CB-327"
+    },
+    {
+      "faculty": "Mannepuli Srujana",
+      "venue": "CB-408"
+    },
+    {
+      "faculty": "Rajasekhar Boddu",
+      "venue": "CB-324"
+    },
+    {
+      "faculty": "Kumar Debasis",
+      "venue": "CB-422"
+    }
+  ],
+  "CSE2007_C2+TCC2": [
+    {
+      "faculty": "Kumar Debasis",
+      "venue": "CB-216"
+    },
+    {
+      "faculty": "B.V.Gokulnath",
+      "venue": "CB-213"
+    },
+    {
+      "faculty": "SIDDIQUE IBRAHIM S.P",
+      "venue": "CB-215"
+    }
+  ],
+  "CSE2007_C1+TC1": [
+    {
+      "faculty": "Nagendra Panini Challa",
+      "venue": "CB-432"
+    },
+    {
+      "faculty": "Dasari Sandeep",
+      "venue": "CB-430"
+    },
+    {
+      "faculty": "Rajasekhar Boddu",
+      "venue": "CB-433"
+    },
+    {
+      "faculty": "Asish Kumar Dalai",
+      "venue": "CB-424"
+    },
+    {
+      "faculty": "Kumar Debasis",
+      "venue": "CB-426"
+    },
+    {
+      "faculty": "ZEBA SHAMSI",
+      "venue": "CB-429"
+    },
+    {
+      "faculty": "B.V.Gokulnath",
+      "venue": "CB-431"
+    },
+    {
+      "faculty": "SIDDIQUE IBRAHIM S.P",
+      "venue": "CB-423"
+    },
+    {
+      "faculty": "Ajith Jubilson E",
+      "venue": "CB-425"
+    }
+  ],
+  "CSE2007_C1+TCC1": [
+    {
+      "faculty": "VENKATESH B",
+      "venue": "CB-108"
+    },
+    {
+      "faculty": "Bharathi V C",
+      "venue": "CB-214"
+    },
+    {
+      "faculty": "Yarlagadda Siva Reshma",
+      "venue": "CB-109"
+    }
+  ],
+  "CSE2007_L27+L28": [
+    {
+      "faculty": "Beebi Naseeba",
+      "venue": "CB-101"
+    }
+  ],
+  "CSE2007_L19+L20": [
+    {
+      "faculty": "Kumar Debasis",
+      "venue": "CB-405"
+    }
+  ],
+  "CSE2007_L45+L46": [
+    {
+      "faculty": "VENKATESH B",
+      "venue": "CB-416"
+    },
+    {
+      "faculty": "ZEBA SHAMSI",
+      "venue": "CB-417"
+    }
+  ],
+  "CSE2007_L47+L48": [
+    {
+      "faculty": "N Lakshmipathi Anantha",
+      "venue": "CB-419"
+    },
+    {
+      "faculty": "THOTA RAMATHULASI",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L55+L56": [
+    {
+      "faculty": "Bharathi V C",
+      "venue": "CB-301"
+    },
+    {
+      "faculty": "Kumar Debasis",
+      "venue": "CB-302"
+    }
+  ],
+  "CSE2007_L5+L6": [
+    {
+      "faculty": "VENKATESH B",
+      "venue": "CB-102"
+    },
+    {
+      "faculty": "N Lakshmipathi Anantha",
+      "venue": "CB-105"
+    }
+  ],
+  "CSE2007_L29+L30": [
+    {
+      "faculty": "VASAVI SANIKOMMU",
+      "venue": "CB-303"
+    },
+    {
+      "faculty": "Kumar Debasis",
+      "venue": "CB-302"
+    }
+  ],
+  "CSE2007_L57+L58": [
+    {
+      "faculty": "Nagendra Panini Challa",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "SIDDIQUE IBRAHIM S.P",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L9+L10": [
+    {
+      "faculty": "VENKATESH B",
+      "venue": "CB-307"
+    },
+    {
+      "faculty": "Devulapalli Sudheer",
+      "venue": "CB-321"
+    }
+  ],
+  "CSE2007_L23+L24": [
+    {
+      "faculty": "VASAVI SANIKOMMU",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Mannepuli Srujana",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L25+L26": [
+    {
+      "faculty": "Dasari Sandeep",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Ajith Jubilson E",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE2007_L43+L44": [
+    {
+      "faculty": "Prof.SCOPE Dig Crs Faculty-3",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "Rajasekhar Boddu",
+      "venue": "CB-419"
+    }
+  ],
+  "CSE2007_L53+L54": [
+    {
+      "faculty": "Nagendra Panini Challa",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "Asish Kumar Dalai",
+      "venue": "CB-416"
+    }
+  ],
+  "CSE2007_L13+L14": [
+    {
+      "faculty": "Beebi Naseeba",
+      "venue": "CB-121"
+    }
+  ],
+  "CSE2007_L21+L22": [
+    {
+      "faculty": "PATAN MUSHIYA KATOON",
+      "venue": "CB-228"
+    },
+    {
+      "faculty": "SIDDIQUE IBRAHIM S.P",
+      "venue": "CB-209"
+    }
+  ],
+  "CSE2007_L41+L42": [
+    {
+      "faculty": "ZEBA SHAMSI",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L11+L12": [
+    {
+      "faculty": "B.V.Gokulnath",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L37+L38": [
+    {
+      "faculty": "Beebi Naseeba",
+      "venue": "CB-416"
+    },
+    {
+      "faculty": "Bharathi V C",
+      "venue": "AB2-114"
+    }
+  ],
+  "CSE2007_L7+L8": [
+    {
+      "faculty": "Bharathi V C",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Yarlagadda Siva Reshma",
+      "venue": "CB-416"
+    }
+  ],
+  "CSE2007_L51+L52": [
+    {
+      "faculty": "B.V.Gokulnath",
+      "venue": "CB-321"
+    },
+    {
+      "faculty": "Ajith Jubilson E",
+      "venue": "CB-307"
+    }
+  ],
+  "CSE2007_L1+L2": [
+    {
+      "faculty": "Dasari Sandeep",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "SIDDIQUE IBRAHIM S.P",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L15+L16": [
+    {
+      "faculty": "VASAVI SANIKOMMU",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "Rajasekhar Boddu",
+      "venue": "CB-122"
+    }
+  ],
+  "CSE2007_L33+L34": [
+    {
+      "faculty": "Asish Kumar Dalai",
+      "venue": "CB-419"
+    }
+  ],
+  "CSE2007_L3+L4": [
+    {
+      "faculty": "Yarlagadda Siva Reshma",
+      "venue": "CB-102"
+    }
+  ],
+  "CSE2007_L31+L32": [
+    {
+      "faculty": "Rajasekhar Boddu",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "THOTA RAMATHULASI",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2007_L35+L36": [
+    {
+      "faculty": "Mannepuli Srujana",
+      "venue": "CB-122"
+    }
+  ],
+  "CSE2007_L39+L40": [
+    {
+      "faculty": "Ajith Jubilson E",
+      "venue": "CB-105"
+    }
+  ],
+  "CSE1005_B2+TB2+TBB2": [
+    {
+      "faculty": "Tauseef Khan",
+      "venue": "CB-510"
+    },
+    {
+      "faculty": "D. Santhadevi",
+      "venue": "CB-516"
+    },
+    {
+      "faculty": "Hari Kishan Kondaveeti",
+      "venue": "CB-521"
+    },
+    {
+      "faculty": "Gokul Yenduri",
+      "venue": "CB-518"
+    },
+    {
+      "faculty": "D. Kothandaraman",
+      "venue": "CB-523"
+    },
+    {
+      "faculty": "Hussain Syed",
+      "venue": "CB-512"
+    },
+    {
+      "faculty": "MEKATHOTI VAMSI KIRAN",
+      "venue": "CB-514"
+    },
+    {
+      "faculty": "G. Deepthi",
+      "venue": "CB-519"
+    },
+    {
+      "faculty": "Srikanth Busa",
+      "venue": "CB-513"
+    },
+    {
+      "faculty": "Yelepi Usha Rani",
+      "venue": "CB-511"
+    },
+    {
+      "faculty": "Koduru Hajarathaiah",
+      "venue": "CB-520"
+    }
+  ],
+  "CSE1005_A2+TA2+TAA2": [
+    {
+      "faculty": "D. Kothandaraman",
+      "venue": "CB-505"
+    },
+    {
+      "faculty": "Mohinder Singh. B",
+      "venue": "CB-506"
+    },
+    {
+      "faculty": "Tauseef Khan",
+      "venue": "CB-513"
+    },
+    {
+      "faculty": "Mohan Allam",
+      "venue": "CB-511"
+    },
+    {
+      "faculty": "D. Santhadevi",
+      "venue": "CB-512"
+    },
+    {
+      "faculty": "Visalakshi Annepu",
+      "venue": "CB-514"
+    },
+    {
+      "faculty": "Hari Kishan Kondaveeti",
+      "venue": "CB-501"
+    },
+    {
+      "faculty": "Anurag De",
+      "venue": "CB-317"
+    },
+    {
+      "faculty": "Naga Jagadesh Bommagani",
+      "venue": "CB-504"
+    },
+    {
+      "faculty": "N MD JUBAIR BASHA",
+      "venue": "CB-510"
+    },
+    {
+      "faculty": "Srikanth Busa",
+      "venue": "CB-507"
+    }
+  ],
+  "CSE1005_B1+TB1+TBB1": [
+    {
+      "faculty": "Amgothu Shanthi",
+      "venue": "CB-315"
+    },
+    {
+      "faculty": "Tauseef Khan",
+      "venue": "CB-316"
+    },
+    {
+      "faculty": "Gokul Yenduri",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "D. Santhadevi",
+      "venue": "CB-323"
+    },
+    {
+      "faculty": "G. Deepthi",
+      "venue": "CB-324"
+    },
+    {
+      "faculty": "Dasari Sandeep",
+      "venue": "CB-325"
+    },
+    {
+      "faculty": "Yelepi Usha Rani",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "MEKATHOTI VAMSI KIRAN",
+      "venue": "CB-317"
+    },
+    {
+      "faculty": "Hari Kishan Kondaveeti",
+      "venue": "CB-231"
+    },
+    {
+      "faculty": "Mohan Allam",
+      "venue": "CB-318B"
+    },
+    {
+      "faculty": "Ngangbam Indrason",
+      "venue": "CB-318A"
+    },
+    {
+      "faculty": "Koduru Hajarathaiah",
+      "venue": "CB-314"
+    }
+  ],
+  "CSE1005_A1+TA1+TAA1": [
+    {
+      "faculty": "D. Kothandaraman",
+      "venue": "CB-431"
+    },
+    {
+      "faculty": "Jayanta Pratihar",
+      "venue": "CB-504"
+    },
+    {
+      "faculty": "Ngangbam Indrason",
+      "venue": "CB-501"
+    },
+    {
+      "faculty": "Anurag De",
+      "venue": "CB-425"
+    },
+    {
+      "faculty": "Mohinder Singh. B",
+      "venue": "CB-432"
+    },
+    {
+      "faculty": "Gokul Yenduri",
+      "venue": "CB-505"
+    },
+    {
+      "faculty": "Shaik Kareemulla",
+      "venue": "CB-426"
+    },
+    {
+      "faculty": "Naga Jagadesh Bommagani",
+      "venue": "CB-430"
+    },
+    {
+      "faculty": "MEKATHOTI VAMSI KIRAN",
+      "venue": "CB-506"
+    },
+    {
+      "faculty": "Koduru Hajarathaiah",
+      "venue": "CB-429"
+    },
+    {
+      "faculty": "Srikanth Busa",
+      "venue": "CB-433"
+    }
+  ],
+  "STS2011_B2+TB2": [
+    {
+      "faculty": "Prof Sumanth",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "Prof.Six Phrase Faculty-9",
+      "venue": "CB-524"
+    },
+    {
+      "faculty": "KUMARAN R",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "Prof Musthaq",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "GOWRABATHINATANOJ",
+      "venue": "CB-219"
+    }
+  ],
+  "STS2011_C2+TC2": [
+    {
+      "faculty": "Prof.Six Phrase Faculty-9",
+      "venue": "CB-514"
+    },
+    {
+      "faculty": "SUJITHA",
+      "venue": "CB-324"
+    },
+    {
+      "faculty": "SWETHA",
+      "venue": "CB-513"
+    }
+  ],
+  "STS2011_C2+TCC2": [
+    {
+      "faculty": "PRASHANTH KUMAR",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "K MANI",
+      "venue": "AB2-G19"
+    }
+  ],
+  "STS2011_D1+TDD1": [
+    {
+      "faculty": "PRASHANTH KUMAR",
+      "venue": "CB-216"
+    },
+    {
+      "faculty": "SWETHA",
+      "venue": "CB-G11"
+    }
+  ],
+  "STS2011_B1+TB1": [
+    {
+      "faculty": "RAMESH",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "KUMARAN R",
+      "venue": "CB-217"
+    },
+    {
+      "faculty": "Prof Musthaq",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "SUJITHA",
+      "venue": "CB-218"
+    },
+    {
+      "faculty": "Prof Sumanth",
+      "venue": "CB-219"
+    }
+  ],
+  "STS2011_A1+TA1": [
+    {
+      "faculty": "Prof.Six Phrase Faculty-9",
+      "venue": "CB-327"
+    },
+    {
+      "faculty": "PRASHANTH KUMAR",
+      "venue": "CB-323"
+    },
+    {
+      "faculty": "Prof Musthaq",
+      "venue": "CB-326"
+    },
+    {
+      "faculty": "K MANI",
+      "venue": "CB-325"
+    },
+    {
+      "faculty": "GOWRABATHINATANOJ",
+      "venue": "CB-324"
+    }
+  ],
+  "STS2011_C1+TCC1": [
+    {
+      "faculty": "SUJITHA",
+      "venue": "AB2-105"
+    },
+    {
+      "faculty": "Mamatha",
+      "venue": "CB-111"
+    }
+  ],
+  "STS2011_D2+TDD2": [
+    {
+      "faculty": "SUJITHA",
+      "venue": "CB-214"
+    },
+    {
+      "faculty": "K MANI",
+      "venue": "CB-215"
+    }
+  ],
+  "STS2011_C1+TC1": [
+    {
+      "faculty": "Prof.Six Phrase Faculty-9",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "KUMARAN R",
+      "venue": "CB-316"
+    },
+    {
+      "faculty": "K MANI",
+      "venue": "CB-317"
+    }
+  ],
+  "STS2011_E2+TE2": [
+    {
+      "faculty": "PRASHANTH KUMAR",
+      "venue": "CB-218"
+    },
+    {
+      "faculty": "Prof.Six Phrase Faculty-9",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "DEVA NAVEEN KUMAR",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "SWETHA",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "SUJITHA",
+      "venue": "CB-219"
+    }
+  ],
+  "STS2011_A2+TA2": [
+    {
+      "faculty": "Prof Musthaq",
+      "venue": "CB-323"
+    },
+    {
+      "faculty": "RAMESH",
+      "venue": "CB-324"
+    },
+    {
+      "faculty": "GOWRABATHINATANOJ",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "KUMARAN R",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "Prof Sumanth",
+      "venue": "CB-318B"
+    }
+  ],
+  "STS2011_F1+TFF1": [
+    {
+      "faculty": "Prof.Six Phrase Faculty-9",
+      "venue": "CB-G11"
+    },
+    {
+      "faculty": "MANIKANDAN S",
+      "venue": "CB-G12"
+    }
+  ],
+  "STS2011_D1+TD1": [
+    {
+      "faculty": "DEVA NAVEEN KUMAR",
+      "venue": "CB-426"
+    },
+    {
+      "faculty": "KUMARAN R",
+      "venue": "CB-425"
+    },
+    {
+      "faculty": "RAMESH",
+      "venue": "CB-429"
+    }
+  ],
+  "STS2011_D2+TD2": [
+    {
+      "faculty": "RAMESH",
+      "venue": "CB-415"
+    },
+    {
+      "faculty": "SWETHA",
+      "venue": "CB-408"
+    },
+    {
+      "faculty": "MANIKANDAN S",
+      "venue": "CB-407"
+    }
+  ],
+  "STS2011_E1+TE1": [
+    {
+      "faculty": "KUMARAN R",
+      "venue": "CB-G14"
+    },
+    {
+      "faculty": "GOWRABATHINATANOJ",
+      "venue": "CB-G15"
+    },
+    {
+      "faculty": "DEVA NAVEEN KUMAR",
+      "venue": "CB-G16"
+    },
+    {
+      "faculty": "SUJITHA",
+      "venue": "CB-201"
+    },
+    {
+      "faculty": "RAMESH",
+      "venue": "CB-213"
+    }
+  ],
+  "STS2011_F2+TF2": [
+    {
+      "faculty": "DEVA NAVEEN KUMAR",
+      "venue": "CB-317"
+    },
+    {
+      "faculty": "SWETHA",
+      "venue": "CB-G17"
+    },
+    {
+      "faculty": "MANIKANDAN S",
+      "venue": "CB-G16"
+    }
+  ],
+  "STS2011_F2+TFF2": [
+    {
+      "faculty": "K MANI",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "RAMESH",
+      "venue": "CB-110"
+    }
+  ],
+  "STS2011_F1+TF1": [
+    {
+      "faculty": "DEVA NAVEEN KUMAR",
+      "venue": "CB-G16"
+    },
+    {
+      "faculty": "SWETHA",
+      "venue": "CB-314"
+    },
+    {
+      "faculty": "RAKSHITHA KARRA",
+      "venue": "CB-G15"
+    }
+  ],
+  "CSE2008_D2+TD2": [
+    {
+      "faculty": "LANKA DIVYA",
+      "venue": "CB-429"
+    },
+    {
+      "faculty": "ANIL VITTHALRAO TURUKMANE",
+      "venue": "CB-423"
+    },
+    {
+      "faculty": "VENKATA SIVANARAYANA GAYYI",
+      "venue": "CB-425"
+    },
+    {
+      "faculty": "Suresh Dara",
+      "venue": "CB-430"
+    },
+    {
+      "faculty": "MADALA GARGI",
+      "venue": "CB-431"
+    },
+    {
+      "faculty": "S. Kalyani",
+      "venue": "CB-424"
+    },
+    {
+      "faculty": "Annapureddy V N Reddy",
+      "venue": "CB-426"
+    },
+    {
+      "faculty": "Prabha Selvaraj",
+      "venue": "CB-422"
+    }
+  ],
+  "CSE2008_D2+TDD2": [
+    {
+      "faculty": "SHAIK WASIM AKRAM",
+      "venue": "CB-G12"
+    },
+    {
+      "faculty": "POPURI SRINIVASA RAO",
+      "venue": "CB-318B"
+    },
+    {
+      "faculty": "Shaik Subhani",
+      "venue": "CB-G13"
+    }
+  ],
+  "CSE2008_E2+TE2": [
+    {
+      "faculty": "Voddelli SriLakshmi",
+      "venue": "CB-315"
+    },
+    {
+      "faculty": "Aravapalli Rama Satish",
+      "venue": "CB-316"
+    },
+    {
+      "faculty": "MATTAKOYYA AHARONU",
+      "venue": "CB-324"
+    },
+    {
+      "faculty": "JAVVAJI VENKATA KANAKA RATNAM",
+      "venue": "CB-317"
+    },
+    {
+      "faculty": "Ravi Kumar Poluru",
+      "venue": "CB-314"
+    },
+    {
+      "faculty": "Suresh Dara",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "MADALA GARGI",
+      "venue": "CB-326"
+    },
+    {
+      "faculty": "LANKA DIVYA",
+      "venue": "CB-325"
+    },
+    {
+      "faculty": "S. Kalyani",
+      "venue": "CB-526"
+    },
+    {
+      "faculty": "Burla Nagaraju",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "Monalisa Sahu",
+      "venue": "CB-323"
+    }
+  ],
+  "CSE2008_E1+TE1": [
+    {
+      "faculty": "Aravapalli Rama Satish",
+      "venue": "CB-315"
+    },
+    {
+      "faculty": "VENKATA SIVANARAYANA GAYYI",
+      "venue": "CB-230"
+    },
+    {
+      "faculty": "Voddelli SriLakshmi",
+      "venue": "CB-316"
+    },
+    {
+      "faculty": "SHAIK WASIM AKRAM",
+      "venue": "CB-518"
+    },
+    {
+      "faculty": "Ravi Kumar Poluru",
+      "venue": "CB-314"
+    },
+    {
+      "faculty": "MATTAKOYYA AHARONU",
+      "venue": "CB-231"
+    },
+    {
+      "faculty": "RUPA CHIRAMDASU",
+      "venue": "CB-317"
+    },
+    {
+      "faculty": "POPURI SRINIVASA RAO",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "Karrothu Aravind",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "ARUN KUMAR MARANDI",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "Prabha Selvaraj",
+      "venue": "CB-219"
+    },
+    {
+      "faculty": "LANKA DIVYA",
+      "venue": "CB-319"
+    }
+  ],
+  "CSE2008_D1+TDD1": [
+    {
+      "faculty": "ARUN KUMAR MARANDI",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "MADALA GARGI",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "Karrothu Aravind",
+      "venue": "CB-323"
+    }
+  ],
+  "CSE2008_D1+TD1": [
+    {
+      "faculty": "SHAIK WASIM AKRAM",
+      "venue": "CB-314"
+    },
+    {
+      "faculty": "VENKATA SIVANARAYANA GAYYI",
+      "venue": "CB-315"
+    },
+    {
+      "faculty": "Prabha Selvaraj",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "ANIL VITTHALRAO TURUKMANE",
+      "venue": "CB-231"
+    },
+    {
+      "faculty": "INAMPUDI GOVARDHANA RAO",
+      "venue": "CB-431"
+    },
+    {
+      "faculty": "POPURI SRINIVASA RAO",
+      "venue": "CB-230"
+    },
+    {
+      "faculty": "Shaik Subhani",
+      "venue": "CB-316"
+    },
+    {
+      "faculty": "Burla Nagaraju",
+      "venue": "CB-317"
+    }
+  ],
+  "CSE2008_L27+L28": [
+    {
+      "faculty": "ANIL VITTHALRAO TURUKMANE",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Prabha Selvaraj",
+      "venue": "CB-102"
+    }
+  ],
+  "CSE2008_L13+L14": [
+    {
+      "faculty": "ANIL VITTHALRAO TURUKMANE",
+      "venue": "CB-122"
+    },
+    {
+      "faculty": "SHAIK WASIM AKRAM",
+      "venue": "CB-202"
+    }
+  ],
+  "CSE2008_L25+L26": [
+    {
+      "faculty": "Suresh Dara",
+      "venue": "CB-416"
+    }
+  ],
+  "CSE2008_L19+L20": [
+    {
+      "faculty": "INAMPUDI GOVARDHANA RAO",
+      "venue": "CB-321"
+    },
+    {
+      "faculty": "Voddelli SriLakshmi",
+      "venue": "CB-307"
+    }
+  ],
+  "CSE2008_L21+L22": [
+    {
+      "faculty": "SHAIK WASIM AKRAM",
+      "venue": "CB-202"
+    },
+    {
+      "faculty": "Annapureddy V N Reddy",
+      "venue": "CB-122"
+    }
+  ],
+  "CSE2008_L41+L42": [
+    {
+      "faculty": "MATTAKOYYA AHARONU",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "POPURI SRINIVASA RAO",
+      "venue": "CB-419"
+    }
+  ],
+  "CSE2008_L1+L2": [
+    {
+      "faculty": "SHAIK WASIM AKRAM",
+      "venue": "CB-122"
+    },
+    {
+      "faculty": "Ravi Kumar Poluru",
+      "venue": "CB-202"
+    }
+  ],
+  "CSE2008_L29+L30": [
+    {
+      "faculty": "Ravi Kumar Poluru",
+      "venue": "CB-307"
+    },
+    {
+      "faculty": "S. Kalyani",
+      "venue": "CB-321"
+    }
+  ],
+  "CSE2008_L47+L48": [
+    {
+      "faculty": "Aravapalli Rama Satish",
+      "venue": "CB-417"
+    },
+    {
+      "faculty": "Karrothu Aravind",
+      "venue": "CB-416"
+    }
+  ],
+  "CSE2008_L51+L52": [
+    {
+      "faculty": "VENKATA SIVANARAYANA GAYYI",
+      "venue": "CB-409"
+    },
+    {
+      "faculty": "MADALA GARGI",
+      "venue": "CB-101"
+    }
+  ],
+  "CSE2008_L23+L24": [
+    {
+      "faculty": "MADALA GARGI",
+      "venue": "CB-419"
+    }
+  ],
+  "CSE2008_L33+L34": [
+    {
+      "faculty": "MATTAKOYYA AHARONU",
+      "venue": "CB-303"
+    },
+    {
+      "faculty": "Prabha Selvaraj",
+      "venue": "CB-416"
+    }
+  ],
+  "CSE2008_L7+L8": [
+    {
+      "faculty": "LANKA DIVYA",
+      "venue": "CB-417"
+    }
+  ],
+  "CSE2008_L57+L58": [
+    {
+      "faculty": "LANKA DIVYA",
+      "venue": "CB-301"
+    }
+  ],
+  "CSE2008_L15+L16": [
+    {
+      "faculty": "JAVVAJI VENKATA KANAKA RATNAM",
+      "venue": "CB-202"
+    }
+  ],
+  "CSE2008_L53+L54": [
+    {
+      "faculty": "ARUN KUMAR MARANDI",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "S. Kalyani",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE2008_L9+L10": [
+    {
+      "faculty": "Suresh Dara",
+      "venue": "CB-405"
+    },
+    {
+      "faculty": "Monalisa Sahu",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE2008_L35+L36": [
+    {
+      "faculty": "VENKATA SIVANARAYANA GAYYI",
+      "venue": "CB-202"
+    },
+    {
+      "faculty": "Burla Nagaraju",
+      "venue": "CB-209"
+    }
+  ],
+  "CSE2008_L3+L4": [
+    {
+      "faculty": "LANKA DIVYA",
+      "venue": "CB-106"
+    },
+    {
+      "faculty": "Burla Nagaraju",
+      "venue": "CB-105"
+    }
+  ],
+  "CSE2008_L55+L56": [
+    {
+      "faculty": "RUPA CHIRAMDASU",
+      "venue": "CB-303"
+    }
+  ],
+  "CSE2008_L45+L46": [
+    {
+      "faculty": "POPURI SRINIVASA RAO",
+      "venue": "CB-419"
+    }
+  ],
+  "CSE2008_L39+L40": [
+    {
+      "faculty": "Karrothu Aravind",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "Shaik Subhani",
+      "venue": "CB-106"
+    }
+  ],
+  "CSE2008_L31+L32": [
+    {
+      "faculty": "Shaik Subhani",
+      "venue": "CB-122"
+    },
+    {
+      "faculty": "VENKATA SIVANARAYANA GAYYI",
+      "venue": "CB-202"
+    }
+  ],
+  "CSE2008_L11+L12": [
+    {
+      "faculty": "MADALA GARGI",
+      "venue": "CB-105"
+    }
+  ],
+  "CSE2008_L37+L38": [
+    {
+      "faculty": "ARUN KUMAR MARANDI",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE2008_L43+L44": [
+    {
+      "faculty": "Prabha Selvaraj",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE2008_L49+L50": [
+    {
+      "faculty": "Voddelli SriLakshmi",
+      "venue": "CB-419"
+    },
+    {
+      "faculty": "POPURI SRINIVASA RAO",
+      "venue": "CB-417"
+    }
+  ],
+  "CSE2008_L5+L6": [
+    {
+      "faculty": "Aravapalli Rama Satish",
+      "venue": "CB-106"
+    }
+  ],
+  "MAT1010_A2+TA2": [
+    {
+      "faculty": "Pratik Premadarshi Ray",
+      "venue": "CB-215"
+    },
+    {
+      "faculty": "Shobhit Kumar Srivastava",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "Komandla Mahipal Reddy",
+      "venue": "CB-216"
+    },
+    {
+      "faculty": "N Rajashekar",
+      "venue": "CB-119"
+    },
+    {
+      "faculty": "Sonali Kaushik",
+      "venue": "CB-214"
+    },
+    {
+      "faculty": "Chandan Kumar Thakur",
+      "venue": "CB-114"
+    },
+    {
+      "faculty": "SANTANU MANDAL",
+      "venue": "CB-218"
+    },
+    {
+      "faculty": "V. Pujitha",
+      "venue": "CB-115"
+    },
+    {
+      "faculty": "S V Gomathi",
+      "venue": "CB-219"
+    },
+    {
+      "faculty": "Peeyush Singh",
+      "venue": "CB-120"
+    },
+    {
+      "faculty": "Sudhakar M",
+      "venue": "CB-217"
+    },
+    {
+      "faculty": "Francis P",
+      "venue": "CB-201"
+    },
+    {
+      "faculty": "Soumen Kundu",
+      "venue": "CB-118"
+    }
+  ],
+  "MAT1010_D2+TDD2": [
+    {
+      "faculty": "MUNEESWARAN R",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "Prashanth Maroju",
+      "venue": "CB-112"
+    },
+    {
+      "faculty": "Yada Nandukumar",
+      "venue": "CB-113"
+    },
+    {
+      "faculty": "Sukanta Nayak",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "Soumen Kundu",
+      "venue": "CB-110"
+    }
+  ],
+  "MAT1010_D2+TD2": [
+    {
+      "faculty": "Ramesh Prasad Panda",
+      "venue": "CB-316"
+    },
+    {
+      "faculty": "Pradip R. Patle",
+      "venue": "CB-315"
+    },
+    {
+      "faculty": "Perumandla Karunakar",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "MOUMITA GHOSH",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "Arun Kumar Yadav",
+      "venue": "CB-317"
+    },
+    {
+      "faculty": "Subhasis Panda",
+      "venue": "CB-324"
+    },
+    {
+      "faculty": "Manisha Maity",
+      "venue": "CB-314"
+    },
+    {
+      "faculty": "Francis P",
+      "venue": "CB-323"
+    }
+  ],
+  "MAT1010_A1+TA1": [
+    {
+      "faculty": "Pratik Premadarshi Ray",
+      "venue": "CB-220"
+    },
+    {
+      "faculty": "SANTANU MANDAL",
+      "venue": "CB-231"
+    },
+    {
+      "faculty": "Arun Kumar Yadav",
+      "venue": "CB-219"
+    },
+    {
+      "faculty": "Ramesh Prasad Panda",
+      "venue": "CB-118"
+    },
+    {
+      "faculty": "N Rajashekar",
+      "venue": "CB-120"
+    },
+    {
+      "faculty": "V. Pujitha",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "Shalini",
+      "venue": "CB-230"
+    },
+    {
+      "faculty": "Subhasis Panda",
+      "venue": "CB-201"
+    },
+    {
+      "faculty": "Piu Kundu",
+      "venue": "CB-119"
+    },
+    {
+      "faculty": "Peeyush Singh",
+      "venue": "CB-225"
+    },
+    {
+      "faculty": "Komandla Mahipal Reddy",
+      "venue": "CB-226"
+    },
+    {
+      "faculty": "Lisna PC",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "Manisha Maity",
+      "venue": "CB-218"
+    }
+  ],
+  "MAT1010_D1+TDD1": [
+    {
+      "faculty": "Vasili B V Nagarjuna",
+      "venue": "CB-110"
+    },
+    {
+      "faculty": "Banoth Veeranna",
+      "venue": "CB-213"
+    },
+    {
+      "faculty": "Sonali Kaushik",
+      "venue": "CB-109"
+    },
+    {
+      "faculty": "S V Gomathi",
+      "venue": "CB-108"
+    }
+  ],
+  "MAT1010_D1+TD1": [
+    {
+      "faculty": "Prashanth Maroju",
+      "venue": "CB-407"
+    },
+    {
+      "faculty": "Shobhit Kumar Srivastava",
+      "venue": "CB-327"
+    },
+    {
+      "faculty": "Pradip R. Patle",
+      "venue": "CB-326"
+    },
+    {
+      "faculty": "Sudhakar M",
+      "venue": "CB-418"
+    },
+    {
+      "faculty": "Shalini",
+      "venue": "CB-422"
+    },
+    {
+      "faculty": "Perumandla Karunakar",
+      "venue": "CB-408"
+    },
+    {
+      "faculty": "Sukanta Nayak",
+      "venue": "CB-415"
+    },
+    {
+      "faculty": "Piu Kundu",
+      "venue": "CB-325"
+    }
+  ],
+  "MAT1010_L25+L26": [
+    {
+      "faculty": "Perumandla Karunakar",
+      "venue": "CB-102"
+    },
+    {
+      "faculty": "V. Pujitha",
+      "venue": "CB-101"
+    }
+  ],
+  "MAT1010_L41+L42": [
+    {
+      "faculty": "MOUMITA GHOSH",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Peeyush Singh",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L55+L56": [
+    {
+      "faculty": "Chandan Kumar Thakur",
+      "venue": "CB-106"
+    },
+    {
+      "faculty": "S V Gomathi",
+      "venue": "CB-121"
+    }
+  ],
+  "MAT1010_L7+L8": [
+    {
+      "faculty": "BIHALAN BHATTACHARYA",
+      "venue": "CB-405"
+    },
+    {
+      "faculty": "KAVYA R NAIR",
+      "venue": "CB-321"
+    }
+  ],
+  "MAT1010_L1+L2": [
+    {
+      "faculty": "Shobhit Kumar Srivastava",
+      "venue": "CB-102"
+    },
+    {
+      "faculty": "Pradip R. Patle",
+      "venue": "CB-101"
+    }
+  ],
+  "MAT1010_L47+L48": [
+    {
+      "faculty": "Parul Saini",
+      "venue": "CB-102"
+    },
+    {
+      "faculty": "Subhasis Panda",
+      "venue": "CB-101"
+    }
+  ],
+  "MAT1010_L21+L22": [
+    {
+      "faculty": "Banoth Veeranna",
+      "venue": "CB-303"
+    },
+    {
+      "faculty": "Sudhakar M",
+      "venue": "CB-302"
+    }
+  ],
+  "MAT1010_L51+L52": [
+    {
+      "faculty": "Prashanth Maroju",
+      "venue": "CB-302"
+    },
+    {
+      "faculty": "Pradip R. Patle",
+      "venue": "CB-301"
+    }
+  ],
+  "MAT1010_L13+L14": [
+    {
+      "faculty": "Ramesh Prasad Panda",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Manisha Maity",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L19+L20": [
+    {
+      "faculty": "Piu Kundu",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Arun Kumar Yadav",
+      "venue": "CB-416"
+    }
+  ],
+  "MAT1010_L27+L28": [
+    {
+      "faculty": "Pratik Premadarshi Ray",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "N Rajashekar",
+      "venue": "CB-122"
+    }
+  ],
+  "MAT1010_L23+L24": [
+    {
+      "faculty": "Shalini",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Sukanta Nayak",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L9+L10": [
+    {
+      "faculty": "Arun Kumar Yadav",
+      "venue": "CB-228"
+    },
+    {
+      "faculty": "Shalini",
+      "venue": "CB-301"
+    }
+  ],
+  "MAT1010_L11+L12": [
+    {
+      "faculty": "Komandla Mahipal Reddy",
+      "venue": "CB-202"
+    },
+    {
+      "faculty": "Piu Kundu",
+      "venue": "CB-122"
+    }
+  ],
+  "MAT1010_L33+L34": [
+    {
+      "faculty": "MOUMITA GHOSH",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "Francis P",
+      "venue": "AB2-119"
+    }
+  ],
+  "MAT1010_L35+L36": [
+    {
+      "faculty": "ROHIT VERMA",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "REETIKA CHAWLA",
+      "venue": "CB-106"
+    }
+  ],
+  "MAT1010_L45+L46": [
+    {
+      "faculty": "Vasili B V Nagarjuna",
+      "venue": "AB2-114"
+    },
+    {
+      "faculty": "Lisna PC",
+      "venue": "AB2-301"
+    }
+  ],
+  "MAT1010_L3+L4": [
+    {
+      "faculty": "Yada Nandukumar",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "Francis P",
+      "venue": "CB-321"
+    }
+  ],
+  "MAT1010_L53+L54": [
+    {
+      "faculty": "Pratik Premadarshi Ray",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Komandla Mahipal Reddy",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L5+L6": [
+    {
+      "faculty": "Chandan Kumar Thakur",
+      "venue": "CB-122"
+    },
+    {
+      "faculty": "Ramesh Prasad Panda",
+      "venue": "CB-302"
+    }
+  ],
+  "MAT1010_L29+L30": [
+    {
+      "faculty": "Sonali Kaushik",
+      "venue": "CB-122"
+    },
+    {
+      "faculty": "S V Gomathi",
+      "venue": "CB-202"
+    }
+  ],
+  "MAT1010_L37+L38": [
+    {
+      "faculty": "Shobhit Kumar Srivastava",
+      "venue": "CB-121"
+    },
+    {
+      "faculty": "V. Pujitha",
+      "venue": "CB-106"
+    }
+  ],
+  "MAT1010_L31+L32": [
+    {
+      "faculty": "Prashanth Maroju",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Perumandla Karunakar",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L39+L40": [
+    {
+      "faculty": "Sonali Kaushik",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "N Rajashekar",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L15+L16": [
+    {
+      "faculty": "SANTANU MANDAL",
+      "venue": "CB-101"
+    },
+    {
+      "faculty": "Subhasis Panda",
+      "venue": "CB-102"
+    }
+  ],
+  "MAT1010_L57+L58": [
+    {
+      "faculty": "Soumen Kundu",
+      "venue": "CB-409"
+    }
+  ],
+  "MAT1010_L43+L44": [
+    {
+      "faculty": "Soumen Kundu",
+      "venue": "CB-105"
+    },
+    {
+      "faculty": "Sukanta Nayak",
+      "venue": "CB-106"
+    }
+  ],
+  "MAT1010_L49+L50": [
+    {
+      "faculty": "Peeyush Singh",
+      "venue": "CB-102"
+    },
+    {
+      "faculty": "Manisha Maity",
+      "venue": "CB-101"
+    }
+  ],
+  "MEC2005_D2+TDD2": [
+    {
+      "faculty": "Manikanta Ravindra Kumar Vakkalagadda",
+      "venue": "CB-108"
+    }
+  ],
+  "MEC2005_D2+TD2": [
+    {
+      "faculty": "Suyog Jhavar",
+      "venue": "CB-325"
+    }
+  ],
+  "MEC2005_D1+TD1": [
+    {
+      "faculty": "Suyog Jhavar",
+      "venue": "CB-423"
+    }
+  ],
+  "MEC2005_L27+L28": [
+    {
+      "faculty": "Suyog Jhavar",
+      "venue": "AB2-G18"
+    }
+  ],
+  "MEC2005_L3+L4": [
+    {
+      "faculty": "Suyog Jhavar",
+      "venue": "AB2-G18"
+    }
+  ],
+  "MEC2005_L43+L44": [
+    {
+      "faculty": "Manikanta Ravindra Kumar Vakkalagadda",
+      "venue": "AB2-G18"
+    }
+  ],
+  "MEC2005_L31+L32": [
+    {
+      "faculty": "Kishor. E",
+      "venue": "AB2-G18"
+    }
+  ],
+  "MEC2018_B2+TB2": [
+    {
+      "faculty": "Shirin Naresh Patil",
+      "venue": "CB-201"
+    },
+    {
+      "faculty": "KUMAR NISHANT RANJAN SINHA",
+      "venue": "CB-214"
+    }
+  ],
+  "MEC2018_B1+TB1": [
+    {
+      "faculty": "Shirin Naresh Patil",
+      "venue": "CB-114"
+    }
+  ],
+  "MEC2018_L5+L6": [
+    {
+      "faculty": "Shirin Naresh Patil",
+      "venue": "AB2-G11"
+    }
+  ],
+  "MEC2018_L21+L22": [
+    {
+      "faculty": "Shirin Naresh Patil",
+      "venue": "AB2-G11"
+    }
+  ],
+  "MEC2018_L51+L52": [
+    {
+      "faculty": "MUDIT MISHRA",
+      "venue": "AB2-G11"
+    }
+  ],
+  "MEC2018_L37+L38": [
+    {
+      "faculty": "MUDIT MISHRA",
+      "venue": "AB2-G11"
+    }
+  ],
+  "MEC3002_C2+TCC2": [
+    {
+      "faculty": "Santosh Kumar Sahu",
+      "venue": "AB1-G10"
+    }
+  ],
+  "MEC3002_C2+TC2": [
+    {
+      "faculty": "Rama Sreekanth P S",
+      "venue": "CB-323"
+    }
+  ],
+  "MEC3002_C1+TC1": [
+    {
+      "faculty": "Rama Sreekanth P S",
+      "venue": "CB-315"
+    }
+  ],
+  "MEC3002_L39+L40": [
+    {
+      "faculty": "Santosh Kumar Sahu",
+      "venue": "AB2-G01"
+    }
+  ],
+  "MEC3002_L9+L10": [
+    {
+      "faculty": "Santosh Kumar Sahu",
+      "venue": "AB2-G01"
+    }
+  ],
+  "MEC3002_L25+L26": [
+    {
+      "faculty": "Rama Sreekanth P S",
+      "venue": "AB2-G01"
+    }
+  ],
+  "MEC3002_L55+L56": [
+    {
+      "faculty": "Rama Sreekanth P S",
+      "venue": "AB2-G01"
+    }
+  ],
+  "CSE1006_C2+TCC2": [
+    {
+      "faculty": "Prashanth Rajam",
+      "venue": "CB-114"
+    }
+  ],
+  "CSE1006_C2+TC2": [
+    {
+      "faculty": "Palacharla Ravi Kumar",
+      "venue": "CB-524"
+    },
+    {
+      "faculty": "Lalitha Kumari P",
+      "venue": "CB-325"
+    }
+  ],
+  "CSE1006_C1+TCC1": [
+    {
+      "faculty": "Lalitha Kumari P",
+      "venue": "CB-216"
+    }
+  ],
+  "CSE1006_F1+TFF1": [
+    {
+      "faculty": "Palacharla Ravi Kumar",
+      "venue": "CB-109"
+    }
+  ],
+  "CSE1006_F2+TF2": [
+    {
+      "faculty": "RUPA CHIRAMDASU",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "Prashanth Rajam",
+      "venue": "CB-319"
+    },
+    {
+      "faculty": "Naga Jagadesh Bommagani",
+      "venue": "CB-323"
+    }
+  ],
+  "CSE1006_F1+TF1": [
+    {
+      "faculty": "Voddelli SriLakshmi",
+      "venue": "CB-425"
+    },
+    {
+      "faculty": "RUPA CHIRAMDASU",
+      "venue": "CB-322"
+    },
+    {
+      "faculty": "Lalitha Kumari P",
+      "venue": "CB-319"
+    }
+  ],
+  "CSE1006_F2+TFF2": [
+    {
+      "faculty": "Debasis Dwibedy",
+      "venue": "CB-527"
+    }
+  ],
+  "CSE1006_C1+TC1": [
+    {
+      "faculty": "MOHD IRFAN",
+      "venue": "CB-408"
+    },
+    {
+      "faculty": "Palacharla Ravi Kumar",
+      "venue": "CB-407"
+    },
+    {
+      "faculty": "Prashanth Rajam",
+      "venue": "CB-524"
+    }
+  ],
+  "CSE1006_L29+L30": [
+    {
+      "faculty": "Palacharla Ravi Kumar",
+      "venue": "CB-405"
+    }
+  ],
+  "CSE1006_L51+L52": [
+    {
+      "faculty": "Palacharla Ravi Kumar",
+      "venue": "CB-405"
+    }
+  ],
+  "CSE1006_L11+L12": [
+    {
+      "faculty": "Prashanth Rajam",
+      "venue": "CB-102"
+    }
+  ],
+  "CSE1006_L37+L38": [
+    {
+      "faculty": "Palacharla Ravi Kumar",
+      "venue": "CB-405"
+    },
+    {
+      "faculty": "Lalitha Kumari P",
+      "venue": "CB-321"
+    }
+  ],
+  "CSE1006_L23+L24": [
+    {
+      "faculty": "Debasis Dwibedy",
+      "venue": "CB-417"
+    }
+  ],
+  "CSE1006_L5+L6": [
+    {
+      "faculty": "RUPA CHIRAMDASU",
+      "venue": "CB-121"
+    }
+  ],
+  "CSE1006_L39+L40": [
+    {
+      "faculty": "MOHD IRFAN",
+      "venue": "CB-122"
+    }
+  ],
+  "CSE1006_L45+L46": [
+    {
+      "faculty": "Prashanth Rajam",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE1006_L33+L34": [
+    {
+      "faculty": "Voddelli SriLakshmi",
+      "venue": "CB-307"
+    }
+  ],
+  "CSE1006_L41+L42": [
+    {
+      "faculty": "Naga Jagadesh Bommagani",
+      "venue": "CB-416"
+    }
+  ],
+  "CSE1006_L15+L16": [
+    {
+      "faculty": "Lalitha Kumari P",
+      "venue": "CB-209"
+    },
+    {
+      "faculty": "Prashanth Rajam",
+      "venue": "CB-228"
+    }
+  ],
+  "CSE1006_L1+L2": [
+    {
+      "faculty": "RUPA CHIRAMDASU",
+      "venue": "CB-209"
+    }
+  ],
+  "CSE1006_L55+L56": [
+    {
+      "faculty": "Lalitha Kumari P",
+      "venue": "CB-307"
+    }
+  ],
+  "CSE1007_C2+TC2": [
+    {
+      "faculty": "INAMPUDI GOVARDHANA RAO",
+      "venue": "CB-326"
+    },
+    {
+      "faculty": "Udit Narayana Kar",
+      "venue": "CB-327"
+    }
+  ],
+  "CSE1007_F1+TFF1": [
+    {
+      "faculty": "INAMPUDI GOVARDHANA RAO",
+      "venue": "CB-216"
+    }
+  ],
+  "CSE1007_F2+TFF2": [
+    {
+      "faculty": "MOHAMMAD SIRAJUDDIN",
+      "venue": "CB-526"
+    }
+  ],
+  "CSE1007_F1+TF1": [
+    {
+      "faculty": "Prof.SCOPE Dig Crs Faculty-11",
+      "venue": "CB-323"
+    },
+    {
+      "faculty": "Saroj Kumar Panigrahy",
+      "venue": "CB-324"
+    }
+  ],
+  "CSE1007_C1+TC1": [
+    {
+      "faculty": "MOHAMMAD SIRAJUDDIN",
+      "venue": "CB-415"
+    },
+    {
+      "faculty": "Udit Narayana Kar",
+      "venue": "CB-418"
+    }
+  ],
+  "CSE1007_F2+TF2": [
+    {
+      "faculty": "Saroj Kumar Panigrahy",
+      "venue": "CB-324"
+    }
+  ],
+  "CSE1007_L15+L16": [
+    {
+      "faculty": "Saroj Kumar Panigrahy",
+      "venue": "CB-301"
+    }
+  ],
+  "CSE1007_L29+L30": [
+    {
+      "faculty": "MOHAMMAD SIRAJUDDIN",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE1007_L55+L56": [
+    {
+      "faculty": "INAMPUDI GOVARDHANA RAO",
+      "venue": "CB-321"
+    }
+  ],
+  "CSE1007_L7+L8": [
+    {
+      "faculty": "MOHAMMAD SIRAJUDDIN",
+      "venue": "CB-419"
+    }
+  ],
+  "CSE1007_L11+L12": [
+    {
+      "faculty": "Udit Narayana Kar",
+      "venue": "CB-101"
+    }
+  ],
+  "CSE1007_L39+L40": [
+    {
+      "faculty": "Prof.SCOPE Dig Crs Faculty-11",
+      "venue": "CB-228"
+    }
+  ],
+  "CSE1007_L45+L46": [
+    {
+      "faculty": "INAMPUDI GOVARDHANA RAO",
+      "venue": "CB-405"
+    }
+  ],
+  "CSE1007_L47+L48": [
+    {
+      "faculty": "Udit Narayana Kar",
+      "venue": "CB-301"
+    }
+  ],
+  "CSE1007_L5+L6": [
+    {
+      "faculty": "Saroj Kumar Panigrahy",
+      "venue": "CB-202"
+    }
   ]
 }

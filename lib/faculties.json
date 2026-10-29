@@ -4612,5 +4612,23 @@
       "faculty": "Saroj Kumar Panigrahy",
       "venue": "CB-202"
     }
+  ],
+  "CSE1021_C2+TCC2": [
+    {
+      "faculty": "Naresh Sammeta",
+      "venue": "CB-214"
+    }
+  ],
+  "CSE1021_C1+TC1": [
+    {
+      "faculty": "PARITALA JHANSIRANI",
+      "venue": "CB-422"
+    }
+  ],
+  "CSE1021_G2+TG2": [
+    {
+      "faculty": "HARAPRIYA KAR",
+      "venue": "CB-215"
+    }
   ]
 }

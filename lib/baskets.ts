@@ -6,6 +6,63 @@ export interface CourseBasket {
 
 export const COURSE_BASKETS: CourseBasket[] = [
   {
+    id: "25bce",
+    name: "25BCE (CSE)",
+    courseCodes: [
+      "STS2011",
+      "MGT1040",
+      "ECS2003",
+      "MAT1010",
+      "CSE2008",
+      "CSE2007",
+      "CSE1005",
+      "CSE1022"
+    ]
+  },
+  {
+    id: "25bca",
+    name: "25BCA (AIML)",
+    courseCodes: [
+      "STS2011",
+      "MGT1040",
+      "ECS2003",
+      "CSE2008",
+      "CSE2007",
+      "CSE3008",
+      "CSE1005",
+      "CSE1022"
+    ]
+  },
+  {
+    id: "25bec",
+    name: "25BEC (ECE)",
+    courseCodes: [
+      "MAT1010",
+      "STS2011",
+      "MGT1040",
+      "ECS2003",
+      "ECE2003",
+      "ECE2006",
+      "ECE2016",
+      "ECE2009",
+      "ECE3006"
+    ]
+  },
+  {
+    id: "25bes",
+    name: "25BES (ECE ES)",
+    courseCodes: [
+      "MAT1010",
+      "STS2011",
+      "MGT1040",
+      "ECS2003",
+      "ECE2003",
+      "ECE2006",
+      "ECE2016",
+      "ECE2009"
+    ]
+  },
+  {
     id: "2026-cse",
     name: "2026 CSE (CORE/CS/DA/AIML/SW)",
     courseCodes: [

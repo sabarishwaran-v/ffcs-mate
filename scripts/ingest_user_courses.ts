@@ -18,6 +18,7 @@ const mockFiles = [
   'mock_html/mat1010.html', // MAT1010: Probability & Statistics (ETH, 4 credits)
   
   // Additional uploaded courses
+  'mock_html/cse1021.html', // CSE1021: Blockchain Technology (TH, 3 credits)
   'mock_html/mec2005.html', // MEC2005: Manufacturing Processes (ETH, 4 credits)
   'mock_html/mec2018.html', // MEC2018: Thermal Engineering (ETH, 4 credits)
   'mock_html/mec3002.html', // MEC3002: Theory of Machines (ETH, 4 credits)
@@ -178,6 +179,8 @@ async function run() {
     if (c.code.startsWith('STS')) {
       c.credits = 1;
     } else if (c.code === 'CSE1005') {
+      c.credits = 4;
+    } else if (c.code === 'ECE2016') {
       c.credits = 4;
     }
   }

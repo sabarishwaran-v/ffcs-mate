@@ -10866,5 +10866,38 @@
     "facultyName": "Saroj Kumar Panigrahy",
     "venue": "CB-202",
     "status": "approved"
+  },
+  "CSE1021_C2+TCC2_Naresh_Sammeta": {
+    "id": "CSE1021_C2+TCC2_Naresh_Sammeta",
+    "courseId": "CSE1021",
+    "courseCode": "CSE1021",
+    "courseName": "Foundations of Blockchain Technology",
+    "slot": "C2+TCC2",
+    "faculty": "Naresh Sammeta",
+    "facultyName": "Naresh Sammeta",
+    "venue": "CB-214",
+    "status": "approved"
+  },
+  "CSE1021_C1+TC1_PARITALA_JHANSIRANI": {
+    "id": "CSE1021_C1+TC1_PARITALA_JHANSIRANI",
+    "courseId": "CSE1021",
+    "courseCode": "CSE1021",
+    "courseName": "Foundations of Blockchain Technology",
+    "slot": "C1+TC1",
+    "faculty": "PARITALA JHANSIRANI",
+    "facultyName": "PARITALA JHANSIRANI",
+    "venue": "CB-422",
+    "status": "approved"
+  },
+  "CSE1021_G2+TG2_HARAPRIYA_KAR": {
+    "id": "CSE1021_G2+TG2_HARAPRIYA_KAR",
+    "courseId": "CSE1021",
+    "courseCode": "CSE1021",
+    "courseName": "Foundations of Blockchain Technology",
+    "slot": "G2+TG2",
+    "faculty": "HARAPRIYA KAR",
+    "facultyName": "HARAPRIYA KAR",
+    "venue": "CB-215",
+    "status": "approved"
   }
 }

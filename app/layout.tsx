@@ -14,7 +14,6 @@ import { ToastWrapper } from "./toast";
 import { Title } from "@/components/title";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { PrivacyOnboarding } from "@/components/auth/privacy-onboarding";
-import { AppVersionMonitor } from "@/components/app-version-monitor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -121,7 +120,6 @@ export default function RootLayout({
                 {children}
                 <ToastWrapper />
                 <PrivacyOnboarding />
-                <AppVersionMonitor />
               </MotionDiv>
             </TooltipProvider>
           </ThemeProvider>

@@ -11196,5 +11196,159 @@
     "facultyName": "Hanumantharao Bitra",
     "venue": "AB2-211",
     "status": "approved"
+  },
+  "ECE3006_F2+TF2_PILLUTLA_SIVA_RAMAKRISHNA": {
+    "id": "ECE3006_F2+TF2_PILLUTLA_SIVA_RAMAKRISHNA",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "F2+TF2",
+    "faculty": "PILLUTLA SIVA RAMAKRISHNA",
+    "facultyName": "PILLUTLA SIVA RAMAKRISHNA",
+    "venue": "CB-219",
+    "status": "approved"
+  },
+  "ECE3006_F1+TF1_Aruru_Sai_Kumar": {
+    "id": "ECE3006_F1+TF1_Aruru_Sai_Kumar",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "F1+TF1",
+    "faculty": "Aruru Sai Kumar",
+    "facultyName": "Aruru Sai Kumar",
+    "venue": "CB-225",
+    "status": "approved"
+  },
+  "ECE3006_F2+TF2_Aruru_Sai_Kumar": {
+    "id": "ECE3006_F2+TF2_Aruru_Sai_Kumar",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "F2+TF2",
+    "faculty": "Aruru Sai Kumar",
+    "facultyName": "Aruru Sai Kumar",
+    "venue": "CB-220",
+    "status": "approved"
+  },
+  "ECE3006_G1+TG1_PILLUTLA_SIVA_RAMAKRISHNA": {
+    "id": "ECE3006_G1+TG1_PILLUTLA_SIVA_RAMAKRISHNA",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "G1+TG1",
+    "faculty": "PILLUTLA SIVA RAMAKRISHNA",
+    "facultyName": "PILLUTLA SIVA RAMAKRISHNA",
+    "venue": "CB-213",
+    "status": "approved"
+  },
+  "ECE3006_L25+L26_Aruru_Sai_Kumar": {
+    "id": "ECE3006_L25+L26_Aruru_Sai_Kumar",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "L25+L26",
+    "faculty": "Aruru Sai Kumar",
+    "facultyName": "Aruru Sai Kumar",
+    "venue": "AB2-311",
+    "status": "approved"
+  },
+  "ECE3006_L47+L48_Aruru_Sai_Kumar": {
+    "id": "ECE3006_L47+L48_Aruru_Sai_Kumar",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "L47+L48",
+    "faculty": "Aruru Sai Kumar",
+    "facultyName": "Aruru Sai Kumar",
+    "venue": "AB2-311",
+    "status": "approved"
+  },
+  "ECE3006_L33+L34_Aruru_Sai_Kumar": {
+    "id": "ECE3006_L33+L34_Aruru_Sai_Kumar",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "L33+L34",
+    "faculty": "Aruru Sai Kumar",
+    "facultyName": "Aruru Sai Kumar",
+    "venue": "AB2-311",
+    "status": "approved"
+  },
+  "ECE3006_L15+L16_Aruru_Sai_Kumar": {
+    "id": "ECE3006_L15+L16_Aruru_Sai_Kumar",
+    "courseId": "ECE3006",
+    "courseCode": "ECE3006",
+    "courseName": "HDL Verification and Methodology",
+    "slot": "L15+L16",
+    "faculty": "Aruru Sai Kumar",
+    "facultyName": "Aruru Sai Kumar",
+    "venue": "AB2-311",
+    "status": "approved"
+  },
+  "ECE2009_G2+TG2_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD": {
+    "id": "ECE2009_G2+TG2_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD",
+    "courseId": "ECE2009",
+    "courseCode": "ECE2009",
+    "courseName": "Data Acquisition and Transmission Systems",
+    "slot": "G2+TG2",
+    "faculty": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "facultyName": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "venue": "CB-107",
+    "status": "approved"
+  },
+  "ECE2009_F2+TFF2_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD": {
+    "id": "ECE2009_F2+TFF2_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD",
+    "courseId": "ECE2009",
+    "courseCode": "ECE2009",
+    "courseName": "Data Acquisition and Transmission Systems",
+    "slot": "F2+TFF2",
+    "faculty": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "facultyName": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "venue": "AB1-G01",
+    "status": "approved"
+  },
+  "ECE2009_F1+TF1_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD": {
+    "id": "ECE2009_F1+TF1_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD",
+    "courseId": "ECE2009",
+    "courseCode": "ECE2009",
+    "courseName": "Data Acquisition and Transmission Systems",
+    "slot": "F1+TF1",
+    "faculty": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "facultyName": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "venue": "CB-115",
+    "status": "approved"
+  },
+  "ECE2009_L13+L14_Ashish_Gupta": {
+    "id": "ECE2009_L13+L14_Ashish_Gupta",
+    "courseId": "ECE2009",
+    "courseCode": "ECE2009",
+    "courseName": "Data Acquisition and Transmission Systems",
+    "slot": "L13+L14",
+    "faculty": "Ashish Gupta",
+    "facultyName": "Ashish Gupta",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2009_L3+L4_Ashish_Gupta": {
+    "id": "ECE2009_L3+L4_Ashish_Gupta",
+    "courseId": "ECE2009",
+    "courseCode": "ECE2009",
+    "courseName": "Data Acquisition and Transmission Systems",
+    "slot": "L3+L4",
+    "faculty": "Ashish Gupta",
+    "facultyName": "Ashish Gupta",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2009_L49+L50_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD": {
+    "id": "ECE2009_L49+L50_SUNKESULA_MOULANA_ABDUL_KALAM_AZAD",
+    "courseId": "ECE2009",
+    "courseCode": "ECE2009",
+    "courseName": "Data Acquisition and Transmission Systems",
+    "slot": "L49+L50",
+    "faculty": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "facultyName": "SUNKESULA MOULANA ABDUL KALAM AZAD",
+    "venue": "AB2-404",
+    "status": "approved"
   }
 }

@@ -10899,5 +10899,181 @@
     "facultyName": "HARAPRIYA KAR",
     "venue": "CB-215",
     "status": "approved"
+  },
+  "ECE2003_C2+TCC2_Subhasish_Mahapatra": {
+    "id": "ECE2003_C2+TCC2_Subhasish_Mahapatra",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "C2+TCC2",
+    "faculty": "Subhasish Mahapatra",
+    "facultyName": "Subhasish Mahapatra",
+    "venue": "CB-107",
+    "status": "approved"
+  },
+  "ECE2003_C2+TC2_Pradosh_Ranjan_Sahoo": {
+    "id": "ECE2003_C2+TC2_Pradosh_Ranjan_Sahoo",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "C2+TC2",
+    "faculty": "Pradosh Ranjan Sahoo",
+    "facultyName": "Pradosh Ranjan Sahoo",
+    "venue": "CB-314",
+    "status": "approved"
+  },
+  "ECE2003_A1+TA1_Pradosh_Ranjan_Sahoo": {
+    "id": "ECE2003_A1+TA1_Pradosh_Ranjan_Sahoo",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "A1+TA1",
+    "faculty": "Pradosh Ranjan Sahoo",
+    "facultyName": "Pradosh Ranjan Sahoo",
+    "venue": "CB-107",
+    "status": "approved"
+  },
+  "ECE2003_C1+TCC1_Pradosh_Ranjan_Sahoo": {
+    "id": "ECE2003_C1+TCC1_Pradosh_Ranjan_Sahoo",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "C1+TCC1",
+    "faculty": "Pradosh Ranjan Sahoo",
+    "facultyName": "Pradosh Ranjan Sahoo",
+    "venue": "AB1-219",
+    "status": "approved"
+  },
+  "ECE2003_C1+TC1_Subhasish_Mahapatra": {
+    "id": "ECE2003_C1+TC1_Subhasish_Mahapatra",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "C1+TC1",
+    "faculty": "Subhasish Mahapatra",
+    "facultyName": "Subhasish Mahapatra",
+    "venue": "CB-327",
+    "status": "approved"
+  },
+  "ECE2003_L25+L26_Praveen_Maurya": {
+    "id": "ECE2003_L25+L26_Praveen_Maurya",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "L25+L26",
+    "faculty": "Praveen Maurya",
+    "facultyName": "Praveen Maurya",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2003_L23+L24_SOURAV_GHOSH": {
+    "id": "ECE2003_L23+L24_SOURAV_GHOSH",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "L23+L24",
+    "faculty": "SOURAV GHOSH",
+    "facultyName": "SOURAV GHOSH",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2003_L9+L10_YARLAGADDA_RAGHUVAMSI": {
+    "id": "ECE2003_L9+L10_YARLAGADDA_RAGHUVAMSI",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "L9+L10",
+    "faculty": "YARLAGADDA RAGHUVAMSI",
+    "facultyName": "YARLAGADDA RAGHUVAMSI",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2003_L51+L52_Praveen_Maurya": {
+    "id": "ECE2003_L51+L52_Praveen_Maurya",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "L51+L52",
+    "faculty": "Praveen Maurya",
+    "facultyName": "Praveen Maurya",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2003_L31+L32_Pradosh_Ranjan_Sahoo": {
+    "id": "ECE2003_L31+L32_Pradosh_Ranjan_Sahoo",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "L31+L32",
+    "faculty": "Pradosh Ranjan Sahoo",
+    "facultyName": "Pradosh Ranjan Sahoo",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2003_L35+L36_SOURAV_GHOSH": {
+    "id": "ECE2003_L35+L36_SOURAV_GHOSH",
+    "courseId": "ECE2003",
+    "courseCode": "ECE2003",
+    "courseName": "Control Systems Engineering",
+    "slot": "L35+L36",
+    "faculty": "SOURAV GHOSH",
+    "facultyName": "SOURAV GHOSH",
+    "venue": "AB2-404",
+    "status": "approved"
+  },
+  "ECE2016_A2+TA2+TAA2_ANSHUMAN_CHOUDHARY": {
+    "id": "ECE2016_A2+TA2+TAA2_ANSHUMAN_CHOUDHARY",
+    "courseId": "ECE2016",
+    "courseCode": "ECE2016",
+    "courseName": "Engineering Electromagnetics",
+    "slot": "A2+TA2+TAA2",
+    "faculty": "ANSHUMAN CHOUDHARY",
+    "facultyName": "ANSHUMAN CHOUDHARY",
+    "venue": "AB1-323",
+    "status": "approved"
+  },
+  "ECE2016_A1+TA1+TAA1_Sameeulla_Khan_Md": {
+    "id": "ECE2016_A1+TA1+TAA1_Sameeulla_Khan_Md",
+    "courseId": "ECE2016",
+    "courseCode": "ECE2016",
+    "courseName": "Engineering Electromagnetics",
+    "slot": "A1+TA1+TAA1",
+    "faculty": "Sameeulla Khan Md",
+    "facultyName": "Sameeulla Khan Md",
+    "venue": "CB-213",
+    "status": "approved"
+  },
+  "ECE2016_B1+TB1+TBB1_Khairnar_Vikas_Vishnu": {
+    "id": "ECE2016_B1+TB1+TBB1_Khairnar_Vikas_Vishnu",
+    "courseId": "ECE2016",
+    "courseCode": "ECE2016",
+    "courseName": "Engineering Electromagnetics",
+    "slot": "B1+TB1+TBB1",
+    "faculty": "Khairnar Vikas Vishnu",
+    "facultyName": "Khairnar Vikas Vishnu",
+    "venue": "CB-112",
+    "status": "approved"
+  },
+  "ECE2016_A1+TA1+TAA1_ANSHUMAN_CHOUDHARY": {
+    "id": "ECE2016_A1+TA1+TAA1_ANSHUMAN_CHOUDHARY",
+    "courseId": "ECE2016",
+    "courseCode": "ECE2016",
+    "courseName": "Engineering Electromagnetics",
+    "slot": "A1+TA1+TAA1",
+    "faculty": "ANSHUMAN CHOUDHARY",
+    "facultyName": "ANSHUMAN CHOUDHARY",
+    "venue": "CB-110",
+    "status": "approved"
+  },
+  "ECE2016_A2+TA2+TAA2_G_Bharath_Reddy": {
+    "id": "ECE2016_A2+TA2+TAA2_G_Bharath_Reddy",
+    "courseId": "ECE2016",
+    "courseCode": "ECE2016",
+    "courseName": "Engineering Electromagnetics",
+    "slot": "A2+TA2+TAA2",
+    "faculty": "G Bharath Reddy",
+    "facultyName": "G Bharath Reddy",
+    "venue": "CB-111",
+    "status": "approved"
   }
 }

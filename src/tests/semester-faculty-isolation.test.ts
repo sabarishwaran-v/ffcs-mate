@@ -31,12 +31,29 @@ describe("Semester Faculty Data Isolation (Winter 2026-27 vs Fall)", () => {
   });
 
   it("ensures verified Winter courses have valid faculties in faculties.json", () => {
-    const verifiedWinterCourses = ["CSE2007", "CSE2008", "MAT1010", "CSE1005", "STS2011"];
+    const verifiedWinterCourses = ["CSE2007", "CSE2008", "MAT1010", "CSE1005", "STS2011", "ECE2003", "ECE2016"];
     const facultyKeys = Object.keys(facultiesJson);
 
     for (const code of verifiedWinterCourses) {
       const hasOfferings = facultyKeys.some((k) => k.startsWith(`${code}_`));
       expect(hasOfferings).toBe(true);
     }
+  });
+
+  it("verifies ECE2003 and ECE2016 slot mappings and faculties", () => {
+    const facultyKeys = Object.keys(facultiesJson);
+    const ece2003Slots = facultyKeys.filter((k) => k.startsWith("ECE2003_"));
+    const ece2016Slots = facultyKeys.filter((k) => k.startsWith("ECE2016_"));
+
+    // ECE2003: 5 theory slot keys + 6 lab slot keys = 11 unique slot keys
+    expect(ece2003Slots.length).toBe(11);
+    // ECE2016: 3 theory slot keys (A2+TA2+TAA2, A1+TA1+TAA1, B1+TB1+TBB1)
+    expect(ece2016Slots.length).toBe(3);
+
+    // Verify multi-faculty slot in ECE2016
+    const a2Slot = (facultiesJson as any)["ECE2016_A2+TA2+TAA2"];
+    expect(a2Slot.length).toBe(2);
+    expect(a2Slot.map((f: any) => f.faculty)).toContain("ANSHUMAN CHOUDHARY");
+    expect(a2Slot.map((f: any) => f.faculty)).toContain("G Bharath Reddy");
   });
 });

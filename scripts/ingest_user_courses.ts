@@ -1,6 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { parseMockHtmlDetailed } from '../lib/mock-html-parser';
+import { initializeApp, cert, getApps } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
 
 interface OfferingItem {
   slot: string;
@@ -30,6 +35,10 @@ const mockFiles = [
   'mock_html/ece1002.html',
   'mock_html/mat1002.html',
   'mock_html/phy1008.html',
+  
+  // Latest course offerings
+  'mock_html/ece2003.html', // ECE2003: Control Systems Engineering (ETH, 4 credits)
+  'mock_html/ece2016.html', // ECE2016: Engineering Electromagnetics (TH, 4 credits)
 ];
 
 async function run() {
@@ -182,6 +191,8 @@ async function run() {
       c.credits = 4;
     } else if (c.code === 'ECE2016') {
       c.credits = 4;
+    } else if (c.code === 'ECE2003') {
+      c.credits = 4;
     }
   }
 
@@ -202,6 +213,48 @@ async function run() {
   fs.writeFileSync(fallbackPath, JSON.stringify(fallbackFaculties, null, 2) + '\n', 'utf8');
 
   console.log(`All files successfully updated!`);
+
+  // Push to Firebase Firestore approved_faculties_bundle
+  if (process.env.FIREBASE_PRIVATE_KEY && process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
+    console.log('\n☁️ Pushing updated faculties to Firebase Firestore approved_faculties_bundle...');
+    if (!getApps().length) {
+      initializeApp({
+        credential: cert({
+          projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+          clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+          privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        })
+      });
+    }
+
+    const db = getFirestore();
+    const bundleData: Record<string, any> = {};
+    let totalFacultiesPushed = 0;
+
+    Object.entries(facultiesMap).forEach(([key, slotArray]: [string, any]) => {
+      const parts = key.split('_');
+      const courseCode = parts[0];
+      const slot = parts.slice(1).join('_');
+
+      slotArray.forEach((f: any) => {
+        const id = `${courseCode}_${slot}_${f.faculty.replace(/[^a-zA-Z0-9]/g, '_')}`;
+        bundleData[id] = {
+          id: id,
+          courseCode: courseCode,
+          slot: slot,
+          faculty: f.faculty,
+          venue: f.venue || 'Unknown',
+          approvedAt: new Date().toISOString(),
+          approvedBy: 'Mock FFCS Ingestion'
+        };
+        totalFacultiesPushed++;
+      });
+    });
+
+    console.log(`Pushing ${totalFacultiesPushed} faculties to bundle...`);
+    await db.collection('system').doc('approved_faculties_bundle').set(bundleData, { merge: true });
+    console.log('🎉 Successfully pushed faculties to approved_faculties_bundle in Firestore!');
+  }
 }
 
 run().catch(console.error);

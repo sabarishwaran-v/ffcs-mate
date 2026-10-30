@@ -4630,5 +4630,97 @@
       "faculty": "HARAPRIYA KAR",
       "venue": "CB-215"
     }
+  ],
+  "ECE2003_C2+TCC2": [
+    {
+      "faculty": "Subhasish Mahapatra",
+      "venue": "CB-107"
+    }
+  ],
+  "ECE2003_C2+TC2": [
+    {
+      "faculty": "Pradosh Ranjan Sahoo",
+      "venue": "CB-314"
+    }
+  ],
+  "ECE2003_A1+TA1": [
+    {
+      "faculty": "Pradosh Ranjan Sahoo",
+      "venue": "CB-107"
+    }
+  ],
+  "ECE2003_C1+TCC1": [
+    {
+      "faculty": "Pradosh Ranjan Sahoo",
+      "venue": "AB1-219"
+    }
+  ],
+  "ECE2003_C1+TC1": [
+    {
+      "faculty": "Subhasish Mahapatra",
+      "venue": "CB-327"
+    }
+  ],
+  "ECE2003_L25+L26": [
+    {
+      "faculty": "Praveen Maurya",
+      "venue": "AB2-404"
+    }
+  ],
+  "ECE2003_L23+L24": [
+    {
+      "faculty": "SOURAV GHOSH",
+      "venue": "AB2-404"
+    }
+  ],
+  "ECE2003_L9+L10": [
+    {
+      "faculty": "YARLAGADDA RAGHUVAMSI",
+      "venue": "AB2-404"
+    }
+  ],
+  "ECE2003_L51+L52": [
+    {
+      "faculty": "Praveen Maurya",
+      "venue": "AB2-404"
+    }
+  ],
+  "ECE2003_L31+L32": [
+    {
+      "faculty": "Pradosh Ranjan Sahoo",
+      "venue": "AB2-404"
+    }
+  ],
+  "ECE2003_L35+L36": [
+    {
+      "faculty": "SOURAV GHOSH",
+      "venue": "AB2-404"
+    }
+  ],
+  "ECE2016_A2+TA2+TAA2": [
+    {
+      "faculty": "ANSHUMAN CHOUDHARY",
+      "venue": "AB1-323"
+    },
+    {
+      "faculty": "G Bharath Reddy",
+      "venue": "CB-111"
+    }
+  ],
+  "ECE2016_A1+TA1+TAA1": [
+    {
+      "faculty": "Sameeulla Khan Md",
+      "venue": "CB-213"
+    },
+    {
+      "faculty": "ANSHUMAN CHOUDHARY",
+      "venue": "CB-110"
+    }
+  ],
+  "ECE2016_B1+TB1+TBB1": [
+    {
+      "faculty": "Khairnar Vikas Vishnu",
+      "venue": "CB-112"
+    }
   ]
 }

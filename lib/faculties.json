@@ -4722,5 +4722,67 @@
       "faculty": "Khairnar Vikas Vishnu",
       "venue": "CB-112"
     }
+  ],
+  "ECE2006_B2+TB2": [
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "CB-G16"
+    },
+    {
+      "faculty": "Suseela Vappangi",
+      "venue": "CB-G17"
+    }
+  ],
+  "ECE2006_B1+TB1": [
+    {
+      "faculty": "Kalapraveen Bagadi",
+      "venue": "CB-111"
+    },
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "CB-110"
+    }
+  ],
+  "ECE2006_C1+TC1": [
+    {
+      "faculty": "Suseela Vappangi",
+      "venue": "CB-230"
+    }
+  ],
+  "ECE2006_L31+L32": [
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "AB2-211"
+    }
+  ],
+  "ECE2006_L9+L10": [
+    {
+      "faculty": "Kalapraveen Bagadi",
+      "venue": "AB2-211"
+    }
+  ],
+  "ECE2006_L23+L24": [
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "AB2-211"
+    }
+  ],
+  "ECE2006_L21+L22": [
+    {
+      "faculty": "Khairnar Vikas Vishnu",
+      "venue": "AB2-211"
+    }
+  ],
+  "ECE2006_L53+L54": [
+    {
+      "faculty": "Khairnar Vikas Vishnu",
+      "venue": "AB2-211"
+    }
+  ],
+  "ECE2006_L43+L44": [
+    {
+      "faculty": "Hanumantharao Bitra",
+      "venue": "AB2-211"
+    }
   ]
 }

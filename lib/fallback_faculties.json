@@ -11075,5 +11075,126 @@
     "facultyName": "G Bharath Reddy",
     "venue": "CB-111",
     "status": "approved"
+  },
+  "ECE2006_B2+TB2_Hanumantharao_Bitra": {
+    "id": "ECE2006_B2+TB2_Hanumantharao_Bitra",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "B2+TB2",
+    "faculty": "Hanumantharao Bitra",
+    "facultyName": "Hanumantharao Bitra",
+    "venue": "CB-G16",
+    "status": "approved"
+  },
+  "ECE2006_B2+TB2_Suseela_Vappangi": {
+    "id": "ECE2006_B2+TB2_Suseela_Vappangi",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "B2+TB2",
+    "faculty": "Suseela Vappangi",
+    "facultyName": "Suseela Vappangi",
+    "venue": "CB-G17",
+    "status": "approved"
+  },
+  "ECE2006_B1+TB1_Kalapraveen_Bagadi": {
+    "id": "ECE2006_B1+TB1_Kalapraveen_Bagadi",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "B1+TB1",
+    "faculty": "Kalapraveen Bagadi",
+    "facultyName": "Kalapraveen Bagadi",
+    "venue": "CB-111",
+    "status": "approved"
+  },
+  "ECE2006_B1+TB1_Hanumantharao_Bitra": {
+    "id": "ECE2006_B1+TB1_Hanumantharao_Bitra",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "B1+TB1",
+    "faculty": "Hanumantharao Bitra",
+    "facultyName": "Hanumantharao Bitra",
+    "venue": "CB-110",
+    "status": "approved"
+  },
+  "ECE2006_C1+TC1_Suseela_Vappangi": {
+    "id": "ECE2006_C1+TC1_Suseela_Vappangi",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "C1+TC1",
+    "faculty": "Suseela Vappangi",
+    "facultyName": "Suseela Vappangi",
+    "venue": "CB-230",
+    "status": "approved"
+  },
+  "ECE2006_L31+L32_Hanumantharao_Bitra": {
+    "id": "ECE2006_L31+L32_Hanumantharao_Bitra",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "L31+L32",
+    "faculty": "Hanumantharao Bitra",
+    "facultyName": "Hanumantharao Bitra",
+    "venue": "AB2-211",
+    "status": "approved"
+  },
+  "ECE2006_L9+L10_Kalapraveen_Bagadi": {
+    "id": "ECE2006_L9+L10_Kalapraveen_Bagadi",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "L9+L10",
+    "faculty": "Kalapraveen Bagadi",
+    "facultyName": "Kalapraveen Bagadi",
+    "venue": "AB2-211",
+    "status": "approved"
+  },
+  "ECE2006_L23+L24_Hanumantharao_Bitra": {
+    "id": "ECE2006_L23+L24_Hanumantharao_Bitra",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "L23+L24",
+    "faculty": "Hanumantharao Bitra",
+    "facultyName": "Hanumantharao Bitra",
+    "venue": "AB2-211",
+    "status": "approved"
+  },
+  "ECE2006_L21+L22_Khairnar_Vikas_Vishnu": {
+    "id": "ECE2006_L21+L22_Khairnar_Vikas_Vishnu",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "L21+L22",
+    "faculty": "Khairnar Vikas Vishnu",
+    "facultyName": "Khairnar Vikas Vishnu",
+    "venue": "AB2-211",
+    "status": "approved"
+  },
+  "ECE2006_L53+L54_Khairnar_Vikas_Vishnu": {
+    "id": "ECE2006_L53+L54_Khairnar_Vikas_Vishnu",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "L53+L54",
+    "faculty": "Khairnar Vikas Vishnu",
+    "facultyName": "Khairnar Vikas Vishnu",
+    "venue": "AB2-211",
+    "status": "approved"
+  },
+  "ECE2006_L43+L44_Hanumantharao_Bitra": {
+    "id": "ECE2006_L43+L44_Hanumantharao_Bitra",
+    "courseId": "ECE2006",
+    "courseCode": "ECE2006",
+    "courseName": "Communication Systems",
+    "slot": "L43+L44",
+    "faculty": "Hanumantharao Bitra",
+    "facultyName": "Hanumantharao Bitra",
+    "venue": "AB2-211",
+    "status": "approved"
   }
 }

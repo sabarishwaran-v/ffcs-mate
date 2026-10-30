@@ -193,6 +193,8 @@ async function run() {
       c.credits = 4;
     } else if (c.code === 'ECE2003') {
       c.credits = 4;
+    } else if (c.code === 'ECE2006') {
+      c.credits = 4;
     }
   }
 

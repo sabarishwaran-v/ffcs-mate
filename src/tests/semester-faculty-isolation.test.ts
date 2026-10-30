@@ -31,7 +31,7 @@ describe("Semester Faculty Data Isolation (Winter 2026-27 vs Fall)", () => {
   });
 
   it("ensures verified Winter courses have valid faculties in faculties.json", () => {
-    const verifiedWinterCourses = ["CSE2007", "CSE2008", "MAT1010", "CSE1005", "STS2011", "ECE2003", "ECE2016"];
+    const verifiedWinterCourses = ["CSE2007", "CSE2008", "MAT1010", "CSE1005", "STS2011", "ECE2003", "ECE2016", "ECE2006"];
     const facultyKeys = Object.keys(facultiesJson);
 
     for (const code of verifiedWinterCourses) {
@@ -40,20 +40,34 @@ describe("Semester Faculty Data Isolation (Winter 2026-27 vs Fall)", () => {
     }
   });
 
-  it("verifies ECE2003 and ECE2016 slot mappings and faculties", () => {
+  it("verifies ECE2003, ECE2016, and ECE2006 slot mappings and faculties", () => {
     const facultyKeys = Object.keys(facultiesJson);
     const ece2003Slots = facultyKeys.filter((k) => k.startsWith("ECE2003_"));
     const ece2016Slots = facultyKeys.filter((k) => k.startsWith("ECE2016_"));
+    const ece2006Slots = facultyKeys.filter((k) => k.startsWith("ECE2006_"));
 
     // ECE2003: 5 theory slot keys + 6 lab slot keys = 11 unique slot keys
     expect(ece2003Slots.length).toBe(11);
     // ECE2016: 3 theory slot keys (A2+TA2+TAA2, A1+TA1+TAA1, B1+TB1+TBB1)
     expect(ece2016Slots.length).toBe(3);
+    // ECE2006: 3 theory slot keys (B1+TB1, B2+TB2, C1+TC1) + 6 lab slot keys = 9 unique slot keys
+    expect(ece2006Slots.length).toBe(9);
 
     // Verify multi-faculty slot in ECE2016
     const a2Slot = (facultiesJson as any)["ECE2016_A2+TA2+TAA2"];
     expect(a2Slot.length).toBe(2);
     expect(a2Slot.map((f: any) => f.faculty)).toContain("ANSHUMAN CHOUDHARY");
     expect(a2Slot.map((f: any) => f.faculty)).toContain("G Bharath Reddy");
+
+    // Verify multi-faculty slots in ECE2006
+    const b1Slot = (facultiesJson as any)["ECE2006_B1+TB1"];
+    expect(b1Slot.length).toBe(2);
+    expect(b1Slot.map((f: any) => f.faculty)).toContain("Kalapraveen Bagadi");
+    expect(b1Slot.map((f: any) => f.faculty)).toContain("Hanumantharao Bitra");
+
+    const b2Slot = (facultiesJson as any)["ECE2006_B2+TB2"];
+    expect(b2Slot.length).toBe(2);
+    expect(b2Slot.map((f: any) => f.faculty)).toContain("Hanumantharao Bitra");
+    expect(b2Slot.map((f: any) => f.faculty)).toContain("Suseela Vappangi");
   });
 });

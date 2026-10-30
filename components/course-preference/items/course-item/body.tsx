@@ -213,13 +213,21 @@ export default function CourseItemBody({
         shouldRemove.push(t.id);
       }
       
-      // Remove verified faculties that were deleted from the database
-      if (t.addedByName === "Verified Faculty") {
+      // Remove faculties that are no longer approved or belong to stale/previous semesters
+      const typedFacultyData = facultyData as Record<string, { faculty: string; venue: string }[]>;
+      if (
+        (t.addedByName === "Verified Faculty" || (t.faculty && t.faculty !== "-")) &&
+        t.addedByName !== "Custom HTML Upload" &&
+        !hasCustomOverride
+      ) {
         const stillApproved = courseApproved.find(af => 
           (af.id && af.id === t.id) || 
           (af.slot === t.name && (af.faculty || '').trim().toLowerCase() === (t.faculty || '').trim().toLowerCase())
         );
-        if (!stillApproved) {
+        const inLocalFaculties = (typedFacultyData[`${course.code}_${t.name}`] || []).some(
+          f => f.faculty.trim().toLowerCase() === (t.faculty || '').trim().toLowerCase()
+        );
+        if (!stillApproved && !inLocalFaculties) {
           shouldRemove.push(t.id);
         }
       }

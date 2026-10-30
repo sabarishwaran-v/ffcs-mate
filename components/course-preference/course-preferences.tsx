@@ -77,14 +77,31 @@ export function CoursePreference() {
           });
         }
 
-        // Check if real teachers exist for this course in the store
-        const existingRealTeachers = currentTeachers.filter(
-          t => t.course === mockData.id && t.faculty && t.faculty !== "-"
+        const allSlots = [...(mockData.theorySlots || []), ...(mockData.labSlots || [])];
+        const hasKnownFacultiesInJson = allSlots.some(slotStr => {
+          const facultyKey = `${mockData.code}_${slotStr}`;
+          return typedFacultyData[facultyKey] && typedFacultyData[facultyKey].length > 0;
+        });
+
+        // Filter out any stale teachers from previous semesters that are not custom uploads
+        const staleTeachersToRemove = currentTeachers.filter(
+          t => t.course === mockData.id &&
+               t.faculty &&
+               t.faculty !== "-" &&
+               t.addedByName !== "Custom HTML Upload" &&
+               !hasKnownFacultiesInJson
+        );
+        if (staleTeachersToRemove.length > 0) {
+          useScheduleStore.getState().removeTeachers(staleTeachersToRemove.map(t => t.id));
+        }
+
+        const freshCourseTeachers = useScheduleStore.getState().teachers.filter(t => t.course === mockData.id);
+        const existingRealTeachers = freshCourseTeachers.filter(
+          t => t.faculty && t.faculty !== "-"
         );
 
         // If no real teachers loaded yet, populate from faculties.json
-        if (existingRealTeachers.length === 0) {
-          const allSlots = [...(mockData.theorySlots || []), ...(mockData.labSlots || [])];
+        if (existingRealTeachers.length === 0 && freshCourseTeachers.length === 0) {
           const uniqueSlotsCount = allSlots.reduce((acc, slot) => {
             acc[slot] = (acc[slot] || 0) + 1;
             return acc;

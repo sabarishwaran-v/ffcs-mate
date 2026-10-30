@@ -1,26 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useScheduleStore } from "@/lib/store";
 
 export function PlannerGuard({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const activeSemester = useScheduleStore((state) => state.activeSemester);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlSemester = urlParams.get("semester");
+      const currentSemester = useScheduleStore.getState().activeSemester;
+
+      if (!currentSemester) {
+        useScheduleStore.setState({ activeSemester: urlSemester || "winter2026" });
+      } else if (urlSemester && urlSemester !== currentSemester) {
+        useScheduleStore.setState({ activeSemester: urlSemester });
+      }
+    }
   }, []);
 
-  useEffect(() => {
-    if (isMounted && !activeSemester) {
-      router.push("/");
-    }
-  }, [isMounted, activeSemester, router]);
-
-  // Don't render until we are sure they have a semester, avoiding flashes of content
-  if (!isMounted || !activeSemester) {
+  if (!isMounted) {
     return null;
   }
 

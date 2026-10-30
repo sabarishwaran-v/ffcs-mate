@@ -24,10 +24,12 @@ function SelectCoursesContent() {
   const storeSemester = useScheduleStore(state => state.activeSemester);
   const setSemester = useScheduleStore(state => state.setSemester);
 
-  const effectiveSemester = urlSemester || storeSemester;
+  const effectiveSemester = urlSemester || storeSemester || "winter2026";
 
   useEffect(() => {
-    if (urlSemester && urlSemester !== storeSemester) {
+    if (!storeSemester) {
+      setSemester(urlSemester || "winter2026");
+    } else if (urlSemester && urlSemester !== storeSemester) {
       setSemester(urlSemester);
     }
   }, [urlSemester, storeSemester, setSemester]);

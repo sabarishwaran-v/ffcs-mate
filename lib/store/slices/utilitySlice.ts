@@ -14,7 +14,7 @@ export const createUtilitySlice: StateCreator<
   [],
   UtilitySlice
 > = (set, get) => ({
-  activeSemester: null,
+  activeSemester: "winter2026",
   no8amRule: false,
 
   setNo8amRule: (val: boolean) => {

@@ -80,4 +80,27 @@ describe("Direct Link & Active Semester Initialization", () => {
       "CSE1022",
     ]);
   });
+
+  it("contains all 25BEV (ECE VLSI) basket courses and verifies total credits", () => {
+    const bevCourseIds = [
+      "MAT1010",
+      "STS2011",
+      "MGT1040",
+      "ECS2003",
+      "ECE2003",
+      "ECE2006",
+      "ECE2016",
+      "ECE3006",
+    ];
+
+    const availableIds = new Set(MOCK_COURSES.map((c) => c.id));
+    for (const id of bevCourseIds) {
+      expect(availableIds.has(id)).toBe(true);
+    }
+
+    const bevCourses = MOCK_COURSES.filter((c) => bevCourseIds.includes(c.id));
+    const totalCredits = bevCourses.reduce((sum, c) => sum + (c.credits || 0), 0);
+    // 4 + 1 + 4 + 2 + 4 + 4 + 4 + 4 = 27
+    expect(totalCredits).toBe(27);
+  });
 });

@@ -63,6 +63,20 @@ export const COURSE_BASKETS: CourseBasket[] = [
     ]
   },
   {
+    id: "25bev",
+    name: "25BEV (ECE VLSI)",
+    courseCodes: [
+      "MAT1010",
+      "STS2011",
+      "MGT1040",
+      "ECS2003",
+      "ECE2003",
+      "ECE2006",
+      "ECE2016",
+      "ECE3006"
+    ]
+  },
+  {
     id: "2026-cse",
     name: "2026 CSE (CORE/CS/DA/AIML/SW)",
     courseCodes: [

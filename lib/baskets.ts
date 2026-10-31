@@ -77,6 +77,18 @@ export const COURSE_BASKETS: CourseBasket[] = [
     ]
   },
   {
+    id: "25mic",
+    name: "25MIC (Int. M.Tech CSE)",
+    courseCodes: [
+      "STS2011",
+      "CSE3001",
+      "CSE3002",
+      "ECE2015",
+      "SWE2006",
+      "SWE3001"
+    ]
+  },
+  {
     id: "2026-cse",
     name: "2026 CSE (CORE/CS/DA/AIML/SW)",
     courseCodes: [

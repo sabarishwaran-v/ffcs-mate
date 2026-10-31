@@ -103,4 +103,25 @@ describe("Direct Link & Active Semester Initialization", () => {
     // 4 + 1 + 4 + 2 + 4 + 4 + 4 + 4 = 27
     expect(totalCredits).toBe(27);
   });
+
+  it("contains all 25MIC (Int. M.Tech CSE) basket courses and verifies total credits", () => {
+    const micCourseIds = [
+      "STS2011",
+      "CSE3001",
+      "CSE3002",
+      "ECE2015",
+      "SWE2006",
+      "SWE3001",
+    ];
+
+    const availableIds = new Set(MOCK_COURSES.map((c) => c.id));
+    for (const id of micCourseIds) {
+      expect(availableIds.has(id)).toBe(true);
+    }
+
+    const micCourses = MOCK_COURSES.filter((c) => micCourseIds.includes(c.id));
+    const totalCredits = micCourses.reduce((sum, c) => sum + (c.credits || 0), 0);
+    // 1 + 4 + 4 + 4 + 4 + 4 = 21
+    expect(totalCredits).toBe(21);
+  });
 });

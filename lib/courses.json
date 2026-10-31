@@ -1610,7 +1610,7 @@
     "code": "ECE2015",
     "name": "Computer Architecture",
     "type": "TH",
-    "credits": 3,
+    "credits": 4,
     "theorySlots": [
       "F1+TBB2+TF1",
       "F2+TBB1+TF2"

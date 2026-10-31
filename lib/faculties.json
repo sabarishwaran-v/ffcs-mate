@@ -4866,5 +4866,381 @@
       "faculty": "SUNKESULA MOULANA ABDUL KALAM AZAD",
       "venue": "AB2-404"
     }
+  ],
+  "CSE3001_A2+TA2": [
+    {
+      "faculty": "Khasim Syed",
+      "venue": "CB-326"
+    },
+    {
+      "faculty": "Annapureddy V N Reddy",
+      "venue": "CB-327"
+    }
+  ],
+  "CSE3001_D1+TDD1": [
+    {
+      "faculty": "Annapureddy V N Reddy",
+      "venue": "CB-501"
+    }
+  ],
+  "CSE3001_D2+TD2": [
+    {
+      "faculty": "KANHAIYA SHARMA",
+      "venue": "CB-432"
+    },
+    {
+      "faculty": "Bommaredy Lokesh",
+      "venue": "CB-433"
+    }
+  ],
+  "CSE3001_D2+TDD2": [
+    {
+      "faculty": "Khasim Syed",
+      "venue": "CB-G14"
+    }
+  ],
+  "CSE3001_A1+TA1": [
+    {
+      "faculty": "Khasim Syed",
+      "venue": "CB-523"
+    },
+    {
+      "faculty": "KANHAIYA SHARMA",
+      "venue": "CB-524"
+    }
+  ],
+  "CSE3001_D1+TD1": [
+    {
+      "faculty": "Guruprakash Jayabalasamy",
+      "venue": "CB-433"
+    }
+  ],
+  "CSE3002_A1+TA1": [
+    {
+      "faculty": "VISWANATHAN",
+      "venue": "CB-526"
+    },
+    {
+      "faculty": "Eswaraiah Rayachoti",
+      "venue": "CB-525"
+    }
+  ],
+  "CSE3002_A2+TA2": [
+    {
+      "faculty": "Balusa Bhanu Chander",
+      "venue": "CB-408"
+    },
+    {
+      "faculty": "Eswaraiah Rayachoti",
+      "venue": "CB-415"
+    },
+    {
+      "faculty": "VISWANATHAN",
+      "venue": "CB-407"
+    }
+  ],
+  "CSE3002_D1+TDD1": [
+    {
+      "faculty": "VISWANATHAN",
+      "venue": "CB-505"
+    }
+  ],
+  "CSE3002_D2+TD2": [
+    {
+      "faculty": "Balusa Bhanu Chander",
+      "venue": "CB-501"
+    }
+  ],
+  "CSE3002_D2+TDD2": [
+    {
+      "faculty": "Eswaraiah Rayachoti",
+      "venue": "CB-114"
+    }
+  ],
+  "CSE3002_D1+TD1": [
+    {
+      "faculty": "Balusa Bhanu Chander",
+      "venue": "CB-504"
+    }
+  ],
+  "CSE3002_L11+L12": [
+    {
+      "faculty": "VISWANATHAN",
+      "venue": "CB-302"
+    }
+  ],
+  "CSE3002_L23+L24": [
+    {
+      "faculty": "Eswaraiah Rayachoti",
+      "venue": "CB-409"
+    }
+  ],
+  "CSE3002_L25+L26": [
+    {
+      "faculty": "Balusa Bhanu Chander",
+      "venue": "CB-417"
+    }
+  ],
+  "CSE3002_L43+L44": [
+    {
+      "faculty": "VISWANATHAN",
+      "venue": "CB-102"
+    }
+  ],
+  "CSE3002_L9+L10": [
+    {
+      "faculty": "Balusa Bhanu Chander",
+      "venue": "CB-417"
+    }
+  ],
+  "CSE3002_L3+L4": [
+    {
+      "faculty": "Balusa Bhanu Chander",
+      "venue": "CB-122"
+    }
+  ],
+  "CSE3002_L49+L50": [
+    {
+      "faculty": "Eswaraiah Rayachoti",
+      "venue": "CB-121"
+    }
+  ],
+  "CSE3002_L41+L42": [
+    {
+      "faculty": "Eswaraiah Rayachoti",
+      "venue": "CB-121"
+    }
+  ],
+  "CSE3002_L39+L40": [
+    {
+      "faculty": "VISWANATHAN",
+      "venue": "CB-202"
+    }
+  ],
+  "ECE2015_F2+TBB1+TF2": [
+    {
+      "faculty": "Ashish Gupta",
+      "venue": "CB-216"
+    },
+    {
+      "faculty": "Agam Das Goswami",
+      "venue": "CB-217"
+    },
+    {
+      "faculty": "Jayendra Kumar",
+      "venue": "CB-218"
+    }
+  ],
+  "ECE2015_F1+TBB2+TF1": [
+    {
+      "faculty": "Ashish Gupta",
+      "venue": "CB-120"
+    },
+    {
+      "faculty": "Jayendra Kumar",
+      "venue": "CB-119"
+    }
+  ],
+  "SWE2006_C2+TC2": [
+    {
+      "faculty": "Sandipan Maiti",
+      "venue": "CB-516"
+    },
+    {
+      "faculty": "KANHAIYA SHARMA",
+      "venue": "CB-518"
+    }
+  ],
+  "SWE2006_B2+TB2": [
+    {
+      "faculty": "Hari Seetha",
+      "venue": "CB-431"
+    },
+    {
+      "faculty": "Monalisa Sahu",
+      "venue": "CB-432"
+    }
+  ],
+  "SWE2006_B1+TB1": [
+    {
+      "faculty": "Hari Seetha",
+      "venue": "CB-521"
+    },
+    {
+      "faculty": "Nagaraju Devarakonda",
+      "venue": "CB-520"
+    }
+  ],
+  "SWE2006_C1+TCC1": [
+    {
+      "faculty": "Monalisa Sahu",
+      "venue": "CB-112"
+    }
+  ],
+  "SWE2006_C2+TCC2": [
+    {
+      "faculty": "Nagaraju Devarakonda",
+      "venue": "CB-112"
+    }
+  ],
+  "SWE2006_C1+TC1": [
+    {
+      "faculty": "PUTTA DURGA",
+      "venue": "CB-521"
+    }
+  ],
+  "SWE2006_L9+L10": [
+    {
+      "faculty": "Hari Seetha",
+      "venue": "CB-416"
+    }
+  ],
+  "SWE2006_L5+L6": [
+    {
+      "faculty": "Hari Seetha",
+      "venue": "CB-209"
+    }
+  ],
+  "SWE2006_L51+L52": [
+    {
+      "faculty": "Nagaraju Devarakonda",
+      "venue": "CB-416"
+    }
+  ],
+  "SWE2006_L31+L32": [
+    {
+      "faculty": "Sandipan Maiti",
+      "venue": "ONL01002"
+    },
+    {
+      "faculty": "Monalisa Sahu",
+      "venue": "CB-209"
+    }
+  ],
+  "SWE2006_L47+L48": [
+    {
+      "faculty": "KANHAIYA SHARMA",
+      "venue": "CB-409"
+    }
+  ],
+  "SWE2006_L29+L30": [
+    {
+      "faculty": "Monalisa Sahu",
+      "venue": "CB-102"
+    }
+  ],
+  "SWE2006_L33+L34": [
+    {
+      "faculty": "Nagaraju Devarakonda",
+      "venue": "CB-301"
+    }
+  ],
+  "SWE2006_L15+L16": [
+    {
+      "faculty": "PUTTA DURGA",
+      "venue": "CB-303"
+    }
+  ],
+  "SWE3001_B2+TB2": [
+    {
+      "faculty": "DHARANI SABARI SAMUDRALA",
+      "venue": "CB-501"
+    },
+    {
+      "faculty": "KARNAM BALAJI",
+      "venue": "CB-433"
+    },
+    {
+      "faculty": "PARITALA JHANSIRANI",
+      "venue": "CB-504"
+    }
+  ],
+  "SWE3001_C2+TC2": [
+    {
+      "faculty": "KARNAM BALAJI",
+      "venue": "CB-519"
+    }
+  ],
+  "SWE3001_C2+TCC2": [
+    {
+      "faculty": "PARITALA JHANSIRANI",
+      "venue": "CB-113"
+    }
+  ],
+  "SWE3001_C1+TCC1": [
+    {
+      "faculty": "Shaik Subhani",
+      "venue": "CB-107"
+    }
+  ],
+  "SWE3001_C1+TC1": [
+    {
+      "faculty": "Reeja S R",
+      "venue": "CB-523"
+    }
+  ],
+  "SWE3001_B1+TB1": [
+    {
+      "faculty": "Reeja S R",
+      "venue": "CB-523"
+    },
+    {
+      "faculty": "KARNAM BALAJI",
+      "venue": "CB-524"
+    }
+  ],
+  "SWE3001_L15+L16": [
+    {
+      "faculty": "Reeja S R",
+      "venue": "CB-307"
+    }
+  ],
+  "SWE3001_L27+L28": [
+    {
+      "faculty": "KARNAM BALAJI",
+      "venue": "CB-419"
+    }
+  ],
+  "SWE3001_L7+L8": [
+    {
+      "faculty": "KARNAM BALAJI",
+      "venue": "CB-121"
+    }
+  ],
+  "SWE3001_L23+L24": [
+    {
+      "faculty": "PARITALA JHANSIRANI",
+      "venue": "CB-228"
+    }
+  ],
+  "SWE3001_L43+L44": [
+    {
+      "faculty": "DHARANI SABARI SAMUDRALA",
+      "venue": "CB-101"
+    }
+  ],
+  "SWE3001_L21+L22": [
+    {
+      "faculty": "Shaik Subhani",
+      "venue": "CB-106"
+    }
+  ],
+  "SWE3001_L37+L38": [
+    {
+      "faculty": "PARITALA JHANSIRANI",
+      "venue": "CB-307"
+    }
+  ],
+  "SWE3001_L55+L56": [
+    {
+      "faculty": "KARNAM BALAJI",
+      "venue": "CB-409"
+    }
+  ],
+  "SWE3001_L45+L46": [
+    {
+      "faculty": "Reeja S R",
+      "venue": "CB-228"
+    }
   ]
 }
